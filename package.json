@@ -16,22 +16,20 @@
     "husky": "^9.1.7",
     "next": "15.2.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "semantic-release": "^24.2.3"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
+    "@commitlint/cz-commitlint": "^19.8.0",
     "@eslint/eslintrc": "^3.3.1",
+    "@next/bundle-analyzer": "^15.2.3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20.17.27",
+    "@types/node": "^22.13.13",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/cz-commitlint": "^19.8.0",
-    "@next/bundle-analyzer": "^15.2.3",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
     "commitizen": "^4.3.1",
+    "cross-env": "^7.0.3",
     "eslint": "^9.23.0",
     "eslint-config-next": "15.2.3",
     "tailwindcss": "^4",
@@ -43,26 +41,6 @@
     }
   },
   "release": {
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "preset": "conventionalcommits"
-        }
-      ],
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      "@semantic-release/git",
-      "@semantic-release/github"
-    ]
+    "branches": ["main"]
   }
 }
