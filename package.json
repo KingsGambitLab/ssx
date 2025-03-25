@@ -26,7 +26,6 @@
     "@commitlint/cz-commitlint": "^19.8.0",
     "@eslint/eslintrc": "^3.3.1",
     "@next/bundle-analyzer": "^15.2.3",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^22.13.13",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -34,7 +33,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.23.0",
     "eslint-config-next": "15.2.3",
-    "tailwindcss": "^4",
+    "lint-staged": "^15.5.0",
     "typescript": "^5"
   },
   "config": {
@@ -43,6 +42,8 @@
     }
   },
   "release": {
-    "branches": ["main"]
+    "branches": [
+      "main"
+    ]
   }
 }
