@@ -1,0 +1,47 @@
+$quick-filter-heading-color: #3a3a3a;
+$quick-filters-border-color: #e4e4e4;
+
+.container {
+  @include flex-row-y-c;
+
+  gap: 1.4rem;
+
+  @include mobile {
+    @include flex-col;
+
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+.heading {
+  color: $quick-filter-heading-color;
+  font-size: $h4-size;
+  font-weight: $default-font-weight;
+  line-height: normal;
+}
+
+.filters {
+  @include flex-row-y-c;
+
+  gap: 1.4rem;
+  flex-wrap: wrap;
+
+  @include mobile {
+    gap: 1rem;
+  }
+}
+
+.filterButton {
+  padding: 0.8rem 1.6rem;
+  border-radius: $border-radius-default;
+  border: 1px solid $quick-filters-border-color;
+  background: $white-color;
+  font-size: $h5-size;
+  font-weight: 500;
+  color: $quick-filter-heading-color;
+}
+
+.selectedFilterButton {
+  background: $quick-filters-border-color;
+}

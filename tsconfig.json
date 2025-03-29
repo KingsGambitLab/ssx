@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src/",
+    "baseUrl": ".",
     "target": "ES2017",
     "lib": [
       "dom",
@@ -25,16 +25,22 @@
     ],
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
+      ],
+      "@/public/*": [
+        "./public/*"
       ],
       "@/components/*": [
-        "components/*"
+        "./src/components/*"
       ],
       "@/utils/*": [
-        "utils/*"
+        "./src/utils/*"
       ],
       "@/common/*": [
-        "common/*"
+        "./src/common/*"
+      ],
+      "@/hooks/*": [
+        "./src/hooks/*"
       ]
     }
   },

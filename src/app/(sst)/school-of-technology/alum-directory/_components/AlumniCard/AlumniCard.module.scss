@@ -1,0 +1,126 @@
+$alumni-card-border-color: #e4e4e4;
+$alumni-name-font-color: #171717;
+$alumni-info-font-color: #3a3a3a;
+$alumni-view-profile-button-color: #0052FF;
+$alumni-card-background-color-dark-theme: #121212;
+$alumni-name-gradient-color-dark-theme: linear-gradient(90deg, #3A9DFF -9.23%, #F6E8FF 47.12%);
+
+.container {
+  @include flex-col-y-c;
+  @include flex-fill;
+
+  padding: 2rem;
+  align-items: flex-start;
+  gap: 2rem;
+  border-radius: $border-radius-large;
+  border: 0.1rem $alumni-card-border-color;
+
+  &.light {
+    background: $white-color;
+  }
+
+  &.dark {
+    padding: 0;
+    gap: 3.2rem;
+    background: $alumni-card-background-color-dark-theme;
+  }
+}
+
+.infoContainer {
+  @include flex-row-x-c;
+
+  gap: 1.4rem;
+  align-self: stretch;
+
+  &.dark {
+    gap: 2rem;
+  }
+}
+
+.alumniInfo {
+  @include flex-col;
+  @include flex-fill;
+
+  align-self: stretch;
+  align-items: flex-start;
+  gap: 1rem;
+
+  &.dark {
+    gap: 1.4rem;
+  }
+}
+
+.alumniMoreInfo {
+  @include flex-col-y-c;
+
+  gap: 0.8rem;
+}
+
+.alumniName {
+  font-size: 1.8rem;
+  font-weight: $bold-font-weight;
+
+  @include mobile {
+    font-size: $h4-size;
+  }
+
+  &.light {
+    color: $alumni-name-font-color;
+  }
+
+  &.dark {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 3.8rem;
+    background: $alumni-name-gradient-color-dark-theme;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @include mobile {
+      font-size: $h3-size;
+      line-height: normal;
+    }
+  }
+}
+
+.alumniImage {
+
+  &.dark {
+    height: 15rem !important;
+    width: 15rem !important;
+    border-radius: $border-radius-large;
+
+    @include mobile {
+      height: 10.8rem !important;
+      width: 10.8rem !important;
+    }
+  }
+}
+
+.infoItems  {
+  @include flex-row;
+
+  gap: 0.4rem;
+
+  &.dark {
+    gap: 1rem;
+  }
+}
+
+.infoItemText {
+  font-size: $h5-size;
+  font-weight: $medium-font-weight;
+
+  &.light {
+    color: $alumni-info-font-color;
+  }
+
+  &.dark {
+    color: $light-grey-color;
+
+    @include mobile {
+      font-size: $h6-size;
+    }
+  }
+}

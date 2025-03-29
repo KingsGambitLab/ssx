@@ -1,0 +1,78 @@
+$banner-heading-font-color: #171717;
+$banner-container-border-color: #e4e4e4;
+$banner-container-subheading-font-color: #616161;
+
+.container {
+  @include flex-row;
+
+  background-color: $white-color;
+  border-radius: 0.8rem;
+  border: 1px solid $banner-container-border-color;
+}
+
+.header {
+  @include flex-col-y-c;
+
+  gap: 1.2rem;
+  padding: 4.2rem 4.5rem;
+
+  @include mobile {
+    gap: 0.3rem;
+    padding: 1.4rem;
+  }
+
+}
+
+.heading {
+  color: $banner-heading-font-color;
+  font-size: $h1-size;
+  font-weight: $bold-font-weight;
+  line-height: 4.4rem;
+  margin: 0;
+
+  @include mobile {
+    font-size: $h5-size;
+    line-height: 1.96rem;
+  }
+
+  & > span {
+    background: linear-gradient(93deg, #171717 -1.36%, #0052FF 57.61%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.subheading  {
+  color: $banner-container-subheading-font-color;
+  font-size: $h2-size;
+  font-weight: $default-font-weight;
+  margin: 0;
+
+  @include mobile {
+    font-size: 0.8rem;
+  }
+}
+
+.bannerImg {
+  align-self: flex-end;
+
+  & > img {
+    object-fit: fill;
+  }
+}
+
+.desktopBanner  {
+  display: block;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.mobileBanner {
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+}

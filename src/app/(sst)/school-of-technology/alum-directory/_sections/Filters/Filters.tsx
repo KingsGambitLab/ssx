@@ -3,9 +3,11 @@
 import useSWR from 'swr';
 
 // import { useState, useEffect } from "react";
-import SearchBar from "./SearchBar/SearchBar";
-import QuickFilters from "./QuickFilters/QuickFilters";
+import SearchBar from "../../_components/SearchBar/SearchBar";
+import QuickFilters from "../../_components/QuickFilters/QuickFilters";
 import { getFilterOptions } from '@/common/apis';
+
+import styles from './Filters.module.scss';
 
 export default function Filters() {
   // const [filters, setFilters] = useState<string[]>([]);
@@ -18,9 +20,10 @@ export default function Filters() {
 
 
   return (
-    <div className="flex flex-col gap-[24px] w-full">
+    <div className={styles.flexContainer}>
       <SearchBar />
-      <QuickFilters filters={data?.data?.quick_filters} />
+      {/* <QuickFilters filters={data?.data?.quick_filters} /> */}
+      <QuickFilters filters={['UP', 'Karnataka', 'West Bengal', 'Batch 23', 'Batch 24']} />
     </div>
   )
 }

@@ -3,8 +3,8 @@ export default function Layout(
     { children: React.ReactNode }
 ) {
   return (
-    <html>
+    <div>
       {children}
-    </html>
+    </div>
   )
 }
