@@ -17,6 +17,7 @@ $alumni-view-profile-button-color: #0052FF;
 
   gap: 1.6rem;
   box-sizing: border-box;
+  width: 100%;
 
   & > button {
     border-radius: $border-radius-default;
@@ -32,6 +33,10 @@ $alumni-view-profile-button-color: #0052FF;
   &:hover {
     color: $alumni-info-font-color !important;
     border-color: $alumni-info-font-color !important;
+  }
+
+  @include tablet {
+    flex: 1;
   }
 }
 

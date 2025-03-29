@@ -11,12 +11,6 @@ $advanced-filters-apply-button-hover-color: rgb(80 121 200);
   }
 }
 
-.filterButtonText {
-  @include mobile {
-      display: none;
-  }
-}
-
 .filtersContainer {
   @include flex-col;
 

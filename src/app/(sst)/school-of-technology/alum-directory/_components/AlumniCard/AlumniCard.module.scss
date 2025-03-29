@@ -13,10 +13,10 @@ $alumni-name-gradient-color-dark-theme: linear-gradient(90deg, #3A9DFF -9.23%, #
   align-items: flex-start;
   gap: 2rem;
   border-radius: $border-radius-large;
-  border: 0.1rem $alumni-card-border-color;
 
   &.light {
     background: $white-color;
+    border: 0.1rem solid $alumni-card-border-color;
   }
 
   &.dark {

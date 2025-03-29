@@ -2,9 +2,9 @@ import Image, { StaticImageData } from 'next/image';
 import classNames from 'classnames';
 
 import AlumniImage from '@/public/images/sst/svg/demo-img.svg';
-import FunnelIcon from '@/public/images/sst/webp/sst-logo.webp';
 
 import styles from './AlumniCard.module.scss';
+import { infoItemsProps } from './utils';
 
 type AlumniCardProps = {
   id: number;
@@ -25,6 +25,7 @@ type InfoItemProps = {
   variant?: 'light' | 'dark';
 }
 
+
 const infoItems = ({ iconImage, text, variant = 'light' }: InfoItemProps) => {
   return (
     <div className={classNames(styles.infoItems, styles[variant])}>
@@ -35,11 +36,6 @@ const infoItems = ({ iconImage, text, variant = 'light' }: InfoItemProps) => {
 }
 
 export default function AlumniCard({ name, batchYear, city, state, school, children, variant = 'light' }: AlumniCardProps) {
-  const infoItemsProps = [
-    { iconImage: FunnelIcon, text: batchYear },
-    { iconImage: FunnelIcon, text: `${city}, ${state}` },
-    { iconImage: FunnelIcon, text: school }
-  ]
   return (
     <div className={classNames(styles.container, styles[variant])}>
       <div className={classNames(styles.infoContainer, styles[variant])}>
@@ -53,7 +49,9 @@ export default function AlumniCard({ name, batchYear, city, state, school, child
         <div className={classNames(styles.alumniInfo, styles[variant])}>
           <div className={classNames(styles.alumniName, styles[variant])}>{name}</div>
           <div className={styles.alumniMoreInfo}>
-            {infoItemsProps.map((item) => infoItems({ ...item, variant }))}
+            {infoItemsProps(variant, batchYear, city, state, school).map(
+              (item) => infoItems({ ...item, variant })
+            )}
           </div>
         </div>
       </div>

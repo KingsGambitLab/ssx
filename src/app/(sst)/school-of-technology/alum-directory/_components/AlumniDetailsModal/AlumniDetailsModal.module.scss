@@ -41,6 +41,8 @@ $alumni-card-action-button-background-color: #2B2B2B;
   }
 
   :global(.ant-modal) {
+    top: 7rem;
+
     @include mobile {
       position: absolute !important;
       bottom: 0 !important;
@@ -149,6 +151,10 @@ $alumni-card-action-button-background-color: #2B2B2B;
     gap: 1.6rem;
     max-height: 50rem;
     overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -403,6 +409,12 @@ $alumni-card-action-button-background-color: #2B2B2B;
     line-height: normal;
     letter-spacing: 0.2rem;
     height: auto;
+
+    &:hover {
+      background: transparent;
+      border: none;
+      color: $alumni-details-modal-body-border-color;
+    }
 
     @include mobile {
       font-size: $h6-size;

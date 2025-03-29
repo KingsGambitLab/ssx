@@ -27,7 +27,7 @@ export default function QuickFilters({ filters = [] }: QuickFiltersProps) {
         {filters.map((filter) => (
           <Button
             key={filter}
-            type={'text'}
+            type='text'
             onClick={() => toggleFilter(filter)}
             className={
               isSelected(filter)

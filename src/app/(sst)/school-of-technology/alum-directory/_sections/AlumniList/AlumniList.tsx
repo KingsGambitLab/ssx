@@ -117,7 +117,7 @@ export default function AlumniList() {
     }
   ]
 
-  const ActionButtons = ({ id }: { id: number }) => {
+  const ActionButtons = ({ id, linkedInUrl }: { id: number, linkedInUrl: string }) => {
     return (
       <div className={styles.actionButtonWrapper}>
         <Button
@@ -125,6 +125,7 @@ export default function AlumniList() {
           size="large"
           variant="outlined"
           className={styles.linkedinButton}
+          onClick={() => { window.open(linkedInUrl, '_blank'); }}
         >
           LinkedIn
         </Button>
@@ -151,7 +152,7 @@ export default function AlumniList() {
             key={item?.id}
             {...item}
           >
-            <ActionButtons id={item?.id} />
+            <ActionButtons id={item?.id} linkedInUrl={item?.linkedin} />
           </AlumniCard>
         ))}
       </div>

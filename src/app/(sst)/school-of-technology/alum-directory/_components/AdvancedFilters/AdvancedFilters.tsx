@@ -1,9 +1,13 @@
-import { Button, Checkbox, Drawer, Popover, Tabs } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import Image from 'next/image';
 
 import { useState } from 'react';
 
+import { Button, Checkbox, Drawer, Popover, Tabs } from 'antd';
+
+
 import { useDeviceType } from '@/hooks/useDeviceType';
+
+import FunnelIcon from '@/public/images/sst/svg/funnel-icon.svg';
 
 import styles from './AdvancedFilters.module.scss';
 
@@ -72,7 +76,7 @@ export default function AdvancedFilters({ filters }: { filters: AdvancedFiltersP
             variant="solid"
             size="large"
             onClick={() => setIsTabOpen(true)}
-            icon={<SearchOutlined />}
+            icon={<Image src={FunnelIcon} alt="Filter-icon" />}
           />
 
           <Drawer
@@ -103,9 +107,9 @@ export default function AdvancedFilters({ filters }: { filters: AdvancedFiltersP
             color="default"
             variant="solid"
             size="large"
-            icon={<SearchOutlined />}
+            icon={<Image src={FunnelIcon} alt="Filter-icon" />}
           >
-            <span className={styles.filterButtonText}>Filter</span>
+            Filter
           </Button>
         </Popover>
       )}

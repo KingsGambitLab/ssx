@@ -1,30 +1,46 @@
+import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
+import { Button, Modal, Popover } from 'antd';
 import Image from 'next/image';
 
-import { Button, Modal, } from 'antd';
-import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
-import AlumniCard from '../AlumniCard/AlumniCard';
 import { useDeviceType } from '@/hooks/useDeviceType';
+import AlumniCard from '../AlumniCard/AlumniCard';
+import ShareProfile from '../ShareProfile/ShareProfile';
 
-import { getHouseImage, clubIconMapping } from './utils';
+import { getHouseImage } from './utils';
 import styles from './AlumniDetailsModal.module.scss';
 
-const ActionButtons = () => {
+type ActionButtonsProps = {
+  linkedinUrl: string;
+  name: string;
+  batchYear: string;
+  state: string;
+};
+
+const ActionButtons = ({ linkedinUrl, name, batchYear, state }: ActionButtonsProps) => {
   return (
     <div className={styles.actionButtonWrapper}>
-      <Button
-        icon={<ArrowUpOutlined rotate={45} />}
-        iconPosition="end"
-        size="large"
-        className={styles.shareButton}
+      <Popover
+        content={<ShareProfile name={name} batchYear={batchYear} state={state} />}
+        trigger="click"
+        arrow={false}
+        autoAdjustOverflow={false}
       >
-        Share Profile
-      </Button>
+        <Button
+          icon={<ArrowUpOutlined rotate={45} />}
+          iconPosition="end"
+          size="large"
+          className={styles.shareButton}
+        >
+          Share Profile
+        </Button>
+      </Popover>
 
       <Button
         icon={<LinkedinFilled />}
         size="large"
         type="primary"
         className={styles.connectButton}
+        onClick={() => window.open(linkedinUrl, '_blank')}
       >
         Connect
       </Button>
@@ -32,14 +48,13 @@ const ActionButtons = () => {
   );
 };
 
-export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumniId }: {
+type AlumniDetailsModalProps = {
   isModalOpen: boolean;
   setIsModalOpen: (isModalOpen: boolean) => void;
   alumniId: number;
-}) {
-  console.log("isModalOpen", isModalOpen);
-  console.log("alumniId", alumniId);
+};
 
+export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumniId }: AlumniDetailsModalProps) {
   const { isMobile } = useDeviceType();
 
   const modalClassNames = {
@@ -59,7 +74,11 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
     school: 'School of Technology',
     linkedin: 'https://www.linkedin.com/in/johndoe',
     house: 'TuSKer',
-    clubs: ['⚽️ Sports Club', '🧑🏻‍💻 Open Source Club', '🧑🏻‍💻 Competitive Coding Club', '🎤 Ted Talks Tribe',
+    clubs: [
+      '⚽️ Sports Club',
+      '🧑🏻‍💻 Open Source Club',
+      '🧑🏻‍💻 Competitive Coding Club',
+      '🎤 Ted Talks Tribe',
       '🎤 Ted Talks Tribe',
       '🎤 Ted Talks Tribe',
       '🎤 Ted Talks Tribe',
@@ -93,8 +112,9 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
         title: 'Develop SST Website 2',
         projectLink: 'https://www.google.com',
       },
-    ]
-  }
+    ],
+  };
+  console.log(alumniId);
 
   return (
     <Modal
@@ -108,61 +128,63 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           <AlumniCard {...alumniData} variant="dark">
-            <ActionButtons />
+            <ActionButtons
+              linkedinUrl={alumniData.linkedin}
+              name={alumniData.name}
+              batchYear={alumniData.batchYear}
+              state={alumniData.state}
+            />
           </AlumniCard>
-          {alumniData?.house && (
+          {alumniData.house && (
             <div className={styles.houseDetailsContainer}>
               <div className={styles.houseNameWrapper}>
-                <div className={styles.houseMemberText}>
-                  House Member
-                </div>
-                <div className={styles.houseName}>
-                  {alumniData.house}
-                </div>
+                <div className={styles.houseMemberText}>House Member</div>
+                <div className={styles.houseName}>{alumniData.house}</div>
               </div>
-              {isMobile ? (
-                <Image src={getHouseImage(alumniData?.house, 'mobile')} className={styles.houseLogo} alt="house-logo" />
-              ) : (
-                <Image src={getHouseImage(alumniData?.house, 'desktop')} className={styles.houseLogo} alt="house-logo" />
-              )}
+              <Image
+                src={getHouseImage(alumniData.house, isMobile ? 'mobile' : 'desktop')}
+                className={styles.houseLogo}
+                alt="house-logo"
+              />
             </div>
           )}
         </div>
-        <div className={styles.clubsContainer}>
-          <div className={styles.clubsHeading}>
-            Clubs
-          </div>
-          <div className={styles.clubsList}>
-            {alumniData?.clubs?.map((club) => (
-              <div className={styles.clubItem} key={club}>
-                {club}
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className={styles.projectList}>
-          <div className={styles.projectListHeading}>
-            Projects
-          </div>
-          <div className={styles.projectListItems}>
-            {alumniData?.projects?.map((project) => (
-              <div className={styles.projectItem} key={project.title}>
-                <div className={styles.projectTitle}>
-                  {project.title}
+
+        {alumniData.clubs?.length > 0 && (
+          <div className={styles.clubsContainer}>
+            <div className={styles.clubsHeading}>Clubs</div>
+            <div className={styles.clubsList}>
+              {alumniData.clubs.map((club) => (
+                <div className={styles.clubItem} key={club}>
+                  {club}
                 </div>
-                <Button
-                  icon={<ArrowUpOutlined rotate={45} />}
-                  iconPosition="end"
-                  size="large"
-                  className={styles.projectLinkButton}
-                >
-                  KNOW MORE
-                </Button>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {alumniData.projects?.length > 0 && (
+          <div className={styles.projectList}>
+            <div className={styles.projectListHeading}>Projects</div>
+            <div className={styles.projectListItems}>
+              {alumniData.projects.map((project) => (
+                <div className={styles.projectItem} key={project.title}>
+                  <div className={styles.projectTitle}>{project.title}</div>
+                  <Button
+                    icon={<ArrowUpOutlined rotate={45} />}
+                    iconPosition="end"
+                    size="large"
+                    className={styles.projectLinkButton}
+                    onClick={() => window.open(project.projectLink, '_blank')}
+                  >
+                    KNOW MORE
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </Modal>
-  )
+  );
 }

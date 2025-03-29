@@ -33,7 +33,7 @@ $quick-filters-border-color: #e4e4e4;
 }
 
 .filterButton {
-  padding: 0.8rem 1.6rem;
+  padding: 0.8rem 1.6rem !important;
   border-radius: $border-radius-default;
   border: 1px solid $quick-filters-border-color;
   background: $white-color;
