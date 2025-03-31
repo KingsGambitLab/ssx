@@ -2,21 +2,34 @@ import { useState } from 'react';
 import { Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 
+import CaseUtil from '@/libs/caseUtil';
+
 import styles from './QuickFilters.module.scss';
+import { AlumniFilters } from '../../types';
 
 interface QuickFiltersProps {
-  filters: string[];
+  filterData: string[];
+  appliedFilters: AlumniFilters;
+  onFilterChange: (filters: AlumniFilters) => void;
 }
 
-export default function QuickFilters({ filters = [] }: QuickFiltersProps) {
+export default function QuickFilters({ filterData = [], appliedFilters, onFilterChange }: QuickFiltersProps) {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+
+  console.log("appliedFilters", appliedFilters);
 
   const isSelected = (filter: string) => selectedFilters.includes(filter);
 
   const toggleFilter = (filter: string) => {
-    setSelectedFilters((prev) =>
-      isSelected(filter) ? prev.filter((f) => f !== filter) : [...prev, filter]
-    );
+    setSelectedFilters((prev) => {
+      const updatedFilters = prev.includes(filter)
+        ? prev.filter((f) => f !== filter)
+        : [...prev, filter];
+
+      onFilterChange({ ...appliedFilters, quick: updatedFilters });
+
+      return updatedFilters;
+    });
   };
 
   return (
@@ -24,7 +37,7 @@ export default function QuickFilters({ filters = [] }: QuickFiltersProps) {
       <div className={styles.heading}>Quick Filter:</div>
 
       <div className={styles.filters}>
-        {filters.map((filter) => (
+        {filterData.map((filter) => (
           <Button
             key={filter}
             type='text'
@@ -35,7 +48,7 @@ export default function QuickFilters({ filters = [] }: QuickFiltersProps) {
                 : styles.filterButton
             }
           >
-            {filter}
+            {String(CaseUtil.toCase('titleCase', filter))}
             {isSelected(filter) && (
               <CloseOutlined
                 onClick={(e) => {

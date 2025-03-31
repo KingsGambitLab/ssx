@@ -28,7 +28,7 @@ const infoItemsIconImage = (variant: 'light' | 'dark') => {
   }
 }
 
-export const infoItemsProps = (variant: 'light' | 'dark', batchYear: string, city: string, state: string, school: string) => [
+export const infoItemsProps = (variant: 'light' | 'dark', batchYear: number, city: string, state: string, school: string) => [
   { iconImage: infoItemsIconImage(variant)?.batch, text: `Batch ${batchYear}` },
   { iconImage: infoItemsIconImage(variant)?.location, text: `${city}, ${state}` },
   { iconImage: infoItemsIconImage(variant)?.school, text: school }

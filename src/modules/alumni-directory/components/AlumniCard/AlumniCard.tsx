@@ -1,20 +1,19 @@
 import Image, { StaticImageData } from 'next/image';
 import classNames from 'classnames';
 
-import AlumniImage from '@/public/images/sst/svg/demo-img.svg';
 
 import styles from './AlumniCard.module.scss';
 import { infoItemsProps } from './utils';
 
 type AlumniCardProps = {
-  id: number;
-  img: StaticImageData | string;
+  id?: string;
   name: string;
-  batchYear: string;
+  batchYear: number;
   city: string;
   state: string;
   school: string;
   linkedin: string;
+  image?: string;
   variant?: 'light' | 'dark';
   children?: React.ReactNode;
 }
@@ -35,15 +34,16 @@ const infoItems = ({ iconImage, text, variant = 'light' }: InfoItemProps) => {
   )
 }
 
-export default function AlumniCard({ name, batchYear, city, state, school, children, variant = 'light' }: AlumniCardProps) {
+export default function AlumniCard({ name, batchYear, city, state, school, image, children, variant = 'light' }: AlumniCardProps) {
   return (
     <div className={classNames(styles.container, styles[variant])}>
       <div className={classNames(styles.infoContainer, styles[variant])}>
         <Image
-          src={AlumniImage}
+          src={image || `https://randomuser.me/api/portraits/women/1.jpg`}
           alt={name}
           width={104}
           height={104}
+          onError={() => ('/images/fallback-avatar.jpg')}
           className={classNames(styles.alumniImage, styles[variant])}
         />
         <div className={classNames(styles.alumniInfo, styles[variant])}>

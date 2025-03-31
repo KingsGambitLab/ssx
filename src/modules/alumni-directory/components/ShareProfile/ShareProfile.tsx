@@ -6,7 +6,7 @@ import { SHARE_PLATFORMS, SHARE_PROFILE_URL } from './constants';
 
 type ShareProfileProps = {
   name: string;
-  batchYear: string;
+  batchYear: number;
   state: string;
 }
 

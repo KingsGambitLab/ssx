@@ -3,12 +3,20 @@ $alumni-info-font-color: #3a3a3a;
 $alumni-view-profile-button-color: #0052FF;
 
 .mainContainer {
-  @include flex-row-x-c;
-
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2.4rem;
-  align-self: stretch;
-  flex-wrap: wrap;
+  width: 100%;
   position: relative;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
 }
 
 

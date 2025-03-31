@@ -5,12 +5,6 @@ $advanced-filters-tab-background-color: #f0f0f0;
 $advanced-filters-apply-button-color: #083CA0;
 $advanced-filters-apply-button-hover-color: rgb(80 121 200);
 
-.popoverContainer {
-  :global(.ant-popover-inner) {
-      padding: 0;
-  }
-}
-
 .filtersContainer {
   @include flex-col;
 
@@ -55,7 +49,8 @@ $advanced-filters-apply-button-hover-color: rgb(80 121 200);
   max-height: 25rem;
 
   @include mobile {
-    max-height: fit-content;
+    max-height: 80vh;
+    height: 80vh;
   }
 }
 
@@ -99,6 +94,14 @@ $advanced-filters-apply-button-hover-color: rgb(80 121 200);
   border-radius: 0 0 0.8rem 0.8rem;
   background: $white-color;
   z-index: 2;
+
+  @include mobile {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    box-sizing: border-box
+  }
 }
 
 .closeButton {
