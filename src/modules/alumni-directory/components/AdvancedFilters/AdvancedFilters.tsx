@@ -1,88 +1,55 @@
 import { useState } from 'react';
 import Image from 'next/image';
+
 import { Button, Drawer, Popover } from 'antd';
 
 import { useDeviceType } from '@/hooks/useDeviceType';
-import {
-  AlumniFilters,
-  AdvancedFiltersType,
-  DEFAULT_ADVANCED_FILTERS
-} from '@/modules/alumni-directory/types';
-
-import AdvancedFilterTabs from './AdvancedFiltersTab/AdvancedFiltersTab';
-
+import { useAlumniList } from '@/hooks/useAlumniList';
 import FunnelIcon from '@/public/images/sst/svg/funnel-icon.svg';
 import FunnelIconActive from '@/public/images/sst/svg/funnel-icon-active.svg';
 
+import AdvancedFiltersTabs from './AdvancedFiltersTab/AdvancedFiltersTab';
+
 import styles from './AdvancedFilters.module.scss';
 
-interface AdvancedFiltersProps {
-  filters: AdvancedFiltersType;
-  appliedFilters: AlumniFilters;
-  onFilterChange: (filters: AlumniFilters) => void;
-}
-
-export default function AdvancedFilters({
-  filters,
-  appliedFilters,
-  onFilterChange
-}: AdvancedFiltersProps) {
+export default function AdvancedFilters() {
+  const { filters: appliedFilters } = useAlumniList();
   const [isTabOpen, setIsTabOpen] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState<AdvancedFiltersType>(DEFAULT_ADVANCED_FILTERS);
+
+  const isAdvancedFiltersApplied = Object.values(appliedFilters?.advanced).some(filter => filter.length > 0);
+
   const { isMobile } = useDeviceType();
 
-  const isAdvancedFiltersApplied = Object.values(appliedFilters?.advanced || {}).some(
-    filter => filter.length > 0
-  );
-
-  const handleTabClose = () => setIsTabOpen(false);
-
-  const FilterButton = () => (
-    <Button
-      type="primary"
-      color="default"
-      variant="solid"
-      size="large"
-      onClick={() => !isMobile && setIsTabOpen(true)}
-      icon={
-        <Image
-          src={isAdvancedFiltersApplied ? FunnelIconActive : FunnelIcon}
-          alt={isAdvancedFiltersApplied ? "Applied Filters Icon" : "Filter-icon"}
-        />
-      }
-    >
-      {!isMobile && "Filter"}
-    </Button>
-  );
-
-  const FilterContent = () => (
-    <AdvancedFilterTabs
-      filters={filters}
-      onClose={handleTabClose}
-      appliedFilters={appliedFilters}
-      applyFilterHandler={onFilterChange}
-      selectedFilters={selectedFilters}
-      setSelectedFilters={setSelectedFilters}
-    />
-  );
 
   if (isMobile) {
     return (
       <>
-        <FilterButton />
+        <Button
+          type="primary"
+          color="default"
+          variant="solid"
+          size="large"
+          onClick={() => setIsTabOpen(true)}
+          icon={
+            isAdvancedFiltersApplied ?
+              <Image src={FunnelIconActive} alt="Applied Filters Icon" />
+              : <Image src={FunnelIcon} alt="Filter-icon" />
+          }
+        />
+
         <Drawer
           closable={false}
           open={isTabOpen}
-          onClose={handleTabClose}
+          onClose={() => setIsTabOpen(false)}
           placement="left"
           styles={{ body: { padding: 0 } }}
           height="100%"
           width="100%"
         >
-          <FilterContent />
+          <AdvancedFiltersTabs onClose={() => setIsTabOpen(false)} />
         </Drawer>
       </>
-    );
+    )
   }
 
   return (
@@ -91,12 +58,24 @@ export default function AdvancedFilters({
       trigger="click"
       open={isTabOpen}
       onOpenChange={setIsTabOpen}
-      content={<FilterContent />}
+      content={<AdvancedFiltersTabs onClose={() => setIsTabOpen(false)} />}
       arrow={false}
       autoAdjustOverflow={false}
       classNames={{ root: styles.popoverContainer }}
     >
-      <FilterButton />
+      <Button
+        type="primary"
+        color="default"
+        variant="solid"
+        size="large"
+        icon={
+          isAdvancedFiltersApplied ?
+            <Image src={FunnelIconActive} alt="Applied Filters Icon" />
+            : <Image src={FunnelIcon} alt="Filter-icon" />
+        }
+      >
+        Filter
+      </Button>
     </Popover>
-  );
+  )
 }

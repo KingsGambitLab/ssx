@@ -1,0 +1,71 @@
+$no-alumni-found-text-color: #3A3A3A;
+$no-alumni-content-border-color: #E4E4E4;
+$no-alumni-try-different-filters-color: #616161;
+$no-alumni-go-back-button-color: #0041CA;
+
+.container {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 2.4rem;
+  align-self: stretch;
+}
+
+.searchedResults {
+  @include flex-row-y-c;
+
+  gap: 0.4rem;
+  align-self: stretch;
+  color: $no-alumni-found-text-color;
+  font-size: $h5-size;
+  font-weight: $bold-font-weight;
+
+  & > span {
+    font-weight: $default-font-weight;
+  }
+}
+
+.content {
+  @include flex-col-c;
+
+  padding: 4rem 0;
+  gap: 1.8rem;
+  align-self: stretch;
+  border-top: 1px solid $no-alumni-content-border-color;
+}
+
+.noResultsFoundContainer {
+  @include flex-col-c;
+
+  gap: 2.4rem;
+}
+
+.noResultFoundMessage {
+  @include flex-col-c;
+
+  gap: 2.4rem;
+  color: $black-color;
+  font-size: $h4-size;
+  font-family: 'Plus Jakarta Sans';
+  font-weight: $default-font-weight;
+
+  @include mobile {
+    text-align: center;
+    font-size: $h5-size;
+  }
+}
+
+.tryDifferentFilters {
+  color: $no-alumni-try-different-filters-color;
+  font-size: $h5-size;
+  font-weight: $default-font-weight;
+
+  @include mobile {
+    font-size: $h6-size;
+  }
+}
+
+.goBackButton {
+  background-color: $no-alumni-go-back-button-color;
+  padding: 0.9rem 2rem;
+}

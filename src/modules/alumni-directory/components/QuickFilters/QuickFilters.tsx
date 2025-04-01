@@ -1,43 +1,38 @@
-import { useState } from 'react';
+'use client';
+
+import { useState, useCallback } from 'react';
+
 import { Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 
 import CaseUtil from '@/libs/caseUtil';
+import { useAlumniList } from '@/hooks/useAlumniList';
 
 import styles from './QuickFilters.module.scss';
-import { AlumniFilters } from '../../types';
 
-interface QuickFiltersProps {
-  filterData: string[];
-  appliedFilters: AlumniFilters;
-  onFilterChange: (filters: AlumniFilters) => void;
-}
+export default function QuickFilters() {
+  const { filters: appliedFilters, onFilterChange, quickFilters } = useAlumniList();
+  const [selectedFilters, setSelectedFilters] = useState<string[]>(appliedFilters?.quick || []);
 
-export default function QuickFilters({ filterData = [], appliedFilters, onFilterChange }: QuickFiltersProps) {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-
-  console.log("appliedFilters", appliedFilters);
-
-  const isSelected = (filter: string) => selectedFilters.includes(filter);
-
-  const toggleFilter = (filter: string) => {
+  const toggleFilter = useCallback((filter: string) => {
     setSelectedFilters((prev) => {
       const updatedFilters = prev.includes(filter)
         ? prev.filter((f) => f !== filter)
         : [...prev, filter];
 
       onFilterChange({ ...appliedFilters, quick: updatedFilters });
-
       return updatedFilters;
     });
-  };
+  }, [appliedFilters, onFilterChange]);
+
+  const isSelected = (filter: string) => selectedFilters.includes(filter);
 
   return (
     <div className={styles.container}>
       <div className={styles.heading}>Quick Filter:</div>
 
       <div className={styles.filters}>
-        {filterData.map((filter) => (
+        {quickFilters.map((filter) => (
           <Button
             key={filter}
             type='text'
@@ -48,7 +43,7 @@ export default function QuickFilters({ filterData = [], appliedFilters, onFilter
                 : styles.filterButton
             }
           >
-            {String(CaseUtil.toCase('titleCase', filter))}
+            {CaseUtil.toCase('titleCase', filter) as string}
             {isSelected(filter) && (
               <CloseOutlined
                 onClick={(e) => {

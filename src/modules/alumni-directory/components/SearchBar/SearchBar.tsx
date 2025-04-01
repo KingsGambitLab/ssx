@@ -1,40 +1,26 @@
 'use client';
+
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { useCallback, useState } from 'react';
 
+import { useAlumniList } from '@/hooks/useAlumniList';
 import AdvancedFilters from '../AdvancedFilters/AdvancedFilters';
 
 import styles from './SearchBar.module.scss';
-import { useCallback, useState } from 'react';
-import { AlumniFilters } from '../../types';
 
-type AdvancedFiltersProps = {
-  state: string[];
-  city: string[];
-  batchYear: string[];
-  clubs: string[];
-};
-
-type SearchBarProps = {
-  advancedFilters: AdvancedFiltersProps;
-  appliedFilters: AlumniFilters;
-  onFilterChange: (filters: AlumniFilters) => void;
-}
-
-export default function SearchBar({ appliedFilters, onFilterChange, advancedFilters }: SearchBarProps) {
+export default function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
 
+  const { onFilterChange, filters } = useAlumniList();
+
   const handleSearch = useCallback(() => {
-    onFilterChange({ ...appliedFilters, search: searchValue });
-  }, [appliedFilters, onFilterChange, searchValue]);
+    onFilterChange({ ...filters, search: searchValue });
+  }, [filters, onFilterChange, searchValue]);
 
   return (
     <div className={styles.mainContainer}>
-      <AdvancedFilters
-        filters={advancedFilters}
-        appliedFilters={appliedFilters as AlumniFilters}
-        onFilterChange={(filters: AlumniFilters) => onFilterChange(filters)}
-      />
+      <AdvancedFilters />
       <Input
         size="large"
         placeholder="Search by name, city, state or school"

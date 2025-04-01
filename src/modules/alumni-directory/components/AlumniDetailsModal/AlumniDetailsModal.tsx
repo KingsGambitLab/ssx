@@ -3,8 +3,8 @@ import { Button, Modal, Popover } from 'antd';
 import Image from 'next/image';
 import useSWR from 'swr';
 
-
 import { useDeviceType } from '@/hooks/useDeviceType';
+
 import { ENDPOINTS } from '../../apis/endPoints';
 import { getAlumniData } from '../../apis';
 import AlumniCard from '../AlumniCard/AlumniCard';
@@ -66,7 +66,6 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
     () => getAlumniData(alumniId)
   );
 
-  console.log("alumniData", data);
   const modalClassNames = {
     mask: styles.antModalMask,
     content: styles.antModalContent,
@@ -74,56 +73,6 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
     root: styles.antModal,
   };
 
-  // const alumniData = {
-  //   id: 1,
-  //   img: 'images/sst/svg/demo-img.svg',
-  //   name: 'Aayush Shrivastava',
-  //   batchYear: 2020,
-  //   city: 'New York',
-  //   state: 'NY',
-  //   school: 'School of Technology',
-  //   linkedin: 'https://www.linkedin.com/in/johndoe',
-  //   house: 'TuSKer',
-  //   clubs: [
-  //     '⚽️ Sports Club',
-  //     '🧑🏻‍💻 Open Source Club',
-  //     '🧑🏻‍💻 Competitive Coding Club',
-  //     '🎤 Ted Talks Tribe',
-  //     '🎤 Ted Talks Tribe',
-  //     '🎤 Ted Talks Tribe',
-  //     '🎤 Ted Talks Tribe',
-  //     '🎤 Ted Talks Tribe',
-  //     '🎤 Ted Talks Tribe',
-  //     '🎤 Ted Talks Tribe',
-  //     '🎤 Ted Talks Tribe',
-  //   ],
-  //   projects: [
-  //     {
-  //       title: 'Develop SST Website',
-  //       projectLink: 'https://www.google.com',
-  //     },
-  //     {
-  //       title: 'Develop SST Website 2',
-  //       projectLink: 'https://www.google.com',
-  //     },
-  //     {
-  //       title: 'Develop SST Website 3',
-  //       projectLink: 'https://www.google.com',
-  //     },
-  //     {
-  //       title: 'Develop SST Website 2',
-  //       projectLink: 'https://www.google.com',
-  //     },
-  //     {
-  //       title: 'Develop SST Website 2',
-  //       projectLink: 'https://www.google.com',
-  //     },
-  //     {
-  //       title: 'Develop SST Website 2',
-  //       projectLink: 'https://www.google.com',
-  //     },
-  //   ],
-  // };
 
   if (isLoading) {
     return <div>Loading...</div>;

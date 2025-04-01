@@ -91,9 +91,3 @@ export type AdvancedFiltersType = {
   batchYear: string[];
   clubs: string[];
 };
-export const DEFAULT_ADVANCED_FILTERS = {
-  state: [],
-  city: [],
-  batchYear: [],
-  clubs: []
-};

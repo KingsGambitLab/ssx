@@ -1,22 +1,16 @@
 'use client';
 
-import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
 import { Button } from 'antd';
+import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
 import { useRef, useCallback, useState } from 'react';
-
 
 import AlumniCard from '@/modules/alumni-directory/components/AlumniCard/AlumniCard';
 import AlumniDetailsModal from '@/modules/alumni-directory/components/AlumniDetailsModal/AlumniDetailsModal';
-import { AllAlumniData } from '../../types';
+import NoAlumniFound from '@/modules/alumni-directory/components/NoAlumniFound/NoAlumniFound';
+import { useAlumniList } from '@/hooks/useAlumniList';
 
 import styles from './AlumniList.module.scss';
 
-type AlumniListProps = {
-  alumniList: AllAlumniData[];
-  loading: boolean;
-  shouldFetch: boolean;
-  loadMore: () => void;
-};
 
 const ActionButtons = ({ id, linkedInUrl, setModalState }: { id: string; linkedInUrl: string; setModalState: (state: { isOpen: boolean; alumniId?: string }) => void }) => {
   return (
@@ -41,7 +35,15 @@ const ActionButtons = ({ id, linkedInUrl, setModalState }: { id: string; linkedI
   );
 };
 
-export default function AlumniList({ alumniList, loading, shouldFetch, loadMore }: AlumniListProps) {
+export default function AlumniList() {
+  const {
+    alumniList,
+    isAlumniListLoading: loading,
+    fetchMoreData,
+    loadMore,
+    onFilterChange
+  } = useAlumniList();
+
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     alumniId?: string;
@@ -58,15 +60,19 @@ export default function AlumniList({ alumniList, loading, shouldFetch, loadMore 
       if (observer.current) observer.current.disconnect();
 
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && shouldFetch) {
+        if (entries[0].isIntersecting && fetchMoreData) {
           loadMore();
         }
       });
 
       if (node) observer.current.observe(node);
     },
-    [loading, shouldFetch, loadMore]
+    [loading, fetchMoreData, loadMore]
   );
+
+  if (alumniList.length === 0 && !loading) {
+    return <NoAlumniFound onFilterChange={onFilterChange} />;
+  }
 
   return (
     <>

@@ -24,7 +24,6 @@ type InfoItemProps = {
   variant?: 'light' | 'dark';
 }
 
-
 const infoItems = ({ iconImage, text, variant = 'light' }: InfoItemProps) => {
   return (
     <div className={classNames(styles.infoItems, styles[variant])}>
