@@ -1,8 +1,9 @@
-import fs from "fs";
-import AWS from "@aws-sdk/client-s3";
-import { resolve, join } from "path";
-import { getMIMEType } from "node-mime-types";
-import { configDotenv } from "dotenv";
+/* eslint-disable no-console */
+require("dotenv").config();
+const fs = require("fs");
+const AWS = require("@aws-sdk/client-s3");
+const { resolve, join } = require("path");
+const { getMIMEType } = require("node-mime-types");
 
 configDotenv();
 
