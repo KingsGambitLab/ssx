@@ -5,8 +5,6 @@ const AWS = require("@aws-sdk/client-s3");
 const { resolve, join } = require("path");
 const { getMIMEType } = require("node-mime-types");
 
-configDotenv();
-
 const {
   promises: { readdir, stat: getStats },
 } = fs;
