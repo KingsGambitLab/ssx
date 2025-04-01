@@ -45,6 +45,7 @@ export default function AdvancedFilters() {
           styles={{ body: { padding: 0 } }}
           height="100%"
           width="100%"
+          className={styles.drawerContainer}
         >
           <AdvancedFiltersTabs onClose={() => setIsTabOpen(false)} />
         </Drawer>

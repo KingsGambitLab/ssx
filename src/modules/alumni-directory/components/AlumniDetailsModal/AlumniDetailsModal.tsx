@@ -13,6 +13,8 @@ import { AlumniDataResponse } from '../../types';
 import { getHouseImage } from './utils';
 
 import styles from './AlumniDetailsModal.module.scss';
+import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
+import LoadingErrorFallback from '@/layouts/LoadingErrorFallback/LoadingErrorFallback';
 
 type ActionButtonsProps = {
   linkedinUrl: string;
@@ -73,26 +75,12 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
     root: styles.antModal,
   };
 
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   const alumniData = data?.data?.[0]?.attributes;
 
-  return (
-    <Modal
-      open={isModalOpen}
-      footer={null}
-      title={null}
-      onCancel={() => setIsModalOpen(false)}
-      rootClassName={styles.modalContainer}
-      classNames={modalClassNames}
-    >
+  const modalContent = () => {
+    if (isLoading) return <LoadingLayout />;
+    else if (error) return <LoadingErrorFallback className={styles.errorContainer} variant="dark" />;
+    else if (alumniData) return (
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           <AlumniCard
@@ -162,6 +150,21 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
           </div>
         )}
       </div>
+    )
+    else return null;
+  };
+
+  return (
+    <Modal
+      open={isModalOpen}
+      getContainer={false}
+      footer={null}
+      title={null}
+      onCancel={() => setIsModalOpen(false)}
+      rootClassName={styles.modalContainer}
+      classNames={modalClassNames}
+    >
+      {modalContent()}
     </Modal>
   );
 }

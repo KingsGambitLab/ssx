@@ -12,15 +12,21 @@ $alumni-details-modal-project-background-color: #212121;
 $alumni-card-action-button-background-color: #2B2B2B;
 
 .modalContainer {
+  body{
+    width: 100vw !important;
+  }
+
   :global(.ant-modal-close) {
       top: -6rem;
       width: 4.8rem;
       height: 4.8rem;
       padding: 0.8rem;
       border-radius: 4rem;
+      inset-inline-end: 17%;
       background: $alumni-details-close-button-background-color;
 
       @include mobile {
+        inset-inline-end: 0%;
         height: 3.2rem;
         width: 3.2rem;
         padding: 0.5rem;
@@ -42,6 +48,7 @@ $alumni-card-action-button-background-color: #2B2B2B;
 
   :global(.ant-modal) {
     top: 7rem;
+    width: auto !important;
 
     @include mobile {
       position: absolute !important;
@@ -63,18 +70,12 @@ $alumni-card-action-button-background-color: #2B2B2B;
 }
 
 .antModalContent {
-    @include flex-col;
+    @include flex-col-c;
 
     background: transparent !important;
     box-shadow: none;
-    gap: 2rem;
-    width: max-content;
-    max-width: 100%;
     margin: 0 auto;
-    left: 50%; 
     padding: 0 !important;
-    max-width: 90rem;
-    transform: translateX(-50%);
 
     @include mobile {
       width: 100%;
@@ -87,8 +88,13 @@ $alumni-card-action-button-background-color: #2B2B2B;
   border-radius: 1.6rem;
   border: 0.2rem solid $alumni-details-modal-body-border-color;
   position: relative;
+  height: 90vh;
+  width: 62vw;
+  overflow: scroll;
 
   @include mobile {
+    height: 65vh;
+   width: 100vw;
     border-radius: 1.2rem 1.2rem 0 0;
     border: none;
   }
@@ -170,7 +176,7 @@ $alumni-card-action-button-background-color: #2B2B2B;
   }
 
   @include mobile {
-    width: 100%;
+    width: 100vw;
     padding: 1.6rem 2rem;
     gap: 1.6rem;
     position: fixed;
@@ -420,4 +426,8 @@ $alumni-card-action-button-background-color: #2B2B2B;
       font-size: $h6-size;
     }
   }
+}
+
+.errorContainer {
+  height: 100%;
 }

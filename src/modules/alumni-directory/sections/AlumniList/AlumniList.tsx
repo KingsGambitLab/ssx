@@ -8,7 +8,7 @@ import AlumniCard from '@/modules/alumni-directory/components/AlumniCard/AlumniC
 import AlumniDetailsModal from '@/modules/alumni-directory/components/AlumniDetailsModal/AlumniDetailsModal';
 import NoAlumniFound from '@/modules/alumni-directory/components/NoAlumniFound/NoAlumniFound';
 import { useAlumniList } from '@/hooks/useAlumniList';
-
+import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
 import styles from './AlumniList.module.scss';
 
 
@@ -41,7 +41,8 @@ export default function AlumniList() {
     isAlumniListLoading: loading,
     fetchMoreData,
     loadMore,
-    onFilterChange
+    onFilterChange,
+    showFilterLoader
   } = useAlumniList();
 
   const [modalState, setModalState] = useState<{
@@ -69,6 +70,14 @@ export default function AlumniList() {
     },
     [loading, fetchMoreData, loadMore]
   );
+
+  // useEffect(() => {
+  //   loadMore();
+  // }, [loadMore]);
+
+  if (showFilterLoader) {
+    return <LoadingLayout />;
+  }
 
   if (alumniList.length === 0 && !loading) {
     return <NoAlumniFound onFilterChange={onFilterChange} />;
@@ -100,7 +109,7 @@ export default function AlumniList() {
         })}
       </div>
 
-      {loading && <p className={styles.loading}>Loading more...</p>}
+      {loading && !showFilterLoader && <LoadingLayout />}
 
       {modalState?.alumniId && (
         <AlumniDetailsModal

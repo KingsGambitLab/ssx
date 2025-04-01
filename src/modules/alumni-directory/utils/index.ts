@@ -1,5 +1,5 @@
 // import CaseUtil from "@/libs/caseUtil";
-// import { AlumniFilters } from "../types";
+import { AlumniFilters } from "../types";
 
 // import { AdvancedFiltersType } from "../types";
 

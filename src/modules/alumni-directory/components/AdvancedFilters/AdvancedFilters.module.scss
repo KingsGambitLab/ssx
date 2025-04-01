@@ -1,5 +1,16 @@
 .popoverContainer {
+  body{
+    width: 100vw !important;
+  }
   :global(.ant-popover-inner) {
       padding: 0;
+  }
+}
+
+.drawerContainer {
+  :global(.ant-drawer-body) {
+    body{
+      width: 100vw !important;
+    }
   }
 }

@@ -12,7 +12,11 @@ import styles from './QuickFilters.module.scss';
 
 export default function QuickFilters() {
   const { filters: appliedFilters, onFilterChange, quickFilters } = useAlumniList();
+
   const [selectedFilters, setSelectedFilters] = useState<string[]>(appliedFilters?.quick || []);
+
+
+  console.log("appliedFilters", appliedFilters);
 
   const toggleFilter = useCallback((filter: string) => {
     setSelectedFilters((prev) => {

@@ -4,6 +4,7 @@ $alum-directory-container-background-color: #fafafa;
   @include flex-col;
 
   gap: 2.4rem;
+  min-height: 100vh;
   padding: 3.2rem 10.4rem;
   background-color: $alum-directory-container-background-color;
 
