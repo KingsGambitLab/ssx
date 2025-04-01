@@ -31,7 +31,7 @@
         "./public/*"
       ],
       "@/components/*": [
-        "./src/components/*"
+        "src/common/components/*"
       ],
       "@/utils/*": [
         "./src/utils/*"
@@ -41,6 +41,12 @@
       ],
       "@/hooks/*": [
         "./src/hooks/*"
+      ],
+      "@/modules/*": [
+        "./src/modules/*"
+      ],
+      "@/libs/*": [
+        "./src/libs/*"
       ]
     }
   },
