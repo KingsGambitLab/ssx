@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import styles from './ShareProfile.module.scss';
-
 import { SHARE_PLATFORMS, SHARE_PROFILE_URL } from './constants';
+
+import styles from './ShareProfile.module.scss';
 
 type ShareProfileProps = {
   name: string;

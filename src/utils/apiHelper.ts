@@ -2,6 +2,9 @@ import axios, { AxiosRequestConfig } from 'axios';
 import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 
+import { CSRFTOKEN } from '@/api/endPoints/user';
+import { getURLWithUTMParams } from '@/utils/url';
+
 export enum HttpMethods {
   GET = 'GET',
   POST = 'POST',
@@ -12,7 +15,8 @@ export enum HttpMethods {
 
 interface RequestOptions {
   method: HttpMethods,
-  body?: object | string
+  body?: object | string,
+  referrer?: string,
 }
 
 
@@ -21,6 +25,8 @@ interface Headers {
   'Content-Type'?: string,
   'X-Requested-With': string,
   'App-name'?: string,
+  'x-csrf-token'?: string | null,
+  "X-Accept-Flash": boolean,
 }
 
 interface ApiOptions {
@@ -29,6 +35,7 @@ interface ApiOptions {
   type?: string;
   dataType?: string,
   cache?: string,
+  referrer?: string,
   next?: {
     revalidate: number,
   }
@@ -49,17 +56,39 @@ export function searchParams(params: object, transformArray: boolean = false) {
   }).join('&');
 }
 
+export const csrfTokenMemo = () => {
+  let token: string | null | undefined = null;
+
+  return async function () {
+    if (token) return Promise.resolve(token);
+
+    const response = await fetch(CSRFTOKEN, { method: HttpMethods.GET });
+    const result = await response.json();
+    token = result?.["csrf_token"];
+
+    return token;
+  }
+}
+
+export const fetchCsrfToken = csrfTokenMemo();
+
 
 export async function apiRequest<T>(
   method: HttpMethods,
   path: string,
   body?: object,
   options: ApiOptions = {}
-): Promise<T> {
+): Promise<T & {
+  'csrf-error'?: string;
+}> {
+  // const csrfToken = await fetchCsrfToken();
+
   const defaultHeaders: Headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
+    // 'x-csrf-token': csrfToken,
+    'X-Accept-Flash': true,
   };
 
   const defaultOptions: RequestOptions = { method }
@@ -73,7 +102,10 @@ export async function apiRequest<T>(
 
   const { headers, params, ...remainingOptions } = options;
 
-  // finalOptions.referrer = getURLWithUTMParams();
+  if (typeof window !== 'undefined') {
+    defaultOptions.referrer = getURLWithUTMParams(window.location.href);
+  }
+
   if (params) {
     path += `?${searchParams(params)}`;
   } else if (method === 'GET' && body) {
@@ -90,7 +122,16 @@ export async function apiRequest<T>(
     ...remainingOptions,
   };
 
-  // @ts-expect-error
+
   const response = await axios(path, finalOptions);
-  return response.data;
+
+  const flashHeader = response.headers['x-flash-messages'] || response.headers['X-Flash-Messages'];
+  let csrfError: string | undefined;
+
+  if (flashHeader) {
+    const { error, notice } = JSON.parse(flashHeader) || {};
+    csrfError = error || notice;
+  }
+
+  return { ...response.data, csrfError };
 }

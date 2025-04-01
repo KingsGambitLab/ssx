@@ -131,7 +131,7 @@ $alumni-card-action-button-background-color: #2B2B2B;
 .modalHeader {
   @include flex-row;
 
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 4rem;
   width: 100%;
 

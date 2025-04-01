@@ -4,11 +4,11 @@ import { Button } from 'antd';
 import Image from 'next/image';
 
 import NoAlumniFoundImage from '@/public/images/sst/svg/no-result-found.svg';
+
 import { AlumniFilters } from '../../types';
 import { DEFAULT_ALUMNI_FILTERS } from '../../constants';
 
 import styles from './NoAlumniFound.module.scss';
-
 
 export default function NoAlumniFound({ onFilterChange }: { onFilterChange: (filters: AlumniFilters) => void }) {
   return (

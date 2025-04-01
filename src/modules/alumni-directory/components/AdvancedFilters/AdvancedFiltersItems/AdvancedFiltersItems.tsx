@@ -1,24 +1,24 @@
 'use client';
 
-import { useState, useCallback, useMemo, useEffect } from 'react';
-
-import { Checkbox, Tabs, Button } from 'antd';
+import { Button, Checkbox, Tabs } from 'antd';
+import { useCallback, useMemo, useEffect, useState } from 'react';
 
 import CaseUtil from '@/libs/caseUtil';
+
 import { AdvancedFiltersType } from '@/modules/alumni-directory/types';
 import {
   DEFAULT_ADVANCED_FILTERS,
   DEFAULT_ALUMNI_FILTERS
 } from '@/modules/alumni-directory/constants';
-import { useAlumniList } from '@/hooks/useAlumniList';
+import { useAlumniList } from '@/modules/alumni-directory/context/AlumniContext';
 
-import styles from './AdvancedFiltersTab.module.scss';
+import styles from './AdvancedFiltersItems.module.scss';
 
-type AdvancedFilterTabsProps = {
+type AdvancedFiltersItemsProps = {
   onClose: () => void;
 }
 
-export default function AdvancedFilterTabs({ onClose }: AdvancedFilterTabsProps) {
+export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsProps) {
   const { onFilterChange, advancedFilters, filters } = useAlumniList();
 
   const [selectedFilters, setSelectedFilters] = useState<AdvancedFiltersType>(() =>

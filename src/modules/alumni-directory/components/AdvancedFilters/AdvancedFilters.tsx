@@ -1,14 +1,13 @@
-import { useState } from 'react';
-import Image from 'next/image';
-
 import { Button, Drawer, Popover } from 'antd';
+import Image from 'next/image';
+import { useState } from 'react';
 
 import { useDeviceType } from '@/hooks/useDeviceType';
-import { useAlumniList } from '@/hooks/useAlumniList';
+import { useAlumniList } from '@/modules/alumni-directory/context/AlumniContext';
 import FunnelIcon from '@/public/images/sst/svg/funnel-icon.svg';
 import FunnelIconActive from '@/public/images/sst/svg/funnel-icon-active.svg';
 
-import AdvancedFiltersTabs from './AdvancedFiltersTab/AdvancedFiltersTab';
+import AdvancedFiltersItems from '@/modules/alumni-directory/components/AdvancedFilters/AdvancedFiltersItems';
 
 import styles from './AdvancedFilters.module.scss';
 
@@ -20,6 +19,9 @@ export default function AdvancedFilters() {
 
   const { isMobile } = useDeviceType();
 
+  const filterIcon = isAdvancedFiltersApplied ?
+    <Image src={FunnelIconActive} alt="Applied Filters Icon" />
+    : <Image src={FunnelIcon} alt="Filter-icon" />
 
   if (isMobile) {
     return (
@@ -30,11 +32,7 @@ export default function AdvancedFilters() {
           variant="solid"
           size="large"
           onClick={() => setIsTabOpen(true)}
-          icon={
-            isAdvancedFiltersApplied ?
-              <Image src={FunnelIconActive} alt="Applied Filters Icon" />
-              : <Image src={FunnelIcon} alt="Filter-icon" />
-          }
+          icon={filterIcon}
         />
 
         <Drawer
@@ -47,7 +45,7 @@ export default function AdvancedFilters() {
           width="100%"
           className={styles.drawerContainer}
         >
-          <AdvancedFiltersTabs onClose={() => setIsTabOpen(false)} />
+          <AdvancedFiltersItems onClose={() => setIsTabOpen(false)} />
         </Drawer>
       </>
     )
@@ -59,7 +57,7 @@ export default function AdvancedFilters() {
       trigger="click"
       open={isTabOpen}
       onOpenChange={setIsTabOpen}
-      content={<AdvancedFiltersTabs onClose={() => setIsTabOpen(false)} />}
+      content={<AdvancedFiltersItems onClose={() => setIsTabOpen(false)} />}
       arrow={false}
       autoAdjustOverflow={false}
       classNames={{ root: styles.popoverContainer }}
@@ -69,11 +67,7 @@ export default function AdvancedFilters() {
         color="default"
         variant="solid"
         size="large"
-        icon={
-          isAdvancedFiltersApplied ?
-            <Image src={FunnelIconActive} alt="Applied Filters Icon" />
-            : <Image src={FunnelIcon} alt="Filter-icon" />
-        }
+        icon={filterIcon}
       >
         Filter
       </Button>

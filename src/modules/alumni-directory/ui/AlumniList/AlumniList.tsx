@@ -1,16 +1,17 @@
 'use client';
 
-import { Button } from 'antd';
 import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
+import { Button } from 'antd';
 import { useRef, useCallback, useState } from 'react';
 
-import AlumniCard from '@/modules/alumni-directory/components/AlumniCard/AlumniCard';
-import AlumniDetailsModal from '@/modules/alumni-directory/components/AlumniDetailsModal/AlumniDetailsModal';
-import NoAlumniFound from '@/modules/alumni-directory/components/NoAlumniFound/NoAlumniFound';
-import { useAlumniList } from '@/hooks/useAlumniList';
 import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
-import styles from './AlumniList.module.scss';
 
+import { useAlumniList } from '@/modules/alumni-directory/context/AlumniContext';
+import AlumniCard from '@/modules/alumni-directory/components/AlumniCard';
+import AlumniDetailsModal from '@/modules/alumni-directory/components/AlumniDetailsModal';
+import NoAlumniFound from '@/modules/alumni-directory/components/NoAlumniFound';
+
+import styles from './AlumniList.module.scss';
 
 const ActionButtons = ({ id, linkedInUrl, setModalState }: { id: string; linkedInUrl: string; setModalState: (state: { isOpen: boolean; alumniId?: string }) => void }) => {
   return (
@@ -70,10 +71,6 @@ export default function AlumniList() {
     },
     [loading, fetchMoreData, loadMore]
   );
-
-  // useEffect(() => {
-  //   loadMore();
-  // }, [loadMore]);
 
   if (showFilterLoader) {
     return <LoadingLayout />;

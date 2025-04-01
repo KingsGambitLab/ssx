@@ -51,41 +51,34 @@ import { AlumniFilters } from "../types";
 //   );
 // };
 
-export const formatGetAllAlumniParams = (pageNumber: number, filters: AlumniFilters) => {
+export const formatGetAllAlumniParams = (pageNumber: number, filters: AlumniFilters): Record<string, unknown> => {
   const params: Record<string, unknown> = {
     program_slug: 'school_of_tech',
     page_number: pageNumber || 1,
   };
 
-  if (filters?.quick?.length > 0) {
-    params.quick_filters = filters.quick;
-  }
+  if (filters?.quick?.length) params.quick_filters = filters.quick;
+  if (filters?.search) params.search = filters.search;
 
-  if (filters?.search) {
-    params.search = filters.search;
-  }
+  const advancedFilterMap = {
+    city: 'city',
+    state: 'state',
+    batchYear: 'batch_year',
+    clubs: 'clubs'
+  } as const;
 
-  const advancedFilters: Record<string, string[]> = {};
+  const advancedFilters = Object.entries(advancedFilterMap).reduce((acc, [frontendKey, apiKey]) => {
+    const values = filters?.advanced?.[frontendKey as keyof typeof filters.advanced];
+    if (values?.length) {
+      acc[apiKey] = values;
+    }
+    return acc;
+  }, {} as Record<string, string[]>);
 
-  if (filters?.advanced?.city?.length > 0) {
-    advancedFilters.city = filters.advanced.city;
-  }
-
-  if (filters?.advanced?.state?.length > 0) {
-    advancedFilters.state = filters.advanced.state;
-  }
-
-  if (filters?.advanced?.batchYear?.length > 0) {
-    advancedFilters.batch_year = filters.advanced.batchYear;
-  }
-
-  if (filters?.advanced?.clubs?.length > 0) {
-    advancedFilters.clubs = filters.advanced.clubs;
-  }
-
-  if (Object.keys(advancedFilters).length > 0) {
+  if (Object.keys(advancedFilters).length) {
     params.advanced_filters = advancedFilters;
   }
+
   return params;
-}
+};
 

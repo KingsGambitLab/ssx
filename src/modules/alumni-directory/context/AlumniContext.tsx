@@ -11,10 +11,10 @@ import {
   useEffect
 } from 'react';
 
-
-import { getAllAlumni, getFilterOptions } from '@/modules/alumni-directory/apis';
-import { ENDPOINTS } from '@/modules/alumni-directory/apis/endPoints';
+import { getAllAlumni, getFilterOptions } from '@/modules/alumni-directory/api';
 import { DEFAULT_ALUMNI_FILTERS } from '@/modules/alumni-directory/constants';
+import { ENDPOINTS } from '@/modules/alumni-directory/api/endpoints';
+
 import {
   AllAlumniData,
   AllAlumniResponse,
@@ -68,7 +68,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
     setIsAlumniListLoading(true);
     try {
       const response: AllAlumniResponse = await getAllAlumni(pageNumber, filterParams);
-      const newAlumni = response.data;
+      const newAlumni = response?.data;
 
       setAlumniList((prev) =>
         pageNumber === 1 ? newAlumni : [...prev, ...newAlumni]
@@ -77,7 +77,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
       setFetchMoreData(newAlumni.length > 0);
     } catch (err) {
       setIsAlumniListError(true);
-      console.error('Failed to fetch alumni:', err);
+      console.log("error", err);
     } finally {
       setShowFilterLoader(false);
       setIsAlumniListLoading(false);
@@ -86,10 +86,8 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
 
 
   const onFilterChange = useCallback((newFilters: AlumniFilters) => {
-
     const updatedFilters = { ...filters, ...newFilters };
 
-    console.log("newFilters", updatedFilters);
     setFilters(updatedFilters);
     setPageNumber(1);
     setFetchMoreData(true);
@@ -99,8 +97,10 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
 
 
   const loadMore = useCallback(() => {
-    if (fetchMoreData) fetchData({ pageNumber: pageNumber + 1 });
-    setPageNumber(pageNumber + 1);
+    if (fetchMoreData) {
+      fetchData({ pageNumber: pageNumber + 1 });
+      setPageNumber(pageNumber + 1);
+    }
   }, [fetchMoreData, pageNumber, fetchData]);
 
   useEffect(() => {

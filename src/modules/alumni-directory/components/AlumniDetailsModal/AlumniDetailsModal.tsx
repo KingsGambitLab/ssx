@@ -4,17 +4,17 @@ import Image from 'next/image';
 import useSWR from 'swr';
 
 import { useDeviceType } from '@/hooks/useDeviceType';
-
-import { ENDPOINTS } from '../../apis/endPoints';
-import { getAlumniData } from '../../apis';
-import AlumniCard from '../AlumniCard/AlumniCard';
-import ShareProfile from '../ShareProfile/ShareProfile';
-import { AlumniDataResponse } from '../../types';
-import { getHouseImage } from './utils';
-
-import styles from './AlumniDetailsModal.module.scss';
 import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
 import LoadingErrorFallback from '@/layouts/LoadingErrorFallback/LoadingErrorFallback';
+
+import { ENDPOINTS } from '../../api/endpoints';
+import { getAlumniData } from '../../api';
+import { AlumniDataResponse } from '../../types';
+import { getHouseImage } from './utils';
+import AlumniCard from '../AlumniCard';
+import ShareProfile from '../ShareProfile/ShareProfile';
+
+import styles from './AlumniDetailsModal.module.scss';
 
 type ActionButtonsProps = {
   linkedinUrl: string;

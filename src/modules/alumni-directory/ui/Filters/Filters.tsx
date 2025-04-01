@@ -1,7 +1,7 @@
 'use client';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
-import QuickFilters from '../../components/QuickFilters/QuickFilters';
+import QuickFilters from '../../components/QuickFilters';
 
 import styles from './Filters.module.scss';
 

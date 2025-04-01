@@ -1,11 +1,11 @@
 'use client';
 
-import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
 import { useCallback, useState } from 'react';
 
-import { useAlumniList } from '@/hooks/useAlumniList';
-import AdvancedFilters from '../AdvancedFilters/AdvancedFilters';
+import { useAlumniList } from '@/modules/alumni-directory/context/AlumniContext';
+import AdvancedFilters from '@/modules/alumni-directory/components/AdvancedFilters';
 
 import styles from './SearchBar.module.scss';
 

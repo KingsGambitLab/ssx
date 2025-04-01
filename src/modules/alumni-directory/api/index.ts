@@ -1,7 +1,7 @@
 import CaseUtil from "@/libs/caseUtil";
-
 import { apiRequest, HttpMethods } from "@/utils/apiHelper";
-import { ENDPOINTS } from './endPoints';
+
+import { ENDPOINTS } from './endpoints';
 import {
   FilterOptionsResponse,
   AllAlumniResponse,
@@ -21,7 +21,6 @@ export const getFilterOptions = async (): Promise<FilterOptionsResponse> => {
 
     return formatted;
   } catch (error) {
-    console.error(" getFilterOptions error:", error);
     throw error;
   }
 };
@@ -29,20 +28,18 @@ export const getFilterOptions = async (): Promise<FilterOptionsResponse> => {
 export const getAllAlumni = async (pageNumber: number, filters: AlumniFilters): Promise<AllAlumniResponse> => {
   try {
     const params = formatGetAllAlumniParams(pageNumber, filters);
+    console.log("params", params);
 
     const response = await apiRequest<AllAlumniResponse>(
       HttpMethods.POST,
       ENDPOINTS.ALL_ALUMNI,
-      {
-        ...params
-      }
+      params
     );
 
     const formatted = CaseUtil.toCase('camelCase', response) as AllAlumniResponse;
 
     return formatted;
   } catch (error) {
-    console.error(" getAllAlumni error:", error);
     throw error;
   }
 };
@@ -58,7 +55,6 @@ export const getAlumniData = async (id: string): Promise<AlumniDataResponse> => 
 
     return formatted;
   } catch (error) {
-    console.error(" getAlumniData error:", error);
     throw error;
   }
 };
