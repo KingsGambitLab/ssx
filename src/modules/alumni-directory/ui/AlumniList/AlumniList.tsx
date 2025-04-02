@@ -40,10 +40,10 @@ export default function AlumniList() {
   const {
     alumniList,
     isAlumniListLoading: loading,
-    fetchMoreData,
     loadMore,
     onFilterChange,
-    showFilterLoader
+    showFilterLoader,
+    alumniListTotalEntries
   } = useAlumniList();
 
   const [modalState, setModalState] = useState<{
@@ -61,15 +61,17 @@ export default function AlumniList() {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
 
+      if (alumniList.length >= alumniListTotalEntries) return;
+
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && fetchMoreData) {
+        if (entries[0].isIntersecting) {
           loadMore();
         }
       });
 
       if (node) observer.current.observe(node);
     },
-    [loading, fetchMoreData, loadMore]
+    [loading, alumniList.length, alumniListTotalEntries, loadMore]
   );
 
   if (showFilterLoader) {

@@ -28,7 +28,6 @@ interface AlumniContextType {
   alumniList: AllAlumniData[];
   isAlumniListLoading: boolean;
   isAlumniListError: boolean;
-  fetchMoreData: boolean;
   onFilterChange: (filters: AlumniFilters) => void;
   loadMore: () => void;
   quickFilters: string[];
@@ -36,6 +35,7 @@ interface AlumniContextType {
   isFilterLoading: boolean;
   isFilterError: boolean;
   showFilterLoader: boolean;
+  alumniListTotalEntries: number;
 }
 
 const AlumniContext = createContext<AlumniContextType | undefined>(undefined);
@@ -46,7 +46,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
   const [pageNumber, setPageNumber] = useState(1);
   const [isAlumniListLoading, setIsAlumniListLoading] = useState(false);
   const [isAlumniListError, setIsAlumniListError] = useState(false);
-  const [fetchMoreData, setFetchMoreData] = useState(true);
+  const [alumniListTotalEntries, setAlumniListTotalEntries] = useState(0);
   const [showFilterLoader, setShowFilterLoader] = useState(false);
 
   const { data, error: isFilterError, isLoading: isFilterLoading } = useSWR<FilterOptionsResponse>(
@@ -59,11 +59,9 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
   );
 
   const fetchData = useCallback(async (
-    { pageNumber, filterParams = filters, shouldFetch = fetchMoreData }
-      : { pageNumber: number, filterParams?: AlumniFilters, shouldFetch?: boolean }
+    { pageNumber, filterParams = filters }
+      : { pageNumber: number, filterParams?: AlumniFilters }
   ) => {
-    if (!shouldFetch) return;
-
     setPageNumber(pageNumber);
     setIsAlumniListLoading(true);
     try {
@@ -74,7 +72,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
         pageNumber === 1 ? newAlumni : [...prev, ...newAlumni]
       );
 
-      setFetchMoreData(newAlumni.length > 0);
+      setAlumniListTotalEntries(response?.totalEntries ?? 0);
     } catch (err) {
       setIsAlumniListError(true);
       console.log("error", err);
@@ -82,7 +80,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
       setShowFilterLoader(false);
       setIsAlumniListLoading(false);
     }
-  }, [fetchMoreData, filters]);
+  }, [filters]);
 
 
   const onFilterChange = useCallback((newFilters: AlumniFilters) => {
@@ -90,18 +88,15 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
 
     setFilters(updatedFilters);
     setPageNumber(1);
-    setFetchMoreData(true);
-    fetchData({ pageNumber: 1, filterParams: updatedFilters, shouldFetch: true });
+    fetchData({ pageNumber: 1, filterParams: updatedFilters });
     setShowFilterLoader(true);
   }, [fetchData, filters]);
 
 
   const loadMore = useCallback(() => {
-    if (fetchMoreData) {
-      fetchData({ pageNumber: pageNumber + 1 });
-      setPageNumber(pageNumber + 1);
-    }
-  }, [fetchMoreData, pageNumber, fetchData]);
+    fetchData({ pageNumber: pageNumber + 1 });
+    setPageNumber(pageNumber + 1);
+  }, [pageNumber, fetchData]);
 
   useEffect(() => {
     fetchData({ pageNumber: 1 });
@@ -115,7 +110,6 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
     alumniList,
     isAlumniListLoading,
     isAlumniListError,
-    fetchMoreData,
     onFilterChange,
     loadMore,
     quickFilters: data?.quickFilters ?? [],
@@ -123,6 +117,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
     isFilterLoading,
     isFilterError,
     showFilterLoader,
+    alumniListTotalEntries,
   };
   return (
     <AlumniContext.Provider value={value} >

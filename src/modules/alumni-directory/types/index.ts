@@ -16,6 +16,7 @@ export interface AllAlumniData {
 
 export interface AllAlumniResponse {
   data: AllAlumniData[];
+  totalEntries: number;
 }
 
 interface AlumniProject {

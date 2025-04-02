@@ -14,6 +14,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
+    "antd": "^5.20.0",
+    "axios": "^1.8.4",
+    "cookies-next": "^5.1.0",
+    "lodash": "^4.17.21",
     "next": "15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -26,6 +31,7 @@
     "@commitlint/cz-commitlint": "^19.8.0",
     "@eslint/eslintrc": "^3.3.1",
     "@next/bundle-analyzer": "^15.2.3",
+    "@types/lodash": "^4.17.16",
     "@types/node": "^22.13.13",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -33,6 +39,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.23.0",
     "eslint-config-next": "15.2.3",
+    "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "typescript": "^5"
   },
