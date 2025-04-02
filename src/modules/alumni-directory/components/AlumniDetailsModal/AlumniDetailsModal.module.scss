@@ -14,6 +14,7 @@ $alumni-card-action-button-background-color: #2B2B2B;
 .modalContainer {
   body{
     width: 100vw !important;
+    overflow-y: hidden
   }
 
   :global(.ant-modal-close) {

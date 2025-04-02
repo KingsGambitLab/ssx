@@ -1,0 +1,98 @@
+$nav-item-font-color: #616161;
+$nav-item-selected-font-color: #083Ca0;
+$nav-item-login-button-color: #0245b9;
+$nav-item-login-button-hover-color: #4096ff;
+$nav-item-apply-now-button-color: #e22d4c;
+$nav-item-new-tag-background-color: linear-gradient(92deg, #0245B9 14.64%, rgba(0, 140, 255, 0.75) 96.7%);
+
+.container {
+  @include flex-row;
+
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+
+  &[data-variant="hamburger"] {
+    @include flex-col;
+
+    gap: 3.2rem;
+    align-items: flex-start;
+  }
+}
+
+.navItemsContainer {
+  @include flex-row;
+  
+  align-items: center;
+  gap: 2rem;
+
+  &[data-variant="hamburger"] {
+    @include flex-col;
+
+    gap: 3.2rem;
+    align-items: flex-start;
+  }
+}
+
+.navItem {
+  @include flex-row;
+
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.navItemText {
+  color: $nav-item-font-color;
+  font-size: $h4-size;
+  font-weight: $default-font-weight;
+  line-height: 2.24rem;
+  letter-spacing: 0.01rem;
+  align-items: center;
+  text-decoration: none;
+}
+
+.newTag {
+  padding: 0.6rem 1rem;
+  border-radius: 3.2rem;
+  background: $nav-item-new-tag-background-color;
+  color: $white-color;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.68rem;
+}
+
+.selectedNavItemText {
+  color: $nav-item-selected-font-color;
+}
+
+.actionButtons {
+  @include flex-row;
+
+  gap: 2rem;
+
+  &[data-variant="hamburger"] {
+    @include flex-col;
+
+    width: 100%;
+  }
+}
+
+.loginButton {
+  color: $nav-item-login-button-color;
+  border-color: $nav-item-login-button-color !important;
+
+  &:hover {
+    border-color: $nav-item-login-button-hover-color !important;
+  }
+
+  &[data-variant="hamburger"] {
+    width: 100%;
+  }
+}
+
+.applyNowButton {
+  background-color: $nav-item-apply-now-button-color !important;
+  &[data-variant="hamburger"] {
+    width: 100%;
+  }
+}

@@ -2,7 +2,6 @@ import axios, { AxiosRequestConfig } from 'axios';
 import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 
-import { CSRFTOKEN } from '@/api/endPoints/user';
 import { getURLWithUTMParams } from '@/utils/url';
 
 export enum HttpMethods {
@@ -55,22 +54,6 @@ export function searchParams(params: object, transformArray: boolean = false) {
     }
   }).join('&');
 }
-
-export const csrfTokenMemo = () => {
-  let token: string | null | undefined = null;
-
-  return async function () {
-    if (token) return Promise.resolve(token);
-
-    const response = await fetch(CSRFTOKEN, { method: HttpMethods.GET });
-    const result = await response.json();
-    token = result?.["csrf_token"];
-
-    return token;
-  }
-}
-
-export const fetchCsrfToken = csrfTokenMemo();
 
 
 export async function apiRequest<T>(

@@ -26,4 +26,4 @@ export const navItems = [
   }
 ];
 
-export const logoImage = "/images/webp/sst-logo.webp";
+export const logoImage = "/images/sst/webp/logo.webp";

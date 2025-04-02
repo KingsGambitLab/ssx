@@ -1,27 +1,3 @@
-// Other global styles...
-
-// Modal styles
-.ant-modal-mask {
-  background-color: rgba(0, 0, 0, 0.45) !important;
+.body {
+  font-family: var(--font-nunito), var(--font-roboto), Arial, sans-serif;
 }
-
-// You can style other modal parts too
-.ant-modal {
-  // Modal container styles
-}
-
-.ant-modal-content {
-  // Modal content styles
-}
-
-.ant-modal-header {
-  // Modal header styles
-}
-
-.ant-modal-body {
-  // Modal body styles
-}
-
-.ant-modal-footer {
-  // Modal footer styles
-} 

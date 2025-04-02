@@ -61,7 +61,7 @@ export default function AlumniList() {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
 
-      if (alumniList.length >= alumniListTotalEntries) return;
+      if (alumniList?.length >= alumniListTotalEntries) return;
 
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
@@ -71,22 +71,22 @@ export default function AlumniList() {
 
       if (node) observer.current.observe(node);
     },
-    [loading, alumniList.length, alumniListTotalEntries, loadMore]
+    [loading, alumniList?.length, alumniListTotalEntries, loadMore]
   );
 
   if (showFilterLoader) {
     return <LoadingLayout />;
   }
 
-  if (alumniList.length === 0 && !loading) {
+  if (alumniList?.length === 0 && !loading) {
     return <NoAlumniFound onFilterChange={onFilterChange} />;
   }
 
   return (
     <>
       <div className={styles.mainContainer}>
-        {alumniList.map((item, index) => {
-          const isLast = index === alumniList.length - 1;
+        {alumniList && alumniList?.map((item, index) => {
+          const isLast = index === alumniList?.length - 1;
 
           return (
             <div
