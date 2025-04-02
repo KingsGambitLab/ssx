@@ -1,7 +1,6 @@
 
 import { Button } from "antd";
 import classNames from "classnames";
-import Link from "next/link";
 
 import styles from './NavItems.module.scss';
 import { usePathname } from "next/navigation";

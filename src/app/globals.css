@@ -5,6 +5,6 @@ html {
 }
 
 body {
+  width: 100vw !important;
   font-family: 'Nunito', 'Roboto', 'Arial', sans-serif;
-
 }

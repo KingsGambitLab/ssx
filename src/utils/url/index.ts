@@ -1,4 +1,4 @@
-import { setCookie, getCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 
 import { BYPASS_UTM, UTM_MEDIUM, UTM_SOURCE } from "./constants";
 import { CSRFTOKEN } from '@/api/endPoints/user';

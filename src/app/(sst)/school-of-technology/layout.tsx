@@ -17,7 +17,9 @@ export default function Layout(
         />
         <Navbar />
       </Header>
-      {children}
+      <main>
+        {children}
+      </main>
     </AlumniProvider>
   )
 }
