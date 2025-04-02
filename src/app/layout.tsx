@@ -2,7 +2,7 @@ import { ConfigProvider } from 'antd';
 import { customTheme } from '@/hooks/useDeviceType';
 import type { Metadata } from "next";
 // import { fetchCsrfToken } from '@/utils/url';
-import { Nunito, Montserrat } from 'next/font/google';
+import { Nunito, Montserrat, Poppins } from 'next/font/google';
 
 import "./globals.css";
 import './globals.scss'
@@ -27,12 +27,13 @@ const montserrat = Montserrat({
   display: 'swap',
   variable: '--font-montserrat',
 });
-// const roboto = Roboto({
-//   subsets: ['latin'],
-//   weight: ['400', '500', '700'],
-//   display: 'swap',
-//   variable: '--font-roboto',
-// });
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-poppins',
+});
 
 export default async function RootLayout({
   children,
@@ -42,7 +43,7 @@ export default async function RootLayout({
   // const csrfToken = await fetchCsrfToken();
 
   return (
-    <html lang="en" className={`${nunito.className} ${montserrat.className}`}>
+    <html lang="en" className={`${nunito.className} ${montserrat.className} ${poppins.className}`}>
       <head>
         {/* <meta name="csrf-token" content={csrfToken || ''} /> */}
       </head>

@@ -8,13 +8,20 @@ import { usePathname } from "next/navigation";
 
 type NavItemsProps = {
   variant?: 'default' | 'hamburger';
+  applyButtonHandler?: () => void;
+  loginButtonHandler?: () => void;
   data: {
     label: string;
     href: string;
     isNew?: boolean;
   }[];
 }
-export default function NavItems({ data, variant = 'default' }: NavItemsProps) {
+export default function NavItems({
+  data,
+  variant = 'default',
+  applyButtonHandler = () => { },
+  loginButtonHandler = () => { }
+}: NavItemsProps) {
   const pathname = usePathname();
 
   const isCurrentItemSelected = (href: string) => {
@@ -36,7 +43,9 @@ export default function NavItems({ data, variant = 'default' }: NavItemsProps) {
                 {
                   [styles.selectedNavItemText]: isCurrentItemSelected(item.href)
                 }
-              )}>
+              )}
+
+            >
               {item.label}
             </a>
             {
@@ -55,8 +64,8 @@ export default function NavItems({ data, variant = 'default' }: NavItemsProps) {
           color="primary"
           variant="outlined"
           className={styles.loginButton}
-          block
           data-variant={variant}
+          onClick={() => loginButtonHandler()}
         >
           Login
         </Button>
@@ -65,6 +74,7 @@ export default function NavItems({ data, variant = 'default' }: NavItemsProps) {
           color="danger"
           variant="solid"
           className={styles.applyNowButton}
+          onClick={() => applyButtonHandler()}
           data-variant={variant}
         >
           Apply Now

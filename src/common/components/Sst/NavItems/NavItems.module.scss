@@ -49,6 +49,10 @@ $nav-item-new-tag-background-color: linear-gradient(92deg, #0245B9 14.64%, rgba(
   letter-spacing: 0.01rem;
   align-items: center;
   text-decoration: none;
+
+  &:hover {
+    color: $nav-item-font-color;
+  }
 }
 
 .newTag {
