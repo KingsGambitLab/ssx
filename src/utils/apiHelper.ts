@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 
-import { getURLWithUTMParams } from '@/utils/url';
+import { getURLWithUTMParams } from '@utils/url';
 
 export enum HttpMethods {
   GET = 'GET',

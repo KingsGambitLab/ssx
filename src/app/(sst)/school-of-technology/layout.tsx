@@ -1,7 +1,10 @@
-import Navbar from '@/common/components/Sst/Navbar/Navbar';
-import Header from '@/common/components/Header/Header';
-import { AlumniProvider } from '@/modules/alumni-directory/context/AlumniContext';
-import AnnouncementStrip from '@/common/components/AnnouncementStrip';
+import Navbar from '@components/Sst/Navbar';
+import Header from '@components/Header/Header';
+import { AlumniProvider } from '@modules/sst/alumni-directory/context/AlumniContext';
+
+import scrollImage from '@public/images/sst/svg/scroll-page.svg';
+
+import AnnouncementStrip from '@components/AnnouncementStrip';
 
 export default function Layout(
   { children }:
@@ -11,6 +14,7 @@ export default function Layout(
     <AlumniProvider>
       <Header>
         <AnnouncementStrip
+          iconSrc={scrollImage}
           content="Apply early and avail up to 100% scholarships! Click here to"
           highlightText="Know More"
           redirectUrl="/school-of-technology/admission/#scholarship"

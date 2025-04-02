@@ -45,6 +45,9 @@ export const useDeviceType = () => {
     // Matches @mixin tablet
     isTablet: screens.md && !screens.lg, // >= 768px and < 1280px
 
+    // Matches @mixin tablet-or-mobile
+    isTabletOrMobile: !screens.md || (screens.md && !screens.lg), // >= 0px or < 1280px
+
     // Matches @mixin desktop-only
     isDesktop: screens.lg && !screens.xl, // >= 1280px and < 1560px
 

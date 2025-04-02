@@ -3,7 +3,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import LogoSpinner from '@/common/components/Loaders/LogoSpinner';
+import LogoSpinner from '@components/Loaders/LogoSpinner';
 
 import styles from './LoadingLayout.module.scss';
 
