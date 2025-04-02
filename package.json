@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 4000",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "build-stats": "cross-env ANALYZE=true npm run build",
     "start": "next start",
@@ -24,6 +24,7 @@
     "dotenv": "^16.4.7",
     "eslint-plugin-react-refresh": "^0.4.19",
     "next": "15.2.3",
+    "next-http-proxy-middleware": "^1.2.7",
     "node-mime-types": "^1.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
