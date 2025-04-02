@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import loader from '@public/loader.svg';
+import loader from '@public/images/common/loader.svg';
 
 import styles from './LogoSpinner.module.scss';
 
