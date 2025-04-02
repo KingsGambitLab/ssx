@@ -1,9 +1,9 @@
 'use client';
 
-import Banner from "@/modules/alumni-directory/ui/Banner";
-import Filters from "@/modules/alumni-directory/ui/Filters";
-import AlumniList from "@/modules/alumni-directory/ui/AlumniList";
-import { useAlumniList } from "@/modules/alumni-directory/context/AlumniContext";
+import Banner from "@modules/sst/alumni-directory/ui/Banner";
+import Filters from "@modules/sst/alumni-directory/ui/Filters";
+import AlumniList from "@modules/sst/alumni-directory/ui/AlumniList";
+import { useAlumniList } from "@modules/sst/alumni-directory/context/AlumniContext";
 
 import LoadingErrorFallback from "@/layouts/LoadingErrorFallback/LoadingErrorFallback";
 import LoadingLayout from "@/layouts/LoadingLayout/LoadingLayout";
