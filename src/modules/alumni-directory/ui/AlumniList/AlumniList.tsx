@@ -1,18 +1,13 @@
 'use client';
-
 import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useRef, useCallback, useState } from 'react';
-
 import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
-
 import { useAlumniList } from '@/modules/alumni-directory/context/AlumniContext';
 import AlumniCard from '@/modules/alumni-directory/components/AlumniCard';
 import AlumniDetailsModal from '@/modules/alumni-directory/components/AlumniDetailsModal';
 import NoAlumniFound from '@/modules/alumni-directory/components/NoAlumniFound';
-
 import styles from './AlumniList.module.scss';
-
 const ActionButtons = ({ id, linkedInUrl, setModalState }: { id: string; linkedInUrl: string; setModalState: (state: { isOpen: boolean; alumniId?: string }) => void }) => {
   return (
     <div className={styles.actionButtonWrapper}>
@@ -35,7 +30,6 @@ const ActionButtons = ({ id, linkedInUrl, setModalState }: { id: string; linkedI
     </div>
   );
 };
-
 export default function AlumniList() {
   const {
     alumniList,
@@ -45,17 +39,14 @@ export default function AlumniList() {
     showFilterLoader,
     alumniListTotalEntries
   } = useAlumniList();
-
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     alumniId?: string;
   }>({
     isOpen: false,
   });
-
   // Intersection Observer
   const observer = useRef<IntersectionObserver | undefined>(undefined);
-
   const lastCardRef = useCallback(
     (node: HTMLDivElement | null) => {
       if (loading) return;
@@ -68,26 +59,21 @@ export default function AlumniList() {
           loadMore();
         }
       });
-
       if (node) observer.current.observe(node);
     },
     [loading, alumniList?.length, alumniListTotalEntries, loadMore]
   );
-
   if (showFilterLoader) {
     return <LoadingLayout />;
   }
-
   if (alumniList?.length === 0 && !loading) {
     return <NoAlumniFound onFilterChange={onFilterChange} />;
   }
-
   return (
     <>
       <div className={styles.mainContainer}>
         {alumniList && alumniList?.map((item, index) => {
           const isLast = index === alumniList?.length - 1;
-
           return (
             <div
               ref={isLast ? lastCardRef : null}
@@ -107,9 +93,7 @@ export default function AlumniList() {
           );
         })}
       </div>
-
       {loading && !showFilterLoader && <LoadingLayout />}
-
       {modalState?.alumniId && (
         <AlumniDetailsModal
           isModalOpen={modalState.isOpen}
