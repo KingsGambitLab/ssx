@@ -10,7 +10,7 @@ const handleProxyInit = (proxy: any) => {
   proxy.on('proxyReq', (proxyReq: ClientRequest) => {
     proxyReq.setHeader('referer', process.env.NEXT_PUBLIC_API_HOST_STAGING || '');
     proxyReq.setHeader('origin', process.env.NEXT_PUBLIC_API_HOST_STAGING || '');
-    proxyReq.setHeader('Authorization', 'Basic aW1wYWN0OmdldHNoaXRkb25l' || '');
+    proxyReq.setHeader('Authorization', 'Basic aW1wYWN0OmdldHNoaXRkb25l');
 
     console.log('proxyReq', `${proxyReq.host}${proxyReq.path}`, proxyReq.getHeaders());
   });
