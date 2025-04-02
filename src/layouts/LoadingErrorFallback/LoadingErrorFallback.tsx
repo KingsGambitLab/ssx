@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { Button } from 'antd';
-import SadSmileyImg from '@public/smiley-sad.svg';
+import SadSmileyImg from '@public/images/common/smiley-sad.svg';
 
 import styles from './LoadingErrorFallback.module.scss';
 
