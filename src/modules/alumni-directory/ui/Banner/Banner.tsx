@@ -4,6 +4,9 @@ import Image from "next/image";
 
 import { useDeviceType } from "@/hooks/useDeviceType";
 
+import bannerMweb from "@/public/images/sst/webp/banner-mweb.webp";
+import banner from "@/public/images/sst/webp/banner.webp";
+
 import styles from "./Banner.module.scss";
 
 export default function Banner() {
@@ -21,8 +24,8 @@ export default function Banner() {
       <Image
         src={
           isMobile || isTablet ?
-            "/images/sst/webp/banner-mweb.webp" :
-            "/images/sst/webp/banner.webp"
+            bannerMweb :
+            banner
         }
         alt="SST Banner"
         height={isMobile ? 130 : 230}

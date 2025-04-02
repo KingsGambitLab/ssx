@@ -1,7 +1,9 @@
+import logo from "@/public/images/sst/webp/logo.webp";
+
 export const navItems = [
   {
     label: "Home",
-    href: "/",
+    href: "/school-of-technology/",
   },
   {
     label: "Admission Process & Fees",
@@ -26,4 +28,4 @@ export const navItems = [
   }
 ];
 
-export const logoImage = "/images/sst/webp/logo.webp";
+export const logoImage = logo;
