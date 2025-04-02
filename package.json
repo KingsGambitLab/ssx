@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --fix",
     "check-types": "tsc --noEmit --pretty",
     "commit": "cz",
+    "postbuild": "node aws-sdk.js",
     "prepare": "husky"
   },
   "dependencies": {
@@ -19,7 +20,11 @@
     "axios": "^1.8.4",
     "cookies-next": "^5.1.0",
     "lodash": "^4.17.21",
+    "@aws-sdk/client-s3": "^3.779.0",
+    "dotenv": "^16.4.7",
+    "eslint-plugin-react-refresh": "^0.4.19",
     "next": "15.2.3",
+    "node-mime-types": "^1.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sass": "^1.86.0",
