@@ -18,12 +18,7 @@ const nextConfig: NextConfig = {
     prependData: `@import "@/styles/base.scss";`,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'randomuser.me',
-      },
-    ],
+    unoptimized: true,
   },
   assetPrefix: ASSET_PREFIX,
 };
