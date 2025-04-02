@@ -45,6 +45,7 @@ $banner-container-subheading-font-color: #616161;
 
 .heading {
   color: $banner-heading-font-color;
+  font-family: var(--font-poppins);
   font-size: $h1-size;
   font-weight: $bold-font-weight;
   line-height: 4.4rem;
@@ -69,6 +70,7 @@ $banner-container-subheading-font-color: #616161;
 
 .subheading  {
   color: $banner-container-subheading-font-color;
+  font-family: var(--font-poppins);
   font-size: $h2-size;
   font-weight: $default-font-weight;
   margin: 0;

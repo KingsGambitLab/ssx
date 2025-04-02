@@ -14,7 +14,8 @@ import NavItems from "../NavItems/NavItems";
 import styles from './Navbar.module.scss';
 
 import { MenuOutlined } from "@ant-design/icons";
-interface NavbarProps {
+
+type NavbarProps = {
   className?: string;
   data?: {
     label: string;
@@ -23,9 +24,20 @@ interface NavbarProps {
   }[];
 }
 
-export default function Navbar({ data = navItems, className = '' }: NavbarProps) {
+export default function Navbar({
+  data = navItems,
+  className = '',
+}: NavbarProps) {
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const { isTablet, isMobile } = useDeviceType();
+
+  const applyButtonHandler = () => {
+    window.open("/school-of-technology/application", "_blank");
+  }
+
+  const loginButtonHandler = () => {
+    window.open("/school-of-technology/application", "_blank");
+  }
 
   return (
     <div className={classNames(styles.container, className)} >
@@ -46,11 +58,20 @@ export default function Navbar({ data = navItems, className = '' }: NavbarProps)
               open={hamburgerMenuOpen}
               onClose={() => setHamburgerMenuOpen(false)}
             >
-              <NavItems data={data} variant="hamburger" />
+              <NavItems
+                data={data}
+                variant="hamburger"
+                applyButtonHandler={applyButtonHandler}
+                loginButtonHandler={loginButtonHandler}
+              />
             </Drawer>
           </div>
         ) : (
-          <NavItems data={data} />
+          <NavItems
+            data={data}
+            applyButtonHandler={applyButtonHandler}
+            loginButtonHandler={loginButtonHandler}
+          />
         )}
       </div>
     </div>
