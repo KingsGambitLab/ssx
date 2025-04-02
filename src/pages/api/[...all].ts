@@ -1,8 +1,9 @@
 import { ClientRequest, IncomingMessage } from 'http';
+import Proxy from 'http-proxy';
 import { NextApiRequest, NextApiResponse } from 'next';
 import httpProxyMiddleware from 'next-http-proxy-middleware';
 
-const handleProxyInit = (proxy: any) => {
+const handleProxyInit = (proxy: Proxy) => {
   /**
    * Check the list of bindable events in the `http-proxy` specification.
    * @see https://www.npmjs.com/package/http-proxy#listening-for-proxy-events
