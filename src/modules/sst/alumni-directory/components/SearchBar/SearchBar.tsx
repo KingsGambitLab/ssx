@@ -2,7 +2,7 @@
 
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
 import AdvancedFilters from '@modules/sst/alumni-directory/components/AdvancedFilters';
@@ -18,6 +18,10 @@ export default function SearchBar() {
     onFilterChange({ ...filters, search: searchValue });
   }, [filters, onFilterChange, searchValue]);
 
+  useEffect(() => {
+    setSearchValue(filters?.search || '');
+  }, [filters]);
+
   return (
     <div className={styles.mainContainer}>
       <AdvancedFilters />
@@ -25,6 +29,7 @@ export default function SearchBar() {
         size="large"
         placeholder="Search by name, city, state or school"
         variant="filled"
+        value={searchValue}
         className={styles.searchBarInput}
         onPressEnter={handleSearch}
         onChange={(e) => setSearchValue(e.target.value)}

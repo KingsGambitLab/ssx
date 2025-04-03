@@ -4,6 +4,12 @@ import { BYPASS_UTM, UTM_MEDIUM, UTM_SOURCE } from "./constants";
 import { CSRFTOKEN } from '@/api/endPoints/user';
 
 
+const isProduction = process.env.NODE_ENV === 'production';
+
+export const API_BASE_URL = isProduction
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}`
+  : `${process.env.NEXT_PUBLIC_BASE_URL}/api/base_api`;
+
 export function getURLWithUTMParams(url: string) {
   let pageUrl = url;
   const utmQuery = getCookie(BYPASS_UTM);

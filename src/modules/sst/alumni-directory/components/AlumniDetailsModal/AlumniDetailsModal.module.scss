@@ -132,7 +132,8 @@ $alumni-card-action-button-background-color: #2B2B2B;
 .modalHeader {
   @include flex-row;
 
-  align-items: flex-start;
+  align-items: flex-end;
+  justify-content: space-between;
   gap: 4rem;
   width: 100%;
 
@@ -253,7 +254,7 @@ $alumni-card-action-button-background-color: #2B2B2B;
   align-self: stretch;
   border-radius: 0.8rem;
   position: relative;
-  height: 24rem;
+  height: 22rem;
   width: 30rem;
   box-sizing: border-box;
   background: $alumni-details-modal-house-name-background-color;
