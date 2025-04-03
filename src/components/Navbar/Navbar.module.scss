@@ -1,0 +1,43 @@
+.container {
+  @include flex-row;
+  
+  padding: 1.4rem 10.4rem;
+  align-items: center;
+  align-self: stretch;
+  background: $white-color;
+
+  @include tablet {
+    padding: 1.4rem 2.4rem;
+  }
+}
+
+.logoImage {
+  margin-right: 3.2rem;
+}
+
+.rightSection {
+  @include flex-row-y-c;
+
+  width: 100%;
+}
+
+.hamburgerWrapper {
+  @include flex-row;
+
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.barsMenu {
+  svg {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+}
+
+.hamburgerMenu  {
+  @include flex-col;
+
+  justify-content: space-between;
+  height: 100%;
+}

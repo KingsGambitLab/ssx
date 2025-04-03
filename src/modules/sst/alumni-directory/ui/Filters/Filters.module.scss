@@ -1,0 +1,6 @@
+.flexContainer {
+  @include flex-col;
+
+  gap: 2.4rem;
+  width: 100%;
+}
