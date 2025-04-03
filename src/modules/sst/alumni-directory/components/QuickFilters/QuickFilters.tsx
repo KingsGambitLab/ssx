@@ -2,7 +2,7 @@
 
 import { CloseOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 import CaseUtil from '@libs/caseUtil';
 
@@ -24,6 +24,10 @@ export default function QuickFilters() {
       return updatedFilters;
     });
   }, [appliedFilters, onFilterChange]);
+
+  useEffect(() => {
+    setSelectedFilters(appliedFilters?.quick);
+  }, [appliedFilters]);
 
   return (
     <div className={styles.container}>
