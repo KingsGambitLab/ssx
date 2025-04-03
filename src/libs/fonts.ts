@@ -1,4 +1,4 @@
-import { Nunito, Montserrat, Poppins } from 'next/font/google';
+import { Nunito, Montserrat, Poppins, Plus_Jakarta_Sans } from 'next/font/google';
 
 export const nunito = Nunito({
   subsets: ['latin'],
@@ -21,8 +21,17 @@ export const poppins = Poppins({
   variable: '--font-poppins',
 });
 
+
+export const PlusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-plus-jakarta-sans',
+});
+
 export const fontVariables = [
   nunito.variable,
   montserrat.variable,
   poppins.variable,
+  PlusJakartaSans.variable,
 ].join(' ');

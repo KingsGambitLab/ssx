@@ -9,3 +9,7 @@
 @mixin font-poppins {
   font-family: var(--font-poppins), var(--font-roboto), Arial, sans-serif;
 }
+
+@mixin font-plus-jakarta-sans {
+  font-family: var(--font-plus-jakarta-sans), var(--font-roboto), Arial, sans-serif;
+}

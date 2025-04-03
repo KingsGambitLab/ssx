@@ -15,6 +15,7 @@ import AlumniCard from '../AlumniCard';
 import ShareProfile from '../ShareProfile/ShareProfile';
 
 import styles from './AlumniDetailsModal.module.scss';
+import CaseUtil from '@libs/caseUtil';
 
 type ActionButtonsProps = {
   linkedinUrl: string;
@@ -104,7 +105,9 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
             <div className={styles.houseDetailsContainer}>
               <div className={styles.houseNameWrapper}>
                 <div className={styles.houseMemberText}>House Member</div>
-                <div className={styles.houseName}>{alumniData.house}</div>
+                <div className={styles.houseName}>
+                  {CaseUtil.toCase('titleCase', alumniData?.house || '') as string}
+                </div>
               </div>
               <Image
                 src={getHouseImage(alumniData?.house || '', isMobile ? 'mobile' : 'desktop')}
@@ -157,7 +160,6 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
   return (
     <Modal
       open={isModalOpen}
-      getContainer={false}
       footer={null}
       title={null}
       onCancel={() => setIsModalOpen(false)}

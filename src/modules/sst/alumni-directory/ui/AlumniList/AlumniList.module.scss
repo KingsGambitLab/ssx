@@ -7,6 +7,7 @@ $alumni-view-profile-button-color: #0052FF;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.4rem;
   width: 100%;
+  align-items: stretch;
   position: relative;
 
   @include tablet {
@@ -30,6 +31,10 @@ $alumni-view-profile-button-color: #0052FF;
   & > button {
     border-radius: $border-radius-default;
     border-color: $alumni-card-border-color;
+
+    @include mobile {
+      font-size: $h5-size !important;
+    }
   }
 
 }
@@ -59,4 +64,10 @@ $alumni-view-profile-button-color: #0052FF;
   span {
     color: $alumni-view-profile-button-color;
   }
+}
+
+.alumniCard {
+  height: 100%;
+  width: 100%;
+  display: flex;
 }

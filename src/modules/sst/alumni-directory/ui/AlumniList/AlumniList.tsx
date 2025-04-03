@@ -21,6 +21,7 @@ const ActionButtons = ({ id, linkedInUrl, setModalState }: { id: string; linkedI
       </Button>
       <Button
         icon={<ArrowUpOutlined rotate={45} />}
+        iconPosition="end"
         size="large"
         className={styles.viewProfileButton}
         onClick={() => setModalState({ isOpen: true, alumniId: id })}
@@ -78,6 +79,7 @@ export default function AlumniList() {
             <div
               ref={isLast ? lastCardRef : null}
               key={item.id}
+              className={styles.alumniCard}
             >
               <AlumniCard
                 {...item.attributes}
