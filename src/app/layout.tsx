@@ -1,6 +1,6 @@
 import { ConfigProvider } from 'antd';
 
-import { fontVariables } from '@libs/fonts';
+import { fontVariables } from '@lib/fonts';
 import { customTheme } from '@hooks/useDeviceType';
 
 import './globals.css';

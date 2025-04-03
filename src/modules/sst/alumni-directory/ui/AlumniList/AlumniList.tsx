@@ -1,21 +1,47 @@
 'use client';
+
 import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useRef, useCallback, useState } from 'react';
-import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
+
 import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
+import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
 import AlumniCard from '@modules/sst/alumni-directory/components/AlumniCard';
 import AlumniDetailsModal from '@modules/sst/alumni-directory/components/AlumniDetailsModal';
 import NoAlumniFound from '@modules/sst/alumni-directory/components/NoAlumniFound';
+import tracker from '@lib/tracking';
+
 import styles from './AlumniList.module.scss';
-const ActionButtons = ({ id, linkedInUrl, setModalState }: { id: string; linkedInUrl: string; setModalState: (state: { isOpen: boolean; alumniId?: string }) => void }) => {
+
+const ActionButtons = (
+  { id,
+    name,
+    linkedInUrl,
+    setModalState
+  }: { id: string; name: string; linkedInUrl: string; setModalState: (state: { isOpen: boolean; alumniId?: string }) => void }) => {
+
+  const trackEvent = (event: string) => {
+    tracker.click({
+      click_type: event,
+      click_text: event,
+      click_source: "alumni_card",
+      custom: {
+        alumni_id: id,
+        alumni_name: name,
+      },
+    });
+  }
+
   return (
     <div className={styles.actionButtonWrapper}>
       <Button
         icon={<LinkedinFilled />}
         size="large"
         className={styles.linkedinButton}
-        onClick={() => window.open(linkedInUrl, '_blank')}
+        onClick={() => {
+          trackEvent("linkedin_button");
+          window.open(linkedInUrl, '_blank');
+        }}
       >
         LinkedIn
       </Button>
@@ -24,13 +50,17 @@ const ActionButtons = ({ id, linkedInUrl, setModalState }: { id: string; linkedI
         iconPosition="end"
         size="large"
         className={styles.viewProfileButton}
-        onClick={() => setModalState({ isOpen: true, alumniId: id })}
+        onClick={() => {
+          trackEvent("view_profile_button");
+          setModalState({ isOpen: true, alumniId: id });
+        }}
       >
         View Profile
       </Button>
     </div>
   );
 };
+
 export default function AlumniList() {
   const {
     alumniList,
@@ -44,10 +74,11 @@ export default function AlumniList() {
     isOpen: boolean;
     alumniId?: string;
   }>({
-    isOpen: false,
+    isOpen: false
   });
   // Intersection Observer
   const observer = useRef<IntersectionObserver | undefined>(undefined);
+
   const lastCardRef = useCallback(
     (node: HTMLDivElement | null) => {
       if (loading) return;
@@ -64,9 +95,11 @@ export default function AlumniList() {
     },
     [loading, alumniList?.length, alumniListTotalEntries, loadMore]
   );
+
   if (showFilterLoader) {
     return <LoadingLayout />;
   }
+
   if (alumniList?.length === 0 && !loading) {
     return <NoAlumniFound onFilterChange={onFilterChange} />;
   }
@@ -87,6 +120,7 @@ export default function AlumniList() {
               >
                 <ActionButtons
                   id={item.id}
+                  name={item?.attributes?.name}
                   linkedInUrl={item.attributes.linkedin}
                   setModalState={setModalState}
                 />
@@ -100,7 +134,7 @@ export default function AlumniList() {
         <AlumniDetailsModal
           isModalOpen={modalState.isOpen}
           setIsModalOpen={() => setModalState({ isOpen: false })}
-          alumniId={modalState.alumniId}
+          alumniId={modalState?.alumniId}
         />
       )}
     </>

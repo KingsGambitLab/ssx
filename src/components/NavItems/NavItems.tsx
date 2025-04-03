@@ -1,7 +1,9 @@
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import classNames from "classnames";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+
+import tracker from "@lib/tracking";
 
 import styles from './NavItems.module.scss';
 
@@ -22,6 +24,14 @@ export default function NavItems({
   navItemClassName = '',
 }: NavItemsProps) {
   const pathname = usePathname();
+
+  const trackEvent = (clickText: string) => {
+    tracker.click({
+      click_type: 'navbar_item_clicked',
+      click_text: clickText,
+      click_source: 'navbar_items',
+    });
+  }
 
   return (
     <div className={classNames(styles.container, rootClassName)}>
@@ -44,7 +54,7 @@ export default function NavItems({
                     [styles.selectedNavItemText]: isSelected
                   }
                 )}
-
+                onClick={() => trackEvent(item?.label)}
               >
                 {item.label}
               </Link>

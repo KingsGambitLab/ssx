@@ -1,4 +1,4 @@
-import CaseUtil from "@libs/caseUtil";
+import CaseUtil from "@lib/caseUtil";
 import { apiRequest, HttpMethods } from "@utils/apiHelper";
 
 import { ENDPOINTS } from './endpoints';

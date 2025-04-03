@@ -2,9 +2,10 @@
 
 import { CloseOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import CaseUtil from '@libs/caseUtil';
+import tracker from "@lib/tracking";
+import CaseUtil from '@lib/caseUtil';
 
 import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
 
@@ -14,19 +15,41 @@ export default function QuickFilters() {
   const { filters: appliedFilters, onFilterChange, quickFilters } = useAlumniList();
   const [selectedFilters, setSelectedFilters] = useState<string[]>(appliedFilters?.quick || []);
 
-  const toggleFilter = useCallback((filter: string) => {
-    setSelectedFilters((prev) => {
-      const updatedFilters = prev.includes(filter)
-        ? prev.filter((f) => f !== filter)
-        : [...prev, filter];
-
-      onFilterChange({ ...appliedFilters, quick: updatedFilters });
-      return updatedFilters;
+  const trackFilterClick = (filter: string, isSelected: boolean) => {
+    tracker.click({
+      click_type: isSelected ? "filter_added" : "filter_removed",
+      click_text: "quick_filter",
+      click_source: "quick_filter",
+      custom: {
+        filter_name: filter,
+        filter_type: "quick",
+      },
     });
-  }, [appliedFilters, onFilterChange]);
+  };
+
+  const updateFilters = (filter: string) => {
+    const updatedFilters = selectedFilters.includes(filter)
+      ? selectedFilters.filter((f) => f !== filter)
+      : [...selectedFilters, filter];
+    return updatedFilters;
+    // setSelectedFilters((prev) => {
+    //   const updatedFilters = prev.includes(filter)
+    //     ? prev.filter((f) => f !== filter)
+    //     : [...prev, filter];
+    //   return updatedFilters;
+    // });
+  };
+
+  const handleFilterClick = (filter: string) => {
+    const updatedFilters = updateFilters(filter);
+    const isSelected = updatedFilters.includes(filter);
+    setSelectedFilters(updatedFilters);
+    onFilterChange({ ...appliedFilters, quick: updatedFilters });
+    trackFilterClick(filter, isSelected);
+  };
 
   useEffect(() => {
-    setSelectedFilters(appliedFilters?.quick);
+    setSelectedFilters(appliedFilters?.quick || []);
   }, [appliedFilters]);
 
   return (
@@ -41,7 +64,7 @@ export default function QuickFilters() {
             <Button
               key={filter}
               type='text'
-              onClick={() => toggleFilter(filter)}
+              onClick={() => handleFilterClick(filter)}
               className={
                 isSelected(filter)
                   ? styles.selectedFilterButton
@@ -53,10 +76,6 @@ export default function QuickFilters() {
               }
               {isSelected(filter) && (
                 <CloseOutlined
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleFilter(filter);
-                  }}
                 />
               )}
             </Button>
