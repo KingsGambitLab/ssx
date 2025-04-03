@@ -24,7 +24,6 @@ export default function ShareProfile({ name, batchYear, state }: ShareProfilePro
       url: SHARE_PROFILE_URL
     })
 
-    console.log(url);
     if (typeof url === 'string' && window.open) {
       window.open(url, '_blank');
     }
