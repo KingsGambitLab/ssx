@@ -8,6 +8,10 @@ $announcement-strip-highlight-color: #fec601;
   gap: 1rem;
   align-self: stretch;
   background: $announcement-strip-background-color;
+
+  @include mobile {
+    padding: 1.5rem 0;
+  }
 }
 
 .content {
@@ -29,6 +33,7 @@ $announcement-strip-highlight-color: #fec601;
 
   @include mobile {
     font-size: 1.1rem;
+    line-height: normal;
   }
 
   & > a{

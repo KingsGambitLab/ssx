@@ -30,11 +30,7 @@ export const SHARE_PLATFORMS = {
     order: 4,
     icon: Link,
     text: 'sharable',
-    tooltip: 'Copy Link',
-    url: ({ text, url }: { text: string; url: string }) => {
-      navigator.clipboard.writeText(`${text}\n${url}`);
-      return false;
-    },
+    tooltip: 'Copy Link'
   },
 };
 

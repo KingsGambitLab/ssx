@@ -61,6 +61,7 @@ export default function Navbar({
               title={false}
               placement="right"
               open={hamburgerMenuOpen}
+              rootClassName={styles.hamburgerDrawer}
               onClose={() => setHamburgerMenuOpen(false)}
             >
               <div className={styles.hamburgerMenu}>

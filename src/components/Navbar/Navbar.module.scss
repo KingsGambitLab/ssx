@@ -28,6 +28,14 @@
   width: 100%;
 }
 
+.hamburgerDrawer {
+  :global(.ant-drawer-content-wrapper) {
+   @include mobile {
+     width: 70% !important;
+   }
+  }
+}
+
 .barsMenu {
   svg {
     height: 2.4rem;

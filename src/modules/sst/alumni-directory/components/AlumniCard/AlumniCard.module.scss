@@ -13,6 +13,7 @@ $alumni-name-gradient-color-dark-theme: linear-gradient(90deg, #3A9DFF -9.23%, #
   align-items: flex-start;
   gap: 2rem;
   border-radius: $border-radius-large;
+  box-sizing: border-box;
 
   &[data-variant="light"] {
     background: $white-color;
@@ -24,6 +25,10 @@ $alumni-name-gradient-color-dark-theme: linear-gradient(90deg, #3A9DFF -9.23%, #
     padding: 0;
     gap: 3.2rem;
     background: $alumni-card-background-color-dark-theme;
+  }
+
+  @include mobile {
+    gap: 1.6rem;
   }
 }
 
@@ -109,8 +114,8 @@ $alumni-name-gradient-color-dark-theme: linear-gradient(90deg, #3A9DFF -9.23%, #
 }
 
 .infoItemText {
-  font-size: $h5-size;
-  font-weight: $medium-font-weight;
+  font-size: $h4-size;
+  font-weight: $default-font-weight;
 
   &[data-variant="light"] {
     color: $alumni-info-font-color;
@@ -118,9 +123,9 @@ $alumni-name-gradient-color-dark-theme: linear-gradient(90deg, #3A9DFF -9.23%, #
 
   &[data-variant="dark"] {
     color: $light-grey-color;
+  }
 
-    @include mobile {
-      font-size: $h6-size;
-    }
+  @include mobile {
+    font-size: $h6-size;
   }
 }

@@ -34,13 +34,21 @@
 
 .TitleText {
   color: var(--title-color, #1a2c47);
-  font-size: 2.4rem;
+  font-size: $h2-size;
   font-weight: $bold-font-weight;
+
+  @include mobile {
+    font-size: $h4-size;
+  }
 }
 
 .SubTitleText {
   color: var(--subtitle-color, #61738e);
-  font-size: 1.6rem;
+  font-size: $h4-size;
+
+  @include mobile {
+    font-size: $h5-size;
+  }
 }
 
 .TryBtn {

@@ -19,6 +19,11 @@ $quick-filters-border-color: #e4e4e4;
   font-size: $h4-size;
   font-weight: $default-font-weight;
   line-height: normal;
+
+  @include mobile {
+    font-size: $h6-size;
+    font-weight: $bold-font-weight;
+  }
 }
 
 .filters {
@@ -40,6 +45,10 @@ $quick-filters-border-color: #e4e4e4;
   font-size: $h5-size;
   font-weight: 500;
   color: $quick-filter-heading-color;
+
+  @include mobile {
+    font-size: $h6-size !important;
+  }
 }
 
 .selectedFilterButton {
