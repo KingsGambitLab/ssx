@@ -1,16 +1,32 @@
 
 import { Button } from 'antd';
-
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-import NoAlumniFoundImage from '@public/images/sst/svg/no-result-found.svg';
-
+import tracker from '@lib/tracking';
 import { AlumniFilters } from '../../types';
 import { DEFAULT_ALUMNI_FILTERS } from '../../constants';
+
+import NoAlumniFoundImage from '@public/images/sst/svg/no-result-found.svg';
 
 import styles from './NoAlumniFound.module.scss';
 
 export default function NoAlumniFound({ onFilterChange }: { onFilterChange: (filters: AlumniFilters) => void }) {
+
+  const hasTracked = useRef(false);
+
+
+  useEffect(() => {
+    if (hasTracked.current) return;
+
+    hasTracked.current = true;
+    tracker.click({
+      click_type: 'no_alumni_found',
+      click_text: 'no_alumni_found',
+      click_source: 'alumni_directory',
+    });
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.searchedResults}>

@@ -1,6 +1,8 @@
 import { Button } from "antd";
 import classNames from 'classnames';
 
+import tracker from "@lib/tracking";
+
 import styles from './LoginActions.module.scss';
 
 type LoginActionsProps = {
@@ -26,6 +28,13 @@ export default function LoginActions({
   disableLogin = false,
   disableApply = false,
 }: LoginActionsProps) {
+  const trackEvent = (clickText: string) => {
+    tracker.click({
+      click_type: 'nav_button_clicked',
+      click_text: clickText,
+      click_source: 'navbar',
+    });
+  }
   return (
     <div className={classNames(styles.actionButtons, rootClassName)}>
       <Button
@@ -33,7 +42,10 @@ export default function LoginActions({
         color="primary"
         variant="outlined"
         className={classNames(styles.loginButton, loginButtonClassName)}
-        onClick={onLogin}
+        onClick={() => {
+          trackEvent(loginLabel);
+          onLogin();
+        }}
         disabled={disableLogin}
       >
         {loginLabel}
@@ -43,7 +55,10 @@ export default function LoginActions({
         color="danger"
         variant="solid"
         className={classNames(styles.applyNowButton, applyButtonClassName)}
-        onClick={onApply}
+        onClick={() => {
+          trackEvent(applyLabel);
+          onApply();
+        }}
         disabled={disableApply}
       >
         {applyLabel}

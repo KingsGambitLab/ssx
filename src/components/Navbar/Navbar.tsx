@@ -1,13 +1,15 @@
 'use client';
 
-import { Button, Drawer } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { Button, Drawer } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 
 import { useDeviceType } from "@hooks/useDeviceType";
+import tracker from "@lib/tracking";
 
 import NavItems from "../NavItems/NavItems";
 
@@ -37,9 +39,17 @@ export default function Navbar({
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const { isTabletOrMobile } = useDeviceType();
 
+  const trackEvent = (clickType: string, clickText: string) => {
+    tracker.click({
+      click_type: clickType,
+      click_text: clickText,
+      click_source: 'navbar',
+    });
+  }
+
   return (
     <div className={classNames(styles.container, className)} >
-      <Link href={homePageUrl} prefetch={false}>
+      <Link href={homePageUrl} prefetch={false} onClick={() => trackEvent('navbar_logo_clicked', 'logo')}>
         <Image
           src={logoSrc}
           alt={logoAlt}

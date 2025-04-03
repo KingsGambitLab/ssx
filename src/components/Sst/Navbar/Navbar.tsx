@@ -1,10 +1,9 @@
 import Navbar from "@components/Navbar";
-
-import SSTLogo from "@public/images/sst/webp/logo.webp";
+import AuthActions from "@components/Sst/Navbar/ActionButtons";
 
 import { navItems } from "./data";
 
-import AuthActions from "@components/Sst/Navbar/ActionButtons";
+import SSTLogo from "@public/images/sst/webp/logo.webp";
 
 export default function SstNavbar() {
   return (

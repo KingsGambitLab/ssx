@@ -1,9 +1,9 @@
 'use client';
 
 import { Button, Checkbox, Tabs } from 'antd';
-import { useCallback, useMemo, useEffect, useState } from 'react';
+import { useCallback, useMemo, useEffect, useState, useRef } from 'react';
 
-import CaseUtil from '@libs/caseUtil';
+import CaseUtil from '@lib/caseUtil';
 
 import { AdvancedFiltersType } from '@modules/sst/alumni-directory/types';
 import {
@@ -11,6 +11,7 @@ import {
   DEFAULT_ALUMNI_FILTERS
 } from '@modules/sst/alumni-directory/constants';
 import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
+import tracker from '@lib/tracking';
 
 import styles from './AdvancedFiltersItems.module.scss';
 
@@ -19,6 +20,7 @@ type AdvancedFiltersItemsProps = {
 }
 
 export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsProps) {
+  const hasTracked = useRef(false);
   const { onFilterChange, advancedFilters, filters } = useAlumniList();
 
   const [selectedFilters, setSelectedFilters] = useState<AdvancedFiltersType>(() =>
@@ -30,10 +32,26 @@ export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsPr
     [selectedFilters]
   );
 
+  const trackEvent = ({ click_type, method = 'click' }: {
+    click_type: string;
+    method?: 'click' | 'view';
+  }) => {
+    tracker[method]({
+      click_type,
+      click_text: click_type,
+      click_source: "advanced_filter",
+      custom: {
+        filter_type: "advanced",
+        filter_values: selectedFilters,
+      },
+    });
+  }
+
   const clearAllFiltersHandler = useCallback(() => {
     setSelectedFilters(DEFAULT_ADVANCED_FILTERS);
     onFilterChange(DEFAULT_ALUMNI_FILTERS);
     onClose();
+    trackEvent({ click_type: "clear_all_filters" });
   }, [onFilterChange, onClose]);
 
   const applyFilters = useCallback(() => {
@@ -43,7 +61,13 @@ export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsPr
       search: filters.search
     });
     onClose();
+    trackEvent({ click_type: "apply_advanced_filters" });
   }, [filters, selectedFilters, onFilterChange, onClose]);
+
+  const closeFiltersHandler = () => {
+    onClose();
+    trackEvent({ click_type: "close_advanced_filters" });
+  };
 
   const updateSelectedFilters = useCallback(
     (key: string, value: string, checked: boolean) => {
@@ -95,6 +119,10 @@ export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsPr
   }, [advancedFilters, selectedFilters, updateSelectedFilters]);
 
   useEffect(() => {
+    if (!hasTracked.current) {
+      trackEvent({ click_type: 'advanced_filter_modal_opened', method: 'view' })
+      hasTracked.current = true;
+    }
     setSelectedFilters({ ...filters?.advanced });
   }, [filters?.advanced]);
 
@@ -126,7 +154,7 @@ export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsPr
         <Button
           type="default"
           size="large"
-          onClick={onClose}
+          onClick={closeFiltersHandler}
           className={styles.closeButton}
         >
           Close

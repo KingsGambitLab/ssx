@@ -2,10 +2,12 @@
 
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
 import AdvancedFilters from '@modules/sst/alumni-directory/components/AdvancedFilters';
+
+import tracker from "@lib/tracking";
 
 import styles from './SearchBar.module.scss';
 
@@ -14,9 +16,18 @@ export default function SearchBar() {
 
   const { onFilterChange, filters } = useAlumniList();
 
-  const handleSearch = useCallback(() => {
+  const handleSearch = () => {
+    tracker.click({
+      click_type: "filter_clicked",
+      click_text: "search_filter",
+      click_source: "search_bar",
+      custom: {
+        filter_value: searchValue,
+        filter_type: "search",
+      },
+    });
     onFilterChange({ ...filters, search: searchValue });
-  }, [filters, onFilterChange, searchValue]);
+  };
 
   useEffect(() => {
     setSearchValue(filters?.search || '');

@@ -53,4 +53,8 @@ $quick-filters-border-color: #e4e4e4;
 
 .selectedFilterButton {
   background: $quick-filters-border-color;
+  
+  @include mobile {
+    font-size: $h6-size !important;
+  }
 }

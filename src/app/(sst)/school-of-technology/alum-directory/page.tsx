@@ -19,6 +19,11 @@ export default function Page() {
     isAlumniListError
   } = useAlumniList();
 
+  // console.log('isFilterError', isFilterError);
+  // console.log('isAlumniListError', isAlumniListError);
+  // console.log('isFilterLoading', isFilterLoading);
+  // console.log('isAlumniListLoading', isAlumniListLoading);
+
   const content = () => {
     if (isFilterLoading && isAlumniListLoading) return <LoadingLayout />;
     else if (isFilterError || isAlumniListError) return <LoadingErrorFallback />;

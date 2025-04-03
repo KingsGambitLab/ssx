@@ -45,8 +45,8 @@
       "@modules/*": [
         "./src/modules/*"
       ],
-      "@libs/*": [
-        "./src/libs/*"
+      "@lib/*": [
+        "src/lib/*"
       ]
     }
   },

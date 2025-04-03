@@ -1,7 +1,9 @@
+// 'use client';
 import classNames from 'classnames';
 import Image from 'next/image';
 
 import styles from './AnnouncementStrip.module.scss';
+// import tracker from '@lib/tracking';
 
 type AnnouncementStripProps = {
   rootClassName?: string;
@@ -20,6 +22,14 @@ export default function AnnounceStrip({
   highlightText = 'Know More',
   redirectUrl,
 }: AnnouncementStripProps) {
+
+  // const trackEvent = () => {
+  //   tracker.click({
+  //     click_type: 'announcement_strip_clicked',
+  //     click_text: 'know_more',
+  //     click_source: 'announcement_strip',
+  //   });
+  // }
   return (
     <div className={classNames(styles.container, rootClassName)}>
       <div className={styles.content}>
