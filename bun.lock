@@ -19,7 +19,6 @@
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-toastify": "^11.0.5",
-        "root": "tanstack/react-query",
         "sass": "^1.86.0",
         "swr": "^2.3.3",
       },
@@ -1295,8 +1294,6 @@
     "reusify": ["reusify@1.1.0", "", {}, "sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw=="],
 
     "rfdc": ["rfdc@1.4.1", "", {}, "sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA=="],
-
-    "root": ["root@github:tanstack/react-query#8f03e59", {}, "TanStack-query-8f03e59"],
 
     "run-async": ["run-async@2.4.1", "", {}, "sha512-tvVnVv01b8c1RrA6Ep7JkStj85Guv/YrMcwqYQnwjsAS2cTmmPGBBjAjpCW7RrSodNSoE2/qg9O4bceNvUuDgQ=="],
 

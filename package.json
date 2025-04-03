@@ -30,7 +30,6 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-toastify": "^11.0.5",
-    "root": "tanstack/react-query",
     "sass": "^1.86.0",
     "swr": "^2.3.3"
   },
