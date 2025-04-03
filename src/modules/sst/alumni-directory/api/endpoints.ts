@@ -1,8 +1,4 @@
-const isProduction = process.env.NODE_ENV === 'production';
-
-export const API_BASE_URL = isProduction
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}`
-  : `${process.env.NEXT_PUBLIC_BASE_URL}/api/base_api`;
+import { API_BASE_URL } from '@utils/url';
 
 export const ENDPOINTS = {
   FILTER_OPTIONS: `${API_BASE_URL}/programs/alum-directory/filters-options/`,
