@@ -1,5 +1,5 @@
 'use client';
-
+// eslint-disable @typescript-eslint/no-unused-vars
 import tracker from '@lib/tracking';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';

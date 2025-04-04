@@ -27,7 +27,7 @@ const infoItems = ({ iconImage, text, variant = 'light' }: InfoItemProps) => {
   return (
     <div className={styles.infoItems} data-variant={variant}>
       <Image src={iconImage} alt={text} width={16} height={16} />
-      <div className={styles.infoItemText}>{text}</div>
+      <div className={styles.infoItemText} data-variant={variant}>{text}</div>
     </div>
   )
 }
@@ -35,7 +35,7 @@ const infoItems = ({ iconImage, text, variant = 'light' }: InfoItemProps) => {
 export default function AlumniCard({ name, batchYear, city, state, school, image, children, variant = 'light' }: AlumniCardProps) {
   return (
     <div className={styles.container} data-variant={variant}>
-      <div className={styles.infoContainer}>
+      <div className={styles.infoContainer} data-variant={variant}>
         <Image
           src={image || `https://randomuser.me/api/portraits/women/1.jpg`}
           alt={name}
@@ -43,9 +43,10 @@ export default function AlumniCard({ name, batchYear, city, state, school, image
           height={104}
           onError={() => ('/images/fallback-avatar.jpg')}
           className={styles.alumniImage}
+          data-variant={variant}
         />
-        <div className={styles.alumniInfo}>
-          <div className={styles.alumniName}>{name}</div>
+        <div className={styles.alumniInfo} data-variant={variant}>
+          <div className={styles.alumniName} data-variant={variant}>{name}</div>
           <div className={styles.alumniMoreInfo}>
             {infoItemsProps(variant, batchYear, city, state, school).map(
               (item) => infoItems({ ...item, variant })

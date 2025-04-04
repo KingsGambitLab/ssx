@@ -77,7 +77,7 @@ export default class Attribution {
   }: {
     program?: string | null;
   } = {}) {
-    // @ts-expect-error
+    // @ts-expect-error - data object structure is dynamic and cannot be statically typed
     this.attribution = {
       intent,
       program,
