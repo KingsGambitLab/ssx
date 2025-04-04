@@ -9,6 +9,7 @@ import LoadingErrorFallback from "@/layouts/LoadingErrorFallback/LoadingErrorFal
 import LoadingLayout from "@/layouts/LoadingLayout/LoadingLayout";
 
 import styles from "./page.module.scss";
+import { Suspense, useEffect } from "react";
 
 
 export default function Page() {
@@ -16,13 +17,9 @@ export default function Page() {
     isFilterError,
     isFilterLoading,
     isAlumniListLoading,
-    isAlumniListError
+    isAlumniListError,
+    fetchData
   } = useAlumniList();
-
-  // console.log('isFilterError', isFilterError);
-  // console.log('isAlumniListError', isAlumniListError);
-  // console.log('isFilterLoading', isFilterLoading);
-  // console.log('isAlumniListLoading', isAlumniListLoading);
 
   const content = () => {
     if (isFilterLoading && isAlumniListLoading) return <LoadingLayout />;
@@ -34,10 +31,17 @@ export default function Page() {
       </>
     )
   }
+
+  useEffect(() => {
+    fetchData({ pageNumber: 1 });
+  }, []);
+
   return (
     <div className={styles.container}>
       <Banner />
-      {content()}
+      <Suspense fallback={<LoadingLayout />}>
+        {content()}
+      </Suspense>
     </div>
   )
 }

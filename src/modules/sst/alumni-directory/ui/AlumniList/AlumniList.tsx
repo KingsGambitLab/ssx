@@ -63,6 +63,7 @@ const ActionButtons = (
 
 export default function AlumniList() {
   const {
+    filters,
     alumniList,
     isAlumniListLoading: loading,
     loadMore,
@@ -100,9 +101,21 @@ export default function AlumniList() {
     return <LoadingLayout />;
   }
 
+  // if (alumniListTotalEntries === 0 && alumniList?.length === 0 && !loading) {
+  //   tracker.click({
+  //     click_type: 'no_alumni_found',
+  //     click_text: 'no_alumni_found',
+  //     click_source: 'alumni_directory',
+  //     custom: {
+  //       filters: filters
+  //     }
+  //   });
+  // }
+
   if (alumniList?.length === 0 && !loading) {
     return <NoAlumniFound onFilterChange={onFilterChange} />;
   }
+
   return (
     <>
       <div className={styles.mainContainer}>

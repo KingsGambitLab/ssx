@@ -23,7 +23,6 @@ export const getFilterOptions = async (): Promise<FilterOptionsResponse> => {
 
 export const getAllAlumni = async (pageNumber: number, filters: AlumniFilters): Promise<AllAlumniResponse> => {
   const params = formatGetAllAlumniParams(pageNumber, filters);
-  console.log("params", params);
 
   const response = await apiRequest<AllAlumniResponse>(
     HttpMethods.POST,
