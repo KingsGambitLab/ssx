@@ -84,7 +84,7 @@ export default function AlumniList() {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
 
-      if (alumniList?.length >= alumniListTotalEntries) return;
+      if (alumniList?.length >= (alumniListTotalEntries ?? 0)) return;
 
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
