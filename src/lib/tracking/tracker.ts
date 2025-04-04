@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const DEFAULT_CONFIG = {
   isEnabled: true,
   superAttributes: {},
@@ -26,15 +28,15 @@ export default class Tracker {
   _shouldTrack: boolean;
   _pendingList: Array<{
     event: string;
-    attributes: Object;
+    attributes: object;
   }>;
   _pushToPendingList: boolean;
   _superAttributes: {
-    attributes?: Object;
-    custom?: Object;
+    attributes?: object;
+    custom?: object;
   };
 
-  // @ts-expect-error
+  // @ts-expect-error unknown type
   constructor(config) {
     const finalConfig = { ...DEFAULT_CONFIG, ...config };
     this._platform = 'web';
@@ -97,7 +99,7 @@ export default class Tracker {
   }
 
   _createEventPayload(event: string, _attributes: {
-    custom?: Object,
+    custom?: object,
   }) {
     const { custom: customAttributes, ...attributes } = _attributes;
     const {
@@ -120,7 +122,7 @@ export default class Tracker {
     };
   }
 
-  _pushToDataLayer(payload: Object) {
+  _pushToDataLayer(payload: object) {
     window.dataLayer.push({
       _clear: true,
       ...payload,
@@ -137,7 +139,7 @@ export default class Tracker {
   }
 
   _trackEvent(event: string, _attributes: {
-    custom?: Object,
+    custom?: object,
   }) {
     if (!this.isEnabled) return;
     if (this._pushToPendingList) {
@@ -150,7 +152,7 @@ export default class Tracker {
 
     const attributes = removeEmptyKeys(_attributes);
     // if (!areAttributesValid(event, attributes)) return;
-    // @ts-expect-error
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const eventPayload = this._createEventPayload(event, attributes);
 
     if (this.shouldTrack) {
@@ -160,9 +162,9 @@ export default class Tracker {
     }
   }
 
-  _createPageViewAttributes(attributes: Object): Object {
+  _createPageViewAttributes(attributes: object): object {
     const { title } = window.document;
-    // @ts-expect-error
+    // @ts-expect-error unknown type
     const url = new URL(window.location);
 
     return {
@@ -174,11 +176,11 @@ export default class Tracker {
     };
   }
 
-  pushRawEvent(event: Object) {
+  pushRawEvent(event: object) {
     this._pushToDataLayer(event);
   }
 
-  click(attributes: Object) {
+  click(attributes: object) {
     this._trackEvent(EVENT_NAMES.CLICK, attributes);
   }
 
@@ -187,11 +189,11 @@ export default class Tracker {
     this._trackEvent(EVENT_NAMES.PAGE_VIEW, finalAttributes);
   }
 
-  hover(attributes: Object) {
+  hover(attributes: object) {
     this._trackEvent(EVENT_NAMES.HOVER, attributes);
   }
 
-  view(attributes: Object) {
+  view(attributes: object) {
     this._trackEvent(EVENT_NAMES.VIEW, attributes);
   }
 

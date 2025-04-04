@@ -29,12 +29,10 @@ export function getProduct(url: string) {
   } else if (
     (
       urlPathArrs.includes('academy')
-        || urlPathArrs.includes('data-science-course')
+      || urlPathArrs.includes('data-science-course')
     )
     && urlPathArrs.includes('test')) {
     return PRODUCTS.TEST_PAGE;
-  } else if (urlPathArrs.includes('mentee-dashboard')) {
-    return PRODUCTS.MENTEE_DASHBOARD_PAGE;
   } else if (urlPathArrs.includes('mentee-dashboard')) {
     return PRODUCTS.MENTEE_DASHBOARD_PAGE;
   } else if (urlPathArrs.includes('academy')) {

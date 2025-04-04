@@ -53,7 +53,7 @@ function findDomian(arr: Array<string>, url: string) {
       }
     }
   } catch (e) {
-    // console.log('error', e);
+    console.error('error', e);
   }
   return false;
 }
