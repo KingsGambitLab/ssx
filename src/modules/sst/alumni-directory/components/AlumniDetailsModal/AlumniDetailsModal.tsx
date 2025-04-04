@@ -118,7 +118,7 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
   }
 
   const modalContent = () => {
-    if (isLoading) return <LoadingLayout />;
+    if (isLoading) return <LoadingLayout className={styles.loadingContainer} />;
     else if (error) return <LoadingErrorFallback className={styles.errorContainer} variant="dark" />;
     else if (alumniData) return (
       <div className={styles.modalContent}>
@@ -164,7 +164,7 @@ export default function AlumniDetailsModal({ isModalOpen, setIsModalOpen, alumni
             <div className={styles.clubsList}>
               {alumniData?.clubs?.map((club) => (
                 <div className={styles.clubItem} key={club}>
-                  {club}
+                  <div className={styles.clubName}>{club}</div>
                 </div>
               ))}
             </div>

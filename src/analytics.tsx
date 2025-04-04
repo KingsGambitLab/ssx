@@ -11,11 +11,9 @@ import useUser from '@/hooks/useUser';
 export default function Analytics({
   product,
   subProduct,
-  experiment,
 }: {
   product: string;
   subProduct: string;
-  experiment: Record<string, string>;
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();

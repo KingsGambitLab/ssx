@@ -14,7 +14,6 @@ import Analytics from '@analytics';
 import AnalyticsFallback from '@analytics-fallback';
 import MicrosoftClarity from "@microsoft-clarity";
 
-import { getCookie } from 'cookies-next';
 import { QueryProvider } from '@queryProvider';
 
 export const metadata: Metadata = {
@@ -42,9 +41,6 @@ export default function Layout(
     { children: React.ReactNode }
 ) {
 
-  const experimentsCookieValue = getCookie("experiments") as string;
-  const experiments = getCurrentExperiments(experimentsCookieValue);
-
   return (
     <QueryProvider>
       <AlumniProvider>
@@ -64,7 +60,6 @@ export default function Layout(
           <Analytics
             product="scaler_school_of_technology"
             subProduct="alumni_directory"
-            experiment={experiments}
           />
           <MicrosoftClarity />
         </Suspense>
@@ -73,17 +68,3 @@ export default function Layout(
   )
 }
 
-function getCurrentExperiments(
-  experimentCookieVal: string,
-): Record<string, string> {
-  const experiments: Record<string, string> = {};
-  if (experimentCookieVal) {
-    const experimentsArr = experimentCookieVal.split(";");
-    experimentsArr.forEach((experiment) => {
-      const [key, val] = experiment.split(":");
-      experiments[key] = val;
-    });
-  }
-
-  return experiments;
-}
