@@ -1,6 +1,7 @@
 $banner-heading-font-color: #171717;
 $banner-container-border-color: #e4e4e4;
 $banner-container-subheading-font-color: #616161;
+$banner-heading-gradient-color: linear-gradient(93deg, #083CA0 -1.36%, #0052FF 57.61%);
 
 .container {
   @include flex-row;
@@ -61,7 +62,7 @@ $banner-container-subheading-font-color: #616161;
   }
 
   & > span {
-    background: linear-gradient(93deg, #171717 -1.36%, #0052FF 57.61%);
+    background: $banner-heading-gradient-color;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 import tracker from '@lib/tracking';
+import { useAlumniList } from '@/modules/sst/alumni-directory/context/AlumniContext';
 import { AlumniFilters } from '../../types';
 import { DEFAULT_ALUMNI_FILTERS } from '../../constants';
 
@@ -12,20 +13,22 @@ import NoAlumniFoundImage from '@public/images/sst/svg/no-result-found.svg';
 import styles from './NoAlumniFound.module.scss';
 
 export default function NoAlumniFound({ onFilterChange }: { onFilterChange: (filters: AlumniFilters) => void }) {
-
+  const { alumniListTotalEntries, filters } = useAlumniList();
   const hasTracked = useRef(false);
 
-
   useEffect(() => {
-    if (hasTracked.current) return;
+    if (alumniListTotalEntries === undefined || hasTracked.current) return;
 
     hasTracked.current = true;
     tracker.click({
       click_type: 'no_alumni_found',
       click_text: 'no_alumni_found',
       click_source: 'alumni_directory',
+      custom: {
+        filters: filters
+      }
     });
-  }, []);
+  }, [filters]);
 
   return (
     <div className={styles.container}>

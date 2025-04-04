@@ -30,6 +30,7 @@ interface AlumniContextType {
   isAlumniListError: boolean;
   onFilterChange: (filters: AlumniFilters) => void;
   loadMore: () => void;
+  fetchData: (object: { pageNumber: number, filterParams?: AlumniFilters }) => void;
   quickFilters: string[];
   advancedFilters: Record<string, string[]>;
   isFilterLoading: boolean;
@@ -46,7 +47,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
   const [pageNumber, setPageNumber] = useState(1);
   const [isAlumniListLoading, setIsAlumniListLoading] = useState(false);
   const [isAlumniListError, setIsAlumniListError] = useState(false);
-  const [alumniListTotalEntries, setAlumniListTotalEntries] = useState(0);
+  const [alumniListTotalEntries, setAlumniListTotalEntries] = useState<number | undefined>(undefined);
   const [showFilterLoader, setShowFilterLoader] = useState(false);
 
   const { data, error: isFilterError, isLoading: isFilterLoading } = useSWR<FilterOptionsResponse>(
@@ -75,7 +76,6 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
       setAlumniListTotalEntries(response?.totalEntries ?? 0);
     } catch (err) {
       setIsAlumniListError(true);
-      console.log("error", err);
     } finally {
       setShowFilterLoader(false);
       setIsAlumniListLoading(false);
@@ -98,11 +98,6 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
     setPageNumber(pageNumber + 1);
   }, [pageNumber, fetchData]);
 
-  useEffect(() => {
-    fetchData({ pageNumber: 1 });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
 
   const value: AlumniContextType = {
     filters,
@@ -111,6 +106,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
     isAlumniListLoading,
     isAlumniListError,
     onFilterChange,
+    fetchData,
     loadMore,
     quickFilters: data?.quickFilters ?? [],
     advancedFilters: data?.advancedFilters ?? {},
