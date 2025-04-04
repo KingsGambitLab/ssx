@@ -1,11 +1,11 @@
-import LeoHouseLogo from '@public/images/sst/svg/leo.svg';
-import TuskerHouseLogo from '@public/images/sst/svg/tusker.svg';
-import PhoenixHouseLogo from '@public/images/sst/svg/phoenix.svg';
-import KongHouseLogo from '@public/images/sst/svg/kong.svg';
-import LeoHouseLogoMobile from '@public/images/sst/svg/leo-mobile.svg';
-import TuskerHouseLogoMobile from '@public/images/sst/svg/tusker-mobile.svg';
-import PhoenixHouseLogoMobile from '@public/images/sst/svg/phoenix-mobile.svg';
-import KongHouseLogoMobile from '@public/images/sst/svg/kong-mobile.svg';
+import LeoHouseLogo from '@public/images/sst/webp/leo.webp';
+import TuskerHouseLogo from '@public/images/sst/webp/tusker.webp';
+import PhoenixHouseLogo from '@public/images/sst/webp/phoenix.webp';
+import KongHouseLogo from '@public/images/sst/webp/kong.webp';
+import LeoHouseLogoMobile from '@public/images/sst/webp/leo-mobile.webp';
+import TuskerHouseLogoMobile from '@public/images/sst/webp/tusker-mobile.webp';
+import PhoenixHouseLogoMobile from '@public/images/sst/webp/phoenix-mobile.webp';
+import KongHouseLogoMobile from '@public/images/sst/webp/kong-mobile.webp';
 
 
 type HouseName = 'leo' | 'tusker' | 'phoenix' | 'kong';
