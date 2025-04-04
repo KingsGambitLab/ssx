@@ -43,7 +43,7 @@ export default function ShareProfile({ id, name, batchYear, state }: ShareProfil
 
     if (platform === 'sharable') {
       navigator.clipboard.writeText(`${messageText}\n${SHARE_PROFILE_URL}`).then(() => {
-        toast.success('Link copied successfully!');
+        toast.success('Text Copied Successfully!');
       });
     } else {
       const url = SHARE_PLATFORMS[platform]?.url({
