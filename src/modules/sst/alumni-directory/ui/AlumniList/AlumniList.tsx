@@ -63,7 +63,6 @@ const ActionButtons = (
 
 export default function AlumniList() {
   const {
-    filters,
     alumniList,
     isAlumniListLoading: loading,
     loadMore,
