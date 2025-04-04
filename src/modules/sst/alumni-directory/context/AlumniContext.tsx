@@ -8,7 +8,6 @@ import {
   useCallback,
   useState,
   ReactNode,
-  useEffect
 } from 'react';
 
 import { getAllAlumni, getFilterOptions } from '@modules/sst/alumni-directory/api';
@@ -36,7 +35,7 @@ interface AlumniContextType {
   isFilterLoading: boolean;
   isFilterError: boolean;
   showFilterLoader: boolean;
-  alumniListTotalEntries: number;
+  alumniListTotalEntries: number | undefined;
 }
 
 const AlumniContext = createContext<AlumniContextType | undefined>(undefined);
@@ -74,6 +73,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
       );
 
       setAlumniListTotalEntries(response?.totalEntries ?? 0);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setIsAlumniListError(true);
     } finally {
