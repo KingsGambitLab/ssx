@@ -1,7 +1,5 @@
 import { setCookie, getCookie } from "cookies-next";
 
-import { CSRFTOKEN } from '@/api/endPoints/user';
-
 import {
   BYPASS_UTM,
   GOOGLE_URL,
@@ -17,6 +15,7 @@ import {
   UTM_SOURCE_DEFAULT,
   VIDEO_SITE_LIST,
 } from './constants';
+import axios from "axios";
 
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -25,23 +24,20 @@ export const API_BASE_URL = isProduction
   ? `${process.env.NEXT_PUBLIC_BASE_URL}`
   : `${process.env.NEXT_PUBLIC_BASE_URL}/api/base_api`;
 
-
 export const csrfTokenMemo = () => {
   let token: string | null | undefined = null;
 
   return async function () {
     if (token) return Promise.resolve(token);
 
-    const response = await fetch(CSRFTOKEN, { method: 'GET' });
-    const result = await response.json();
-    token = result?.["csrf_token"];
+    const response = await axios(`${API_BASE_URL}/csrf-token`, { method: 'GET' });
+    token = response?.data?.["csrf_token"];
 
     return token;
   }
 }
 
 export const fetchCsrfToken = csrfTokenMemo();
-
 
 function findDomian(arr: Array<string>, url: string) {
   try {

@@ -4,10 +4,10 @@ import useSWR from 'swr';
 
 import {
   createContext,
-  useContext,
   useCallback,
   useState,
   ReactNode,
+  use,
 } from 'react';
 
 import { getAllAlumni, getFilterOptions } from '@modules/sst/alumni-directory/api';
@@ -27,9 +27,9 @@ interface AlumniContextType {
   alumniList: AllAlumniData[];
   isAlumniListLoading: boolean;
   isAlumniListError: boolean;
+  fetchAllAlumni: (object: { pageNumber: number, filterParams?: AlumniFilters }) => void;
   onFilterChange: (filters: AlumniFilters) => void;
   loadMore: () => void;
-  fetchData: (object: { pageNumber: number, filterParams?: AlumniFilters }) => void;
   quickFilters: string[];
   advancedFilters: Record<string, string[]>;
   isFilterLoading: boolean;
@@ -38,7 +38,7 @@ interface AlumniContextType {
   alumniListTotalEntries: number | undefined;
 }
 
-const AlumniContext = createContext<AlumniContextType | undefined>(undefined);
+export const AlumniContext = createContext<AlumniContextType | undefined>(undefined);
 
 export function AlumniProvider({ children }: { children: ReactNode }) {
   const [filters, setFilters] = useState<AlumniFilters>(DEFAULT_ALUMNI_FILTERS);
@@ -58,7 +58,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
     }
   );
 
-  const fetchData = useCallback(async (
+  const fetchAllAlumni = useCallback(async (
     { pageNumber, filterParams = filters }
       : { pageNumber: number, filterParams?: AlumniFilters }
   ) => {
@@ -88,15 +88,15 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
 
     setFilters(updatedFilters);
     setPageNumber(1);
-    fetchData({ pageNumber: 1, filterParams: updatedFilters });
+    fetchAllAlumni({ pageNumber: 1, filterParams: updatedFilters });
     setShowFilterLoader(true);
-  }, [fetchData, filters]);
+  }, [fetchAllAlumni, filters]);
 
 
   const loadMore = useCallback(() => {
-    fetchData({ pageNumber: pageNumber + 1 });
+    fetchAllAlumni({ pageNumber: pageNumber + 1 });
     setPageNumber(pageNumber + 1);
-  }, [pageNumber, fetchData]);
+  }, [pageNumber, fetchAllAlumni]);
 
 
   const value: AlumniContextType = {
@@ -106,7 +106,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
     isAlumniListLoading,
     isAlumniListError,
     onFilterChange,
-    fetchData,
+    fetchAllAlumni,
     loadMore,
     quickFilters: data?.quickFilters ?? [],
     advancedFilters: data?.advancedFilters ?? {},
@@ -123,7 +123,7 @@ export function AlumniProvider({ children }: { children: ReactNode }) {
 }
 
 export function useAlumniList() {
-  const context = useContext(AlumniContext);
+  const context = use(AlumniContext);
   if (context === undefined) {
     throw new Error('useAlumniList must be used within an AlumniProvider');
   }

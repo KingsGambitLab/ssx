@@ -4,13 +4,14 @@ import Image from "next/image";
 
 import { useDeviceType } from "@hooks/useDeviceType";
 
-import bannerMweb from "@public/images/sst/webp/banner-mweb.webp";
 import banner from "@public/images/sst/webp/banner.webp";
+import bannerMweb from "@public/images/sst/webp/banner-mweb.webp";
 
 import styles from "./Banner.module.scss";
 
 export default function Banner() {
   const { isTablet, isMobile } = useDeviceType();
+  
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -22,11 +23,7 @@ export default function Banner() {
         </h2>
       </div>
       <Image
-        src={
-          isMobile || isTablet ?
-            bannerMweb :
-            banner
-        }
+        src={isMobile || isTablet ? bannerMweb : banner}
         alt="SST Banner"
         height={isMobile ? 130 : 230}
         width={isMobile ? 212 : 520}

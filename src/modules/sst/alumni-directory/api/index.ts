@@ -1,13 +1,14 @@
 import CaseUtil from "@lib/caseUtil";
-import { apiRequest, HttpMethods } from "@utils/apiHelper";
+import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
 
 import { ENDPOINTS } from './endpoints';
 import {
-  FilterOptionsResponse,
   AllAlumniResponse,
   AlumniDataResponse,
-  AlumniFilters
+  AlumniFilters,
+  FilterOptionsResponse
 } from '../types';
+import { DEFAULT_ALUMNI_FILTERS } from "../constants";
 import { formatGetAllAlumniParams } from "../utils";
 
 export const getFilterOptions = async (): Promise<FilterOptionsResponse> => {
@@ -21,7 +22,9 @@ export const getFilterOptions = async (): Promise<FilterOptionsResponse> => {
   return formatted;
 };
 
-export const getAllAlumni = async (pageNumber: number, filters: AlumniFilters): Promise<AllAlumniResponse> => {
+export const getAllAlumni = async (
+  pageNumber: number, filters: AlumniFilters = DEFAULT_ALUMNI_FILTERS
+): Promise<AllAlumniResponse> => {
   const params = formatGetAllAlumniParams(pageNumber, filters);
 
   const response = await apiRequest<AllAlumniResponse>(

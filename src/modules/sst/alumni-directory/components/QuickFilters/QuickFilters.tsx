@@ -1,13 +1,18 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import { CloseOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { useState, useEffect } from 'react';
-
-import tracker from "@lib/tracking";
-import CaseUtil from '@lib/caseUtil';
 
 import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent
+} from '@modules/sst/alumni-directory/utils';
+
+import CaseUtil from '@lib/caseUtil';
 
 import styles from './QuickFilters.module.scss';
 
@@ -16,10 +21,10 @@ export default function QuickFilters() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>(appliedFilters?.quick || []);
 
   const trackFilterClick = (filter: string, isSelected: boolean) => {
-    tracker.click({
-      click_type: isSelected ? "filter_added" : "filter_removed",
-      click_text: "quick_filter",
-      click_source: "quick_filter",
+    trackEvent.click({
+      clickType: isSelected ? pageTrackingEvents.filterApplied : pageTrackingEvents.filterRemoved,
+      clickText: pageTrackingEvents.filterApplied,
+      clickSource: pageTrackingSources.quickFilters,
       custom: {
         filter_name: filter,
         filter_type: "quick",
@@ -32,12 +37,6 @@ export default function QuickFilters() {
       ? selectedFilters.filter((f) => f !== filter)
       : [...selectedFilters, filter];
     return updatedFilters;
-    // setSelectedFilters((prev) => {
-    //   const updatedFilters = prev.includes(filter)
-    //     ? prev.filter((f) => f !== filter)
-    //     : [...prev, filter];
-    //   return updatedFilters;
-    // });
   };
 
   const handleFilterClick = (filter: string) => {
@@ -74,10 +73,7 @@ export default function QuickFilters() {
               {filter === 'up' ? 'UP' :
                 (CaseUtil.toCase('titleCase', filter) as string)
               }
-              {isSelected(filter) && (
-                <CloseOutlined
-                />
-              )}
+              {isSelected(filter) && (<CloseOutlined/>)}
             </Button>
           );
         })}

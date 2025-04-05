@@ -1,26 +1,25 @@
 'use client';
 
-import { SearchOutlined } from '@ant-design/icons';
-import { Input } from 'antd';
 import { useEffect, useState } from 'react';
 
-import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
-import AdvancedFilters from '@modules/sst/alumni-directory/components/AdvancedFilters';
+import { SearchOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
 
-import tracker from "@lib/tracking";
+import AdvancedFilters from '@modules/sst/alumni-directory/components/AdvancedFilters';
+import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
+import { pageTrackingEvents, pageTrackingSources, trackEvent } from '@modules/sst/alumni-directory/utils';
 
 import styles from './SearchBar.module.scss';
 
 export default function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
-
   const { onFilterChange, filters } = useAlumniList();
 
   const handleSearch = () => {
-    tracker.click({
-      click_type: "filter_clicked",
-      click_text: "search_filter",
-      click_source: "search_bar",
+    trackEvent.click({
+      clickType: pageTrackingEvents.filterApplied,
+      clickText: pageTrackingEvents.searchFilter,
+      clickSource: pageTrackingSources.searchBar,
       custom: {
         filter_value: searchValue,
         filter_type: "search",

@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
+
 import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 
-import { getURLWithUTMParams } from '@utils/url';
+import { fetchCsrfToken, getURLWithUTMParams } from '@utils/common/url';
 
 export enum HttpMethods {
   GET = 'GET',
@@ -17,7 +18,6 @@ interface RequestOptions {
   body?: object | string,
   referrer?: string,
 }
-
 
 interface Headers {
   Accept: string,
@@ -64,13 +64,15 @@ export async function apiRequest<T>(
 ): Promise<T & {
   'csrf-error'?: string;
 }> {
-  // const csrfToken = await fetchCsrfToken();
+  const csrfToken = await fetchCsrfToken();
+
+  console.log("csrfToken", csrfToken);
 
   const defaultHeaders: Headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    // 'x-csrf-token': csrfToken,
+    'x-csrf-token': csrfToken,
     'X-Accept-Flash': true,
   };
 
@@ -88,7 +90,6 @@ export async function apiRequest<T>(
   if (typeof window !== 'undefined') {
     defaultOptions.referrer = getURLWithUTMParams(window.location.href);
   }
-
   if (params) {
     path += `?${searchParams(params)}`;
   } else if (method === 'GET' && body) {

@@ -1,4 +1,4 @@
-import Navbar from "@components/Navbar";
+import { Navbar } from "@components/common";
 import AuthActions from "@components/Sst/Navbar/ActionButtons";
 
 import { navItems } from "./data";

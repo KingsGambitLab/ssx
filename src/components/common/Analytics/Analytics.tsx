@@ -4,7 +4,7 @@ import tracker from '@lib/tracking';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import attribution from '@lib/attribution';
-import { getURLWithUTMParams, getUTMPropagationParams, initializeUtmPropagation } from '@/utils/url';
+import { getURLWithUTMParams, getUTMPropagationParams, initializeUtmPropagation } from '@utils/common/url';
 import { lazyLoadGtm, pushServerEvents } from '@lib/tracking/utils';
 import useUser from '@/hooks/useUser';
 

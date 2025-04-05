@@ -92,3 +92,11 @@ export type AdvancedFiltersType = {
   batchYear: string[];
   clubs: string[];
 };
+
+export type TrackingProps = {
+  clickType: string;
+  clickText?: string;
+  clickSource?: string;
+  custom?: object;
+};
+
