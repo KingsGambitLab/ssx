@@ -1,19 +1,25 @@
 'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { Button, Drawer } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
-import classNames from "classnames";
+import { Button, Drawer } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
+import classNames from 'classnames';
 
-import { useDeviceType } from "@hooks/useDeviceType";
-import tracker from "@lib/tracking";
+import { useDeviceType } from '@hooks/useDeviceType';
 
-import NavItems from "../NavItems/NavItems";
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent
+} from '@modules/sst/alumni-directory/utils';
+
+import NavItems from '../NavItems/NavItems';
 
 import styles from './Navbar.module.scss';
+
 
 type NavbarProps = {
   logoSrc: string;
@@ -39,17 +45,17 @@ export default function Navbar({
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const { isTabletOrMobile } = useDeviceType();
 
-  const trackEvent = (clickType: string, clickText: string) => {
-    tracker.click({
-      click_type: clickType,
-      click_text: clickText,
-      click_source: 'navbar',
+  const trackEventHandler = (clickType: string) => {
+    trackEvent.click({
+      clickType,
+      clickText: clickType,
+      clickSource: pageTrackingSources.navbar,
     });
   }
 
   return (
     <div className={classNames(styles.container, className)} >
-      <Link href={homePageUrl} prefetch={false} onClick={() => trackEvent('navbar_logo_clicked', 'logo')}>
+      <Link href={homePageUrl} prefetch={false} onClick={() => trackEventHandler(pageTrackingEvents.navbarLogoClicked)}>
         <Image
           src={logoSrc}
           alt={logoAlt}
@@ -65,14 +71,20 @@ export default function Navbar({
               type="text"
               icon={<MenuOutlined />}
               className={styles.barsMenu}
-              onClick={() => setHamburgerMenuOpen(true)}
+              onClick={() => {
+                trackEventHandler(pageTrackingEvents.userMenuOpened);
+                setHamburgerMenuOpen(true);
+              }}
             />
             <Drawer
               title={false}
               placement="right"
               open={hamburgerMenuOpen}
               rootClassName={styles.hamburgerDrawer}
-              onClose={() => setHamburgerMenuOpen(false)}
+              onClose={() => {
+                trackEventHandler(pageTrackingEvents.userMenuClosed);
+                setHamburgerMenuOpen(false);
+              }}
             >
               <div className={styles.hamburgerMenu}>
                 <NavItems data={data} />

@@ -1,10 +1,17 @@
-import { Button, Popover } from "antd";
 import classNames from 'classnames';
-import { useDeviceType } from "@hooks/useDeviceType";
+import Link from 'next/link';
+
+import { Button, Popover } from 'antd';
+
+import { useDeviceType } from '@hooks/useDeviceType';
+
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent,
+} from '@modules/sst/alumni-directory/utils';
 
 import styles from './PostLoginActions.module.scss';
-import Link from "next/link";
-import tracker from "@lib/tracking";
 
 type PostLoginActionsProps = {
   rootClassName?: string;
@@ -22,11 +29,11 @@ const popoverContent = (data: {
   label: string;
   href: string;
 }[]) => {
-  const trackEvent = (clickText: string) => {
-    tracker.click({
-      click_type: 'nav_button_clicked',
-      click_text: clickText,
-      click_source: 'user_menu_section',
+  const trackEventHandler = (clickText: string) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.navButtonClicked,
+      clickText,
+      clickSource: pageTrackingSources.userMenuSection,
     });
   }
   return (
@@ -38,7 +45,7 @@ const popoverContent = (data: {
           target="_blank"
           prefetch={false}
           className={styles.popoverItem}
-          onClick={() => trackEvent(item.label)}
+          onClick={() => trackEventHandler(item.label)}
         >
           {item.label}
         </Link>
@@ -58,11 +65,11 @@ export default function PostLoginActions({
 
   const { isTabletOrMobile } = useDeviceType();
 
-  const trackEvent = (clickText: string) => {
-    tracker.click({
-      click_type: 'nav_button_clicked',
-      click_text: clickText,
-      click_source: 'navbar',
+  const trackEventHandler = (clickText: string) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.navButtonClicked,
+      clickText,
+      clickSource: pageTrackingSources.navbar,
     });
   }
 
@@ -74,7 +81,7 @@ export default function PostLoginActions({
         variant="solid"
         className={classNames(styles.button, buttonClassName)}
         onClick={() => {
-          trackEvent(buttonLabel);
+          trackEventHandler(buttonLabel);
           buttonOnClick();
         }}
         disabled={buttonDisabled}
@@ -88,7 +95,9 @@ export default function PostLoginActions({
           placement="bottomLeft"
           autoAdjustOverflow={true}
         >
-          <Button onClick={() => trackEvent('user_menu_clicked')}>Click me</Button>
+          <Button onClick={() => trackEventHandler(pageTrackingEvents.userMenuClicked)}>
+            Click me
+          </Button>
         </Popover>
       )}
     </div>

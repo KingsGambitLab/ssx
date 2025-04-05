@@ -1,7 +1,11 @@
 import { Button } from "antd";
 import classNames from 'classnames';
 
-import tracker from "@lib/tracking";
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent,
+} from '@modules/sst/alumni-directory/utils';
 
 import styles from './LoginActions.module.scss';
 
@@ -28,11 +32,12 @@ export default function LoginActions({
   disableLogin = false,
   disableApply = false,
 }: LoginActionsProps) {
-  const trackEvent = (clickText: string) => {
-    tracker.click({
-      click_type: 'nav_button_clicked',
-      click_text: clickText,
-      click_source: 'navbar',
+
+  const trackEventHandler = (clickText: string) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.navButtonClicked,
+      clickText,
+      clickSource: pageTrackingSources.navbar,
     });
   }
   return (
@@ -43,7 +48,7 @@ export default function LoginActions({
         variant="outlined"
         className={classNames(styles.loginButton, loginButtonClassName)}
         onClick={() => {
-          trackEvent(loginLabel);
+          trackEventHandler(pageTrackingEvents.loginButtonClicked);
           onLogin();
         }}
         disabled={disableLogin}
@@ -56,7 +61,7 @@ export default function LoginActions({
         variant="solid"
         className={classNames(styles.applyNowButton, applyButtonClassName)}
         onClick={() => {
-          trackEvent(applyLabel);
+          trackEventHandler(pageTrackingEvents.applyButtonClicked);
           onApply();
         }}
         disabled={disableApply}

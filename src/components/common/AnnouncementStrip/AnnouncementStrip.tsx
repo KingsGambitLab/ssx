@@ -1,9 +1,17 @@
-// 'use client';
+'use client';
+
 import classNames from 'classnames';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent
+} from '@modules/sst/alumni-directory/utils';
 
 import styles from './AnnouncementStrip.module.scss';
-// import tracker from '@lib/tracking';
+
 
 type AnnouncementStripProps = {
   rootClassName?: string;
@@ -14,7 +22,7 @@ type AnnouncementStripProps = {
   redirectUrl: string;
 }
 
-export default function AnnounceStrip({
+export default function AnnouncementStrip({
   rootClassName = '',
   textClassName = '',
   iconSrc,
@@ -23,13 +31,13 @@ export default function AnnounceStrip({
   redirectUrl,
 }: AnnouncementStripProps) {
 
-  // const trackEvent = () => {
-  //   tracker.click({
-  //     click_type: 'announcement_strip_clicked',
-  //     click_text: 'know_more',
-  //     click_source: 'announcement_strip',
-  //   });
-  // }
+  const trackEventHandler = () => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.announcementStripClicked,
+      clickText: 'know_more',
+      clickSource: pageTrackingSources.announcementStrip,
+    });
+  }
   return (
     <div className={classNames(styles.container, rootClassName)}>
       <div className={styles.content}>
@@ -37,9 +45,13 @@ export default function AnnounceStrip({
         <div className={classNames(styles.headingText, textClassName)}>
           {content}
           {' '}
-          <a href={redirectUrl} target="_blank" rel="noopener noreferrer">
+          <Link href={redirectUrl}
+            prefetch={false}
+            target="_blank"
+            onClick={trackEventHandler}
+          >
             {highlightText}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

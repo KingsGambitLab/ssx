@@ -9,6 +9,9 @@ export const pageTrackingSources = {
   alumniDetailsModal: "alumni_details_modal",
   alumniDirectory: "alumni_directory",
   advancedFilter: "advanced_filter",
+  navbar: "navbar",
+  userMenuSection: "user_menu_section",
+  announcementStrip: "announcement_strip",
 }
 
 export const pageTrackingEvents = {
@@ -27,6 +30,14 @@ export const pageTrackingEvents = {
   clearAllFilters: "clear_all_filters",
   applyAdvancedFilters: "apply_advanced_filters",
   shareProfile: "share_profile",
+  navButtonClicked: "nav_button_clicked",
+  loginButtonClicked: "login_button",
+  applyButtonClicked: "apply_button",
+  userMenuClicked: "user_menu_clicked",
+  navbarLogoClicked: "navbar_logo_clicked",
+  userMenuOpened: "user_menu_opened",
+  userMenuClosed: "user_menu_closed",
+  announcementStripClicked: "announcement_strip_clicked",
 }
 
 export const trackEvent = {
@@ -39,7 +50,7 @@ export const trackEvent = {
     });
   },
   view: ({ clickType, clickText, clickSource, custom }: TrackingProps) => {
-    tracker.pageview({
+    tracker.view({
       click_type: clickType,
       click_text: clickText,
       click_source: clickSource,
