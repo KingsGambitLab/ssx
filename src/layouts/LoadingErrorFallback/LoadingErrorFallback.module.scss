@@ -1,0 +1,73 @@
+.Container {
+  @include flex-col;
+  @include align-c;
+  @include justify-c;
+
+  gap: 1.6rem;
+  height: fit-content;
+  padding: 1rem;
+
+  &[data-variant-theme="light"] {
+    --title-color: #1a2c47;
+    --subtitle-color: #61738e;
+  }
+
+  &[data-variant-theme="dark"] {
+    --title-color: #ffffff;
+    --subtitle-color: #ffffff;
+  }
+}
+
+.SmileyImg {
+  width: 10.4rem;
+  height: auto;
+}
+
+.InfoContainer {
+  @include flex-col;
+
+  gap: 1.2rem;
+  text-align: center;
+  font-style: normal;
+  line-height: normal;
+}
+
+.TitleText {
+  color: var(--title-color, #1a2c47);
+  font-size: $h2-size;
+  font-weight: $bold-font-weight;
+
+  @include mobile {
+    font-size: $h4-size;
+  }
+}
+
+.SubTitleText {
+  color: var(--subtitle-color, #61738e);
+  font-size: $h4-size;
+
+  @include mobile {
+    font-size: $h5-size;
+  }
+}
+
+.TryBtn {
+  @include flex-row;
+  @include justify-c;
+  @include align-c;
+
+  height: 4.8rem;
+  padding: 0.8rem 4rem;
+  gap: 1rem;
+  border-radius: 0.8rem;
+  background: #005bb3;
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-style: normal;
+  line-height: 2.4rem;
+
+  &:hover {
+    background: #005bb3;
+    color: #ffffff;
+  }
+}
