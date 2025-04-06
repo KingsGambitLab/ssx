@@ -1,6 +1,6 @@
 
 import { Button } from 'antd';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 
 import { useAlumniList } from '@/modules/sst/alumni-directory/context/AlumniContext';
