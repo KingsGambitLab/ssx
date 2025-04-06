@@ -404,7 +404,8 @@ $alumni-card-action-button-background-color: #2B2B2B;
   grid-auto-flow: column;
   align-items: stretch;
   gap: 2.4rem;
-  width: 100%;
+  max-width: 100%;
+  width: fit-content;
 
   @include mobile {
     gap: 1.6rem;
