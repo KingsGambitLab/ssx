@@ -19,7 +19,7 @@ import { pageTrackingEvents, pageTrackingSources, trackEvent } from '../../utils
 
 import AlumniCard from '../AlumniCard';
 import ShareProfile from '../ShareProfile/ShareProfile';
-import { getHouseImage } from './utils';
+import { clubEmojiMap, getHouseImage } from './utils';
 
 import styles from './AlumniDetailsModal.module.scss';
 
@@ -204,6 +204,11 @@ export default function AlumniDetailsModal({
               <div className={styles.clubsList}>
                 {alumniData.clubs.map((club) => (
                   <div className={styles.clubItem} key={club}>
+                    {
+                      clubEmojiMap[club.toLowerCase()] && (
+                        <div className={styles.clubEmoji}>{clubEmojiMap[club.toLowerCase()]}</div>
+                      )
+                    }
                     <div className={styles.clubName}>{club}</div>
                   </div>
                 ))}
