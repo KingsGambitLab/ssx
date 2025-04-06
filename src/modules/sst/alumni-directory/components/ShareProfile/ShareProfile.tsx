@@ -3,9 +3,14 @@
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent
+} from '@modules/sst/alumni-directory/utils';
 import { SHARE_PLATFORMS, SHARE_PROFILE_URL } from './constants';
+
 import styles from './ShareProfile.module.scss';
-import tracker from '@lib/tracking';
 
 type ShareProfileProps = {
   id: string;
@@ -18,18 +23,17 @@ type SharePlatform = 'twitter' | 'sharable' | 'facebook' | 'linkedin';
 
 export default function ShareProfile({ id, name, batchYear, state }: ShareProfileProps) {
 
-  const constructMessage = (name: string, batchYear: number, state: string) => {
-    return `Hey, ${name} is a senior (${batchYear} year) at SST from ${state}. ` +
-      `Really friendly and easy to talk to — ping them if you've got any doubts! ` +
-      `Here's their profile:`;
-  }
+  const constructMessage = (name: string, batchYear: number, state: string) => (
+    `Hey, ${name} is a senior (${batchYear} year) at SST from ${state}. ` +
+    `Really friendly and easy to talk to — ping them if you've got any doubts! ` +
+    `Here's their profile:`
+  );
 
-
-  const trackEvent = (platform: SharePlatform) => {
-    tracker.click({
-      click_type: `share_profile`,
-      click_text: `${platform}`,
-      click_source: "alumni_details_modal",
+  const trackEventHandler = (platform: SharePlatform) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.shareProfile,
+      clickText: `${platform}`,
+      clickSource: pageTrackingSources.alumniDetailsModal,
       custom: {
         alumni_name: name,
         alumni_id: id,
@@ -38,7 +42,7 @@ export default function ShareProfile({ id, name, batchYear, state }: ShareProfil
     });
   }
   const handleShare = (platform: SharePlatform) => {
-    trackEvent(platform);
+    trackEventHandler(platform);
     const messageText = constructMessage(name, batchYear, state);
 
     if (platform === 'sharable') {

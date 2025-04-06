@@ -9,8 +9,8 @@ import styles from './AuthActions.module.scss';
 export default function AuthActions() {
   const isUserPresent = false;
 
-  const LoginActions = dynamic(() => import('@components/NavbarButtons/LoginActions'), { ssr: false });
-  const PostLoginActions = dynamic(() => import('@components/NavbarButtons/PostLoginActions'), { ssr: false });
+  const LoginActions = dynamic(() => import('@components/common/NavbarButtons/LoginActions'), { ssr: false });
+  const PostLoginActions = dynamic(() => import('@components/common/NavbarButtons/PostLoginActions'), { ssr: false });
 
   const onLoginHandler = () => {
     window.open("/school-of-technology/application", "_blank");

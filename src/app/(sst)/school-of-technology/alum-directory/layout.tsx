@@ -1,10 +1,11 @@
-import { ToastContainer } from 'react-toastify';
+import { AlumniProvider } from "@modules/sst/alumni-directory/context/AlumniContext";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {children}
-      <ToastContainer />
+      <AlumniProvider>
+        {children}
+      </AlumniProvider>
     </>
   )
 }

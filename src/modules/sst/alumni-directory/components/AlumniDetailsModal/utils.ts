@@ -36,3 +36,26 @@ export const getHouseImage = (houseName: string, deviceType: DeviceType) => {
   }
   return houseImageMapping[houseName.toLowerCase() as HouseName] || houseImageMapping.leo;
 }
+
+export const clubEmojiMap: Record<string, string> = {
+  "student council": "🗣️",
+  "creators club": "🎨",
+  "oss club": "💻",
+  "ai/ml club": "🧠",
+  "cp club": "⌨️",
+  "monthly magazine club": "📇",
+  "cultural club": "🎭",
+  "entrepreneurship club": "🚀",
+  "media club": "🎥",
+  "sports club": "🏆",
+  "robotics committee": "🤖",
+  "drone club": "🤖",
+  "placement cell": "📈",
+  "mess committee": "🍽️",
+  "transport committee": "🚍",
+  "event management committee": "🎉",
+  "sys admin": "🖥️",
+  "leadership development club": "🧭",
+  "grievance cell": "🛡️",
+  "marketing": "📢"
+};

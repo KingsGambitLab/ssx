@@ -12,7 +12,7 @@ type AlumniCardProps = {
   state: string;
   school: string;
   linkedin: string;
-  image?: string;
+  image: string;
   variant?: 'light' | 'dark';
   children?: React.ReactNode;
 }
@@ -36,15 +36,16 @@ export default function AlumniCard({ name, batchYear, city, state, school, image
   return (
     <div className={styles.container} data-variant={variant}>
       <div className={styles.infoContainer} data-variant={variant}>
-        <Image
-          src={image || `https://randomuser.me/api/portraits/women/1.jpg`}
-          alt={name}
-          width={104}
-          height={104}
-          onError={() => ('/images/fallback-avatar.jpg')}
-          className={styles.alumniImage}
-          data-variant={variant}
-        />
+        {image && (
+          <Image
+            src={image}
+            alt={name}
+            width={104}
+            height={104}
+            className={styles.alumniImage}
+            data-variant={variant}
+          />
+        )}
         <div className={styles.alumniInfo} data-variant={variant}>
           <div className={styles.alumniName} data-variant={variant}>{name}</div>
           <div className={styles.alumniMoreInfo}>
