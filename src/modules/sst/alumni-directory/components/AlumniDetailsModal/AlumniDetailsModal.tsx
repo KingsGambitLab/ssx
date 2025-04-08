@@ -63,9 +63,7 @@ const ActionButtons = ({
           iconPosition="end"
           size="large"
           className={styles.shareButton}
-          onClick={() => {
-            trackEventHandler(pageTrackingEvents.shareButton);
-          }}
+          onClick={() => trackEventHandler(pageTrackingEvents.shareButton)}
         >
           Share Profile
         </Button>
@@ -204,11 +202,9 @@ export default function AlumniDetailsModal({
               <div className={styles.clubsList}>
                 {alumniData.clubs.map((club) => (
                   <div className={styles.clubItem} key={club}>
-                    {
-                      clubEmojiMap[club.toLowerCase()] && (
-                        <div className={styles.clubEmoji}>{clubEmojiMap[club.toLowerCase()]}</div>
-                      )
-                    }
+                    {clubEmojiMap[club.toLowerCase()] && (
+                      <div className={styles.clubEmoji}>{clubEmojiMap[club.toLowerCase()]}</div>
+                    )}
                     <div className={styles.clubName}>{club}</div>
                   </div>
                 ))}
@@ -216,31 +212,33 @@ export default function AlumniDetailsModal({
             </div>
           )}
 
-          {alumniData?.projects?.length && alumniData?.projects?.length > 0 && (
+          {alumniData?.projects && alumniData?.projects?.length > 0 && (
             <div className={styles.projectList}>
               <div className={styles.projectListHeading}>Projects</div>
               <div className={styles.projectListItems}>
                 {alumniData.projects.map((project) => (
                   <div className={styles.projectItem} key={project.title}>
                     <div className={styles.projectTitle}>{project.title}</div>
-                    <Button
-                      icon={<ArrowUpOutlined rotate={45} />}
-                      iconPosition="end"
-                      size="large"
-                      className={styles.projectLinkButton}
-                      onClick={() => {
-                        trackEventHandler({
-                          clickType: pageTrackingEvents.projectLinkButton,
-                          custom: {
-                            project_name: project.title,
-                            project_link: project.projectLink,
-                          },
-                        })
-                        window.open(project.projectLink || '', '_blank');
-                      }}
-                    >
-                      KNOW MORE
-                    </Button>
+                    {project?.projectLink && (
+                      <Button
+                        icon={<ArrowUpOutlined rotate={45} />}
+                        iconPosition="end"
+                        size="large"
+                        className={styles.projectLinkButton}
+                        onClick={() => {
+                          trackEventHandler({
+                            clickType: pageTrackingEvents.projectLinkButton,
+                            custom: {
+                              project_name: project.title,
+                              project_link: project.projectLink,
+                            },
+                          });
+                          window.open(project.projectLink, '_blank');
+                        }}
+                      >
+                        KNOW MORE
+                      </Button>
+                    )}
                   </div>
                 ))}
               </div>
