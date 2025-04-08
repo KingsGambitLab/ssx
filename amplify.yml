@@ -5,11 +5,11 @@ applications:
             phases:
                 preBuild:
                     commands:
-                       - nvm use 20
+                       - nvm use 23.11.0
                        - npm install --frozen-lockfile
                 build:
                     commands:
-                      - nvm use 20
+                      - nvm use 23.11.0
                       - npm run build
             artifacts:
                 baseDirectory: .next
