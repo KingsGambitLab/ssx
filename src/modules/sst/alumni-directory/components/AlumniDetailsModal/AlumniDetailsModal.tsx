@@ -212,7 +212,7 @@ export default function AlumniDetailsModal({
             </div>
           )}
 
-          {alumniData?.projects?.length && alumniData?.projects?.length > 0 && (
+          {alumniData?.projects && alumniData?.projects?.length > 0 && (
             <div className={styles.projectList}>
               <div className={styles.projectListHeading}>Projects</div>
               <div className={styles.projectListItems}>
