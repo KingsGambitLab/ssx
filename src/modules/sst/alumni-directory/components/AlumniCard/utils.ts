@@ -28,8 +28,21 @@ const infoItemsIconImage = (variant: 'light' | 'dark') => {
   }
 }
 
-export const infoItemsProps = (variant: 'light' | 'dark', batchYear: number, city: string, state: string, school: string) => [
-  { iconImage: infoItemsIconImage(variant)?.batch, text: `Batch ${batchYear}` },
-  { iconImage: infoItemsIconImage(variant)?.location, text: `${city}, ${state}` },
-  { iconImage: infoItemsIconImage(variant)?.school, text: school }
-]
+export const infoItemsProps = (variant: 'light' | 'dark', batchYear: number, city: string, state: string, school: string) => {
+  const items = [];
+  
+  if (batchYear) {
+    items.push({ iconImage: infoItemsIconImage(variant)?.batch, text: `Batch ${batchYear}` });
+  }
+  
+  if (city && state) {
+    const locationText = city && state ? `${city}, ${state}` : (city || state);
+    items.push({ iconImage: infoItemsIconImage(variant)?.location, text: locationText });
+  }
+  
+  if (school) {
+    items.push({ iconImage: infoItemsIconImage(variant)?.school, text: school });
+  }
+  
+  return items;
+}
