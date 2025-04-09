@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Form as AntForm, Radio, Input, Select, Button, Image, Flex } from 'antd';
 import styles from './index.module.scss';
-import { WaitlistFormField, WaitlistFormData } from '../../types';
+import { WaitlistFormData } from '../../types';
 import { useWaitlistApi } from '../../api';
 import { useWaitlistCheck } from '@hooks/useWaitlistCheck';
 import { useQueryClient } from '@tanstack/react-query';

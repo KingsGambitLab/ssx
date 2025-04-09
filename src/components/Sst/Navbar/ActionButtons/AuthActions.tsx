@@ -1,12 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
 import useUser from '@hooks/useUser';
 import { menuItems } from './data';
 import styles from './AuthActions.module.scss';
-import LoginModal from '@modules/sst/waitlist/ui/LoginModal';
-import { useWaitlistCheck } from '@hooks/useWaitlistCheck';
 import LoginActions from '@components/common/NavbarButtons/LoginActions';
 import PostLoginActions from '@components/common/NavbarButtons/PostLoginActions';
 

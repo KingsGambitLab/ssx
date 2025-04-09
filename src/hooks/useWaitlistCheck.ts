@@ -8,7 +8,6 @@ import { WaitlistApiResponse, WaitlistForm, WaitlistFormField, WaitlistFormGroup
 export const useWaitlistCheck = () => {
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [formFields, setFormFields] = useState<WaitlistFormField[]>([]);
-  const [currentCategory, setCurrentCategory] = useState('Student');
   const [allForms, setAllForms] = useState<{
     student: WaitlistFormField[];
     parent: WaitlistFormField[];
@@ -37,7 +36,6 @@ export const useWaitlistCheck = () => {
   // Memoize category change handler
   const handleCategoryChange = useCallback((newCategory: string) => {
     if (!newCategory) return;
-    setCurrentCategory(newCategory);
     const forms = newCategory.toLowerCase().includes('parent') ? 
       allForms.parent : 
       allForms.student;

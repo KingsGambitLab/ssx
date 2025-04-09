@@ -4,13 +4,11 @@ import { useForm } from 'react-hook-form';
 import styles from './index.module.scss';
 import { PhoneEmailStep } from '@modules/sst/waitlist/components/PhoneEmailStep';
 import { OTPStep } from '@modules/sst/waitlist/components/OTPStep';
-import { LoginFormData, OTPFormData, WaitlistFormField, LoginStep } from '../../types';
+import { LoginFormData, OTPFormData, LoginStep } from '../../types';
 import Banner from '@modules/sst/waitlist/components/Banner';
 import { ProgressBar } from '@modules/sst/waitlist/components/ProgressBar';
 import { WaitlistForm } from '@modules/sst/waitlist/components/WaitlistForm';
-import { useQueryClient } from '@tanstack/react-query';
 import useUser from '@/hooks/useUser';
-import { useWaitlistApi } from '@modules/sst/waitlist/api';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -25,7 +23,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   onLoginSuccess,
   initialStep = 'LOGIN',
 }) => {
-  const queryClient = useQueryClient();
   const { data: userData } = useUser();
   const [step, setStep] = useState<LoginStep>(initialStep);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -49,13 +46,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     register: otpRegister, 
     handleSubmit: handleOTPSubmit,
     formState: { errors: otpErrors },
-    setError: setOTPError,
     control: otpControl
   } = useForm<OTPFormData>({
     mode: 'onChange'
   });
-
-  const { getWaitlistForms } = useWaitlistApi();
 
   // Update step when initialStep changes
   useEffect(() => {
@@ -129,7 +123,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               onVerificationError={handleVerificationError}
               onWrongNumber={handleWrongNumber}
               errors={otpErrors}
-              setError={setOTPError}
               handleSubmit={handleOTPSubmit}
               control={otpControl}
             />

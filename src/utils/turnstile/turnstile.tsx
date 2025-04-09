@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect } from "react";
+import React from "react";
 import Turnstile from "react-turnstile";
 
 interface TurnstileWidgetProps {

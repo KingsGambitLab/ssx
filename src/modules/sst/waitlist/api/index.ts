@@ -3,7 +3,7 @@ import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
 import { useApi } from '@hooks/useApi';
 
 import { ENDPOINTS } from './endpoints';
-import { WaitlistFormField, WaitlistFormData, WaitlistApiResponse } from '@modules/sst/waitlist/types';
+import { WaitlistFormData, WaitlistApiResponse } from '@modules/sst/waitlist/types';
 
 interface VerifyOtpResponse {
   userId: number;

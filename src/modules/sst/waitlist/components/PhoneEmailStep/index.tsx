@@ -17,7 +17,6 @@ interface PhoneEmailStepProps {
 }
 
 export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
-  register,
   onSubmit,
   errors,
   handleSubmit,

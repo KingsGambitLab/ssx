@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Typography } from 'antd';
-import { Controller, UseFormRegister, UseFormHandleSubmit, FieldErrors, UseFormSetError } from 'react-hook-form';
+import { Controller, UseFormRegister, UseFormHandleSubmit, FieldErrors } from 'react-hook-form';
 import { OTPFormData } from '../../types';
 import styles from './index.module.scss';
 import { WhatsAppOutlined } from '@ant-design/icons';
@@ -18,7 +18,6 @@ interface OTPStepProps {
   onVerificationError: (error: string) => void;
   onWrongNumber: () => void;
   errors: FieldErrors<OTPFormData>;
-  setError: UseFormSetError<OTPFormData>;
   handleSubmit: UseFormHandleSubmit<OTPFormData>;
   control: any;
 }
@@ -32,7 +31,6 @@ export const OTPStep: React.FC<OTPStepProps> = ({
   errors,
   handleSubmit,
   control,
-  setError
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
