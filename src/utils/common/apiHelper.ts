@@ -1,8 +1,9 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 
+import { ResponseError } from '@modules/common/errors';
 import { fetchCsrfToken, getURLWithUTMParams } from '@utils/common/url';
 
 export enum HttpMethods {
@@ -24,11 +25,12 @@ interface Headers {
   'Content-Type'?: string,
   'X-Requested-With': string,
   'App-name'?: string,
-  'x-csrf-token'?: string | null,
+  'X-Csrf-Token'?: string | null,
   "X-Accept-Flash": boolean,
+  "X-User-Token": string | null,
 }
 
-interface ApiOptions {
+export interface ApiOptions {
   headers?: object;
   params?: object;
   type?: string;
@@ -55,6 +57,49 @@ export function searchParams(params: object, transformArray: boolean = false) {
   }).join('&');
 }
 
+export async function parseResponse<T>(response: AxiosResponse, type?: string): Promise<T> {
+  const data = response.data;
+  const contentType = response.headers['content-type'];
+  let parsedData: string | object | null = null;
+  try {
+    if (contentType === null) {
+      return await Promise.resolve(null) as unknown as T;
+    } else if (contentType.startsWith('text/plain') || type === 'text') {
+      parsedData = await data.text();
+    } else if (contentType.startsWith('application/json')) {
+      parsedData = await data.json();
+    } else {
+      parsedData = await data.text();
+      // Turbolink error check
+      if (data?.includes && data.includes('Turbolinks')) {
+        throw new ResponseError('Turbolinks detected', true, response, data);
+      }
+    }
+  } catch (error) {
+    // TODO Do something if response has no, or invalid JSON
+    console.log('Error', error);
+    console.log('Response : ', response);
+  }
+
+  if (data?.includes && data.includes('Turbolinks')) {
+    throw new ResponseError('Turbolinks detected', true, response, parsedData);
+  }
+
+  if (response.status >= 200 && response.status < 300) {
+    return data;
+  }
+
+  throw new ResponseError(response.statusText, true, response, data);
+}
+
+let csrfTokenPromise: Promise<string | null> | null = null;
+
+const getCsrfToken = async () => {
+  if (!csrfTokenPromise) {
+    csrfTokenPromise = fetchCsrfToken();
+  }
+  return csrfTokenPromise;
+};
 
 export async function apiRequest<T>(
   method: HttpMethods,
@@ -64,16 +109,15 @@ export async function apiRequest<T>(
 ): Promise<T & {
   'csrf-error'?: string;
 }> {
-  const csrfToken = await fetchCsrfToken();
-
-  console.log("csrfToken", csrfToken);
+  const csrfToken = await getCsrfToken();
 
   const defaultHeaders: Headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    'x-csrf-token': csrfToken,
+    'X-Csrf-Token': csrfToken || '',
     'X-Accept-Flash': true,
+    'X-User-Token': '',
   };
 
   const defaultOptions: RequestOptions = { method }
@@ -108,14 +152,11 @@ export async function apiRequest<T>(
 
 
   const response = await axios(path, finalOptions);
-
-  const flashHeader = response.headers['x-flash-messages'] || response.headers['X-Flash-Messages'];
-  let csrfError: string | undefined;
-
-  if (flashHeader) {
-    const { error, notice } = JSON.parse(flashHeader) || {};
-    csrfError = error || notice;
+  try {
+    return await parseResponse(response, options.type);
+  } catch (e) {
+    console.error('URL: ', path);
+    console.error('Options: ', finalOptions);
+    throw e;
   }
-
-  return { ...response.data, csrfError };
 }

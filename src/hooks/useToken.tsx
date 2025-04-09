@@ -1,17 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { generateJwt } from '@modules/common/apis';
 
 const fetchJwt = async () => {
-  const res = await fetch('/generate-jwt', {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "text/plain",
-      'X-Requested-With': 'XMLHttpRequest',
-    },
-  });
-  const token = await res.text();
-  if (res.ok) {
+  const token = await generateJwt();
+
+  if (token) {
     return token;
   } else {
     throw new Error('JWT token not found')

@@ -21,4 +21,21 @@ export const data = [
   }
 ];
 
-//TODO: update lOGOUT Action here
+export const menuItems = [
+  {
+    label: 'Undergraduate Program',
+    href: '/school-of-technology/'
+  },
+  {
+    label: 'Admission Process & Fees',
+    href: '/school-of-technology/admission/'
+  },
+  {
+    label: 'Application Form',
+    href: '/school-of-technology/application/'
+  },
+  { label:
+    'My Profile',
+    href: '/settings#/account-details/'
+  },
+];
