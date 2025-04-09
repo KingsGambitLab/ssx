@@ -1,41 +1,37 @@
 'use client';
 
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
-
-import { data as signupData } from './data';
-
+import useUser from '@hooks/useUser';
+import { menuItems } from './data';
 import styles from './AuthActions.module.scss';
+import LoginModal from '@modules/sst/waitlist/ui/LoginModal';
+import { useWaitlistCheck } from '@hooks/useWaitlistCheck';
+import LoginActions from '@components/common/NavbarButtons/LoginActions';
+import PostLoginActions from '@components/common/NavbarButtons/PostLoginActions';
 
-export default function AuthActions() {
-  const isUserPresent = false;
+interface AuthActionsProps {
+  onLogin: () => void;
+  onApply: () => void;
+  onResumeApplication: () => void;
+}
 
-  const LoginActions = dynamic(() => import('@components/common/NavbarButtons/LoginActions'), { ssr: false });
-  const PostLoginActions = dynamic(() => import('@components/common/NavbarButtons/PostLoginActions'), { ssr: false });
-
-  const onLoginHandler = () => {
-    window.open("/school-of-technology/application", "_blank");
-  }
-
-  const onApplyHandler = () => {
-    window.open("/school-of-technology/application", "_blank");
-  }
-
-  const onResumeApplicationHandler = () => {
-    window.open("/school-of-technology/application", "_blank");
-  }
+export default function AuthActions({ onLogin, onApply, onResumeApplication }: AuthActionsProps) {
+  const { data: userData } = useUser();
 
   return (
     <div className={styles.container}>
-      {isUserPresent ? (
+      {userData?.isloggedIn ? (
         <PostLoginActions
           buttonLabel="Resume Application"
-          buttonOnClick={onResumeApplicationHandler}
-          data={signupData}
+          buttonOnClick={onResumeApplication}
+          userName={userData.data.attributes.name}
+          data={menuItems}
         />
       ) : (
         <LoginActions
-          onLogin={onLoginHandler}
-          onApply={onApplyHandler}
+          onLogin={onLogin}
+          onApply={onApply}
         />
       )}
     </div>

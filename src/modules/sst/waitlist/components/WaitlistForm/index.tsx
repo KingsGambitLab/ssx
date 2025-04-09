@@ -1,0 +1,265 @@
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { Form as AntForm, Radio, Input, Select, Button, Image, Flex } from 'antd';
+import styles from './index.module.scss';
+import { WaitlistFormField, WaitlistFormData } from '../../types';
+import { useWaitlistApi } from '../../api';
+import { useWaitlistCheck } from '@hooks/useWaitlistCheck';
+import { useQueryClient } from '@tanstack/react-query';
+import StudentIcon from '@public/images/sst/svg/student.svg';
+import ParentIcon from '@public/images/sst/svg/parentfamily.svg';
+interface WaitlistFormProps {
+  onSubmitSuccess: () => void;
+}
+
+export const WaitlistForm: React.FC<WaitlistFormProps> = ({ 
+  onSubmitSuccess,
+}) => {
+  const { handleCategoryChange, formFields, setShowWaitlistModal } = useWaitlistCheck();
+  const { submitWaitlistForm } = useWaitlistApi();
+  const queryClient = useQueryClient();
+  const [form] = AntForm.useForm();
+
+  // Memoize category field first to get its ID
+  const categoryField = useMemo(() => 
+    formFields.find(field => 
+      field.type === 'radio' && 
+      field.label.toLowerCase().includes('you are a')
+    ), [formFields]
+  );
+
+  // Initialize form with default value only after categoryField is available
+  const { control, handleSubmit, setValue, formState: { errors } } = useForm<WaitlistFormData>({
+    defaultValues: useMemo(() => ({
+      [categoryField?.id || '']: categoryField ? 'Student' : undefined
+    }), [categoryField]),
+    mode: 'onChange',
+    reValidateMode: 'onChange'
+  });
+
+  // Add effect to set default value when categoryField becomes available
+  useEffect(() => {
+    if (categoryField) {
+      setValue(categoryField.id, 'Student');
+    }
+  }, [categoryField, setValue]);
+
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+
+  // Handle category change - make it immediate
+  const onCategoryChange = useCallback((e: any) => {
+    const value = e.target.value;
+    const newCategory = value;
+    
+    // Update form and category state synchronously
+    if (categoryField) {
+      setValue(categoryField.id, value);
+      handleCategoryChange(newCategory);
+    }
+  }, [categoryField, setValue, handleCategoryChange]);
+
+  // Memoize remaining fields
+  const remainingFields = useMemo(() => 
+    formFields.filter(field => {
+      const isCategoryField = field.type === 'radio' && 
+        field.label.toLowerCase().includes('you are a');
+      return !isCategoryField;
+    }), [formFields]
+  );
+
+  // Create a memoized submit handler
+  const onSubmit = useCallback(async (data: WaitlistFormData) => {
+    setIsLoading(true);
+    setFormError(null); // Clear previous errors
+    
+    try {
+      await submitWaitlistForm(data);
+      await queryClient.invalidateQueries({ queryKey: ['fetch_user_data'] });
+      setShowWaitlistModal(false);
+      onSubmitSuccess();
+      window.open('/school-of-technology/application', '_blank')?.focus();
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Something went wrong. Please try again.';
+      setFormError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [submitWaitlistForm, queryClient, setShowWaitlistModal, onSubmitSuccess]);
+
+  const handleButtonClick = () => {
+    form.submit(); // This will trigger the onFinish handler
+  };
+
+  return (
+    <div className={styles.container}>
+      <h3 className={styles.heading}>Enter your details</h3>
+      
+      {/* Category selection outside scrollable area */}
+      {categoryField && (
+        <AntForm.Item
+          layout='vertical'
+          label="You are a"
+          required={categoryField.required}
+          validateStatus={errors[categoryField.id] ? 'error' : ''}
+          help={errors[categoryField.id]?.message}
+        >
+          <Controller
+            name={categoryField.id}
+            control={control}
+            rules={{ required: categoryField.required }}
+            render={({ field }) => (
+              <Flex align="center" justify="space-between">
+                <Radio.Group 
+                  {...field}
+                  value={field.value}
+                  onChange={onCategoryChange}
+                  buttonStyle="solid"
+                  defaultValue="Student"
+                  optionType="button"
+                >
+                  {categoryField.options?.map((option) => (
+                    <Radio key={option.value} value={option.value}>
+                      <div className={styles.radioContent}>
+                        {option.value === 'Student' && (
+                          <Image 
+                            preview={false}
+                            width={24}
+                            height={24}
+                            src={StudentIcon.src} 
+                            alt="Student Icon" 
+                          />
+                        )}
+                        {option.value === 'Parent / Family' && (
+                          <Image 
+                            preview={false}
+                            width={24}
+                            height={24}
+                            src={ParentIcon.src} 
+                            alt="Parent / Family Icon" 
+                          />
+                        )}
+                        {option.label}
+                      </div>
+                    </Radio>
+                  ))}
+                </Radio.Group>
+              </Flex>
+            )}
+          />
+        </AntForm.Item>
+      )}
+      
+      {/* Scrollable area for remaining fields */}
+      <div className={styles.formContent}>
+        <AntForm
+          form={form}
+          layout="vertical" 
+          onFinish={handleSubmit(onSubmit)}
+        >
+          {remainingFields.map((field) => (
+            <AntForm.Item
+              key={field.id}
+              label={field.label}
+              required={field.required}
+              validateStatus={errors[field.id] ? 'error' : ''}
+              help={errors[field.id]?.message}
+            >
+              <Controller
+                name={field.id}
+                control={control}
+                rules={{ 
+                  required: field.required && (
+                    field.label.toLowerCase().includes('email') 
+                      ? 'Please enter your email address'
+                      : 'This field is required'
+                  ),
+                  validate: {
+                    fieldValidation: (value) => {
+                      if (field.type === 'select' && field.label.toLowerCase().includes('grad')) {
+                        return value ? true : 'Please select your graduation year';
+                      }
+                      return true;
+                    }
+                  },
+                  pattern: field.label.toLowerCase().includes('email') 
+                    ? {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Please enter a valid email address'
+                      }
+                    : field.label.toLowerCase().includes('phone')
+                    ? {
+                        value: /^[6-9]\d{9}$/,
+                        message: 'Please enter a valid 10-digit phone number'
+                      }
+                    : undefined
+                }}
+                render={({ field: controllerField, fieldState: { error } }) => {
+                  if (field.type === 'select') {
+                    return (
+                      <Select
+                        {...controllerField}
+                        status={error ? 'error' : undefined}
+                        placeholder={field.placeholder}
+                        options={field.options?.map(opt => ({
+                          label: opt.label,
+                          value: opt.value
+                        }))}
+                      />
+                    );
+                  }
+                  if (field.type === 'radio') {
+                    return (
+                      <Radio.Group {...controllerField}
+                      defaultValue="Student"
+                      buttonStyle="solid"
+                      >
+                        {field.options?.map((option) => (
+                          <Radio key={option.value} value={option.value}>
+                            {option.label}
+                          </Radio>
+                        ))}
+                      </Radio.Group>
+                    );
+                  }
+                  return (
+                    <Input
+                      {...controllerField}
+                      placeholder={field.placeholder}
+                      status={error ? 'error' : undefined}
+                      onChange={(e) => {
+                        // Only allow numbers for phone fields
+                        if (field.label.toLowerCase().includes('phone')) {
+                          const value = e.target.value.replace(/[^0-9]/g, '');
+                          controllerField.onChange(value);
+                        } else {
+                          controllerField.onChange(e);
+                        }
+                      }}
+                    />
+                  );
+                }}
+              />
+            </AntForm.Item>
+          ))}
+        </AntForm>
+      </div>
+
+      <div className={styles.submitButtonWrapper}>
+        {formError && (
+          <div className={styles.formError}>
+            {formError}
+          </div>
+        )}
+        <Button 
+          type="primary"
+          onClick={handleButtonClick}
+          loading={isLoading}
+          block
+        >
+          Proceed
+        </Button>
+      </div>
+    </div>
+  );
+};
