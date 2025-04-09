@@ -1,43 +1,49 @@
 import { useQuery } from "@tanstack/react-query";
-import useToken from "@hooks/useToken";
+import { useUserApi } from '@modules/common/apis';
 
-const fetchUser = async (token: string | undefined) => {
-  if (!token) {
-    throw new Error('empty jwt token');
-  }
-
-  const res = await fetch(
-    '/api/v3/users',
-    {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        'X-user-token': token,
-      },
-    },
-  );
-  const responseJson = await res.json();
-  return {
-    ...(responseJson.data),
-    jwt: token,
-    isloggedIn: true,
+interface UserResponse {
+  data: {
+    id: string;
+    type: string;
+    attributes: {
+      id: number;
+      name: string;
+      email: string;
+      // ... other attributes
+    };
   };
-};
+}
+
+interface User extends UserResponse {
+  isloggedIn: boolean;
+}
 
 function useUser() {
-  const { isError, isPending, data } = useToken();
-  const jwtToken = isError ? '' : data;
-  const userQuery = useQuery({
+  const { getUserDetails } = useUserApi();
+  
+  return useQuery<User>({
     queryKey: ['fetch_user_data'],
-    queryFn: () => fetchUser(jwtToken),
+    queryFn: async () => {
+      const response = await getUserDetails() as UserResponse;
+      return {
+        ...response,
+        isloggedIn: true,
+      };
+    },
     placeholderData: {
       isloggedIn: false,
+      data: {
+        id: '',
+        type: '',
+        attributes: {
+          id: 0,
+          name: '',
+          email: '',
+        }
+      }
     },
     refetchOnWindowFocus: false,
-    enabled: !isPending,
   });
-
-  return userQuery;
 }
 
 export default useUser;

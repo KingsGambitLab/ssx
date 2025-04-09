@@ -1,7 +1,13 @@
+"use client"
+
+import { useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 
 import { Button, Popover } from 'antd';
+import { DownOutlined, UpOutlined } from '@ant-design/icons';
+
+import { logout } from "@modules/common/apis";
 
 import { useDeviceType } from '@hooks/useDeviceType';
 
@@ -23,6 +29,7 @@ type PostLoginActionsProps = {
     label: string;
     href: string;
   }[];
+  userName: string;
 };
 
 const popoverContent = (data: {
@@ -36,6 +43,13 @@ const popoverContent = (data: {
       clickSource: pageTrackingSources.userMenuSection,
     });
   }
+
+  const handleLogout = async () => {
+    trackEventHandler('logout');
+    await logout();
+    window.location.reload();
+  }
+
   return (
     <div className={styles.popoverContent}>
       {data.map((item) => (
@@ -50,6 +64,13 @@ const popoverContent = (data: {
           {item.label}
         </Link>
       ))}
+      <Button
+        type="text"
+        className={styles.popoverItem}
+        onClick={() => handleLogout()}
+      >
+        Logout
+      </Button>
     </div>
   )
 }
@@ -60,10 +81,12 @@ export default function PostLoginActions({
   buttonClassName = '',
   buttonDisabled = false,
   rootClassName = '',
-  data,
+  data = [],
+  userName = '',
 }: PostLoginActionsProps) {
 
   const { isTabletOrMobile } = useDeviceType();
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const trackEventHandler = (clickText: string) => {
     trackEvent.click({
@@ -94,9 +117,20 @@ export default function PostLoginActions({
           trigger="click"
           placement="bottomLeft"
           autoAdjustOverflow={true}
+          open={isPopoverOpen}
+          onOpenChange={setIsPopoverOpen}
         >
-          <Button onClick={() => trackEventHandler(pageTrackingEvents.userMenuClicked)}>
-            Click me
+          <Button 
+            onClick={() => trackEventHandler(pageTrackingEvents.userMenuClicked)}
+            className={styles.userButton}
+            type="text"
+          >
+            {userName}
+            {isPopoverOpen ? (
+              <UpOutlined className={styles.icon} />
+            ) : (
+              <DownOutlined className={styles.icon} />
+            )}
           </Button>
         </Popover>
       )}

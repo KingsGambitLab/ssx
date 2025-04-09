@@ -25,15 +25,19 @@ export const API_BASE_URL = isProduction
   : `${process.env.NEXT_PUBLIC_BASE_URL}/api/base_api`;
 
 export const csrfTokenMemo = () => {
-  let token: string | null | undefined = null;
+  let token: string | null = null;
 
-  return async function () {
-    if (token) return Promise.resolve(token);
+  return async function (): Promise<string | null> {
+    if (token) return token;
 
-    const response = await axios(`${API_BASE_URL}/csrf-token`, { method: 'GET' });
-    token = response?.data?.["csrf_token"];
-
-    return token;
+    try {
+      const response = await axios(`${API_BASE_URL}/csrf-token`, { method: 'GET' });
+      token = response?.data?.["csrf_token"] || null;
+      return token;
+    } catch (error) {
+      console.error('Error fetching CSRF token:', error);
+      return null;
+    }
   }
 }
 

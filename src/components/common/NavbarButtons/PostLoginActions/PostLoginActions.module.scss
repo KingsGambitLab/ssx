@@ -32,4 +32,18 @@ $nav-item-post-login-popover-item-color: #1a2c47;
   color: $nav-item-post-login-popover-item-color !important;
   font-size: $h5-size;
   font-weight: $bold-font-weight;
+
+  :global(.ant-btn) {
+    padding: 0 !important;
+    text-align: left !important;
+  }
+}
+
+.userButton {
+  @include flex-row-y-c;
+  gap: 0.8rem;
+  
+  .icon {
+    font-size: 1.2rem;
+  }
 }

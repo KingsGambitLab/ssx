@@ -9,6 +9,7 @@ import { MenuOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 
 import { useDeviceType } from '@hooks/useDeviceType';
+import useUser from '@hooks/useUser';
 
 import {
   pageTrackingEvents,
@@ -24,7 +25,12 @@ import styles from './Navbar.module.scss';
 type NavbarProps = {
   logoSrc: string;
   homePageUrl: string;
-  data: {
+  loggedOutData: {
+    label: string;
+    href: string;
+    isNew?: boolean;
+  }[];
+  loggedInData: {
     label: string;
     href: string;
     isNew?: boolean;
@@ -37,13 +43,15 @@ type NavbarProps = {
 export default function Navbar({
   logoSrc,
   homePageUrl,
-  data,
+  loggedOutData,
+  loggedInData,
   logoAlt = 'Logo',
   className = '',
   actionButtons,
 }: NavbarProps) {
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const { isTabletOrMobile } = useDeviceType();
+  const { data: userData } = useUser();
 
   const trackEventHandler = (clickType: string) => {
     trackEvent.click({
@@ -87,14 +95,14 @@ export default function Navbar({
               }}
             >
               <div className={styles.hamburgerMenu}>
-                <NavItems data={data} />
+                <NavItems data={userData?.isloggedIn ? loggedInData : loggedOutData} />
                 {actionButtons}
               </div>
             </Drawer>
           </div>
         ) : (
           <>
-            <NavItems data={data} />
+            <NavItems data={loggedOutData} />
             {actionButtons}
           </>
         )}
