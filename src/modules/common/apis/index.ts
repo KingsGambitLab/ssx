@@ -81,6 +81,9 @@ export const retryOtp = async (
       otp_channel: otpChannel,
       method: 'mobile',
       'cf-turnstile-response': turnstileToken,
+    },
+    {
+      headers: {'app-name': 'mobile'}
     }
   );
   return response;
