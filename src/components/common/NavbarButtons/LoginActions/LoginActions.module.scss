@@ -1,0 +1,42 @@
+$nav-item-login-button-color: #0245b9;
+$nav-item-login-button-hover-color: #4096ff;
+$nav-item-apply-now-button-color: #e22d4c;
+$nav-item-apply-now-hover-color: #fb778e;
+
+.actionButtons {
+  @include flex-row;
+
+  gap: 2rem;
+
+  @include tablet {
+    @include flex-col;
+
+    width: 100%;
+  }
+}
+
+.loginButton {
+  color: $nav-item-login-button-color;
+  border-color: $nav-item-login-button-color !important;
+
+  &:hover {
+    border-color: $nav-item-login-button-hover-color !important;
+  }
+
+  @include tablet {
+    width: 100%;
+  }
+
+}
+
+.applyNowButton {
+  background-color: $nav-item-apply-now-button-color !important;
+
+  &:hover {
+    background-color: $nav-item-apply-now-hover-color !important
+  }
+
+  @include tablet {
+    width: 100%;
+  }
+}
