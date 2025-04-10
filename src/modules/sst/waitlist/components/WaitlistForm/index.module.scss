@@ -9,8 +9,7 @@
   .formContent {
     flex: 1;
     overflow-y: auto;
-    margin-top: 24px;
-    padding-bottom: 80px;
+    padding-bottom: 4rem;
   
     /* Hide scrollbar for cleaner look but keep functionality */
     scrollbar-width: thin;
@@ -41,19 +40,9 @@
   :global(.ant-form) {
     flex: 1;
     overflow-y: auto;
-    padding-right: 16px;
+    padding-right: 0 !important;
   }
     
-  :global(.ant-form-item:last-child) {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 16px;
-    margin-bottom: 0;
-    padding: 16px 0;
-    background: white;
-  }
-  
   .radioContent {
     display: flex;
     align-items: center;
@@ -72,8 +61,6 @@
   
     :global(.ant-form-item-label) {
       padding: 0;
-      top: -8px;
-      left: 12px;
       z-index: 1;
       pointer-events: none;
       transition: all 0.3s ease;
@@ -99,10 +86,9 @@
   }
   
   :global(.ant-input), :global(.ant-select .ant-select-selector) {
-    padding: 12px;
     border-radius: 8px;
     border-color: #E5E7EB;
-    font-size: 16px;
+    font-size: 1.4rem;
   
     &:hover, &:focus {
       border-color: #0066FF;
@@ -240,11 +226,17 @@
     &::before {
       display: none !important;
     }
-  }  
+  }
+
+  :global(.ant-form-item-explain-error) {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
 
   .formError {
     color: #ff4d4f;
     margin-bottom: 16px;
     text-align: center;
+    font-size: 1.2rem;
   }
 }

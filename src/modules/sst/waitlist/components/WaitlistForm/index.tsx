@@ -243,23 +243,23 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
               />
             </AntForm.Item>
           ))}
-        </AntForm>
-      </div>
 
-      <div className={styles.submitButtonWrapper}>
-        {formError && (
-          <div className={styles.formError}>
-            {formError}
+          <div className={styles.submitButtonWrapper}>
+            {formError && (
+              <div className={styles.formError}>
+                {formError}
+              </div>
+            )}
+            <Button 
+              type="primary"
+              onClick={handleButtonClick}
+              loading={isLoading}
+              block
+            >
+              Proceed
+            </Button>
           </div>
-        )}
-        <Button 
-          type="primary"
-          onClick={handleButtonClick}
-          loading={isLoading}
-          block
-        >
-          Proceed
-        </Button>
+        </AntForm>
       </div>
     </div>
   );
