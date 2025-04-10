@@ -7,7 +7,6 @@ const ASSET_PREFIX = isProd ? process.env.NEXT_PUBLIC_CDN_HOST : "";
 const nextConfig: NextConfig = {
   reactStrictMode: false, //todo: remove for prod
   trailingSlash: true,
-  output: "export",
   logging: {
     fetches: {
       fullUrl: true,
