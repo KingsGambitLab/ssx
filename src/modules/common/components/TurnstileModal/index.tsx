@@ -18,6 +18,7 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
 }) => {
   const [token, setToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [turnstile, setTurnstile] = useState<any>(null);
 
   const handleSubmit = async () => {

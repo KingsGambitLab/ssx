@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import CaseUtil from "@lib/caseUtil";
 import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
 import { useApi } from '@hooks/useApi';

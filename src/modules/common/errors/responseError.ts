@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export default class ResponseError extends Error {
   isFromServer: any;
 

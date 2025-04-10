@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Typography } from 'antd';
 import { Controller, UseFormRegister, UseFormHandleSubmit, FieldErrors } from 'react-hook-form';

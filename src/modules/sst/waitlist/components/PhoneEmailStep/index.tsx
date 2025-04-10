@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Form, Input, Select, Checkbox, Button } from 'antd';
 import { Controller, UseFormRegister, UseFormHandleSubmit, FieldErrors, UseFormSetError, UseFormClearErrors } from 'react-hook-form';

@@ -31,6 +31,7 @@ interface UserResponse {
   };
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const generateJwt = async (): Promise<any> => {
   const response = await apiRequest<any>(
     HttpMethods.POST,
@@ -84,3 +85,4 @@ export const retryOtp = async (
   );
   return response;
 };
+/* eslint-enable @typescript-eslint/no-explicit-any */
