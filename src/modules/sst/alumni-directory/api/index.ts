@@ -41,7 +41,7 @@ export const getAllAlumni = async (
 export const getAlumniData = async (id: string): Promise<AlumniDataResponse> => {
   const response = await apiRequest<AlumniDataResponse>(
     HttpMethods.GET,
-    `${ENDPOINTS.ALL_ALUMNI}${id}`,
+    `${ENDPOINTS.ALL_ALUMNI}/${id}`,
   );
 
   const formatted = CaseUtil.toCase('camelCase', response) as AlumniDataResponse;
