@@ -1,0 +1,143 @@
+$alumni-card-border-color: #e4e4e4;
+$alumni-name-font-color: #171717;
+$alumni-info-font-color: #3a3a3a;
+$alumni-view-profile-button-color: #0052FF;
+$alumni-card-background-color-dark-theme: #121212;
+$alumni-name-gradient-color-dark-theme: linear-gradient(90deg, #3A9DFF -9.23%, #F6E8FF 47.12%);
+
+.container {
+  @include flex-col-y-c;
+  @include flex-fill;
+
+  padding: 2rem;
+  align-items: flex-start;
+  gap: 2rem;
+  border-radius: $border-radius-large;
+  box-sizing: border-box;
+
+  &[data-variant="light"] {
+    background: $white-color;
+    border: 0.1rem solid $alumni-card-border-color;
+  }
+
+  &[data-variant="dark"] {
+    padding: 0;
+    gap: 3.2rem;
+    max-width: fit-content;
+    background: $alumni-card-background-color-dark-theme;
+  }
+
+  @include mobile {
+    gap: 1.6rem;
+  }
+}
+
+.infoContainer {
+  @include flex-row-x-c;
+
+  gap: 1.4rem;
+  align-self: stretch;
+
+  &[data-variant="dark"] {
+    gap: 2rem;
+  }
+}
+
+.alumniInfo {
+  @include flex-col;
+  @include flex-fill;
+
+  align-self: stretch;
+  align-items: flex-start;
+  gap: 1rem;
+
+  &[data-variant="dark"] {
+    gap: 1.4rem;
+  }
+}
+
+.alumniMoreInfo {
+  @include flex-col-y-c;
+
+  gap: 0.8rem;
+}
+
+.alumniName {
+  font-size: 1.8rem;
+  font-weight: $bold-font-weight;
+
+  @include mobile {
+    font-size: $h4-size;
+  }
+
+  &[data-variant="light"] {
+    color: $alumni-name-font-color;
+  }
+
+  &[data-variant="dark"] {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 3.8rem;
+    background: $alumni-name-gradient-color-dark-theme;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @include mobile {
+      font-size: $h3-size;
+      line-height: normal;
+    }
+  }
+}
+
+.alumniImage {
+  &[data-variant="light"] {
+    height: 10.4rem !important;
+    width: 10.4rem !important;
+    border-radius: $border-radius-large;
+    object-fit: cover;
+
+    @include mobile {
+      height: 10.8rem !important;
+      width: 10.8rem !important;
+    }
+  }
+
+  &[data-variant="dark"] {
+    height: 14rem !important;
+    width: 14rem !important;
+    border-radius: $border-radius-large;
+    object-fit: cover;
+    @include mobile {
+      height: 10.8rem !important;
+      width: 10.8rem !important;
+    }
+  }
+}
+
+.infoItems  {
+  @include flex-row-y-c;
+
+  gap: 0.4rem;
+
+  &[data-variant="dark"] {
+    gap: 1rem;
+  }
+}
+
+.infoItemText {
+  font-size: $h4-size;
+  font-weight: $default-font-weight;
+
+  &[data-variant="light"] {
+    color: $alumni-info-font-color;
+  }
+
+  &[data-variant="dark"] {
+    color: $light-grey-color;
+  }
+
+  @include mobile {
+    font-size: $h6-size;
+  }
+}

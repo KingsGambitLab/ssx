@@ -1,0 +1,242 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .formContent {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 4rem;
+  
+    /* Hide scrollbar for cleaner look but keep functionality */
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 3px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 3px;
+    }
+  }
+  
+  .heading {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    margin-top: 0;
+  }
+  
+  :global(.ant-form) {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 0 !important;
+  }
+    
+  .radioContent {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+    :global(.ant-image) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  // Input and Select styles with floating label
+  :global(.ant-form-item) {
+    position: relative;
+    margin-bottom: 24px;
+  
+    :global(.ant-form-item-label) {
+      padding: 0;
+      z-index: 1;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      background: white;
+      padding: 0 4px;
+  
+      label {
+        font-size: 12px;
+        color: #6B7280;
+        height: auto;
+        &::after {
+          margin-top: -4px;
+        }
+      }
+    }
+  
+    &:focus-within .ant-form-item-label {
+      color: #0066FF;
+      label {
+        color: #0066FF;
+      }
+    }
+  }
+  
+  :global(.ant-input), :global(.ant-select .ant-select-selector) {
+    border-radius: 8px;
+    border-color: #E5E7EB;
+    font-size: 1.4rem;
+  
+    &:hover, &:focus {
+      border-color: #0066FF;
+      box-shadow: none;
+    }
+  }
+  
+  :global(.ant-select .ant-select-selector) {
+    height: auto !important;
+    padding: 12px !important;
+  
+    :global(.ant-select-selection-search-input) {
+      height: auto !important;
+    }
+  
+    :global(.ant-select-selection-item) {
+      line-height: normal;
+      padding: 0 !important;
+    }
+  }
+  
+  :global(.ant-select) {
+    width: 100% !important;
+  }
+  
+  // Button styles
+  :global(.ant-btn-primary) {
+    height: auto;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    background: #0066FF;
+    border: none;
+  
+    &:hover {
+      background: #0052CC;
+    }
+  
+    &:disabled {
+      opacity: 0.7;
+      background: #0066FF;
+    }
+  }
+  
+  .fieldWrapper {
+    margin-bottom: 24px;
+  }
+  
+  .label {
+    font-size: 1.4rem;
+    color: #374151;
+  }
+  
+  .required {
+    color: #DC2626;
+    margin-left: 0.4rem;
+  }
+  
+  .input,
+  .select {
+    width: 100%;
+    padding: 1.2rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    outline: none;
+  
+    &:focus {
+      border-color: #0066FF;
+    }
+  }
+  
+  .radioGroup {
+    display: flex;
+    gap: 2.4rem;
+  }
+  
+  .radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+  
+  .error {
+    color: #DC2626;
+    font-size: 1.2rem;
+  }
+  
+  .submitButtonWrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+  }
+  
+  .form::after {
+    content: '';
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    right: 16px;
+    height: 20px;
+    background: linear-gradient(to top, white, transparent);
+    pointer-events: none;
+  }
+  
+  :global(.ant-radio-group) {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+  }
+  
+  :global(.ant-radio-button-wrapper) {
+    flex: 1;
+    height: auto !important;
+    padding: 0.8rem 0.2rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px !important;
+  
+    &:first-child {
+      border-radius: 8px !important;
+    }
+  
+    &:last-child {
+      border-radius: 8px !important;
+    }
+  
+    &::before {
+      display: none !important;
+    }
+  }
+
+  :global(.ant-form-item-explain-error) {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .formError {
+    color: #ff4d4f;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}

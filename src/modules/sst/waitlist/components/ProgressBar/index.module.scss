@@ -1,0 +1,22 @@
+$progress-bar-background-color: #E5E7EB;
+$progress-bar-active-color: #FFC107;
+
+.progressContainer {
+  margin: 2.4rem 0;
+}
+
+.steps {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.step {
+  width: 6.4rem;
+  height: 0.8rem;
+  border-radius: 0.8rem;
+  background: $progress-bar-background-color;
+
+  &.active {
+    background: $progress-bar-active-color;
+  }
+} 

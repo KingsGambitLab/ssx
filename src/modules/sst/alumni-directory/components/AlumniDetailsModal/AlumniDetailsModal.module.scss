@@ -1,0 +1,462 @@
+$alumni-details-modal-background-color: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%);
+$alumni-details-close-button-background-color: #616161;
+$alumni-details-modal-body-background: #121212;
+$alumni-details-modal-body-border-color: #B8dfff;
+$alumni-card-border-color: #e4e4e4;
+$alumni-details-modal-share-button-border-color: #4b4b4b;
+$alumni-details-modal-connect-button-color: #0041ca;
+$alumni-details-modal-connect-button-hover-color: #0052FF;
+$alumni-details-modal-house-name-background-color: #171717;
+$alumni-details-modal-house-member-text-color: #d4d4d4;
+$alumni-details-club-name-font-color: #f0f0f0;
+$alumni-details-modal-project-background-color: #212121;
+$alumni-card-action-button-background-color: #2B2B2B;
+
+.modalContainer {
+  :global(.ant-modal-mask) {
+    background-color: rgba(0,0,0,0) !important;
+  }
+
+  :global(.ant-modal-close) {
+      top: -6rem;
+      width: 4.8rem;
+      height: 4.8rem;
+      padding: 0.8rem;
+      border-radius: 4rem;
+      inset-inline-end: 0%;
+      background: $alumni-details-close-button-background-color;
+
+      @include mobile {
+        height: 3.2rem;
+        width: 3.2rem;
+        padding: 0.5rem;
+      }
+  }
+
+  :global(.ant-modal-close-icon) {
+      & > svg {
+        height: 3.2rem;
+        width: 3.2rem;
+        color: white;
+
+        @include mobile {
+          height: 2.1rem;
+          width: 2.1rem;
+        }
+      }
+  }
+
+  :global(.ant-modal) {
+    @include flex-col-c;
+
+    height: 100%;
+    top: 7rem;
+    width: auto !important;
+
+    @include mobile {
+      height: auto !important;
+      position: absolute !important;
+      bottom: 0 !important;
+      top: auto;
+      margin: 0;
+      padding: 0;
+      max-width: 100vw;
+    }
+  }
+}
+
+.antModalMask {
+  background: $alumni-details-modal-background-color;
+}
+
+.antModal {
+  max-width: 100vw;
+}
+
+.antModalContent {
+    @include flex-col-x-c;
+
+    background: transparent !important;
+    box-shadow: none;
+    margin: 0 auto;
+    padding: 0 !important;
+
+    @include mobile {
+      width: 100%;
+      padding: 0;
+    }
+}
+
+.antModalBody {
+  @include font-plus-jakarta-sans;
+
+  background: $alumni-details-modal-body-background;
+  border-radius: 1.6rem;
+  border: 0.2rem solid $alumni-details-modal-body-border-color;
+  position: relative;
+  height: max-content;
+  max-height: 90vh;
+  max-width: 65vw;
+  width: max-content;
+  overflow: scroll;
+
+  @include mobile {
+    max-height: 84vh;
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 1.2rem 1.2rem 0 0;
+    border: none;
+  }
+}
+
+.antModalClose {
+    top: -7rem;
+    width: 4.8rem;
+    height: 4.8rem;
+    padding: 0.8rem;
+    border-radius: 4rem;
+    background: $alumni-details-close-button-background-color;
+
+    @include mobile {
+      height: 3.2rem;
+      width: 3.2rem;
+      padding: 0.5rem;
+    }
+    .ant-modal-close-icon {
+      & > svg {
+        height: 3.2rem;
+        width: 3.2rem;
+        color: white;
+  
+        @include mobile {
+          height: 2.1rem;
+          width: 2.1rem;
+        }
+      }
+  }
+  
+}
+
+.loadingContainer, .errorContainer {
+  height: 84vh;
+  width: 50vw;
+
+  @include mobile {
+    width: 100vw;
+  }
+}
+
+.modalHeader {
+  @include flex-row;
+
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4rem;
+  width: 100%;
+
+  @include mobile {
+    @include flex-col;
+
+    gap: 1.6rem;
+    align-items: flex-start;
+  }
+}
+
+.modalContent {
+  @include flex-col;
+
+  padding: 4rem;
+  align-items: flex-start;
+  gap: 3.2rem;
+  align-self: stretch;
+  color: $white-color;
+
+  @include mobile {
+    padding: 2rem 2rem 8rem;
+    gap: 1.6rem;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.actionButtonWrapper {
+  @include flex-row-y-c;
+  
+  gap: 1.6rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  button {
+    border-radius: $border-radius-default;
+  }
+
+  @include mobile {
+    width: 100vw;
+    padding: 1.6rem 2rem;
+    gap: 1.6rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 1.2rem 1.2rem 0 0;
+    background: $alumni-card-action-button-background-color;
+  }
+}
+
+.shareButton {
+  flex-basis: 40%;
+
+  &:global(.ant-btn.ant-btn-default) {
+    padding: 1rem 2.4rem;
+    border-color: $alumni-details-modal-share-button-border-color;
+    background-color: transparent;
+    border-radius: $border-radius-default;
+
+    &:hover {
+      border-color: $white-color;
+      background-color: transparent;
+
+      span {
+        color: $white-color;
+      }
+    }
+
+    span {
+      color: $alumni-details-modal-body-border-color;
+    }
+
+    @include mobile {
+      flex-basis: 50%;
+      padding: 1rem 1.4rem;
+    }
+  }
+}
+
+.connectButton {
+  flex-basis: 60%;
+
+  &:global(.ant-btn.ant-btn-primary) {
+    padding: 0.8rem 3.6rem;
+    background: $white-color;
+    border-radius: $border-radius-default;
+    height: auto;
+
+    span {
+      color: $alumni-details-modal-connect-button-color;
+    }
+
+    &:hover {
+      background: $white-color;
+      span {
+        color: $alumni-details-modal-connect-button-hover-color;
+      }
+    }
+  }
+
+  @include mobile {
+    flex-basis: 50%;
+  }
+}
+
+.houseDetailsContainer {
+  @include flex-col-x-c;
+
+  flex-wrap: wrap;
+  padding: 2.4rem;
+  gap: 0.8rem;
+  align-self: stretch;
+  border-radius: 0.8rem;
+  position: relative;
+  height: 22rem;
+  width: 30rem;
+  box-sizing: border-box;
+  background: $alumni-details-modal-house-name-background-color;
+
+  @include mobile {
+    height: 9rem;
+    width: 100%;
+  }
+}
+
+.houseNameWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.houseMemberText {
+  color: $alumni-details-modal-house-member-text-color;
+  font-size: $h5-size;
+  font-weight: $bold-font-weight;
+  line-height: normal;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+
+  @include mobile {
+    font-size: $h6-size;
+  }
+}
+
+.houseName {
+  color: $white-color;
+  font-size: 2.8rem;
+  font-weight: $bold-font-weight;
+
+  @include mobile {
+    font-size: $h3-size;
+  }
+}
+
+.houseLogo {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.clubsContainer {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+  flex-wrap: wrap;
+
+  @include mobile {
+    gap: 2rem;
+  }
+}
+
+.clubsHeading, 
+.projectListHeading {
+  color: $white-color;
+  font-size: $h1-size;
+  font-style: normal;
+  font-weight: $default-font-weight;
+  line-height: 4.4rem;
+
+  @include mobile {
+    font-size: $h2-size;
+    line-height: normal;
+  }
+}
+
+.clubsList {
+  @include overflow-scrollbar;
+
+  align-items: flex-start;
+  gap: 1.4rem;
+  align-self: stretch;
+  width: calc(100% - 4rem);
+
+  @include mobile {
+    gap: 1rem 1.3rem;
+    width: calc(100% - 2rem);
+    flex-wrap: wrap;
+  }
+}
+
+.clubItem {
+  @include flex-row-y-c;
+
+  padding: 1.4rem;
+  gap: 0.5rem;
+  border-radius: 0.4rem;
+  min-width: fit-content;
+  background: $alumni-details-modal-project-background-color;
+}
+
+.clubName {
+  color: $alumni-details-club-name-font-color;
+  font-size: $h4-size;
+  font-style: normal;
+  font-weight: $default-font-weight;
+  line-height: normal;
+
+  @include mobile {
+    font-size: $h6-size;
+  }
+}
+
+.projectList  {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 2.4rem;
+  width: calc(100% - 4rem);
+
+  @include mobile {
+    width: calc(100% - 2rem);
+  }
+}
+
+.projectListItems {
+  @include overflow-scrollbar;
+
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-flow: column;
+  align-items: stretch;
+  gap: 2.4rem;
+  max-width: 100%;
+  width: fit-content;
+
+  @include mobile {
+    gap: 1.6rem;
+  }
+}
+
+.projectItem {
+  @include flex-col;
+
+  padding: 2.4rem;
+  align-items: flex-start;
+  gap: 1.4rem;
+  border-radius: 1.2rem;
+  width: max-content;
+  background: $alumni-details-modal-project-background-color;
+
+  @include mobile {
+    border-radius: $border-radius-default;
+    padding: 1.4rem;
+  }
+}
+
+.projectTitle {
+  color: $white-color;
+  font-size: $h2-size;
+  font-weight: $default-font-weight;
+  line-height: normal;
+
+  @include mobile {
+    font-size: $h5-size;
+  }
+}
+
+.projectLinkButton {
+  &:global(.ant-btn.ant-btn-default) {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: $alumni-details-modal-body-border-color;
+    line-height: normal;
+    letter-spacing: 0.2rem;
+    height: auto;
+
+    &:hover {
+      background: transparent;
+      border: none;
+      color: $alumni-details-modal-body-border-color;
+    }
+
+    @include mobile {
+      font-size: $h6-size;
+    }
+  }
+}

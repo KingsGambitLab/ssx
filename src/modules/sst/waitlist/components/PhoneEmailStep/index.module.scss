@@ -1,0 +1,303 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .error {
+    color: #dc2626;
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+  }
+  
+  .inputField {
+    &.hasError {
+      border-color: #dc2626;
+    }
+  }
+  
+  .inputWrapper {
+    position: relative;
+    width: 100%;
+  
+    .inputField, .countrySelect {
+      width: 100%;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.8rem;
+      font-size: 1.6rem;
+      transition: border-color 0.2s;
+    
+      &.hasError {
+        border-color: #DC2626;
+        background-color: #FEF2F2;
+      }
+    }
+  }
+  
+  .errorMessage {
+    color: #DC2626;
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+    display: block;
+  }
+  
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    width: 100%;
+    max-width: 44.5rem;
+  }
+  
+  .heading {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 3.2rem;
+    text-align: left;
+  
+    @media (max-width: 768px) {
+      font-size: 2.4rem;
+      margin-bottom: 2.4rem;
+    }
+  }
+  
+  .inputWrapper {
+    position: relative;
+  }
+  
+  .inputField {
+    padding: 1.2rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    outline: none;
+  
+    &:focus {
+      border-color: #0066FF;
+    }
+  
+    &.hasError {
+      border-color: #DC2626;
+    }
+  }
+  
+  .phoneInput {
+    display: flex;
+    gap: 0.8rem;
+    width: 100%;
+  
+    .countrySelect {
+      width: 7.5rem;
+      flex-shrink: 0;
+    }
+  
+    .phoneField {
+      flex: 1;
+    }
+  }
+  
+  .countrySelect {
+    border: 1px solid #E5E7EB;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    background: #fff;
+  }
+  
+  .checkboxWrapper {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  
+    .whatsappIcon {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  
+    .toggle {
+      width: 4.8rem;
+      height: 2.4rem;
+    }
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 1.2rem;
+    background: #0066FF;
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+  
+  .termsText {
+    font-size: 14px;
+    color: #6B7280;
+    text-align: center;
+    margin-top: 16px;
+  
+    a {
+      color: #0066FF;
+      text-decoration: none;
+    }
+  }
+  
+  .whatsappConsent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  
+    span {
+      font-size: 1.6rem;
+      color: #111827;
+    }
+  
+    p {
+      font-size: 1.4rem;
+      color: #6B7280;
+      margin: 0;
+    }
+  }
+  
+  :global(.ant-form) {
+    padding-right: 0 !important;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  
+   :global(.ant-form-item-label) {
+      display: none;
+    }
+  }
+  
+  :global(.ant-input) {
+    height: 4.8rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.6rem;
+    border-radius: 0.8rem;
+    border: 0.1rem solid #E5E7EB;
+    background: #FFF;
+  
+    &::placeholder {
+      color: #6B7280;
+    }
+  
+    &:hover, &:focus {
+      border-color: #0066FF;
+      box-shadow: none;
+    }
+  }
+  
+  :global(.ant-input-group) {
+    display: flex !important;
+    gap: 8px;
+  
+    :global(.ant-select) {
+      width: 100px !important;
+      flex-shrink: 0;
+  
+      :global(.ant-select-selector) {
+        height: 5rem !important;
+      }
+    }
+  
+    :global(.ant-input) {
+      flex: 1;
+      width: auto !important;
+    }
+  }
+  
+  :global(.ant-select-selection-item) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  :global(.ant-checkbox-wrapper) {
+    align-items: flex-start;
+    margin: 1.6rem 0;
+    display: flex !important;
+    gap: 0.8rem !important;
+  }
+  
+  :global(.ant-checkbox) {
+    margin-top: 0.4rem;
+    
+    :global(.ant-checkbox-inner) {
+      border-color: #0066FF;
+      border-radius: 0.4rem;
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+  
+  :global(.ant-btn-primary) {
+    height: 4.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 0.8rem;
+    background: #0066FF;
+    margin-top: 0.8rem;
+    box-shadow: none;
+  
+    &:disabled {
+      background: #C2D7FE;
+      cursor: not-allowed;
+    }
+  
+    &:hover:not(:disabled) {
+      background: #0052CC;
+    }
+  }
+  
+  :global(.ant-form-item:last-child) {
+    margin-bottom: 0;
+    position: sticky !important;
+    
+    :global(.ant-btn) {
+      width: 100%;
+      max-width: 48rem;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  
+  :global(.ant-modal-body) {
+    padding: 0;
+  }
+  
+  :global(.ant-modal-content) {
+    padding: 2.4rem;
+  }
+
+  .form {
+    flex: 1;
+    padding-bottom: 80px; // Space for submit button
+  }
+  
+  .submitSection {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+  }
+  
+  .formError {
+    color: #ff4d4f;
+    margin-bottom: 16px;
+    text-align: center;
+  }  
+}

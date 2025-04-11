@@ -1,0 +1,15 @@
+.outerContainer {
+  @include flex-col;
+  
+  gap: 1rem;
+}
+
+.platformContainer {
+  @include flex-row;
+
+  gap: 1rem;
+}
+
+.platform {
+  cursor: pointer;
+}
