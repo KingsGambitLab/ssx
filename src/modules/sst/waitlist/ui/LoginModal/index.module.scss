@@ -16,6 +16,8 @@
   }
 
   :global(.ant-modal) {
+    width: 1000px !important;
+    
     @include mobile {
       position: absolute !important;
       bottom: 0 !important;
@@ -50,7 +52,7 @@
 }
 
 .rightSection {
-  flex: 1;
+  flex: 4;
   display: flex;
   flex-direction: column;
   padding: 32px;
@@ -61,6 +63,8 @@
     flex: 1;
     overflow-y: auto;
     padding-right: 16px;
+    max-width: 480px;
+    margin: 0 auto;
 
     /* Scrollbar styling */
     &::-webkit-scrollbar {
@@ -95,7 +99,7 @@
 }
 
 .banner {
-  width: 50%;
+  flex: 1;
   background: #1A56DB;
   padding: 32px;
   display: flex;

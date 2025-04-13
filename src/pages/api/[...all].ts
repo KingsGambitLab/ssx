@@ -28,7 +28,7 @@ const proxyRequest = (req: NextApiRequest, res: NextApiResponse) => {
     ? httpProxyMiddleware(req, res, {
       target: `${process.env.NEXT_PUBLIC_API_HOST_STAGING}`,
       pathRewrite: [
-        // Scaler APIs without /api prefix [v1]
+        // Scaler APIs without /api prefix
         {
           patternStr: '^/api/base_api/',
           replaceStr: '/',

@@ -101,8 +101,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
         <Banner />
         <div className={styles.rightSection}>
           <ProgressBar currentStep={
-            step === 'LOGIN' ? 1 : step === 'OTP' ? 2 : 3
-          } totalSteps={3} />
+            step === 'LOGIN' || step === 'OTP' ? 1 : 2
+          } totalSteps={2} />
           
           {step === 'LOGIN' ? (
             <PhoneEmailStep 
