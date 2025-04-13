@@ -34,4 +34,4 @@ export const SHARE_PLATFORMS = {
   },
 };
 
-export const SHARE_PROFILE_URL = 'https://www.scaler.com/school-of-technology/alumni-directory';
+export const SHARE_PROFILE_URL = 'https://www.scaler.com/school-of-technology/alum-directory';
