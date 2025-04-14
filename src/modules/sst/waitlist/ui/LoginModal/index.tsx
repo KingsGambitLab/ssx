@@ -105,17 +105,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     }
   }, [step, isOpen]);
 
-  useEffect(() => {
-    trackEvent.view({
-      clickType: 'section_view',
-      clickText: trackingEvents.waitlistFormView,
-      clickSource: trackingSources.waitlistModal,
-      custom: {
-        form_type: step,
-      }
-    })
-  }, [step]);
-
   return (
     <Modal 
       open={isOpen} 
