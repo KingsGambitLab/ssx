@@ -82,8 +82,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     setStep('LOGIN');
     trackEvent.click({
       clickType: 'click',
-      clickText: trackingEvents.wrongNumber,
-      clickSource: trackingSources.waitlistModal,
+      clickText: trackingEvents.wrongPhoneNumber,
+      clickSource: trackingSources.waitlistLoginOTPForm,
     })
   };
 
@@ -105,10 +105,29 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     }
   }, [step, isOpen]);
 
+  const handleClose = () => {
+    let formType = '';
+    if(step === 'LOGIN') {
+      formType = trackingSources.waitlistLoginMobileForm;
+    } else if(step === 'OTP') {
+      formType = trackingSources.waitlistLoginOTPForm;
+    } else {
+      formType = trackingSources.waitlistForm;
+    }
+
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.waitlistModalClose,
+      clickSource: formType,
+    })
+
+    onClose();
+  }
+
   return (
     <Modal 
       open={isOpen} 
-      onCancel={onClose}
+      onCancel={handleClose}
       footer={null}
       width={800}
       className={styles.modal}

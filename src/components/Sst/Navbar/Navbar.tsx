@@ -32,11 +32,6 @@ export default function SstNavbar() {
   const handleModalClose = () => {
     setIsLoginModalOpen(false);
     setShowWaitlistModal(false);
-    trackEvent.click({
-      clickType: 'click',
-      clickText: trackingEvents.waitlistModalClose,
-      clickSource: trackingSources.waitlistModal,
-    })
   };
 
   return (

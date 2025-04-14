@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
 import TurnstileWidget from '@/utils/turnstile/turnstile';
 import styles from './index.module.scss';
+import { trackingEvents } from '@modules/sst/waitlist/utils/tracking';
+import { trackingSources } from '@modules/sst/waitlist/utils/tracking';
+import { trackEvent } from '@modules/sst/waitlist/utils/tracking';
 
 interface TurnstileModalProps {
   isOpen: boolean;
@@ -21,6 +24,16 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [turnstile, setTurnstile] = useState<any>(null);
 
+
+  const trackEventHandler = ({custom}: {custom: any}) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.turnstileModalSubmit,
+      clickSource: trackingSources.waitlistLoginOTPForm,
+      custom,
+    })
+  }
+
   const handleSubmit = async () => {
     if (!token) return;
     
@@ -29,9 +42,21 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
       const success = await onTokenObtained(token);
       if (success) {
         onClose();
+        trackEventHandler({
+          custom: {
+            form_status: 'success',
+            token,
+          }
+        })
       } else {
         turnstile?.reset();
         setToken(null);
+        trackEventHandler({
+          custom: {
+            form_status: 'error', 
+            token,
+          }
+        })
       }
     } finally {
       setIsSubmitting(false);
