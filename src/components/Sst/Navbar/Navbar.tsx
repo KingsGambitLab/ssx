@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Navbar } from "@components/common";
 import AuthActions from "@components/Sst/Navbar/ActionButtons";
@@ -37,7 +37,7 @@ export default function SstNavbar() {
     setShowWaitlistModal(false);
   };
 
-  const handleModalOpen = () => {
+  const handleModalOpen = useMemo(() => {
    const shouldOpen = isLoginModalOpen || showWaitlistModal;
 
     if (shouldOpen) {
@@ -49,11 +49,8 @@ export default function SstNavbar() {
     }
 
     return shouldOpen;
-  }
+  }, [isLoginModalOpen, showWaitlistModal]);
 
-  const isOpen = handleModalOpen();
-
-  console.log("isOpen", isOpen);
 
   console.log("showWaitlistModal", showWaitlistModal);
   console.log("isLoginModalOpen", isLoginModalOpen);
@@ -75,7 +72,7 @@ export default function SstNavbar() {
         }
       />
       <LoginModal
-        isOpen={isOpen}
+        isOpen={handleModalOpen}
         onClose={handleModalClose}
         onLoginSuccess={() => setIsLoginModalOpen(false)}
         initialStep={showWaitlistModal ? "WAITLIST" : "LOGIN"}
