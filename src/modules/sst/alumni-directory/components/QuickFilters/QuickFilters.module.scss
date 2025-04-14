@@ -39,12 +39,12 @@ $quick-filters-border-color: #e4e4e4;
 
 .filterButton {
   padding: 0.8rem 1.6rem !important;
-  border-radius: $border-radius-default;
-  border: 1px solid $quick-filters-border-color;
-  background: $white-color;
-  font-size: $h5-size;
-  font-weight: 500;
-  color: $quick-filter-heading-color;
+  border-radius: $border-radius-default !important;
+  border: 1px solid $quick-filters-border-color !important;
+  background: $white-color !important;
+  font-size: $h5-size !important;
+  font-weight: 500 !important;
+  color: $quick-filter-heading-color !important;
 
   @include mobile {
     font-size: $h6-size !important;
@@ -52,8 +52,8 @@ $quick-filters-border-color: #e4e4e4;
 }
 
 .selectedFilterButton {
-  background: $quick-filters-border-color;
-  
+  background: $quick-filters-border-color !important;
+
   @include mobile {
     font-size: $h6-size !important;
   }
