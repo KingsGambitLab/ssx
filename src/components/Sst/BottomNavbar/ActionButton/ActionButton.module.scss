@@ -15,10 +15,13 @@ $white-color: #ffffff;
   font-family: $source-sans-pro;
   background: #e22d4c !important;
   color: $white-color;
-  text-wrap: auto;
 
   &:hover {
     cursor: pointer;
+  }
+
+  & > span {
+    text-wrap: auto;
   }
 }
 

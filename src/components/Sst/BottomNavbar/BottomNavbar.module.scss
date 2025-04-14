@@ -39,7 +39,7 @@ $source-sans-pro: 'Source Sans Pro';
   }
 }
 
-.link_container {
+.linkContainer {
   @include flex-row-c;
 }
 
@@ -57,7 +57,7 @@ $source-sans-pro: 'Source Sans Pro';
   }
 }
 
-.link_icon {
+.linkIcon {
   width: 2rem;
   height: 2rem;
 }

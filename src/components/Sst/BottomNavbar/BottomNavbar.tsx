@@ -51,10 +51,10 @@ export default function SstBottomNavbar() {
         <div className={styles.container}>
           {BOTTOM_NAVBAR_LINKS.LEFT.map((link) => {
             return (
-              <div className={styles.link_container}>
+              <div className={styles.linkContainer}>
                 <a className={styles.link} href={link.redirectUrl}>
                   <Image
-                    className={styles.link_icon}
+                    className={styles.linkIcon}
                     alt="icon"
                     src={link.icon}
                   />
@@ -74,10 +74,10 @@ export default function SstBottomNavbar() {
         <div className={styles.container}>
           {BOTTOM_NAVBAR_LINKS.RIGHT.map((link) => {
             return (
-              <div className={styles.link_container}>
+              <div className={styles.linkContainer}>
                 <a className={styles.link} href={link.redirectUrl}>
                   <Image
-                    className={styles.link_icon}
+                    className={styles.linkIcon}
                     alt="icon"
                     src={link.icon}
                   />
