@@ -1,0 +1,42 @@
+$apply-btn-bg: #e22d4c;
+$resume-application-btn-bg: #005ab3;
+$source-sans-pro: "Source Sans Pro";
+$white-color: #ffffff;
+
+.applyBtn {
+  @include flex-row-c;
+
+  margin: auto;
+  border-radius: 100%;
+  width: 6.4rem;
+  height: 6.4rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: $source-sans-pro;
+  background: #e22d4c !important;
+  color: $white-color;
+  text-wrap: auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.resumeApplicationBtn {
+  @include flex-row-c;
+
+  margin: auto;
+  width: 8rem !important;
+  height: 6rem;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: $source-sans-pro;
+  background: #005ab3 !important;
+  color: $white-color;
+  text-wrap: auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

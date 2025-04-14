@@ -38,6 +38,7 @@ export const pageTrackingEvents = {
   userMenuOpened: "user_menu_opened",
   userMenuClosed: "user_menu_closed",
   announcementStripClicked: "announcement_strip_clicked",
+  resumeApplicationButtonClicked: "resume_application_clicked",
 }
 
 export const trackEvent = {

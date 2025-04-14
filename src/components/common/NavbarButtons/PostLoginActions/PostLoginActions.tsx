@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { Button, Popover } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
+import tracker from '@lib/tracking';
+
 import { logout } from "@modules/common/apis";
 
 import { useDeviceType } from '@hooks/useDeviceType';
@@ -45,8 +47,10 @@ const popoverContent = (data: {
   }
 
   const handleLogout = async () => {
-    trackEventHandler('logout');
     await logout();
+    tracker.logout({
+      isLoggedIn: false,
+    });
     window.location.reload();
   }
 
