@@ -20,7 +20,7 @@ interface LoginModalProps {
 
 export const LoginModal: React.FC<LoginModalProps> = ({ 
   isOpen, 
-  onClose, 
+  onClose,
   onLoginSuccess,
   initialStep = 'LOGIN',
 }) => {
@@ -92,18 +92,18 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     if (userData?.isloggedIn && step === 'LOGIN') {
       onClose();
     }
+  }, [userData?.isloggedIn, step]);
 
+  useEffect(() => {
     if(isOpen) {
       trackEvent.view({
         clickType: 'section_view',
         clickText: trackingEvents.waitlistFormView,
         clickSource: trackingSources.waitlistModal,
-        custom: {
-          form_type: step,
-        }
+        custom: { form_type: step },  
       })
     }
-  }, [userData?.isloggedIn, step]);
+  }, [step, isOpen]);
 
   useEffect(() => {
     trackEvent.view({
