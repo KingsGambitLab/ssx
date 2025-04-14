@@ -14,7 +14,7 @@ export const trackingEvents = {
   waitlistFormView: 'waitlist-form-view',
   formInputFocus: 'form-input-focus',
   formInputFilled: 'form-input-filled',
-  waitlistLoginMobileFormSubmit: 'phone-login-mobile-form-submit',
+  waitlistLoginMobileFormSubmit: 'waitlist-login-mobile-form-submit',
   waitlistModalClose: 'waitlist-modal-close',
   wrongPhoneNumber: 'wrong-phone-number',
   resendOTP: 'resend-otp',

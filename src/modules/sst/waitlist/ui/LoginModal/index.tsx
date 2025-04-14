@@ -87,6 +87,18 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     })
   };
 
+  const getFormType = () => {
+    let formType = '';
+    if(step === 'LOGIN') {
+      formType = trackingSources.waitlistLoginMobileForm;
+    } else if(step === 'OTP') {
+      formType = trackingSources.waitlistLoginOTPForm;
+    } else {
+      formType = trackingSources.waitlistForm;
+    }
+    return formType;
+  }
+
   // Close modal if user is already logged in
   useEffect(() => {
     if (userData?.isloggedIn && step === 'LOGIN') {
@@ -99,28 +111,17 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       trackEvent.view({
         clickType: 'section_view',
         clickText: trackingEvents.waitlistFormView,
-        clickSource: trackingSources.waitlistModal,
-        custom: { form_type: step },  
+        clickSource: getFormType()
       })
     }
   }, [step, isOpen]);
 
   const handleClose = () => {
-    let formType = '';
-    if(step === 'LOGIN') {
-      formType = trackingSources.waitlistLoginMobileForm;
-    } else if(step === 'OTP') {
-      formType = trackingSources.waitlistLoginOTPForm;
-    } else {
-      formType = trackingSources.waitlistForm;
-    }
-
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.waitlistModalClose,
-      clickSource: formType,
+      clickSource: getFormType(),
     })
-
     onClose();
   }
 
