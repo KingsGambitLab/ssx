@@ -201,7 +201,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
                 onClick={() => trackClickEventHandler({
                   clickType: 'click',
                   clickText: trackingEvents.formInputFocus,
-                  clickSource: trackingSources.waitlistModal,
+                  clickSource: trackingSources.waitlistLoginOTPForm,
                   custom: {
                     field_type: 'otp',
                   }
@@ -210,7 +210,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
                   trackClickEventHandler({
                     clickType: 'click',
                     clickText: trackingEvents.formInputFilled,
-                    clickSource: trackingSources.waitlistModal,
+                    clickSource: trackingSources.waitlistLoginOTPForm,
                     custom: {
                       field_type: 'otp',
                       field_value: field.value,
@@ -274,6 +274,11 @@ export const OTPStep: React.FC<OTPStepProps> = ({
         onClose={() => {
           setShowTurnstile(false);
           setSelectedChannel(null);
+          trackClickEventHandler({
+            clickType: 'click',
+            clickText: trackingEvents.turnstileModalClose,
+            clickSource: trackingSources.waitlistLoginOTPForm,
+          })
         }}
         onTokenObtained={handleRetryOTP}
       />

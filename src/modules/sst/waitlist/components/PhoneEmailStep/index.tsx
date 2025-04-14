@@ -39,7 +39,7 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
   const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
     trackEvent.formSubmitStatus({
       clickType: 'form_submit',
-      clickText: trackingEvents.phoneEmailFormSubmit,
+      clickText: trackingEvents.waitlistLoginMobileFormSubmit,
       clickSource: trackingSources.waitlistLoginMobileForm,
       custom: {
         form_status: formStatus,
@@ -279,7 +279,8 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
             block
             onClick={() => trackClickEventHandler({
               clickType: 'click',
-              clickText: trackingEvents.phoneEmailFormSubmitButton,
+              clickText: trackingEvents.waitlistLoginMobileFormSubmit,
+              clickSource: trackingSources.waitlistLoginMobileForm,
             })}
           >
             Get OTP

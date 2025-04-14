@@ -14,13 +14,15 @@ export const trackingEvents = {
   waitlistFormView: 'waitlist-form-view',
   formInputFocus: 'form-input-focus',
   formInputFilled: 'form-input-filled',
-  phoneEmailFormSubmit: 'phone-email-form-submit',
+  waitlistLoginMobileFormSubmit: 'phone-login-mobile-form-submit',
   waitlistModalClose: 'waitlist-modal-close',
-  wrongNumber: 'wrong-number',
+  wrongPhoneNumber: 'wrong-phone-number',
   resendOTP: 'resend-otp',
   otpFormSubmit: 'otp-form-submit',
   phoneEmailFormSubmitButton: 'phone-email-form-submit-button',
-  waitlistCategoryChange: 'waitlist-category-change'
+  waitlistCategoryChange: 'waitlist-category-change',
+  turnstileModalClose: 'turnstile-modal-close',
+  turnstileModalSubmit: 'turnstile-modal-submit',
 }
 
 export const trackEvent = {
