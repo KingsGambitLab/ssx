@@ -66,7 +66,7 @@ export default function SstBottomNavbar() {
         </div>
         <div className={styles.applyButtonContainer}>
           <ActionButton
-            isLoggedIn={!isLoggedIn}
+            isLoggedIn={isLoggedIn}
             onApply={onApplyHandler}
             onResumeApplication={onResumeApplicationHandler}
           />
