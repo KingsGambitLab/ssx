@@ -10,8 +10,6 @@ import { useState } from "react";
 
 import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
 import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
-import { trackEvent, trackingEvents, trackingSources } from "@modules/sst/waitlist/utils/tracking";
-
 
 export default function SstNavbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

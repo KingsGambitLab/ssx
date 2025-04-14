@@ -183,7 +183,17 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
               defaultValue="+91"
               render={({ field }) => (
                 <Select {...field}>
-                  <Select.Option value="+91">
+                  <Select.Option value="+91" onChange={(value: string) => {
+                    field.onChange(value);
+                    trackClickEventHandler({
+                      clickType: 'click',
+                      clickText: trackingEvents.formInputFilled,
+                      custom: {
+                        field_type: 'country_code',
+                        field_value: value,
+                      }
+                    })
+                  }}>
                     <span role="img" aria-label="India">🇮🇳</span> +91
                   </Select.Option>
                   <Select.Option value="+977">
