@@ -92,18 +92,18 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     if (userData?.isloggedIn && step === 'LOGIN') {
       onClose();
     }
-  }, [userData?.isloggedIn, step]);
 
-  useEffect(() => {
-    trackEvent.view({
-      clickType: 'section_view',
-      clickText: trackingEvents.waitlistFormView,
-      clickSource: trackingSources.waitlistModal,
-      custom: {
-        form_type: step,
-      }
-    })
-  }, [step]);
+    if(isOpen) {
+      trackEvent.view({
+        clickType: 'section_view',
+        clickText: trackingEvents.waitlistFormView,
+        clickSource: trackingSources.waitlistModal,
+        custom: {
+          form_type: step,
+        }
+      })
+    }
+  }, [userData?.isloggedIn, step]);
 
   return (
     <Modal 

@@ -17,12 +17,27 @@ export default function SstNavbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { showWaitlistModal, setShowWaitlistModal } = useWaitlistCheck();
 
+  const trackEventHandler = (custom: object) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.waitlistFormView,
+      clickSource: trackingSources.waitlistModal,
+      custom: custom,
+    })
+  }
+
   const onLoginHandler = () => {
-    setIsLoginModalOpen(true);
+    if (!showWaitlistModal) {
+      setIsLoginModalOpen(true);
+    }
+    trackEventHandler({ form_type: showWaitlistModal ? "WAITLIST" : "LOGIN" });
   }
 
   const onApplyHandler = () => {
-    setIsLoginModalOpen(true);
+    if (!showWaitlistModal) {
+      setIsLoginModalOpen(true);
+    }
+    trackEventHandler({ form_type: showWaitlistModal ? "WAITLIST" : "LOGIN" });
   }
 
   const onResumeApplicationHandler = () => {

@@ -100,7 +100,11 @@ export const useWaitlistCheck = () => {
             parent: parentForms
           });
           setFormFields(studentForms);
-          setShowWaitlistModal(true);
+          
+          // Only set showWaitlistModal to true if it's not already true
+          if (!showWaitlistModal) {
+            setShowWaitlistModal(true);
+          }
         } catch (error) {
           console.error('Error fetching waitlist forms:', error);
         }
@@ -108,7 +112,7 @@ export const useWaitlistCheck = () => {
     };
 
     checkWaitlist();
-  }, [userData?.isloggedIn]);
+  }, [userData?.isloggedIn, showWaitlistModal]);
 
   return { 
     showWaitlistModal, 
