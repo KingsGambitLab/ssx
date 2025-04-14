@@ -25,12 +25,22 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
   const [turnstile, setTurnstile] = useState<any>(null);
 
 
-  const trackEventHandler = ({custom}: {custom: object}) => {
+  const trackEventHandler = (
+    { clickText, clickSource, custom }: { clickText: string, clickSource: string, custom?: object }
+  ) => {
     trackEvent.click({
       clickType: 'click',
-      clickText: trackingEvents.turnstileModalSubmit,
-      clickSource: trackingSources.waitlistLoginOTPForm,
+      clickText,
+      clickSource,
       custom,
+    })
+  }
+
+  const handleModalClose = () => {
+    onClose();
+    trackEventHandler({
+      clickText: trackingEvents.turnstileModalClose,
+      clickSource: trackingSources.waitlistLoginOTPForm,
     })
   }
 
@@ -43,15 +53,19 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
       if (success) {
         onClose();
         trackEventHandler({
+          clickText: trackingEvents.turnstileModalSubmit,
+          clickSource: trackingSources.waitlistLoginOTPForm,
           custom: {
             form_status: 'success',
-            token,
+            token,  
           }
         })
       } else {
         turnstile?.reset();
         setToken(null);
         trackEventHandler({
+          clickText: trackingEvents.turnstileModalSubmit,
+          clickSource: trackingSources.waitlistLoginOTPForm,
           custom: {
             form_status: 'error', 
             token,
@@ -66,7 +80,7 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
   return (
     <Modal
       open={isOpen}
-      onCancel={onClose}
+      onCancel={handleModalClose}
       footer={null}
       title={title}
       width={400}

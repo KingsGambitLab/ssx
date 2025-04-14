@@ -274,11 +274,6 @@ export const OTPStep: React.FC<OTPStepProps> = ({
         onClose={() => {
           setShowTurnstile(false);
           setSelectedChannel(null);
-          trackClickEventHandler({
-            clickType: 'click',
-            clickText: trackingEvents.turnstileModalClose,
-            clickSource: trackingSources.waitlistLoginOTPForm,
-          })
         }}
         onTokenObtained={handleRetryOTP}
       />

@@ -32,6 +32,9 @@ export default function SstNavbar() {
     setShowWaitlistModal(false);
   };
 
+  console.log("showWaitlistModal", showWaitlistModal);
+  console.log("isLoginModalOpen", isLoginModalOpen);
+
   return (
     <div>
       <Navbar   
