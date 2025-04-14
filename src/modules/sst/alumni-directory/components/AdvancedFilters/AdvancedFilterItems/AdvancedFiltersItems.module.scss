@@ -110,7 +110,7 @@ $advanced-filters-apply-button-hover-color: rgb(80 121 200);
 
 .applyButton {
   flex: 1;
-  background-color: $advanced-filters-apply-button-color;
+  background-color: $advanced-filters-apply-button-color !important;
 
   &:hover {
     background-color: $advanced-filters-apply-button-hover-color !important;

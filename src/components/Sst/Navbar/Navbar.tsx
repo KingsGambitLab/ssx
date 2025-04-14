@@ -6,9 +6,12 @@ import AuthActions from "@components/Sst/Navbar/ActionButtons";
 import { loggedOutNavItems, loggedInNavItems } from "./data";
 
 import SSTLogo from "@public/images/sst/webp/logo.webp";
-import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
-import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
 import { useState } from "react";
+
+import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
+import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
+import { trackEvent, trackingEvents, trackingSources } from "@modules/sst/waitlist/utils/tracking";
+
 
 export default function SstNavbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -29,6 +32,11 @@ export default function SstNavbar() {
   const handleModalClose = () => {
     setIsLoginModalOpen(false);
     setShowWaitlistModal(false);
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.waitlistModalClose,
+      clickSource: trackingSources.waitlistModal,
+    })
   };
 
   return (

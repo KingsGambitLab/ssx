@@ -8,4 +8,5 @@ export const EVENT_NAMES = {
   HOVER: 'gtm_custom_hover',
   VIEW: 'gtm_custom_view',
   LOGOUT: 'logout',
+  FORM_SUBMIT_STATUS: 'form_submit_status',
 };

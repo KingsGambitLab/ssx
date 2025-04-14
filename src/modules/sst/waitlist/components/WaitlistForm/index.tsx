@@ -7,8 +7,12 @@ import { WaitlistFormData } from '../../types';
 import { useWaitlistApi } from '../../api';
 import { useWaitlistCheck } from '@hooks/useWaitlistCheck';
 import { useQueryClient } from '@tanstack/react-query';
-import StudentIcon from '@public/images/sst/svg/student.svg';
+
 import ParentIcon from '@public/images/sst/svg/parentfamily.svg';
+import StudentIcon from '@public/images/sst/svg/student.svg';
+
+import { trackingEvents, trackingSources, trackEvent } from '../../utils/tracking';
+
 interface WaitlistFormProps {
   onSubmitSuccess: () => void;
 }
@@ -48,6 +52,16 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
+
+  const trackEventHandler = ({ clickType, clickText, clickSource, custom }: {
+    clickType: string;
+    clickText: string;
+    clickSource: string;
+    custom: any;
+  }) => {
+    trackEvent.click({ clickType, clickText, clickSource, custom });
+  }
+
   // Handle category change - make it immediate
   const onCategoryChange = useCallback((e: any) => {
     const value = e.target.value;
@@ -58,6 +72,15 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       setValue(categoryField.id, value);
       handleCategoryChange(newCategory);
     }
+
+    trackEventHandler({
+      clickType: 'button_click',
+      clickText: trackingEvents.waitlistCategoryChange,
+      clickSource: trackingSources.waitlistForm,
+      custom: {
+        category: newCategory,
+      }
+    })
   }, [categoryField, setValue, handleCategoryChange]);
 
   // Memoize remaining fields
@@ -202,6 +225,18 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                         {...controllerField}
                         status={error ? 'error' : undefined}
                         placeholder={field.placeholder}
+                        onChange={(value) => {
+                          controllerField.onChange(value);
+                          trackEventHandler({
+                            clickType: 'form_input_change',
+                            clickText: trackingEvents.formInputFilled,
+                            clickSource: trackingSources.waitlistForm,
+                            custom: {
+                              field_type: field.label,
+                              field_value: value,
+                            }
+                          })
+                        }}
                         options={field.options?.map(opt => ({
                           label: opt.label,
                           value: opt.value
@@ -228,6 +263,16 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                       {...controllerField}
                       placeholder={field.placeholder}
                       status={error ? 'error' : undefined}
+                      onClick={() => {
+                        trackEventHandler({
+                          clickType: 'input_click',
+                          clickText: trackingEvents.formInputFocus,
+                          clickSource: trackingSources.waitlistForm,
+                          custom: {
+                            field: field.label,
+                          }
+                        })
+                      }}
                       onChange={(e) => {
                         // Only allow numbers for phone fields
                         if (field.label.toLowerCase().includes('phone')) {
@@ -236,6 +281,15 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                         } else {
                           controllerField.onChange(e);
                         }
+                        trackEventHandler({
+                          clickType: 'input_change',
+                          clickText: trackingEvents.formInputFilled,
+                          clickSource: trackingSources.waitlistForm,
+                          custom: {
+                            field_type: field.label,
+                            field_value: e.target.value,
+                          }
+                        })
                       }}
                     />
                   );
