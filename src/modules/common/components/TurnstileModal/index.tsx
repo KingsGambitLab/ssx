@@ -25,7 +25,7 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
   const [turnstile, setTurnstile] = useState<any>(null);
 
 
-  const trackEventHandler = ({custom}: {custom: any}) => {
+  const trackEventHandler = ({custom}: {custom: object}) => {
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.turnstileModalSubmit,
