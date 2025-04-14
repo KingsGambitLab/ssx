@@ -100,11 +100,7 @@ export const useWaitlistCheck = () => {
             parent: parentForms
           });
           setFormFields(studentForms);
-          
-          // Only set showWaitlistModal to true if it's not already true
-          if (!showWaitlistModal) {
-            setShowWaitlistModal(true);
-          }
+          setShowWaitlistModal(true);
         } catch (error) {
           console.error('Error fetching waitlist forms:', error);
         }

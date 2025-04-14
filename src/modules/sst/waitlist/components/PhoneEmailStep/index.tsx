@@ -155,7 +155,7 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
                     field_type: 'email',
                   }
                 })}
-                onChange={(e) => {
+                onBlur={(e) => {
                   field.onChange(e);
                   trackClickEventHandler({
                     clickType: 'click',
@@ -182,18 +182,18 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
               control={control}
               defaultValue="+91"
               render={({ field }) => (
-                <Select {...field}>
-                  <Select.Option value="+91" onChange={(value: string) => {
-                    field.onChange(value);
-                    trackClickEventHandler({
-                      clickType: 'click',
-                      clickText: trackingEvents.formInputFilled,
-                      custom: {
-                        field_type: 'country_code',
-                        field_value: value,
-                      }
-                    })
-                  }}>
+                <Select {...field} onChange={(value: string) => {
+                  field.onChange(value);
+                  trackClickEventHandler({
+                    clickType: 'click',
+                    clickText: trackingEvents.formInputFilled,
+                    custom: {
+                      field_type: 'country_code',
+                      field_value: value,
+                    }
+                  })
+                }}>
+                  <Select.Option value="+91">
                     <span role="img" aria-label="India">🇮🇳</span> +91
                   </Select.Option>
                   <Select.Option value="+977">
@@ -223,7 +223,7 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
                       field_type: 'phone_number',
                     }
                   })}
-                  onChange={(e) => {
+                  onBlur={(e) => {
                     field.onChange(e);
                     trackClickEventHandler({
                       clickType: 'click',

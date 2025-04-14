@@ -273,7 +273,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                           }
                         })
                       }}
-                      onChange={(e) => {
+                      onBlur={(e) => {
                         // Only allow numbers for phone fields
                         if (field.label.toLowerCase().includes('phone')) {
                           const value = e.target.value.replace(/[^0-9]/g, '');
