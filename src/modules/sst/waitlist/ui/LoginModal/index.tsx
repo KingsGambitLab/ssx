@@ -80,7 +80,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 
   // Update step when initialStep changes
   useEffect(() => {
-    handleStepChange(initialStep);
+    setStep(initialStep);
   }, [initialStep]);
 
   const onLoginSubmit = (data: LoginFormData) => {
