@@ -1,6 +1,6 @@
 .modalContainer {
   :global(.ant-modal-content) {
-    padding: 0;
+    padding: 0 !important;
     border-radius: 1.2rem;
     overflow: hidden;
   }

@@ -8,6 +8,7 @@ import { LoginFormData, OTPFormData, LoginStep } from '../../types';
 import Banner from '@modules/sst/waitlist/components/Banner';
 import { ProgressBar } from '@modules/sst/waitlist/components/ProgressBar';
 import { WaitlistForm } from '@modules/sst/waitlist/components/WaitlistForm';
+import { trackEvent, trackingEvents, trackingSources } from '@modules/sst/waitlist/utils/tracking';
 import useUser from '@/hooks/useUser';
 
 interface LoginModalProps {
@@ -79,6 +80,11 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 
   const handleWrongNumber = () => {
     setStep('LOGIN');
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.wrongNumber,
+      clickSource: trackingSources.waitlistModal,
+    })
   };
 
   // Close modal if user is already logged in
@@ -87,6 +93,17 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       onClose();
     }
   }, [userData?.isloggedIn, step]);
+
+  useEffect(() => {
+    trackEvent.view({
+      clickType: 'section_view',
+      clickText: trackingEvents.waitlistFormView,
+      clickSource: trackingSources.waitlistModal,
+      custom: {
+        form_type: step,
+      }
+    })
+  }, [step]);
 
   return (
     <Modal 
