@@ -53,6 +53,8 @@ export default function SstNavbar() {
 
   const isOpen = handleModalOpen();
 
+  console.log("isOpen", isOpen);
+
   console.log("showWaitlistModal", showWaitlistModal);
   console.log("isLoginModalOpen", isLoginModalOpen);
 
