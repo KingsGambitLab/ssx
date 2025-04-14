@@ -68,4 +68,8 @@ $source-sans-pro: 'Source Sans Pro';
   top: -3.2rem;
   width: 100%;
   z-index: 4;
+
+  & > button {
+    @include flex-row-c;
+  }
 }

@@ -26,7 +26,7 @@ export default function SstBottomNavbar() {
     trackEvent.click({
       clickType: pageTrackingEvents.navButtonClicked,
       clickText,
-      clickSource: pageTrackingSources.navbar,
+      clickSource: pageTrackingSources.bottomNavbar,
     });
   };
 

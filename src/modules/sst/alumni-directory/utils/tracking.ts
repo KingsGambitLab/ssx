@@ -12,6 +12,7 @@ export const pageTrackingSources = {
   navbar: "navbar",
   userMenuSection: "user_menu_section",
   announcementStrip: "announcement_strip",
+  bottomNavbar: "bottom_navbar",
 }
 
 export const pageTrackingEvents = {

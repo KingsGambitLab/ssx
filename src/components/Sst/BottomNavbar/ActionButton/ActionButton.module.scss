@@ -6,13 +6,13 @@ $white-color: #ffffff;
 .applyBtn {
   @include flex-row-c;
 
-  margin: auto;
-  border-radius: 100%;
+  margin: auto ;
+  border-radius: 100% !important;
   width: 6.4rem;
-  height: 6.4rem;
-  text-align: center;
-  font-size: 1.4rem;
-  font-family: $source-sans-pro;
+  height: 6.4rem !important;
+  text-align: center !important;
+  font-size: 1.4rem !important;
+  font-family: $source-sans-pro !important;
   background: #e22d4c !important;
   color: $white-color;
 
@@ -21,7 +21,7 @@ $white-color: #ffffff;
   }
 
   & > span {
-    text-wrap: auto;
+    text-wrap: auto !important;
   }
 }
 
@@ -30,16 +30,19 @@ $white-color: #ffffff;
 
   margin: auto;
   width: 8rem !important;
-  height: 6rem;
-  border-radius: 1.5rem;
-  font-size: 1.2rem;
-  text-align: center;
-  font-family: $source-sans-pro;
-  background: #005ab3 !important;
+  height: 6rem !important;
+  border-radius: 1.5rem !important;
+  font-size: 1.2rem !important;
+  text-align: center !important;
+  font-family: $source-sans-pro !important;
+  background: $resume-application-btn-bg !important;
   color: $white-color;
-  text-wrap: auto;
 
   &:hover {
     cursor: pointer;
+  }
+
+  & > span {
+    text-wrap: auto !important;
   }
 }
