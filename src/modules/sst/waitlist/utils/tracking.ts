@@ -23,6 +23,7 @@ export const trackingEvents = {
   waitlistCategoryChange: 'waitlist-category-change',
   turnstileModalClose: 'turnstile-modal-close',
   turnstileModalSubmit: 'turnstile-modal-submit',
+  waitlistFormSubmit: 'waitlist-form-submit',
 }
 
 export const trackEvent = {

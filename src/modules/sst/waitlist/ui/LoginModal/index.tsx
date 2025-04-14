@@ -113,9 +113,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     })
   };
 
-  console.log("out step", step);
-  console.log("INITIAL STEP", initialStep);
-
   // Close modal if user is already logged in
   useEffect(() => {
     if (userData?.isloggedIn && step === 'LOGIN') {
