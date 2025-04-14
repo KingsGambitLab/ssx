@@ -220,15 +220,6 @@ export const OTPStep: React.FC<OTPStepProps> = ({
                 onChange={(e) => {
                   const value = e.target.value.replace(/[^0-9]/g, '');
                   field.onChange(value);
-                  trackClickEventHandler({
-                    clickType: 'click',
-                    clickText: trackingEvents.formInputFilled,
-                    clickSource: trackingSources.waitlistModal,
-                    custom: {
-                      field_type: 'otp',
-                      field_value: value,
-                    }
-                  })
                 }}
               />
             )}
