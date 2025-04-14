@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import classNames from "classnames";
 
 import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
 
-import { Button } from "antd";
 import { BOTTOM_NAVBAR_LINKS } from "./data";
 import {
   pageTrackingEvents,
