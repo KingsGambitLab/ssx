@@ -52,15 +52,41 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     mode: 'onChange'
   });
 
+  const getFormType = () => {
+    let formType = '';
+    const currentStep = initialStep !== "LOGIN" ?
+      initialStep : step;
+    
+    if(currentStep === 'LOGIN') {
+      formType = trackingSources.waitlistLoginMobileForm;
+    } else if(currentStep === 'OTP') {
+      formType = trackingSources.waitlistLoginOTPForm;
+    } else {
+      formType = trackingSources.waitlistForm;
+    }
+    return formType;
+  }
+
+  const handleStepChange = (currentStep: LoginStep) => {
+    if(isOpen) {
+      trackEvent.view({
+        clickType: 'section_view',
+        clickText: trackingEvents.waitlistFormView,
+        clickSource: getFormType()
+      })
+    }
+    setStep(currentStep);
+  }
+
   // Update step when initialStep changes
   useEffect(() => {
-    setStep(initialStep);
+    handleStepChange(initialStep);
   }, [initialStep]);
 
   const onLoginSubmit = (data: LoginFormData) => {
     setPhoneNumber(`${data.country_code}-${data.phone_number}`);
     setEmail(data.email);
-    setStep('OTP');
+    handleStepChange('OTP');
     // API call here
   };
 
@@ -79,7 +105,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   const handleWrongNumber = () => {
-    setStep('LOGIN');
+    handleStepChange('LOGIN');
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.wrongPhoneNumber,
@@ -88,37 +114,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   console.log("out step", step);
-
-  const getFormType = () => {
-    let formType = '';
-    const currentStep = initialStep !== "LOGIN" ?
-      initialStep : step;
-    
-    if(currentStep === 'LOGIN') {
-      formType = trackingSources.waitlistLoginMobileForm;
-    } else if(currentStep === 'OTP') {
-      formType = trackingSources.waitlistLoginOTPForm;
-    } else {
-      formType = trackingSources.waitlistForm;
-    }
-    return formType;
-  }
+  console.log("INITIAL STEP", initialStep);
 
   // Close modal if user is already logged in
   useEffect(() => {
     if (userData?.isloggedIn && step === 'LOGIN') {
       onClose();
-      return;
     }
-
-    if(isOpen) {
-      trackEvent.view({
-        clickType: 'section_view',
-        clickText: trackingEvents.waitlistFormView,
-        clickSource: getFormType()
-      })
-    }
-  }, [userData?.isloggedIn, step, isOpen]);
+  }, [userData?.isloggedIn, step]);
 
   const handleClose = () => {
     trackEvent.click({
