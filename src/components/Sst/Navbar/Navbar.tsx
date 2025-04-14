@@ -1,15 +1,20 @@
-"use client"
+'use client';
+
+import { useMemo, useState } from "react";
 
 import { Navbar } from "@components/common";
 import AuthActions from "@components/Sst/Navbar/ActionButtons";
 
-import { loggedOutNavItems, loggedInNavItems } from "./data";
+import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
 
 import SSTLogo from "@public/images/sst/webp/logo.webp";
-import { useState } from "react";
 
-import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
 import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
+import { trackEvent } from "@modules/sst/waitlist/utils/tracking";
+import { trackingEvents, trackingSources } from "@modules/sst/waitlist/utils/tracking";
+
+import { loggedOutNavItems, loggedInNavItems } from "./data";
+
 
 export default function SstNavbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -32,6 +37,20 @@ export default function SstNavbar() {
     setShowWaitlistModal(false);
   };
 
+  const handleModalOpen = useMemo(() => {
+   const shouldOpen = isLoginModalOpen || showWaitlistModal;
+
+    if (shouldOpen) {
+      trackEvent.view({
+        clickType: 'section_view',
+        clickText: trackingEvents.waitlistFormView,
+        clickSource: showWaitlistModal ? trackingSources.waitlistForm : trackingSources.waitlistLoginMobileForm
+      }) 
+    }
+
+    return shouldOpen;
+  }, [isLoginModalOpen, showWaitlistModal]);
+
   return (
     <div>
       <Navbar   
@@ -49,7 +68,7 @@ export default function SstNavbar() {
         }
       />
       <LoginModal
-        isOpen={isLoginModalOpen || showWaitlistModal}
+        isOpen={handleModalOpen}
         onClose={handleModalClose}
         onLoginSuccess={() => setIsLoginModalOpen(false)}
         initialStep={showWaitlistModal ? "WAITLIST" : "LOGIN"}

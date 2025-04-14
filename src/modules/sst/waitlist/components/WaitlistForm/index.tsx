@@ -92,6 +92,18 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     }), [formFields]
   );
 
+  const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
+    trackEvent.formSubmitStatus({
+      clickType: 'form_submit',
+      clickText: trackingEvents.waitlistFormSubmit,
+      clickSource: trackingSources.waitlistForm,
+      custom: {
+        form_status: formStatus,
+        form_error: formError || '',
+      }
+    })
+  }
+
   // Create a memoized submit handler
   const onSubmit = useCallback(async (data: WaitlistFormData) => {
     setIsLoading(true);
@@ -101,17 +113,24 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       await submitWaitlistForm(data);
       await queryClient.invalidateQueries({ queryKey: ['fetch_user_data'] });
       setShowWaitlistModal(false);
+      trackFormSubmitStatus({ formStatus: 'success' })
       onSubmitSuccess();
       window.open('/school-of-technology/application', '_blank')?.focus();
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || 'Something went wrong. Please try again.';
       setFormError(errorMessage);
+      trackFormSubmitStatus({ formStatus: 'error', formError: errorMessage })
     } finally {
       setIsLoading(false);
     }
   }, [submitWaitlistForm, queryClient, setShowWaitlistModal, onSubmitSuccess]);
 
   const handleButtonClick = () => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.waitlistFormSubmit,
+      clickSource: trackingSources.waitlistForm,
+    })
     form.submit(); // This will trigger the onFinish handler
   };
 

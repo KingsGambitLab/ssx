@@ -65,8 +65,8 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
         throw { response: { status: response.status, data: response.flashError } };
       }
       
+      trackFormSubmitStatus({ formStatus: 'success' })
       onSubmit(data);
-      trackFormSubmitStatus({ formStatus: 'success'})
     } catch (error: any) {
       let errorMessage = 'Something went wrong. Please try again.';
       
