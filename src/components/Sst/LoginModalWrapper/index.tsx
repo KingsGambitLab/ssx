@@ -1,16 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
-
-import {
-  trackEvent,
-  trackingEvents,
-  trackingSources,
-} from "@modules/sst/waitlist/utils/tracking";
 import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
 import { useLoginModalContext } from "@context/LoginModalContext";
 
-export function LoginModalWrapper({}) {
+export function LoginModalWrapper() {
   const {
     isModalOpen,
     setIsLoginModalOpen,

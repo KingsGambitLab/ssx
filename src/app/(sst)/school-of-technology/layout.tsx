@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from "react";
+import { Suspense } from "react";
 import type { Metadata } from "next";
 
 import { AnnouncementStrip, Header } from "@components/common";
