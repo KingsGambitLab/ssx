@@ -92,14 +92,17 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     }), [formFields]
   );
 
-  const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
+  const trackFormSubmitStatus = ({ formStatus, formError }: { formStatus: string, formError?: any }) => {
+    const categoryValue = watch(categoryField?.id || '');
+
     trackEvent.formSubmitStatus({
       clickType: 'form_submit',
       clickText: trackingEvents.waitlistFormSubmit,
       clickSource: trackingSources.waitlistForm,
-      custom: {
-        form_status: formStatus,
-        form_error: formError || '',
+      attributes: {
+        status: formStatus,
+        message: formError || '',
+        form_id: `sst_waitlist_form_${categoryValue}_IN`,
       }
     })
   }

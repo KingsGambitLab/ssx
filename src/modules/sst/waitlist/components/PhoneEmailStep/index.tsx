@@ -41,9 +41,10 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
       clickType: 'form_submit',
       clickText: trackingEvents.waitlistLoginMobileFormSubmit,
       clickSource: trackingSources.waitlistLoginMobileForm,
-      custom: {
-        form_status: formStatus,
-        form_error: formError || '',
+      attributes: {
+        status: formStatus,
+        message: formError || '',
+        form_id: trackingSources.waitlistLoginMobileForm,
       }
     })
   }
