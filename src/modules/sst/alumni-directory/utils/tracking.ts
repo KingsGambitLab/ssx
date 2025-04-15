@@ -51,9 +51,10 @@ export const trackEvent = {
       custom: custom,
     });
   },
-  sectionView: ({ sectionName }: { sectionName: string }) => {
+  sectionView: ({ sectionName, custom }: { sectionName: string, custom?: object }) => {
     tracker.sectionView({
       section_name: sectionName,
+      custom: custom,
     });
   }
 }
