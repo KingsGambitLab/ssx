@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Form as AntForm, Radio, Input, Select, Button, Image, Flex } from 'antd';
+import { toLower } from 'lodash';
 import styles from './index.module.scss';
 import { WaitlistFormData } from '../../types';
 import { useWaitlistApi } from '../../api';
@@ -148,7 +149,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickText: trackingEvents.waitlistFormSubmit,
       clickSource: trackingSources.waitlistForm,
       custom: {
-        form_id: `sst_waitlist_form_${categoryValue}_IN`,
+        form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
       }
     })
     form.submit(); // This will trigger the onFinish handler

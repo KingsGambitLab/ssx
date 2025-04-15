@@ -37,7 +37,7 @@ export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsPr
 
   const trackEventHandler = ({ clickType, method = 'click' }: {
     clickType: string;
-    method?: 'click' | 'view';
+    method?: 'click';
   }) => {
     trackEvent[method]({
       clickType,
@@ -122,7 +122,7 @@ export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsPr
   }, [advancedFilters, selectedFilters, updateSelectedFilters]);
 
   useEffect(() => {
-    trackEventHandler({ clickType: pageTrackingEvents.openAdvancedFilters, method: 'view' })
+    trackEventHandler({ clickType: pageTrackingEvents.openAdvancedFilters })
     setSelectedFilters({ ...filters?.advanced });
   }, [filters?.advanced]);
 
