@@ -11,7 +11,7 @@ import SSTLogo from "@public/images/sst/webp/logo.webp";
 
 import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
 import { trackEvent } from "@modules/sst/waitlist/utils/tracking";
-import { trackingEvents, trackingSources } from "@modules/sst/waitlist/utils/tracking";
+import { trackingSources } from "@modules/sst/waitlist/utils/tracking";
 
 import { loggedOutNavItems, loggedInNavItems } from "./data";
 
