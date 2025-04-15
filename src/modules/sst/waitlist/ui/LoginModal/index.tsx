@@ -54,12 +54,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 
   const getFormType = () => {
     let formType = '';
-    const currentStep = initialStep !== "LOGIN" ?
-      initialStep : step;
     
-    if(currentStep === 'LOGIN') {
+    if(step === 'LOGIN') {
       formType = trackingSources.waitlistLoginMobileForm;
-    } else if(currentStep === 'OTP') {
+    } else if(step === 'OTP') {
       formType = trackingSources.waitlistLoginOTPForm;
     } else {
       formType = trackingSources.waitlistForm;
