@@ -34,7 +34,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   );
 
   // Initialize form with default value only after categoryField is available
-  const { control, handleSubmit, setValue, formState: { errors } } = useForm<WaitlistFormData>({
+  const { control, watch, handleSubmit, setValue, formState: { errors } } = useForm<WaitlistFormData>({
     defaultValues: useMemo(() => ({
       [categoryField?.id || '']: categoryField ? 'Student' : undefined
     }), [categoryField]),
@@ -126,10 +126,15 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   }, [submitWaitlistForm, queryClient, setShowWaitlistModal, onSubmitSuccess]);
 
   const handleButtonClick = () => {
+    const categoryValue = watch(categoryField?.id || '');
+    
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.waitlistFormSubmit,
       clickSource: trackingSources.waitlistForm,
+      custom: {
+        form_id: `sst_waitlist_form_${categoryValue}_IN`,
+      }
     })
     form.submit(); // This will trigger the onFinish handler
   };
