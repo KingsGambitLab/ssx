@@ -60,9 +60,10 @@ export const OTPStep: React.FC<OTPStepProps> = ({
       clickType: 'form_submit',
       clickText: trackingEvents.otpFormSubmit,
       clickSource: trackingSources.waitlistLoginOTPForm,
-      custom: {
-        form_status: formStatus,
-        form_error: formError || '',
+      attributes: {
+        status: formStatus,
+        message: formError? formError : 'success',
+        form_id: trackingSources.waitlistLoginOTPForm,
       }
     })
   }
