@@ -1,0 +1,56 @@
+$border-color: var(--neutral-scale-1);
+$border-top-color: var(--secondary-color-60);
+$background: transparent;
+$diameter: 10rem;
+$diameter-small: 5rem;
+$logo-height: 4rem;
+$logo-height-small: 2rem;
+$spinner-border-top-color: #3498db;
+$spinner-border-color: #f3f3f3;
+
+.container {
+  position: relative;
+
+  &.small {
+    .spinner {
+      width: $diameter-small;
+      height: $diameter-small;
+    }
+
+    .logo {
+      height: $logo-height-small;
+    }
+  }
+}
+
+.spinner {
+  border: 0.2rem solid $spinner-border-color;
+  border-radius: 50%;
+  border-top: 0.2rem solid $spinner-border-top-color;
+  background-color: $background;
+  width: $diameter;
+  height: $diameter;
+  animation: spin 2s linear infinite;
+
+  @include mobile {
+    width: $diameter-small;
+    height: $diameter-small;
+  }
+}
+
+.logo {
+  position: absolute;
+  height: $logo-height;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @include mobile {
+    height: $logo-height-small;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -14,14 +14,27 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.2",
     "@aws-sdk/client-s3": "^3.779.0",
+    "@reduxjs/toolkit": "^2.6.1",
+    "@tanstack/react-query": "^5.71.5",
+    "antd": "^5.20.0",
+    "axios": "^1.8.4",
+    "cookies-next": "^5.1.0",
     "dotenv": "^16.4.7",
     "eslint-plugin-react-refresh": "^0.4.19",
-    "husky": "^9.1.7",
+    "lodash": "^4.17.21",
     "next": "15.2.3",
+    "next-http-proxy-middleware": "^1.2.7",
     "node-mime-types": "^1.1.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.55.0",
+    "react-toastify": "^11.0.5",
+    "react-turnstile": "^1.1.4",
+    "sass": "^1.86.0",
+    "sharp": "^0.32.6",
+    "swr": "^2.3.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
@@ -29,7 +42,7 @@
     "@commitlint/cz-commitlint": "^19.8.0",
     "@eslint/eslintrc": "^3.3.1",
     "@next/bundle-analyzer": "^15.2.3",
-    "@tailwindcss/postcss": "^4",
+    "@types/lodash": "^4.17.16",
     "@types/node": "^22.13.13",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -37,7 +50,8 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.23.0",
     "eslint-config-next": "15.2.3",
-    "tailwindcss": "^4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "typescript": "^5"
   },
   "config": {
@@ -46,6 +60,8 @@
     }
   },
   "release": {
-    "branches": ["main"]
+    "branches": [
+      "main"
+    ]
   }
 }

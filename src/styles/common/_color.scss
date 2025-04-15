@@ -1,0 +1,81 @@
+// Base Colors
+// - Each color can have atmost three variants. Ex. If adding red color then it
+// can have only the 3 following variants:
+// $light-red-color, $red-color, $dark-red-color;
+
+$white-color: #ffffff;
+
+$light-black-color: #515151;
+$black-color: #000000;
+
+$light-grey-color: #f0f0f0;
+$grey-color: #d6d6d6;
+$dark-grey-color: #828282;
+
+$light-blue-color: #f9fcff;
+$blue-color: #1a84ff;
+$dark-blue-color: #006eee;
+
+$light-orange-color: #ffe9ce;
+$orange-color: #f0ad4e;
+$dark-orange-color: #b0741f;
+
+$light-red-color: #ffd7d7;
+$red-color: #ff001f;
+
+$light-green-color: #def4dc;
+$green-color: #4bca5e;
+
+$light-yellow-color: #f9f2bd;
+$yellow-color: #ffae42;
+$dark-yellow-color: #7e6b0e;
+
+$light-purple-color: #ecefff;
+
+$pink-color: #e23f5b;
+
+
+
+// Derived Colors (Should be derived from base colors)
+
+// Common States
+$primary-color: $blue-color;
+$primary-color-hover: lighten($primary-color, 5);
+$primary-color-active: darken($primary-color, 5);
+
+$primary-color-dark: $dark-blue-color;
+
+$secondary-color: $pink-color;
+$secondary-color-hover: lighten($secondary-color, 5);
+$secondary-color-active: darken($secondary-color, 5);
+
+$success-color: $green-color;
+$success-color-hover: lighten($success-color, 5);
+$success-color-active: darken($success-color, 5);
+$success-bg-color: $light-green-color;
+
+$danger-color: $red-color;
+$danger-color-hover: darken($danger-color, 10);
+$danger-color-active: darken($danger-color, 15);
+$danger-bg-color: $light-red-color;
+
+$warning-color: $yellow-color;
+$warning-color-hover: lighten($warning-color, 5);
+$warning-color-active: darken($warning-color, 5);
+
+// Other states
+$info-color: $primary-color-dark;
+$attention-color: $red-color;
+
+// btn
+$btn-danger-bg-color: #e23f5b;
+
+$link-color: lighten($primary-color, 5);
+
+$border-color: $grey-color;
+
+$body-background-color: $white-color;
+$body-alt-background-color: $light-blue-color;
+$body-background-blue-color: #f5f5fc;
+
+$card-background-color: $white-color;

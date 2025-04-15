@@ -1,0 +1,15 @@
+@mixin font-nunito {
+  font-family: var(--font-nunito), var(--font-roboto), Arial, sans-serif;
+}
+
+@mixin font-montserrat {
+  font-family: var(--font-montserrat), var(--font-roboto), Arial, sans-serif;
+}
+
+@mixin font-poppins {
+  font-family: var(--font-poppins), var(--font-roboto), Arial, sans-serif;
+}
+
+@mixin font-plus-jakarta-sans {
+  font-family: var(--font-plus-jakarta-sans), var(--font-roboto), Arial, sans-serif;
+}

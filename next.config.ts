@@ -1,10 +1,17 @@
 import type { NextConfig } from "next";
-
-const isProd = process.env.NODE_ENV === "production";
-const ASSET_PREFIX = isProd ? process.env.NEXT_PUBLIC_CDN_HOST : "";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  assetPrefix: ASSET_PREFIX,
+  trailingSlash: true,
+  basePath: "",
+  images: {
+    unoptimized: true,
+  },
+  assetPrefix: "/ssx-next-js-assets",
+  sassOptions: {
+    includePaths: [path.resolve(__dirname, "src/styles")],
+    prependData: `@import "@/styles/base.scss";`,
+  },
 };
 
 export default nextConfig;

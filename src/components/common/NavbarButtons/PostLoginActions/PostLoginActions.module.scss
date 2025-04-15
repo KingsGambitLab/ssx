@@ -1,0 +1,49 @@
+$nav-item-post-login-button-color: #0245b9;
+$nav-item-post-login-popover-item-color: #1a2c47;
+
+.actionButtons {
+  @include flex-row;
+
+  gap: 2rem;
+
+  @include tablet {
+    @include flex-col;
+
+    width: 100%;
+  }
+}
+
+.button {
+  background-color: $nav-item-post-login-button-color !important;
+}
+
+.popoverContent {
+  @include flex-col;
+
+  gap: 2rem;
+  padding: 1.8rem 2rem;
+}
+
+.popoverItem {
+  :global(.ant-popover-inner) {
+    padding: 0 !important;
+  }
+
+  color: $nav-item-post-login-popover-item-color !important;
+  font-size: $h5-size;
+  font-weight: $bold-font-weight;
+
+  :global(.ant-btn) {
+    padding: 0 !important;
+    text-align: left !important;
+  }
+}
+
+.userButton {
+  @include flex-row-y-c;
+  gap: 0.8rem;
+  
+  .icon {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,184 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .heading {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1.2rem;
+  }
+
+  .subHeading {
+    display: block;
+    font-size: 1.6rem;
+    color: #6B7280;
+    margin-bottom: 0.8rem;
+  }
+
+  .contactInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3.2rem;
+    font-size: 1.6rem;
+
+    @include mobile {
+      font-size: 1.4rem;
+    }
+  }
+
+  .divider {
+    margin: 0 0.5rem;
+  }
+
+  .wrongNumber {
+    color: #0066FF;
+    font-size: 1.6rem;
+
+    @include mobile {
+      font-size: 1.4rem;
+    }
+  }
+
+  .form {
+    flex: 1;
+    padding-bottom: 80px; // Space for submit button
+  }
+
+  .otpInput {
+    height: 4.8rem;
+    font-size: 1.6rem;
+    text-align: center;
+    letter-spacing: 0.4rem;
+  }
+
+  .timer {
+    display: block;
+    text-align: center;
+    color: #6B7280;
+    font-size: 1.4rem;
+    margin: 2.4rem 0;
+  }
+
+  .resendOptions {
+    margin: 1.6rem 0;
+
+    :global(.ant-btn) {
+      background: #1a8452;
+    }
+  }
+
+  .whatsappButton {
+    width: 100%;
+    height: 4.8rem;
+    background: #25D366;
+    border: none;
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+
+    &:hover {
+      background: #1FA855 !important;
+    }
+
+    @include mobile {
+      height: 4.4rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .otherOptions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6rem;
+    color: #0066FF;
+    font-size: 1.4rem;
+
+    span {
+      color: #D1D5DB;
+    }
+
+    @include mobile {
+      font-size: 1.2rem;
+      gap: 1.2rem;
+    }
+  }
+
+  .submitButton {
+    width: 100%;
+    height: 4.8rem;
+    font-size: 1.6rem;
+    background: #0066FF;
+    border: none;
+
+    &:disabled {
+      background: #C2D7FE;
+    }
+
+    &:hover:not(:disabled) {
+      background: #0052CC;
+    }
+  }
+
+  :global(.ant-form-item-label) {
+    label {
+      font-size: 1.4rem;
+      color: #374151;
+      height: auto;
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  :global(.ant-input) {
+    &::placeholder {
+      letter-spacing: normal;
+    }
+  }
+
+  :global(.ant-typography) {
+    @include mobile {
+      font-size: 1.2rem;
+    }
+  }
+
+  .submitSection {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+
+    :global(.ant-btn-primary) {
+      height: 4.8rem;
+      font-size: 1.6rem;
+      font-weight: 500;
+      border-radius: 0.8rem;
+      background: #0066FF;
+      margin-top: 0.8rem;
+      box-shadow: none;
+    
+      &:disabled {
+        background: #C2D7FE;
+        cursor: not-allowed;
+      }
+    
+      &:hover:not(:disabled) {
+        background: #0052CC;
+      }
+    }
+  }
+
+  .formError {
+    color: #ff4d4f;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}

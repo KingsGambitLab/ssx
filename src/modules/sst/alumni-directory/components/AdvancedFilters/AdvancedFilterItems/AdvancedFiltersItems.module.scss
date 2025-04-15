@@ -1,0 +1,118 @@
+$advanced-filters-heading-font-color: #171717;
+$advanced-filters-header-border-color: #e4e4e4;
+$advanced-filters-tab-border-color: #e4e4e4;
+$advanced-filters-tab-background-color: #f0f0f0;
+$advanced-filters-apply-button-color: #083CA0;
+$advanced-filters-apply-button-hover-color: rgb(80 121 200);
+
+.filtersContainer {
+  @include flex-col;
+
+  background: $white-color;
+  border-radius: $border-radius-default;
+  width: 48rem;
+
+  @include mobile {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.filtersHeader {
+  @include flex-row-y-c;
+
+  padding: 1.6rem;
+  justify-content: space-between;
+  align-self: stretch;
+  border-bottom: 0.1rem solid $advanced-filters-header-border-color;
+}
+
+.headingText {
+  color: $advanced-filters-heading-font-color;
+  font-size: $h3-size;
+  font-weight: $bold-font-weight;
+  line-height: 2.7rem;
+}
+
+.checkboxContainer  {
+  @include flex-row-y-c;
+
+  gap: 0.4rem;
+}
+
+.tabContent {
+  @include flex-col;
+
+  padding: 1.6rem;
+  gap: 1.2rem;
+  overflow: scroll;
+  max-height: 25rem;
+
+  @include mobile {
+    max-height: 80vh;
+    height: 80vh;
+  }
+}
+
+.filtersTab {
+  @include mobile {
+    height: 100%;
+  }
+
+  :global(.ant-tabs-tabpane) {
+    padding-left: 0 !important;
+  }
+
+  :global(.ant-tabs-tab) {
+    font-size: $h5-size;
+    height: 7.1rem;
+    padding: 3.2rem 1.8rem 3.2rem 1.6rem;
+    gap: 1rem;
+    align-self: stretch;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border-bottom: 0.1rem solid $advanced-filters-tab-border-color !important;
+    background: $advanced-filters-tab-background-color !important;
+  }
+
+  :global(.ant-tabs-tab-active) {
+    background: $white-color !important;
+  }
+
+  :global(.ant-tabs-tab-btn) {
+    font-size: $h5-size;
+    color: $black-color !important;
+  }
+}
+
+.actionButtons {
+  @include flex-row;
+
+  padding: 1.6rem;
+  align-items: flex-start;
+  gap: 1.6rem;
+  border-radius: 0 0 0.8rem 0.8rem;
+  background: $white-color;
+  z-index: 2;
+
+  @include mobile {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    box-sizing: border-box
+  }
+}
+
+.closeButton {
+  flex: 0;
+}
+
+.applyButton {
+  flex: 1;
+  background-color: $advanced-filters-apply-button-color !important;
+
+  &:hover {
+    background-color: $advanced-filters-apply-button-hover-color !important;
+  }
+}

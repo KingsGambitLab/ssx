@@ -1,0 +1,60 @@
+$quick-filter-heading-color: #3a3a3a;
+$quick-filters-border-color: #e4e4e4;
+
+.container {
+  @include flex-row-y-c;
+
+  gap: 1.4rem;
+
+  @include mobile {
+    @include flex-col;
+
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+.heading {
+  color: $quick-filter-heading-color;
+  font-size: $h4-size;
+  font-weight: $default-font-weight;
+  line-height: normal;
+
+  @include mobile {
+    font-size: $h6-size;
+    font-weight: $bold-font-weight;
+  }
+}
+
+.filters {
+  @include flex-row-y-c;
+
+  gap: 1.4rem;
+  flex-wrap: wrap;
+
+  @include mobile {
+    gap: 1rem;
+  }
+}
+
+.filterButton {
+  padding: 0.8rem 1.6rem !important;
+  border-radius: $border-radius-default !important;
+  border: 1px solid $quick-filters-border-color !important;
+  background: $white-color !important;
+  font-size: $h5-size !important;
+  font-weight: 500 !important;
+  color: $quick-filter-heading-color !important;
+
+  @include mobile {
+    font-size: $h6-size !important;
+  }
+}
+
+.selectedFilterButton {
+  background: $quick-filters-border-color !important;
+
+  @include mobile {
+    font-size: $h6-size !important;
+  }
+}
