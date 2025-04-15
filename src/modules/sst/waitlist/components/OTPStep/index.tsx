@@ -6,9 +6,12 @@ import { Controller, UseFormRegister, UseFormHandleSubmit, FieldErrors } from 'r
 import { OTPFormData } from '../../types';
 import styles from './index.module.scss';
 import { WhatsAppOutlined } from '@ant-design/icons';
-import { verifyOtp } from '@modules/sst/waitlist/api';
-import { TurnstileModal } from '@modules/common/components/TurnstileModal';
 import { retryOtp } from '@modules/common/apis';
+import { TurnstileModal } from '@modules/common/components/TurnstileModal';
+import { TrackingProps } from '@modules/sst/alumni-directory/types';
+import { verifyOtp } from '@modules/sst/waitlist/api';
+import { trackEvent, trackingEvents, trackingSources } from '@modules/sst/waitlist/utils/tracking';
+
 
 const { Text, Link } = Typography;
 
@@ -52,6 +55,18 @@ export const OTPStep: React.FC<OTPStepProps> = ({
     }
   }, [timeLeft]);
 
+  const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
+    trackEvent.formSubmitStatus({
+      clickType: 'form_submit',
+      clickText: trackingEvents.otpFormSubmit,
+      clickSource: trackingSources.waitlistLoginOTPForm,
+      custom: {
+        form_status: formStatus,
+        form_error: formError || '',
+      }
+    })
+  }
+
   const onSubmitForm = async (data: OTPFormData) => {
     setIsLoading(true);
     setFormError(null);
@@ -62,6 +77,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
         throw new Error('Verification failed');
       }
       onVerificationSuccess();
+      trackFormSubmitStatus({ formStatus: 'success' })
     } catch (error: any) {
       let errorMessage = 'Something went wrong. Please try again.';
       
@@ -87,6 +103,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
       
       setFormError(errorMessage);
       onVerificationError(errorMessage);
+      trackFormSubmitStatus({ formStatus: 'error', formError: errorMessage })
     } finally {
       setIsLoading(false);
     }
@@ -109,10 +126,43 @@ export const OTPStep: React.FC<OTPStepProps> = ({
     }
   };
 
+
   const initiateRetry = (channel: 'whatsapp' | 'sms' | 'voice') => {
     setSelectedChannel(channel);
     setShowTurnstile(true);
+    trackClickEventHandler({
+      clickType: 'click',
+      clickText: `Resend OTP via ${channel}`,
+      clickSource: trackingSources.waitlistLoginOTPForm,
+      custom: {
+        modal_status: 'open',
+      }
+    })
   };
+
+  const trackClickEventHandler = ({clickType, clickText, clickSource, custom}: TrackingProps) => {
+    trackEvent.click({
+      clickType,
+      clickText,
+      clickSource,
+      custom,
+    })
+  }
+
+  const onSubmitError = (error: any) => {
+    const formattedErrors: Record<string, string> = {};
+  
+    Object.entries(error).forEach(([field, value]: [string, any]) => {
+      if (value?.message) {
+        formattedErrors[field] = value.message;
+      }
+    });
+  
+    trackFormSubmitStatus({
+      formStatus: 'error',
+      formError: formattedErrors,
+    });
+  }; 
 
   return (
     <div className={styles.container}>
@@ -127,7 +177,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
         </Link>
       </div>
       
-      <form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmitForm, onSubmitError)} className={styles.form}>
         <Form.Item
           validateStatus={errors.otp ? 'error' : ''}
           help={errors.otp?.message}
@@ -148,6 +198,25 @@ export const OTPStep: React.FC<OTPStepProps> = ({
                 placeholder="Enter OTP"
                 maxLength={6}
                 className={styles.otpInput}
+                onClick={() => trackClickEventHandler({
+                  clickType: 'click',
+                  clickText: trackingEvents.formInputFocus,
+                  clickSource: trackingSources.waitlistLoginOTPForm,
+                  custom: {
+                    field_type: 'otp',
+                  }
+                })} 
+                onBlur={() => {
+                  trackClickEventHandler({
+                    clickType: 'click',
+                    clickText: trackingEvents.formInputFilled,
+                    clickSource: trackingSources.waitlistLoginOTPForm,
+                    custom: {
+                      field_type: 'otp',
+                      field_value: field.value,
+                    }
+                  })
+                }}
                 onChange={(e) => {
                   const value = e.target.value.replace(/[^0-9]/g, '');
                   field.onChange(value);

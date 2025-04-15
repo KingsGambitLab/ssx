@@ -197,6 +197,10 @@ export default class Tracker {
     this._trackEvent(EVENT_NAMES.VIEW, attributes);
   }
 
+  formSubmitStatus(attributes: object) {
+    this._trackEvent(EVENT_NAMES.FORM_SUBMIT_STATUS, attributes);
+  }
+
   logout(attributes = {}) {
     this._trackEvent(EVENT_NAMES.LOGOUT, attributes);
   }

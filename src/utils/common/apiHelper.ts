@@ -62,12 +62,10 @@ export async function parseResponse<T>(response: AxiosResponse, type?: string): 
   const contentType = response.headers['content-type'];
   let parsedData: string | object | null = null;
   try {
-    if (contentType === null) {
+    if (contentType === null || contentType === undefined) {
       return await Promise.resolve(null) as unknown as T;
-    } else if (contentType.startsWith('text/plain') || type === 'text') {
-      parsedData = await data.text();
-    } else if (contentType.startsWith('application/json')) {
-      parsedData = await data.json();
+    } else if (contentType.startsWith('text/plain') || type === 'text' || contentType.startsWith('application/json')) {
+      parsedData = await data;
     } else {
       parsedData = await data.text();
       // Turbolink error check

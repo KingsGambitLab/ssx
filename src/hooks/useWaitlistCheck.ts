@@ -108,7 +108,7 @@ export const useWaitlistCheck = () => {
     };
 
     checkWaitlist();
-  }, [userData?.isloggedIn]);
+  }, [userData?.isloggedIn, showWaitlistModal]);
 
   return { 
     showWaitlistModal, 

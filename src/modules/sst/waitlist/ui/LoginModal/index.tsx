@@ -8,6 +8,7 @@ import { LoginFormData, OTPFormData, LoginStep } from '../../types';
 import Banner from '@modules/sst/waitlist/components/Banner';
 import { ProgressBar } from '@modules/sst/waitlist/components/ProgressBar';
 import { WaitlistForm } from '@modules/sst/waitlist/components/WaitlistForm';
+import { trackEvent, trackingEvents, trackingSources } from '@modules/sst/waitlist/utils/tracking';
 import useUser from '@/hooks/useUser';
 
 interface LoginModalProps {
@@ -19,7 +20,7 @@ interface LoginModalProps {
 
 export const LoginModal: React.FC<LoginModalProps> = ({ 
   isOpen, 
-  onClose, 
+  onClose,
   onLoginSuccess,
   initialStep = 'LOGIN',
 }) => {
@@ -51,6 +52,30 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     mode: 'onChange'
   });
 
+  const getFormType = (currentStep: LoginStep) => {
+    let formType = '';
+    
+    if(currentStep === 'LOGIN') {
+      formType = trackingSources.waitlistLoginMobileForm;
+    } else if(currentStep === 'OTP') {
+      formType = trackingSources.waitlistLoginOTPForm;
+    } else {
+      formType = trackingSources.waitlistForm;
+    }
+    return formType;
+  }
+
+  const handleStepChange = (currentStep: LoginStep) => {
+    if(isOpen) {
+      trackEvent.view({
+        clickType: 'section_view',
+        clickText: trackingEvents.waitlistFormView,
+        clickSource: getFormType(currentStep)
+      })
+    }
+    setStep(currentStep);
+  }
+
   // Update step when initialStep changes
   useEffect(() => {
     setStep(initialStep);
@@ -59,7 +84,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   const onLoginSubmit = (data: LoginFormData) => {
     setPhoneNumber(`${data.country_code}-${data.phone_number}`);
     setEmail(data.email);
-    setStep('OTP');
+    handleStepChange('OTP');
     // API call here
   };
 
@@ -78,7 +103,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   const handleWrongNumber = () => {
-    setStep('LOGIN');
+    handleStepChange('LOGIN');
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.wrongPhoneNumber,
+      clickSource: trackingSources.waitlistLoginOTPForm,
+    })
   };
 
   // Close modal if user is already logged in
@@ -88,10 +118,19 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     }
   }, [userData?.isloggedIn, step]);
 
+  const handleClose = () => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.waitlistModalClose,
+      clickSource: getFormType(step),
+    })
+    onClose();
+  }
+
   return (
     <Modal 
       open={isOpen} 
-      onCancel={onClose}
+      onCancel={handleClose}
       footer={null}
       width={800}
       className={styles.modal}

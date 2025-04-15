@@ -18,3 +18,11 @@ export interface LoginFormData {
 export interface OTPFormData {
   otp: string;
 } 
+
+export type TrackingProps = {
+  clickType: string;
+  clickText?: string;
+  clickSource?: string;
+  custom?: object;
+};
+

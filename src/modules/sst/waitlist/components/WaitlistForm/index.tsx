@@ -7,8 +7,12 @@ import { WaitlistFormData } from '../../types';
 import { useWaitlistApi } from '../../api';
 import { useWaitlistCheck } from '@hooks/useWaitlistCheck';
 import { useQueryClient } from '@tanstack/react-query';
-import StudentIcon from '@public/images/sst/svg/student.svg';
+
 import ParentIcon from '@public/images/sst/svg/parentfamily.svg';
+import StudentIcon from '@public/images/sst/svg/student.svg';
+
+import { trackingEvents, trackingSources, trackEvent } from '../../utils/tracking';
+
 interface WaitlistFormProps {
   onSubmitSuccess: () => void;
 }
@@ -30,7 +34,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   );
 
   // Initialize form with default value only after categoryField is available
-  const { control, handleSubmit, setValue, formState: { errors } } = useForm<WaitlistFormData>({
+  const { control, watch, handleSubmit, setValue, formState: { errors } } = useForm<WaitlistFormData>({
     defaultValues: useMemo(() => ({
       [categoryField?.id || '']: categoryField ? 'Student' : undefined
     }), [categoryField]),
@@ -48,6 +52,16 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
+
+  const trackEventHandler = ({ clickType, clickText, clickSource, custom }: {
+    clickType: string;
+    clickText: string;
+    clickSource: string;
+    custom: any;
+  }) => {
+    trackEvent.click({ clickType, clickText, clickSource, custom });
+  }
+
   // Handle category change - make it immediate
   const onCategoryChange = useCallback((e: any) => {
     const value = e.target.value;
@@ -58,6 +72,15 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       setValue(categoryField.id, value);
       handleCategoryChange(newCategory);
     }
+
+    trackEventHandler({
+      clickType: 'button_click',
+      clickText: trackingEvents.waitlistCategoryChange,
+      clickSource: trackingSources.waitlistForm,
+      custom: {
+        category: newCategory,
+      }
+    })
   }, [categoryField, setValue, handleCategoryChange]);
 
   // Memoize remaining fields
@@ -69,6 +92,18 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     }), [formFields]
   );
 
+  const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
+    trackEvent.formSubmitStatus({
+      clickType: 'form_submit',
+      clickText: trackingEvents.waitlistFormSubmit,
+      clickSource: trackingSources.waitlistForm,
+      custom: {
+        form_status: formStatus,
+        form_error: formError || '',
+      }
+    })
+  }
+
   // Create a memoized submit handler
   const onSubmit = useCallback(async (data: WaitlistFormData) => {
     setIsLoading(true);
@@ -78,17 +113,29 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       await submitWaitlistForm(data);
       await queryClient.invalidateQueries({ queryKey: ['fetch_user_data'] });
       setShowWaitlistModal(false);
+      trackFormSubmitStatus({ formStatus: 'success' })
       onSubmitSuccess();
       window.open('/school-of-technology/application', '_blank')?.focus();
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || 'Something went wrong. Please try again.';
       setFormError(errorMessage);
+      trackFormSubmitStatus({ formStatus: 'error', formError: errorMessage })
     } finally {
       setIsLoading(false);
     }
   }, [submitWaitlistForm, queryClient, setShowWaitlistModal, onSubmitSuccess]);
 
   const handleButtonClick = () => {
+    const categoryValue = watch(categoryField?.id || '');
+    
+    trackEvent.click({
+      clickType: 'click',
+      clickText: trackingEvents.waitlistFormSubmit,
+      clickSource: trackingSources.waitlistForm,
+      custom: {
+        form_id: `sst_waitlist_form_${categoryValue}_IN`,
+      }
+    })
     form.submit(); // This will trigger the onFinish handler
   };
 
@@ -202,6 +249,18 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                         {...controllerField}
                         status={error ? 'error' : undefined}
                         placeholder={field.placeholder}
+                        onChange={(value) => {
+                          controllerField.onChange(value);
+                          trackEventHandler({
+                            clickType: 'form_input_change',
+                            clickText: trackingEvents.formInputFilled,
+                            clickSource: trackingSources.waitlistForm,
+                            custom: {
+                              field_type: field.label,
+                              field_value: value,
+                            }
+                          })
+                        }}
                         options={field.options?.map(opt => ({
                           label: opt.label,
                           value: opt.value
@@ -228,7 +287,17 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                       {...controllerField}
                       placeholder={field.placeholder}
                       status={error ? 'error' : undefined}
-                      onChange={(e) => {
+                      onClick={() => {
+                        trackEventHandler({
+                          clickType: 'input_click',
+                          clickText: trackingEvents.formInputFocus,
+                          clickSource: trackingSources.waitlistForm,
+                          custom: {
+                            field: field.label,
+                          }
+                        })
+                      }}
+                      onBlur={(e) => {
                         // Only allow numbers for phone fields
                         if (field.label.toLowerCase().includes('phone')) {
                           const value = e.target.value.replace(/[^0-9]/g, '');
@@ -236,6 +305,15 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                         } else {
                           controllerField.onChange(e);
                         }
+                        trackEventHandler({
+                          clickType: 'input_change',
+                          clickText: trackingEvents.formInputFilled,
+                          clickSource: trackingSources.waitlistForm,
+                          custom: {
+                            field_type: field.label,
+                            field_value: e.target.value,
+                          }
+                        })
                       }}
                     />
                   );
