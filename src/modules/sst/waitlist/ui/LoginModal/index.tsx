@@ -52,12 +52,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     mode: 'onChange'
   });
 
-  const getFormType = () => {
+  const getFormType = (currentStep: LoginStep) => {
     let formType = '';
     
-    if(step === 'LOGIN') {
+    if(currentStep === 'LOGIN') {
       formType = trackingSources.waitlistLoginMobileForm;
-    } else if(step === 'OTP') {
+    } else if(currentStep === 'OTP') {
       formType = trackingSources.waitlistLoginOTPForm;
     } else {
       formType = trackingSources.waitlistForm;
@@ -70,7 +70,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       trackEvent.view({
         clickType: 'section_view',
         clickText: trackingEvents.waitlistFormView,
-        clickSource: getFormType()
+        clickSource: getFormType(currentStep)
       })
     }
     setStep(currentStep);
@@ -122,7 +122,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.waitlistModalClose,
-      clickSource: getFormType(),
+      clickSource: getFormType(step),
     })
     onClose();
   }
