@@ -41,10 +41,8 @@ export default function SstNavbar() {
    const shouldOpen = isLoginModalOpen || showWaitlistModal;
 
     if (shouldOpen) {
-      trackEvent.view({
-        clickType: 'section_view',
-        clickText: trackingEvents.waitlistFormView,
-        clickSource: showWaitlistModal ? trackingSources.waitlistForm : trackingSources.waitlistLoginMobileForm
+      trackEvent.sectionView({
+        sectionName: showWaitlistModal ? trackingSources.waitlistForm : trackingSources.waitlistLoginMobileForm
       }) 
     }
 

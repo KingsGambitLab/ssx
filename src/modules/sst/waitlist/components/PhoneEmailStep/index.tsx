@@ -125,7 +125,7 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
   const onSubmitError = (error: any) => {
     trackFormSubmitStatus({
       formStatus: 'error',
-      formError: formattedErrors(error),
+      formError: error,
     });
   };
 

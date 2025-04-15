@@ -193,8 +193,8 @@ export default class Tracker {
     this._trackEvent(EVENT_NAMES.HOVER, attributes);
   }
 
-  view(attributes: object) {
-    this._trackEvent(EVENT_NAMES.VIEW, attributes);
+  sectionView(attributes: object) {
+    this._trackEvent(EVENT_NAMES.SECTION_VIEW, attributes);
   }
 
   formSubmitStatus(attributes: object) {
