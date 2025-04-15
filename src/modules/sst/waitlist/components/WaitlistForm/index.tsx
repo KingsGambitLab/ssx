@@ -1,155 +1,203 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { Form as AntForm, Radio, Input, Select, Button, Image, Flex } from 'antd';
-import styles from './index.module.scss';
-import { WaitlistFormData } from '../../types';
-import { useWaitlistApi } from '../../api';
-import { useWaitlistCheck } from '@hooks/useWaitlistCheck';
-import { useQueryClient } from '@tanstack/react-query';
+"use client";
 
-import ParentIcon from '@public/images/sst/svg/parentfamily.svg';
-import StudentIcon from '@public/images/sst/svg/student.svg';
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useForm, Controller } from "react-hook-form";
+import {
+  Form as AntForm,
+  Radio,
+  Input,
+  Select,
+  Button,
+  Image,
+  Flex,
+} from "antd";
+import styles from "./index.module.scss";
+import { WaitlistFormData } from "../../types";
+import { useWaitlistApi } from "../../api";
+import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
+import { useQueryClient } from "@tanstack/react-query";
 
-import { trackingEvents, trackingSources, trackEvent } from '../../utils/tracking';
+import ParentIcon from "@public/images/sst/svg/parentfamily.svg";
+import StudentIcon from "@public/images/sst/svg/student.svg";
+
+import {
+  trackingEvents,
+  trackingSources,
+  trackEvent,
+} from "../../utils/tracking";
 
 interface WaitlistFormProps {
   onSubmitSuccess: () => void;
 }
 
-export const WaitlistForm: React.FC<WaitlistFormProps> = ({ 
+export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   onSubmitSuccess,
 }) => {
-  const { handleCategoryChange, formFields, setShowWaitlistModal } = useWaitlistCheck();
+  const { handleCategoryChange, formFields, setShowWaitlistModal } =
+    useWaitlistCheck();
   const { submitWaitlistForm } = useWaitlistApi();
   const queryClient = useQueryClient();
   const [form] = AntForm.useForm();
 
   // Memoize category field first to get its ID
-  const categoryField = useMemo(() => 
-    formFields.find(field => 
-      field.type === 'radio' && 
-      field.label.toLowerCase().includes('you are a')
-    ), [formFields]
+  const categoryField = useMemo(
+    () =>
+      formFields.find(
+        (field) =>
+          field.type === "radio" &&
+          field.label.toLowerCase().includes("you are a")
+      ),
+    [formFields]
   );
 
   // Initialize form with default value only after categoryField is available
-  const { control, watch, handleSubmit, setValue, formState: { errors } } = useForm<WaitlistFormData>({
-    defaultValues: useMemo(() => ({
-      [categoryField?.id || '']: categoryField ? 'Student' : undefined
-    }), [categoryField]),
-    mode: 'onChange',
-    reValidateMode: 'onChange'
+  const {
+    control,
+    watch,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<WaitlistFormData>({
+    defaultValues: useMemo(
+      () => ({
+        [categoryField?.id || ""]: categoryField ? "Student" : undefined,
+      }),
+      [categoryField]
+    ),
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   // Add effect to set default value when categoryField becomes available
   useEffect(() => {
     if (categoryField) {
-      setValue(categoryField.id, 'Student');
+      setValue(categoryField.id, "Student");
     }
   }, [categoryField, setValue]);
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
-
-  const trackEventHandler = ({ clickType, clickText, clickSource, custom }: {
+  const trackEventHandler = ({
+    clickType,
+    clickText,
+    clickSource,
+    custom,
+  }: {
     clickType: string;
     clickText: string;
     clickSource: string;
     custom: any;
   }) => {
     trackEvent.click({ clickType, clickText, clickSource, custom });
-  }
+  };
 
   // Handle category change - make it immediate
-  const onCategoryChange = useCallback((e: any) => {
-    const value = e.target.value;
-    const newCategory = value;
-    
-    // Update form and category state synchronously
-    if (categoryField) {
-      setValue(categoryField.id, value);
-      handleCategoryChange(newCategory);
-    }
+  const onCategoryChange = useCallback(
+    (e: any) => {
+      const value = e.target.value;
+      const newCategory = value;
 
-    trackEventHandler({
-      clickType: 'button_click',
-      clickText: trackingEvents.waitlistCategoryChange,
-      clickSource: trackingSources.waitlistForm,
-      custom: {
-        category: newCategory,
+      // Update form and category state synchronously
+      if (categoryField) {
+        setValue(categoryField.id, value);
+        handleCategoryChange(newCategory);
       }
-    })
-  }, [categoryField, setValue, handleCategoryChange]);
 
-  // Memoize remaining fields
-  const remainingFields = useMemo(() => 
-    formFields.filter(field => {
-      const isCategoryField = field.type === 'radio' && 
-        field.label.toLowerCase().includes('you are a');
-      return !isCategoryField;
-    }), [formFields]
+      trackEventHandler({
+        clickType: "button_click",
+        clickText: trackingEvents.waitlistCategoryChange,
+        clickSource: trackingSources.waitlistForm,
+        custom: {
+          category: newCategory,
+        },
+      });
+    },
+    [categoryField, setValue, handleCategoryChange]
   );
 
-  const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
+  // Memoize remaining fields
+  const remainingFields = useMemo(
+    () =>
+      formFields.filter((field) => {
+        const isCategoryField =
+          field.type === "radio" &&
+          field.label.toLowerCase().includes("you are a");
+        return !isCategoryField;
+      }),
+    [formFields]
+  );
+
+  const trackFormSubmitStatus = ({
+    formStatus,
+    formError,
+  }: {
+    formStatus: string;
+    formError?: any;
+  }) => {
     trackEvent.formSubmitStatus({
-      clickType: 'form_submit',
+      clickType: "form_submit",
       clickText: trackingEvents.waitlistFormSubmit,
       clickSource: trackingSources.waitlistForm,
       custom: {
         form_status: formStatus,
-        form_error: formError || '',
-      }
-    })
-  }
+        form_error: formError || "",
+      },
+    });
+  };
 
   // Create a memoized submit handler
-  const onSubmit = useCallback(async (data: WaitlistFormData) => {
-    setIsLoading(true);
-    setFormError(null); // Clear previous errors
-    
-    try {
-      await submitWaitlistForm(data);
-      await queryClient.invalidateQueries({ queryKey: ['fetch_user_data'] });
-      setShowWaitlistModal(false);
-      trackFormSubmitStatus({ formStatus: 'success' })
-      onSubmitSuccess();
-      window.open('/school-of-technology/application', '_blank')?.focus();
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Something went wrong. Please try again.';
-      setFormError(errorMessage);
-      trackFormSubmitStatus({ formStatus: 'error', formError: errorMessage })
-    } finally {
-      setIsLoading(false);
-    }
-  }, [submitWaitlistForm, queryClient, setShowWaitlistModal, onSubmitSuccess]);
+  const onSubmit = useCallback(
+    async (data: WaitlistFormData) => {
+      setIsLoading(true);
+      setFormError(null); // Clear previous errors
+
+      try {
+        await submitWaitlistForm(data);
+        await queryClient.invalidateQueries({ queryKey: ["fetch_user_data"] });
+        setShowWaitlistModal(false);
+        trackFormSubmitStatus({ formStatus: "success" });
+        onSubmitSuccess();
+        window.open("/school-of-technology/application", "_blank")?.focus();
+      } catch (error: any) {
+        const errorMessage =
+          error.response?.data?.message ||
+          "Something went wrong. Please try again.";
+        setFormError(errorMessage);
+        trackFormSubmitStatus({ formStatus: "error", formError: errorMessage });
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [submitWaitlistForm, queryClient, setShowWaitlistModal, onSubmitSuccess]
+  );
 
   const handleButtonClick = () => {
-    const categoryValue = watch(categoryField?.id || '');
-    
+    const categoryValue = watch(categoryField?.id || "");
+
     trackEvent.click({
-      clickType: 'click',
+      clickType: "click",
       clickText: trackingEvents.waitlistFormSubmit,
       clickSource: trackingSources.waitlistForm,
       custom: {
         form_id: `sst_waitlist_form_${categoryValue}_IN`,
-      }
-    })
+      },
+    });
     form.submit(); // This will trigger the onFinish handler
   };
 
   return (
     <div className={styles.container}>
       <h3 className={styles.heading}>Enter your details</h3>
-      
+
       {/* Category selection outside scrollable area */}
       {categoryField && (
         <AntForm.Item
-          layout='vertical'
+          layout="vertical"
           label="You are a"
           required={categoryField.required}
-          validateStatus={errors[categoryField.id] ? 'error' : ''}
+          validateStatus={errors[categoryField.id] ? "error" : ""}
           help={errors[categoryField.id]?.message}
         >
           <Controller
@@ -158,7 +206,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
             rules={{ required: categoryField.required }}
             render={({ field }) => (
               <Flex align="center" justify="space-between">
-                <Radio.Group 
+                <Radio.Group
                   {...field}
                   value={field.value}
                   onChange={onCategoryChange}
@@ -169,22 +217,22 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                   {categoryField.options?.map((option) => (
                     <Radio key={option.value} value={option.value}>
                       <div className={styles.radioContent}>
-                        {option.value === 'Student' && (
-                          <Image 
+                        {option.value === "Student" && (
+                          <Image
                             preview={false}
                             width={24}
                             height={24}
-                            src={StudentIcon.src} 
-                            alt="Student Icon" 
+                            src={StudentIcon.src}
+                            alt="Student Icon"
                           />
                         )}
-                        {option.value === 'Parent / Family' && (
-                          <Image 
+                        {option.value === "Parent / Family" && (
+                          <Image
                             preview={false}
                             width={24}
                             height={24}
-                            src={ParentIcon.src} 
-                            alt="Parent / Family Icon" 
+                            src={ParentIcon.src}
+                            alt="Parent / Family Icon"
                           />
                         )}
                         {option.label}
@@ -197,12 +245,12 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
           />
         </AntForm.Item>
       )}
-      
+
       {/* Scrollable area for remaining fields */}
       <div className={styles.formContent}>
         <AntForm
           form={form}
-          layout="vertical" 
+          layout="vertical"
           onFinish={handleSubmit(onSubmit)}
         >
           {remainingFields.map((field) => (
@@ -210,69 +258,75 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
               key={field.id}
               label={field.label}
               required={field.required}
-              validateStatus={errors[field.id] ? 'error' : ''}
+              validateStatus={errors[field.id] ? "error" : ""}
               help={errors[field.id]?.message}
             >
               <Controller
                 name={field.id}
                 control={control}
-                rules={{ 
-                  required: field.required && (
-                    field.label.toLowerCase().includes('email') 
-                      ? 'Please enter your email address'
-                      : 'This field is required'
-                  ),
+                rules={{
+                  required:
+                    field.required &&
+                    (field.label.toLowerCase().includes("email")
+                      ? "Please enter your email address"
+                      : "This field is required"),
                   validate: {
                     fieldValidation: (value) => {
-                      if (field.type === 'select' && field.label.toLowerCase().includes('grad')) {
-                        return value ? true : 'Please select your graduation year';
+                      if (
+                        field.type === "select" &&
+                        field.label.toLowerCase().includes("grad")
+                      ) {
+                        return value
+                          ? true
+                          : "Please select your graduation year";
                       }
                       return true;
-                    }
+                    },
                   },
-                  pattern: field.label.toLowerCase().includes('email') 
+                  pattern: field.label.toLowerCase().includes("email")
                     ? {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'Please enter a valid email address'
+                        message: "Please enter a valid email address",
                       }
-                    : field.label.toLowerCase().includes('phone')
+                    : field.label.toLowerCase().includes("phone")
                     ? {
                         value: /^[6-9]\d{9}$/,
-                        message: 'Please enter a valid 10-digit phone number'
+                        message: "Please enter a valid 10-digit phone number",
                       }
-                    : undefined
+                    : undefined,
                 }}
                 render={({ field: controllerField, fieldState: { error } }) => {
-                  if (field.type === 'select') {
+                  if (field.type === "select") {
                     return (
                       <Select
                         {...controllerField}
-                        status={error ? 'error' : undefined}
+                        status={error ? "error" : undefined}
                         placeholder={field.placeholder}
                         onChange={(value) => {
                           controllerField.onChange(value);
                           trackEventHandler({
-                            clickType: 'form_input_change',
+                            clickType: "form_input_change",
                             clickText: trackingEvents.formInputFilled,
                             clickSource: trackingSources.waitlistForm,
                             custom: {
                               field_type: field.label,
                               field_value: value,
-                            }
-                          })
+                            },
+                          });
                         }}
-                        options={field.options?.map(opt => ({
+                        options={field.options?.map((opt) => ({
                           label: opt.label,
-                          value: opt.value
+                          value: opt.value,
                         }))}
                       />
                     );
                   }
-                  if (field.type === 'radio') {
+                  if (field.type === "radio") {
                     return (
-                      <Radio.Group {...controllerField}
-                      defaultValue="Student"
-                      buttonStyle="solid"
+                      <Radio.Group
+                        {...controllerField}
+                        defaultValue="Student"
+                        buttonStyle="solid"
                       >
                         {field.options?.map((option) => (
                           <Radio key={option.value} value={option.value}>
@@ -286,34 +340,34 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                     <Input
                       {...controllerField}
                       placeholder={field.placeholder}
-                      status={error ? 'error' : undefined}
+                      status={error ? "error" : undefined}
                       onClick={() => {
                         trackEventHandler({
-                          clickType: 'input_click',
+                          clickType: "input_click",
                           clickText: trackingEvents.formInputFocus,
                           clickSource: trackingSources.waitlistForm,
                           custom: {
                             field: field.label,
-                          }
-                        })
+                          },
+                        });
                       }}
                       onBlur={(e) => {
                         // Only allow numbers for phone fields
-                        if (field.label.toLowerCase().includes('phone')) {
-                          const value = e.target.value.replace(/[^0-9]/g, '');
+                        if (field.label.toLowerCase().includes("phone")) {
+                          const value = e.target.value.replace(/[^0-9]/g, "");
                           controllerField.onChange(value);
                         } else {
                           controllerField.onChange(e);
                         }
                         trackEventHandler({
-                          clickType: 'input_change',
+                          clickType: "input_change",
                           clickText: trackingEvents.formInputFilled,
                           clickSource: trackingSources.waitlistForm,
                           custom: {
                             field_type: field.label,
                             field_value: e.target.value,
-                          }
-                        })
+                          },
+                        });
                       }}
                     />
                   );
@@ -323,12 +377,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
           ))}
 
           <div className={styles.submitButtonWrapper}>
-            {formError && (
-              <div className={styles.formError}>
-                {formError}
-              </div>
-            )}
-            <Button 
+            {formError && <div className={styles.formError}>{formError}</div>}
+            <Button
               type="primary"
               onClick={handleButtonClick}
               loading={isLoading}

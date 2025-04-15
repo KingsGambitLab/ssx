@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Modal } from 'antd';
-import { useForm } from 'react-hook-form';
-import styles from './index.module.scss';
-import { PhoneEmailStep } from '@modules/sst/waitlist/components/PhoneEmailStep';
-import { OTPStep } from '@modules/sst/waitlist/components/OTPStep';
-import { LoginFormData, OTPFormData, LoginStep } from '../../types';
-import Banner from '@modules/sst/waitlist/components/Banner';
-import { ProgressBar } from '@modules/sst/waitlist/components/ProgressBar';
-import { WaitlistForm } from '@modules/sst/waitlist/components/WaitlistForm';
-import { trackEvent, trackingEvents, trackingSources } from '@modules/sst/waitlist/utils/tracking';
-import useUser from '@/hooks/useUser';
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { Modal } from "antd";
+import { useForm } from "react-hook-form";
+import styles from "./index.module.scss";
+import { PhoneEmailStep } from "@modules/sst/waitlist/components/PhoneEmailStep";
+import { OTPStep } from "@modules/sst/waitlist/components/OTPStep";
+import { LoginFormData, OTPFormData, LoginStep } from "../../types";
+import Banner from "@modules/sst/waitlist/components/Banner";
+import { ProgressBar } from "@modules/sst/waitlist/components/ProgressBar";
+import { WaitlistForm } from "@modules/sst/waitlist/components/WaitlistForm";
+import {
+  trackEvent,
+  trackingEvents,
+  trackingSources,
+} from "@modules/sst/waitlist/utils/tracking";
+import useUser from "@/hooks/useUser";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -18,63 +24,63 @@ interface LoginModalProps {
   initialStep?: LoginStep;
 }
 
-export const LoginModal: React.FC<LoginModalProps> = ({ 
-  isOpen, 
+export const LoginModal: React.FC<LoginModalProps> = ({
+  isOpen,
   onClose,
   onLoginSuccess,
-  initialStep = 'LOGIN',
+  initialStep = "LOGIN",
 }) => {
   const { data: userData } = useUser();
   const [step, setStep] = useState<LoginStep>(initialStep);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
-  
-  const { 
-    register: loginRegister, 
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+
+  const {
+    register: loginRegister,
     handleSubmit,
     formState: { errors: loginErrors },
     setError: setLoginError,
     clearErrors: clearLoginErrors,
-    control
+    control,
   } = useForm<LoginFormData>({
-    mode: 'onChange',
+    mode: "onChange",
     defaultValues: {
-      country_code: '+91',
+      country_code: "+91",
       whatsapp_consent: true,
-    }
+    },
   });
-  const { 
-    register: otpRegister, 
+  const {
+    register: otpRegister,
     handleSubmit: handleOTPSubmit,
     formState: { errors: otpErrors },
-    control: otpControl
+    control: otpControl,
   } = useForm<OTPFormData>({
-    mode: 'onChange'
+    mode: "onChange",
   });
 
   const getFormType = (currentStep: LoginStep) => {
-    let formType = '';
-    
-    if(currentStep === 'LOGIN') {
+    let formType = "";
+
+    if (currentStep === "LOGIN") {
       formType = trackingSources.waitlistLoginMobileForm;
-    } else if(currentStep === 'OTP') {
+    } else if (currentStep === "OTP") {
       formType = trackingSources.waitlistLoginOTPForm;
     } else {
       formType = trackingSources.waitlistForm;
     }
     return formType;
-  }
+  };
 
   const handleStepChange = (currentStep: LoginStep) => {
-    if(isOpen) {
+    if (isOpen) {
       trackEvent.view({
-        clickType: 'section_view',
+        clickType: "section_view",
         clickText: trackingEvents.waitlistFormView,
-        clickSource: getFormType(currentStep)
-      })
+        clickSource: getFormType(currentStep),
+      });
     }
     setStep(currentStep);
-  }
+  };
 
   // Update step when initialStep changes
   useEffect(() => {
@@ -84,7 +90,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   const onLoginSubmit = (data: LoginFormData) => {
     setPhoneNumber(`${data.country_code}-${data.phone_number}`);
     setEmail(data.email);
-    handleStepChange('OTP');
+    handleStepChange("OTP");
     // API call here
   };
 
@@ -94,7 +100,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   const handleVerificationError = (error: string) => {
-    console.error('Verification failed:', error);
+    console.error("Verification failed:", error);
   };
 
   const handleWaitlistSuccess = async () => {
@@ -103,33 +109,33 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   const handleWrongNumber = () => {
-    handleStepChange('LOGIN');
+    handleStepChange("LOGIN");
     trackEvent.click({
-      clickType: 'click',
+      clickType: "click",
       clickText: trackingEvents.wrongPhoneNumber,
       clickSource: trackingSources.waitlistLoginOTPForm,
-    })
+    });
   };
 
   // Close modal if user is already logged in
   useEffect(() => {
-    if (userData?.isloggedIn && step === 'LOGIN') {
+    if (userData?.isloggedIn && step === "LOGIN") {
       onClose();
     }
   }, [userData?.isloggedIn, step]);
 
   const handleClose = () => {
     trackEvent.click({
-      clickType: 'click',
+      clickType: "click",
       clickText: trackingEvents.waitlistModalClose,
       clickSource: getFormType(step),
-    })
+    });
     onClose();
-  }
+  };
 
   return (
-    <Modal 
-      open={isOpen} 
+    <Modal
+      open={isOpen}
       onCancel={handleClose}
       footer={null}
       width={800}
@@ -139,12 +145,13 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       <div className={styles.modalContent}>
         <Banner />
         <div className={styles.rightSection}>
-          <ProgressBar currentStep={
-            step === 'LOGIN' || step === 'OTP' ? 1 : 2
-          } totalSteps={2} />
-          
-          {step === 'LOGIN' ? (
-            <PhoneEmailStep 
+          <ProgressBar
+            currentStep={step === "LOGIN" || step === "OTP" ? 1 : 2}
+            totalSteps={2}
+          />
+
+          {step === "LOGIN" ? (
+            <PhoneEmailStep
               register={loginRegister}
               control={control}
               onSubmit={onLoginSubmit}
@@ -153,7 +160,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               clearErrors={clearLoginErrors}
               handleSubmit={handleSubmit}
             />
-          ) : step === 'OTP' ? (
+          ) : step === "OTP" ? (
             <OTPStep
               phoneNumber={phoneNumber}
               email={email}
@@ -166,14 +173,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               control={otpControl}
             />
           ) : (
-            <WaitlistForm
-              onSubmitSuccess={handleWaitlistSuccess}
-            />
+            <WaitlistForm onSubmitSuccess={handleWaitlistSuccess} />
           )}
         </div>
       </div>
     </Modal>
   );
-}; 
+};
 
 export default LoginModal;

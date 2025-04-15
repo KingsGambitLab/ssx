@@ -1,0 +1,34 @@
+"use client";
+
+import { useMemo } from "react";
+
+import {
+  trackEvent,
+  trackingEvents,
+  trackingSources,
+} from "@modules/sst/waitlist/utils/tracking";
+import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
+import { useLoginModalContext } from "@context/LoginModalContext";
+
+export function LoginModalWrapper({}) {
+  const {
+    isModalOpen,
+    setIsLoginModalOpen,
+    showWaitlistModal,
+    setShowWaitlistModal,
+  } = useLoginModalContext();
+
+  const handleModalClose = () => {
+    setIsLoginModalOpen(false);
+    setShowWaitlistModal(false);
+  };
+
+  return (
+    <LoginModal
+      isOpen={isModalOpen}
+      onClose={handleModalClose}
+      onLoginSuccess={handleModalClose}
+      initialStep={showWaitlistModal ? "WAITLIST" : "LOGIN"}
+    />
+  );
+}

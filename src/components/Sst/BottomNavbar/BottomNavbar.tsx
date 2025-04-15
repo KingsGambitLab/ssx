@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Image from "next/image";
+"use client";
 
-import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
+import React from "react";
+import Image from "next/image";
 
 import { BOTTOM_NAVBAR_LINKS } from "./data";
 import {
@@ -9,15 +9,15 @@ import {
   pageTrackingSources,
   trackEvent,
 } from "@modules/sst/alumni-directory/utils";
-
-import styles from "./BottomNavbar.module.scss";
-import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
 import { useUser } from "@hooks";
+import { useLoginModalContext } from "@context/LoginModalContext";
+
 import ActionButton from "./ActionButton/ActionButton";
 
+import styles from "./BottomNavbar.module.scss";
+
 export default function SstBottomNavbar() {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { showWaitlistModal, setShowWaitlistModal } = useWaitlistCheck();
+  const { setIsLoginModalOpen } = useLoginModalContext();
   const { data: userData } = useUser();
 
   const isLoggedIn = userData?.isloggedIn ?? false;
@@ -38,11 +38,6 @@ export default function SstBottomNavbar() {
   const onResumeApplicationHandler = () => {
     trackEventHandler(pageTrackingEvents.resumeApplicationButtonClicked);
     window.open("/school-of-technology/application/");
-  };
-
-  const handleModalClose = () => {
-    setShowWaitlistModal(false);
-    setIsLoginModalOpen(false);
   };
 
   return (
@@ -88,12 +83,6 @@ export default function SstBottomNavbar() {
           })}
         </div>
       </div>
-      <LoginModal
-        isOpen={isLoginModalOpen || showWaitlistModal}
-        onClose={handleModalClose}
-        onLoginSuccess={() => setIsLoginModalOpen(false)}
-        initialStep={showWaitlistModal ? "WAITLIST" : "LOGIN"}
-      />
     </>
   );
 }
