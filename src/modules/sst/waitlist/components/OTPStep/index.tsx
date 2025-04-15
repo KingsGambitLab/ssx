@@ -165,7 +165,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
   const onSubmitError = (error: any) => {
     trackFormSubmitStatus({
       formStatus: 'error',
-      formError: formattedErrors(error),
+      formError: error,
     });
   }; 
 
