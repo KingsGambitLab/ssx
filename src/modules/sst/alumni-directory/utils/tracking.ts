@@ -12,6 +12,7 @@ export const pageTrackingSources = {
   navbar: "navbar",
   userMenuSection: "user_menu_section",
   announcementStrip: "announcement_strip",
+  bottomNavbar: "bottom_navbar",
 }
 
 export const pageTrackingEvents = {
@@ -38,6 +39,7 @@ export const pageTrackingEvents = {
   userMenuOpened: "user_menu_opened",
   userMenuClosed: "user_menu_closed",
   announcementStripClicked: "announcement_strip_clicked",
+  resumeApplicationButtonClicked: "resume_application_clicked",
 }
 
 export const trackEvent = {
@@ -49,12 +51,9 @@ export const trackEvent = {
       custom: custom,
     });
   },
-  view: ({ clickType, clickText, clickSource, custom }: TrackingProps) => {
-    tracker.view({
-      click_type: clickType,
-      click_text: clickText,
-      click_source: clickSource,
-      custom: custom,
+  sectionView: ({ sectionName }: { sectionName: string }) => {
+    tracker.sectionView({
+      section_name: sectionName,
     });
   }
 }
