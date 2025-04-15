@@ -92,6 +92,18 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     }), [formFields]
   );
 
+  const formattedErrors = (error: any) => {
+    const formattedErrors: Record<string, string> = {};
+  
+    Object.entries(error).forEach(([field, value]: [string, any]) => {
+      if (value?.message) {
+        formattedErrors[field] = value.message;
+      }
+    });
+
+    return formattedErrors;
+  }
+
   const trackFormSubmitStatus = ({ formStatus, formError }: { formStatus: string, formError?: any }) => {
     const categoryValue = watch(categoryField?.id || '');
 
@@ -101,7 +113,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource: trackingSources.waitlistForm,
       attributes: {
         status: formStatus,
-        message: formError || '',
+        message: formError? formattedErrors(formError) : 'success',
         form_id: `sst_waitlist_form_${categoryValue}_IN`,
       }
     })
