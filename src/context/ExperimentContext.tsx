@@ -1,10 +1,7 @@
 "use client";
 
-import { createContext, useEffect, useState } from "react";
-import { setCookie } from "cookies-next";
-
-const COOKIE_EXPIRY_MINUTES = 30;
-const EXPERIMENTS_COOKIE = "experiments";
+import { createContext, useState } from "react";
+import ExperimentCookies from "@components/common/ExperimentCookies";
 
 interface ExperimentsContextType {
   experiments: Record<string, string>;
@@ -25,32 +22,11 @@ export default function ExperimentsProvider({
 }) {
   const [experiments, setExperiments] = useState(defaultExperiments);
 
-  useEffect(() => {
-    if (Object.keys(experiments).length > 0) {
-      setExperimentsCookie(experiments);
-    }
-  }, [experiments]);
-
   return (
     <ExperimentsContext.Provider value={{ experiments, setExperiments }}>
+      <ExperimentCookies />
       {children}
     </ExperimentsContext.Provider>
   );
 }
 
-function setExperimentsCookie(experiments: Record<string, string>) {
-  setCookie(EXPERIMENTS_COOKIE, createCookieString(experiments), {
-    maxAge: getCookieAge(),
-    path: "/",
-  });
-}
-
-function createCookieString(experiments: Record<string, string>) {
-  return Object.entries(experiments)
-    .map(([key, value]) => `${key}:${value}`)
-    .join(";");
-}
-
-function getCookieAge() {
-  return COOKIE_EXPIRY_MINUTES * 60;
-}

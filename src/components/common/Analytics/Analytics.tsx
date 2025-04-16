@@ -11,9 +11,11 @@ import useUser from '@/hooks/useUser';
 export default function Analytics({
   product,
   subProduct,
+  experiments,
 }: {
   product: string;
   subProduct: string;
+  experiments: Record<string, string>;
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -43,7 +45,6 @@ export default function Analytics({
   }, []);
 
   useEffect(() => {
-    const experiments = fetchExperiments();
     const pageUrl = getURLWithUTMParams(window.location.href);
 
     tracker.pushtoPendingList = true;
