@@ -24,7 +24,7 @@ export default function AdvancedFilters() {
 
   const trackAdvancedFilterActions = (value: boolean) => {
     trackEvent.click({
-      clickType: value ? pageTrackingEvents.openAdvancedFilters
+      clickType: value ? pageTrackingEvents.openAdvancedFilterButton
         : pageTrackingEvents.closeAdvancedFilters,
       clickText: pageTrackingSources.advancedFilter,
       clickSource: pageTrackingSources.advancedFilter,

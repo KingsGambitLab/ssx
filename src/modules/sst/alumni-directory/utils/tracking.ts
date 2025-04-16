@@ -25,6 +25,7 @@ export const pageTrackingEvents = {
   alumniDetailsModalClosed: "alumni_details_modal_closed",
   projectLinkButton: "project_link_button",
   noAlumniFound: "no_alumni_found",
+  openAdvancedFilterButton: "open_advanced_filter_button",
   openAdvancedFilters: "open_advanced_filters",
   closeAdvancedFilters: "close_advanced_filters",
   clearAllFilters: "clear_all_filters",
