@@ -1,6 +1,5 @@
 'use server';
 
-import { headers } from "next/headers";
 import { ABEX_API_URL, ABEX_REQUEST_HEADERS } from "./constants";
 
 export async function getAbExperimentVariant(payload: {

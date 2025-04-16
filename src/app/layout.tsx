@@ -14,6 +14,7 @@ import './globals.css';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const experiments = await getAllExperiments();
+  
   return (
     <html lang="en" className={fontVariables}>
       <body>

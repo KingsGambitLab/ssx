@@ -8,10 +8,12 @@ const EXPERIMENTS_COOKIE = "experiments";
 
 interface ExperimentsContextType {
   experiments: Record<string, string>;
+  setExperiments: (experiments: Record<string, string>) => void;
 }
 
 export const ExperimentsContext = createContext<ExperimentsContextType>({
   experiments: {},
+  setExperiments: () => {},
 });
 
 export default function ExperimentsProvider({
@@ -21,7 +23,7 @@ export default function ExperimentsProvider({
   defaultExperiments: Record<string, string>;
   children: React.ReactNode;
 }) {
-  const [experiments] = useState(defaultExperiments);
+  const [experiments, setExperiments] = useState(defaultExperiments);
 
   useEffect(() => {
     if (Object.keys(experiments).length > 0) {
@@ -30,7 +32,7 @@ export default function ExperimentsProvider({
   }, [experiments]);
 
   return (
-    <ExperimentsContext.Provider value={{ experiments }}>
+    <ExperimentsContext.Provider value={{ experiments, setExperiments }}>
       {children}
     </ExperimentsContext.Provider>
   );

@@ -1,9 +1,7 @@
 import { cookies } from "next/headers";
-import { setCookie } from 'cookies-next';
 import { ABEX_FLAG_CONFIG } from "./constants";
 import { getAbExperimentVariant } from "./api";
 
-const COOKIE_EXPIRY_MINUTES = 30;
 const EXPERIMENTS_COOKIE = "experiments";
 
 interface AbexPayload {
@@ -22,15 +20,12 @@ export const getAllExperiments = async () => {
 
   const fetchExperiments = [];
 
-  console.log("experimentsCookieValue", experimentsCookieValue);
-
   if (!bottomNavbarVariant) {
     experiments[ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.KEY] = ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.DEFAULT_VARIANT;
     fetchExperiments.push(getAbExperimentVariant(bottomNavbarAbexPayload));
   }
 
   if (fetchExperiments.length) {
-    console.log("abex api call");
     try {
       const serverPromiseResults = await Promise.allSettled(fetchExperiments);
       serverPromiseResults.forEach((result) => {
@@ -39,15 +34,17 @@ export const getAllExperiments = async () => {
             flagKey: string;
             variantKey: string;
           };
-          experiments[flagKey] = variantKey;
+          if(variantKey) {
+            experiments[flagKey] = variantKey;
+          }
         }
       });
     } catch (error) {
-      // console.error("Failed to fetch or set experiments:", error);
+      //eslint-disable-next-line no-console
+      console.error("Failed to fetch or set experiments:", error);
     }
   }
 
-  console.log("experiments", experiments)
   return experiments;
 };
 
