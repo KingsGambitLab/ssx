@@ -122,7 +122,6 @@ export default function AdvancedFiltersItems({ onClose }: AdvancedFiltersItemsPr
   }, [advancedFilters, selectedFilters, updateSelectedFilters]);
 
   useEffect(() => {
-    trackEventHandler({ clickType: pageTrackingEvents.openAdvancedFilters })
     setSelectedFilters({ ...filters?.advanced });
   }, [filters?.advanced]);
 
