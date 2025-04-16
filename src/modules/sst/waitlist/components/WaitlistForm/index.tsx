@@ -156,11 +156,11 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource: trackingSources.waitlistForm,
       attributes: {
         status: formStatus,
-        message: formError ? formattedErrors(formError) : "success",
-        form_id: `sst_waitlist_form_${categoryValue}_IN`,
-      },
-    });
-  };
+        message: formError? formattedErrors(formError) : 'success',
+        form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
+      }
+    })
+  }
 
   // Create a memoized submit handler
   const onSubmit = useCallback(
