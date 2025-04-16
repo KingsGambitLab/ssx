@@ -36,14 +36,27 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const [formError, setFormError] = React.useState<string | null>(null);
 
+  const formattedErrors = (error: any) => {
+    const formattedErrors: Record<string, string> = {};
+  
+    Object.entries(error).forEach(([field, value]: [string, any]) => {
+      if (value?.message) {
+        formattedErrors[field] = value.message;
+      }
+    });
+
+    return formattedErrors;
+  }
+
   const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
     trackEvent.formSubmitStatus({
       clickType: 'form_submit',
       clickText: trackingEvents.waitlistLoginMobileFormSubmit,
       clickSource: trackingSources.waitlistLoginMobileForm,
-      custom: {
-        form_status: formStatus,
-        form_error: formError || '',
+      attributes: {
+        status: formStatus,
+        message: formError? formattedErrors(formError) : 'success',
+        form_id: trackingSources.waitlistLoginMobileForm,
       }
     })
   }
@@ -110,17 +123,9 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
   }
 
   const onSubmitError = (error: any) => {
-    const formattedErrors: Record<string, string> = {};
-  
-    Object.entries(error).forEach(([field, value]: [string, any]) => {
-      if (value?.message) {
-        formattedErrors[field] = value.message;
-      }
-    });
-  
     trackFormSubmitStatus({
       formStatus: 'error',
-      formError: formattedErrors,
+      formError: error,
     });
   };
 

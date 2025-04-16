@@ -45,7 +45,7 @@ export default function NoAlumniFound({ onFilterChange }: { onFilterChange: (fil
         </div>
         <div className={styles.noResultFoundMessage}>
           <div className={styles.noResultFoundMessage}>
-            No matching profiles found. W&apos;re working on adding more.
+            No matching profiles found. We&apos;re working on adding more.
           </div>
           <div className={styles.tryDifferentFilters}>
             Tip: Try out different filters

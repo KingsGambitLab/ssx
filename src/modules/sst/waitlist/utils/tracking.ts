@@ -35,20 +35,22 @@ export const trackEvent = {
       custom: custom,
     });
   },
-  view: ({ clickType, clickText, clickSource, custom }: TrackingProps) => {
-    tracker.view({
-      click_type: clickType,
-      click_text: clickText,
-      click_source: clickSource,
-      custom: custom,
+  sectionView: ({ sectionName }: { sectionName: string }) => {
+    tracker.sectionView({
+      section_name: sectionName,
     });
   },
-  formSubmitStatus: ({ clickType, clickText, clickSource, custom }: TrackingProps) => {
+  formSubmitStatus: ({ clickType, clickText, clickSource, attributes }: {
+    clickType: string;
+    clickText: string;
+    clickSource: string;
+    attributes: object;
+  }) => {
     tracker.formSubmitStatus({
       click_type: clickType,
       click_text: clickText,
       click_source: clickSource,
-      custom: custom,
+      ...attributes,
     });
   }
 }

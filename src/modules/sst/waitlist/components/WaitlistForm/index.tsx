@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Form as AntForm, Radio, Input, Select, Button, Image, Flex } from 'antd';
+import { toLower } from 'lodash';
 import styles from './index.module.scss';
 import { WaitlistFormData } from '../../types';
 import { useWaitlistApi } from '../../api';
@@ -92,14 +93,29 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     }), [formFields]
   );
 
-  const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
+  const formattedErrors = (error: any) => {
+    const formattedErrors: Record<string, string> = {};
+  
+    Object.entries(error).forEach(([field, value]: [string, any]) => {
+      if (value?.message) {
+        formattedErrors[field] = value.message;
+      }
+    });
+
+    return formattedErrors;
+  }
+
+  const trackFormSubmitStatus = ({ formStatus, formError }: { formStatus: string, formError?: any }) => {
+    const categoryValue = watch(categoryField?.id || '');
+
     trackEvent.formSubmitStatus({
       clickType: 'form_submit',
       clickText: trackingEvents.waitlistFormSubmit,
       clickSource: trackingSources.waitlistForm,
-      custom: {
-        form_status: formStatus,
-        form_error: formError || '',
+      attributes: {
+        status: formStatus,
+        message: formError? formattedErrors(formError) : 'success',
+        form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
       }
     })
   }
@@ -133,7 +149,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickText: trackingEvents.waitlistFormSubmit,
       clickSource: trackingSources.waitlistForm,
       custom: {
-        form_id: `sst_waitlist_form_${categoryValue}_IN`,
+        form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
       }
     })
     form.submit(); // This will trigger the onFinish handler
