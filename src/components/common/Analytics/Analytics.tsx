@@ -24,6 +24,9 @@ export default function Analytics({
     isError: isUserFetchError,
   } = useUser();
 
+  // TODO: remove this as curently not setting experiments as data attributes
+  
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const fetchExperiments = () => {
     const elements = document.querySelectorAll('[data-variant-key]');
     const experiments: Record<string, string> = {};
