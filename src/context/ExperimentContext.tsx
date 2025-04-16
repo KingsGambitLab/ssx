@@ -29,8 +29,6 @@ export default function ExperimentsProvider({
     }
   }, [experiments]);
 
-  if (Object.keys(experiments).length === 0) return null;
-
   return (
     <ExperimentsContext.Provider value={{ experiments }}>
       {children}
