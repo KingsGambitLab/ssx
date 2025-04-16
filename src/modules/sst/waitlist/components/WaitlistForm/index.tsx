@@ -115,7 +115,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       attributes: {
         status: formStatus,
         message: formError? formattedErrors(formError) : 'success',
-        form_id: `sst_waitlist_form_${categoryValue}_IN`,
+        form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
       }
     })
   }
