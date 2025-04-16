@@ -23,7 +23,7 @@ export default function QuickFilters() {
   const trackFilterClick = (filter: string, isSelected: boolean) => {
     trackEvent.click({
       clickType: isSelected ? pageTrackingEvents.filterApplied : pageTrackingEvents.filterRemoved,
-      clickText: pageTrackingEvents.filterApplied,
+      clickText: isSelected ? pageTrackingEvents.filterApplied : pageTrackingEvents.filterRemoved,
       clickSource: pageTrackingSources.quickFilters,
       custom: {
         filter_name: filter,
