@@ -13,10 +13,11 @@ import { useUser } from "@hooks";
 import { useLoginModalContext } from "@context/LoginModalContext";
 
 import ActionButton from "./ActionButton/ActionButton";
+import SstBottomNudge from "@components/Sst/BottomNudge";
 
 import styles from "./BottomNavbar.module.scss";
 
-export default function SstBottomNavbar() {
+export default function SstBottomNavbar({ oldVersion = true }) {
   const { setIsLoginModalOpen } = useLoginModalContext();
   const { data: userData } = useUser();
 
@@ -40,49 +41,53 @@ export default function SstBottomNavbar() {
     window.open("/school-of-technology/application/");
   };
 
-  return (
-    <>
-      <div className={styles.wrapper}>
-        <div className={styles.container}>
-          {BOTTOM_NAVBAR_LINKS.LEFT.map((link) => {
-            return (
-              <div className={styles.linkContainer}>
-                <a className={styles.link} href={link.redirectUrl}>
-                  <Image
-                    className={styles.linkIcon}
-                    alt="icon"
-                    src={link.icon}
-                  />
-                  {link.text}
-                </a>
-              </div>
-            );
-          })}
+  if (oldVersion) {
+    return (
+      <>
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
+            {BOTTOM_NAVBAR_LINKS.LEFT.map((link) => {
+              return (
+                <div className={styles.linkContainer}>
+                  <a className={styles.link} href={link.redirectUrl}>
+                    <Image
+                      className={styles.linkIcon}
+                      alt="icon"
+                      src={link.icon}
+                    />
+                    {link.text}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+          <div className={styles.applyButtonContainer}>
+            <ActionButton
+              isLoggedIn={isLoggedIn}
+              onApply={onApplyHandler}
+              onResumeApplication={onResumeApplicationHandler}
+            />
+          </div>
+          <div className={styles.container}>
+            {BOTTOM_NAVBAR_LINKS.RIGHT.map((link) => {
+              return (
+                <div className={styles.linkContainer}>
+                  <a className={styles.link} href={link.redirectUrl}>
+                    <Image
+                      className={styles.linkIcon}
+                      alt="icon"
+                      src={link.icon}
+                    />
+                    {!link.active ? link.text : <span>{link.text}</span>}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
         </div>
-        <div className={styles.applyButtonContainer}>
-          <ActionButton
-            isLoggedIn={isLoggedIn}
-            onApply={onApplyHandler}
-            onResumeApplication={onResumeApplicationHandler}
-          />
-        </div>
-        <div className={styles.container}>
-          {BOTTOM_NAVBAR_LINKS.RIGHT.map((link) => {
-            return (
-              <div className={styles.linkContainer}>
-                <a className={styles.link} href={link.redirectUrl}>
-                  <Image
-                    className={styles.linkIcon}
-                    alt="icon"
-                    src={link.icon}
-                  />
-                  {!link.active ? link.text : <span>{link.text}</span>}
-                </a>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
+
+  return <SstBottomNudge />;
 }

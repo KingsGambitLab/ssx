@@ -5,15 +5,15 @@ $white-color: #ffffff;
 
 .applyBtn {
   @include flex-row-c;
+  @include font-plus-jakarta-sans;
 
   margin: auto ;
-  border-radius: 100% !important;
-  width: 6.4rem;
-  height: 6.4rem !important;
+  border-radius: $border-radius-large !important;
+  width: 100% !important;
   text-align: center !important;
   font-size: $h5-size !important;
   font-family: $source-sans-pro !important;
-  background: #e22d4c !important;
+  background: $apply-btn-bg !important;
   color: $white-color;
 
   &:hover {
@@ -27,13 +27,13 @@ $white-color: #ffffff;
 
 .resumeApplicationBtn {
   @include flex-row-c;
+  @include font-plus-jakarta-sans;
 
-  margin: auto;
-  width: 8rem !important;
-  height: 6rem !important;
-  border-radius: 1.5rem !important;
-  font-size: $h6-size !important;
+  margin: auto ;
+  border-radius: $border-radius-large !important;
+  width: 100% !important;
   text-align: center !important;
+  font-size: $h6-size !important;
   font-family: $source-sans-pro !important;
   background: $resume-application-btn-bg !important;
   color: $white-color;
