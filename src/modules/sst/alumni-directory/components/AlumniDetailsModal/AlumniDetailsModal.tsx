@@ -139,7 +139,7 @@ export default function AlumniDetailsModal({
         clickType: pageTrackingEvents.alumniDetailsModalOpened,
       });
     }
-  }, [isModalOpen, alumniId, alumniData?.name]);
+  }, [isModalOpen]);
 
   return (
     <Modal
