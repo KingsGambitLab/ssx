@@ -6,7 +6,7 @@ import AuthActions from "@components/Sst/Navbar/ActionButtons";
 import SSTLogo from "@public/images/sst/webp/logo.webp";
 
 import { loggedOutNavItems, loggedInNavItems } from "./data";
-import { useLoginModalContext } from "@context/LoginModalContext";
+import { useLoginModalContext } from "@context/sst/LoginModalContext";
 
 export default function SstNavbar() {
   const { setIsLoginModalOpen } = useLoginModalContext();

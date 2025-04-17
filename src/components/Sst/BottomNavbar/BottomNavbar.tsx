@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
 
-import { useLoginModalContext, ExperimentsContext } from '@context';
+import { useLoginModalContext, ExperimentsContext } from '@context/sst';
 import { useUser } from '@hooks';
 import { ABEX_FLAG_CONFIG } from '@utils/abex/constants';
 import {

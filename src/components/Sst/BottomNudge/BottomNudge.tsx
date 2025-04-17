@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useLoginModalContext } from "@context/LoginModalContext";
+import { useLoginModalContext } from "@context/sst";
 import { useUser } from "@hooks";
 import {
   pageTrackingEvents,

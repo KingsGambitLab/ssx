@@ -17,7 +17,7 @@
 
   :global(.ant-modal) {
     width: 1000px !important;
-    z-index: 100 !important;
+    z-index: 11 !important;
     
     @include mobile {
       position: absolute !important;

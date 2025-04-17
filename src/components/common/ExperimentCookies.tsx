@@ -1,7 +1,7 @@
 'use client';
 
 import { useContext } from "react";
-import { ExperimentsContext } from "@context/ExperimentContext";
+import { ExperimentsContext } from "@context/sst";
 import { setCookie } from "cookies-next";
 
 const EXPERIMENTS_COOKIE = "experiments";

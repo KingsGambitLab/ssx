@@ -1,6 +1,6 @@
 "use client";
 
-import { useLoginModalContext } from "@context/LoginModalContext";
+import { useLoginModalContext } from "@context/sst";
 
 import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
 
