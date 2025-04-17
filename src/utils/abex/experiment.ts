@@ -34,8 +34,6 @@ export const getAllExperiments = async () => {
             flagKey: string;
             variantKey: string;
           };
-          console.log("flagKey", flagKey);
-          console.log("variantKey", variantKey);
           if(variantKey) {
             experiments[flagKey] = variantKey;
           }
