@@ -38,7 +38,7 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
 
   const formattedErrors = (error: any) => {
     const formattedErrors: Record<string, string> = {};
-  
+
     Object.entries(error).forEach(([field, value]: [string, any]) => {
       if (value?.message) {
         formattedErrors[field] = value.message;
@@ -46,7 +46,7 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
     });
 
     return formattedErrors;
-  }
+  };
 
   const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
     trackEvent.formSubmitStatus({

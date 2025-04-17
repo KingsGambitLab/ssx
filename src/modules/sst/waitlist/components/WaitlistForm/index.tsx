@@ -95,7 +95,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
 
   const formattedErrors = (error: any) => {
     const formattedErrors: Record<string, string> = {};
-  
+
     Object.entries(error).forEach(([field, value]: [string, any]) => {
       if (value?.message) {
         formattedErrors[field] = value.message;
@@ -103,10 +103,16 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     });
 
     return formattedErrors;
-  }
+  };
 
-  const trackFormSubmitStatus = ({ formStatus, formError }: { formStatus: string, formError?: any }) => {
-    const categoryValue = watch(categoryField?.id || '');
+  const trackFormSubmitStatus = ({
+    formStatus,
+    formError,
+  }: {
+    formStatus: string;
+    formError?: any;
+  }) => {
+    const categoryValue = watch(categoryField?.id || "");
 
     trackEvent.formSubmitStatus({
       clickType: 'form_submit',
