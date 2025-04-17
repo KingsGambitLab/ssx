@@ -8,8 +8,9 @@ import {
   trackEvent,
 } from "@modules/sst/alumni-directory/utils";
 
-import styles from "./BottomNudge.module.scss";
 import ActionButton from "./ActionButton";
+
+import styles from "./BottomNudge.module.scss";
 
 export default function SstBottomNudge() {
   const { setIsLoginModalOpen } = useLoginModalContext();

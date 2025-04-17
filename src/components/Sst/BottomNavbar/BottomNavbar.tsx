@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 
-import { BOTTOM_NAVBAR_LINKS } from "./data";
+import { BOTTOM_NAVBAR_LINKS } from './data';
 import {
   pageTrackingEvents,
   pageTrackingSources,
   trackEvent,
-} from "@modules/sst/alumni-directory/utils";
-import { useUser } from "@hooks";
-import { useLoginModalContext } from "@context/LoginModalContext";
+} from '@modules/sst/alumni-directory/utils';
+import { useUser } from '@hooks';
+import { useLoginModalContext } from '@context/LoginModalContext';
 
-import ActionButton from "./ActionButton/ActionButton";
-import SstBottomNudge from "@components/Sst/BottomNudge";
+import ActionButton from './ActionButton/ActionButton';
+import SstBottomNudge from '@components/Sst/BottomNudge';
 
-import styles from "./BottomNavbar.module.scss";
+import styles from './BottomNavbar.module.scss';
 
 export default function SstBottomNavbar({ oldVersion = true }) {
   const { setIsLoginModalOpen } = useLoginModalContext();
