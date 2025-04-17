@@ -66,23 +66,30 @@ export const OTPStep: React.FC<OTPStepProps> = ({
     }
   }, [timeLeft]);
 
-  const trackFormSubmitStatus = ({
-    formStatus,
-    formError,
-  }: {
-    formStatus: string;
-    formError?: any;
-  }) => {
+  const formattedErrors = (error: any) => {
+    const formattedErrors: Record<string, string> = {};
+  
+    Object.entries(error).forEach(([field, value]: [string, any]) => {
+      if (value?.message) {
+        formattedErrors[field] = value.message;
+      }
+    });
+
+    return formattedErrors;
+  }
+
+  const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
     trackEvent.formSubmitStatus({
       clickType: "form_submit",
       clickText: trackingEvents.otpFormSubmit,
       clickSource: trackingSources.waitlistLoginOTPForm,
-      custom: {
-        form_status: formStatus,
-        form_error: formError || "",
-      },
-    });
-  };
+      attributes: {
+        status: formStatus,
+        message: formError? formattedErrors(formError) : 'success',
+        form_id: trackingSources.waitlistLoginOTPForm,
+      }
+    })
+  }
 
   const onSubmitForm = async (data: OTPFormData) => {
     setIsLoading(true);
@@ -174,17 +181,9 @@ export const OTPStep: React.FC<OTPStepProps> = ({
   };
 
   const onSubmitError = (error: any) => {
-    const formattedErrors: Record<string, string> = {};
-
-    Object.entries(error).forEach(([field, value]: [string, any]) => {
-      if (value?.message) {
-        formattedErrors[field] = value.message;
-      }
-    });
-
     trackFormSubmitStatus({
-      formStatus: "error",
-      formError: formattedErrors,
+      formStatus: 'error',
+      formError: error,
     });
   };
 

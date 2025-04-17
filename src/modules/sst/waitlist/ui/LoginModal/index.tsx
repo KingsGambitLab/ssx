@@ -72,12 +72,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   const handleStepChange = (currentStep: LoginStep) => {
-    if (isOpen) {
-      trackEvent.view({
-        clickType: "section_view",
-        clickText: trackingEvents.waitlistFormView,
-        clickSource: getFormType(currentStep),
-      });
+    if(isOpen) {
+      trackEvent.sectionView({
+        sectionName: getFormType(currentStep)
+      })
     }
     setStep(currentStep);
   };

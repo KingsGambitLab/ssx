@@ -51,11 +51,9 @@ export const trackEvent = {
       custom: custom,
     });
   },
-  view: ({ clickType, clickText, clickSource, custom }: TrackingProps) => {
-    tracker.view({
-      click_type: clickType,
-      click_text: clickText,
-      click_source: clickSource,
+  sectionView: ({ sectionName, custom }: { sectionName: string, custom?: object }) => {
+    tracker.sectionView({
+      section_name: sectionName,
       custom: custom,
     });
   }

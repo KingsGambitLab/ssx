@@ -119,28 +119,27 @@ export default function AlumniDetailsModal({
   }: {
     clickType: string;
     custom?: object;
-    method?: 'click' | 'view';
+    method?: 'click' ;
   }) => {
-    trackEvent[method]({
-      clickType,
-      clickText: clickType,
-      clickSource: pageTrackingSources.alumniDetailsModal,
-      custom: {
+      trackEvent[method]({
+        clickType,
+        clickText: clickType,
+        clickSource: pageTrackingSources.alumniDetailsModal,
+        custom: {
         alumni_id: alumniId,
-        alumni_name: alumniData?.name,
-        ...custom,
-      },
-    });
+          alumni_name: alumniData?.name,
+          ...custom,
+        },
+      });
   };
 
   useEffect(() => {
     if (isModalOpen) {
       trackEventHandler({
         clickType: pageTrackingEvents.alumniDetailsModalOpened,
-        method: 'view',
       });
     }
-  }, [isModalOpen, alumniId, alumniData?.name]);
+  }, [isModalOpen]);
 
   return (
     <Modal
