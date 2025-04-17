@@ -8,7 +8,7 @@ import { METADATA } from "@utils/common/metadata";
 import { ANNOUNCEMENT_STRIP_CONTENT } from "@utils/sst/constants";
 
 import LoginModalProvider from "@context/LoginModalContext";
-import SstBottomNavbar from "@components/Sst/BottomNavbar";
+import BottomNavbar from "@components/Sst/BottomNavbar";
 
 export const metadata: Metadata = METADATA.SST;
 
@@ -26,7 +26,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Navbar />
         </Header>
         <main>{children}</main>
-        <SstBottomNavbar />
+        <BottomNavbar />
         <LoginModalWrapper />
       </LoginModalProvider>
     </AlumniProvider>
