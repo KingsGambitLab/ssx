@@ -2,6 +2,7 @@
 
 import React, { useContext } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { useLoginModalContext, ExperimentsContext } from '@context';
 import { useUser } from '@hooks';
@@ -18,6 +19,7 @@ import SstBottomNudge from '@components/Sst/BottomNudge';
 import { BOTTOM_NAVBAR_LINKS } from './data';
 
 import styles from './BottomNavbar.module.scss';
+
 
 export default function BottomNavbar() {
   const { setIsLoginModalOpen } = useLoginModalContext();
@@ -54,13 +56,19 @@ export default function BottomNavbar() {
             {BOTTOM_NAVBAR_LINKS.LEFT.map((link) => {
               return (
                 <div className={styles.linkContainer}>
-                  <a className={styles.link} href={link.redirectUrl}>
-                    <Image
-                      className={styles.linkIcon}
-                      alt="icon"
-                      src={link.icon}
-                    />
-                    {link.text}
+                  <a
+                    href={link.redirectUrl}
+                    target="_blank"
+                    onClick={() => trackEventHandler(link.text)}
+                  >
+                    <div className={styles.link}>
+                      <Image
+                        className={styles.linkIcon}
+                        alt="icon"
+                        src={link.icon}
+                      />
+                      {link.text}
+                    </div>
                   </a>
                 </div>
               );
@@ -77,7 +85,12 @@ export default function BottomNavbar() {
             {BOTTOM_NAVBAR_LINKS.RIGHT.map((link) => {
               return (
                 <div className={styles.linkContainer}>
-                  <a className={styles.link} href={link.redirectUrl}>
+                  <a
+                    target="_blank"
+                    className={styles.link}
+                    href={link.redirectUrl}
+                    onClick={() => trackEventHandler(link.text)}
+                  >
                     <Image
                       className={styles.linkIcon}
                       alt="icon"

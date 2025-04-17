@@ -41,6 +41,10 @@ $source-sans-pro: 'Source Sans Pro';
 
 .linkContainer {
   @include flex-row-c;
+  
+  & > a {
+    text-decoration: none;
+  }
 }
 
 .link {
