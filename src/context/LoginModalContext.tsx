@@ -5,7 +5,6 @@ import { createContext, useContext, useState, ReactNode, useMemo } from "react";
 import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
 import {
   trackEvent,
-  trackingEvents,
   trackingSources,
 } from "@modules/sst/waitlist/utils/tracking";
 
