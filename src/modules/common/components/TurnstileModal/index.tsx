@@ -1,12 +1,10 @@
-"use client";
-
-import React, { useState } from "react";
-import { Modal, Button } from "antd";
-import TurnstileWidget from "@/utils/turnstile/turnstile";
-import styles from "./index.module.scss";
-import { trackingEvents } from "@modules/sst/waitlist/utils/tracking";
-import { trackingSources } from "@modules/sst/waitlist/utils/tracking";
-import { trackEvent } from "@modules/sst/waitlist/utils/tracking";
+import React, { useState } from 'react';
+import { Modal, Button } from 'antd';
+import TurnstileWidget from '@/utils/turnstile/turnstile';
+import styles from './index.module.scss';
+import { trackingEvents } from '@modules/sst/waitlist/utils/tracking';
+import { trackingSources } from '@modules/sst/waitlist/utils/tracking';
+import { trackEvent } from '@modules/sst/waitlist/utils/tracking';
 
 interface TurnstileModalProps {
   isOpen: boolean;
@@ -19,41 +17,36 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
   isOpen,
   onClose,
   onTokenObtained,
-  title = "Verify you are human",
+  title = 'Verify you are human'
 }) => {
   const [token, setToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [turnstile, setTurnstile] = useState<any>(null);
 
-  const trackEventHandler = ({
-    clickText,
-    clickSource,
-    custom,
-  }: {
-    clickText: string;
-    clickSource: string;
-    custom?: object;
-  }) => {
+
+  const trackEventHandler = (
+    { clickText, clickSource, custom }: { clickText: string, clickSource: string, custom?: object }
+  ) => {
     trackEvent.click({
-      clickType: "click",
+      clickType: 'click',
       clickText,
       clickSource,
       custom,
-    });
-  };
+    })
+  }
 
   const handleModalClose = () => {
     onClose();
     trackEventHandler({
       clickText: trackingEvents.turnstileModalClose,
       clickSource: trackingSources.waitlistLoginOTPForm,
-    });
-  };
+    })
+  }
 
   const handleSubmit = async () => {
     if (!token) return;
-
+    
     setIsSubmitting(true);
     try {
       const success = await onTokenObtained(token);
@@ -63,10 +56,10 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
           clickText: trackingEvents.turnstileModalSubmit,
           clickSource: trackingSources.waitlistLoginOTPForm,
           custom: {
-            form_status: "success",
-            token,
-          },
-        });
+            form_status: 'success',
+            token,  
+          }
+        })
       } else {
         turnstile?.reset();
         setToken(null);
@@ -74,10 +67,10 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
           clickText: trackingEvents.turnstileModalSubmit,
           clickSource: trackingSources.waitlistLoginOTPForm,
           custom: {
-            form_status: "error",
+            form_status: 'error', 
             token,
-          },
-        });
+          }
+        })
       }
     } finally {
       setIsSubmitting(false);
@@ -95,7 +88,7 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
       className={styles.modal}
     >
       <div className={styles.content}>
-        <TurnstileWidget
+        <TurnstileWidget 
           onTokenObtained={setToken}
           onReset={setTurnstile}
           appearance="always"
@@ -112,4 +105,4 @@ export const TurnstileModal: React.FC<TurnstileModalProps> = ({
       </div>
     </Modal>
   );
-};
+}; 

@@ -1,7 +1,8 @@
 "use client";
 
-import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
 import { useLoginModalContext } from "@context/LoginModalContext";
+
+import LoginModal from "@modules/sst/waitlist/ui/LoginModal";
 
 export function LoginModalWrapper() {
   const {

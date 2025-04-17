@@ -18,6 +18,7 @@ export const getAllExperiments = async () => {
   const experiments = getCurrentExperiments(experimentsCookieValue as string);
   const bottomNavbarVariant = experiments[bottomNavbarAbexPayload.flagkey];
 
+
   const fetchExperiments = [];
 
   if (!bottomNavbarVariant) {
@@ -29,7 +30,7 @@ export const getAllExperiments = async () => {
     try {
       const serverPromiseResults = await Promise.allSettled(fetchExperiments);
       serverPromiseResults.forEach((result) => {
-        if (result.status === "fulfilled") {
+        if (result?.status === "fulfilled") {
           const { flagKey, variantKey } = result.value as {
             flagKey: string;
             variantKey: string;

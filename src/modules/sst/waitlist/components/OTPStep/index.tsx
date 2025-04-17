@@ -1,26 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
 
-import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Typography } from "antd";
-import {
-  Controller,
-  UseFormRegister,
-  UseFormHandleSubmit,
-  FieldErrors,
-} from "react-hook-form";
-import { OTPFormData } from "../../types";
-import styles from "./index.module.scss";
-import { WhatsAppOutlined } from "@ant-design/icons";
-import { retryOtp } from "@modules/common/apis";
-import { TurnstileModal } from "@modules/common/components/TurnstileModal";
-import { TrackingProps } from "@modules/sst/alumni-directory/types";
-import { verifyOtp } from "@modules/sst/waitlist/api";
-import {
-  trackEvent,
-  trackingEvents,
-  trackingSources,
-} from "@modules/sst/waitlist/utils/tracking";
+import React, { useState, useEffect } from 'react';
+import { Form, Input, Button, Typography } from 'antd';
+import { Controller, UseFormRegister, UseFormHandleSubmit, FieldErrors } from 'react-hook-form';
+import { OTPFormData } from '../../types';
+import styles from './index.module.scss';
+import { WhatsAppOutlined } from '@ant-design/icons';
+import { retryOtp } from '@modules/common/apis';
+import { TurnstileModal } from '@modules/common/components/TurnstileModal';
+import { TrackingProps } from '@modules/sst/alumni-directory/types';
+import { verifyOtp } from '@modules/sst/waitlist/api';
+import { trackEvent, trackingEvents, trackingSources } from '@modules/sst/waitlist/utils/tracking';
+
 
 const { Text, Link } = Typography;
 
@@ -50,15 +41,13 @@ export const OTPStep: React.FC<OTPStepProps> = ({
   const [timeLeft, setTimeLeft] = useState(60);
   const [showResendOptions, setShowResendOptions] = useState(false);
   const [showTurnstile, setShowTurnstile] = useState(false);
-  const [selectedChannel, setSelectedChannel] = useState<
-    "whatsapp" | "sms" | "voice" | null
-  >(null);
+  const [selectedChannel, setSelectedChannel] = useState<'whatsapp' | 'sms' | 'voice' | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
 
   useEffect(() => {
     if (timeLeft > 0) {
       const timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
+        setTimeLeft(prev => prev - 1);
       }, 1000);
       return () => clearInterval(timer);
     } else {
@@ -78,65 +67,56 @@ export const OTPStep: React.FC<OTPStepProps> = ({
     return formattedErrors;
   };
 
-  const trackFormSubmitStatus = ({
-    formStatus,
-    formError,
-  }: {
-    formStatus: string;
-    formError?: any;
-  }) => {
+  const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
     trackEvent.formSubmitStatus({
-      clickType: "form_submit",
+      clickType: 'form_submit',
       clickText: trackingEvents.otpFormSubmit,
       clickSource: trackingSources.waitlistLoginOTPForm,
       attributes: {
         status: formStatus,
-        message: formError ? formattedErrors(formError) : "success",
+        message: formError? formattedErrors(formError) : 'success',
         form_id: trackingSources.waitlistLoginOTPForm,
-      },
-    });
-  };
+      }
+    })
+  }
 
   const onSubmitForm = async (data: OTPFormData) => {
     setIsLoading(true);
     setFormError(null);
-
+    
     try {
       const response = await verifyOtp(email, phoneNumber, data.otp);
       if (!response.userId) {
-        throw new Error("Verification failed");
+        throw new Error('Verification failed');
       }
       onVerificationSuccess();
-      trackFormSubmitStatus({ formStatus: "success" });
+      trackFormSubmitStatus({ formStatus: 'success' })
     } catch (error: any) {
-      let errorMessage = "Something went wrong. Please try again.";
-
+      let errorMessage = 'Something went wrong. Please try again.';
+      
       switch (error.response?.status) {
         case 409:
-          errorMessage = "Phone number already taken";
+          errorMessage = 'Phone number already taken';
           break;
         case 401:
-          errorMessage = `OTP is ${
-            error.response?.data?.result || "invalid"
-          }, please try again`;
+          errorMessage = `OTP is ${error.response?.data?.result || 'invalid'}, please try again`;
           break;
         case 403:
           if (error.response?.data?.signature) {
-            errorMessage = "Session Limit Exceeded!";
-            const redirectUrl =
-              `${window.location.origin}/users/session-management/` +
-              `?signature=${error.response.data.signature}` +
-              `&source_path=${error.response.data.source_path}`;
+            errorMessage = 'Session Limit Exceeded!';
+            const redirectUrl = `${window.location.origin}/users/session-management/`
+              + `?signature=${error.response.data.signature}`
+              + `&source_path=${error.response.data.source_path}`;
             window.location.href = redirectUrl;
           }
           break;
         default:
           errorMessage = error.response?.data?.message || errorMessage;
       }
-
+      
       setFormError(errorMessage);
       onVerificationError(errorMessage);
-      trackFormSubmitStatus({ formStatus: "error", formError: errorMessage });
+      trackFormSubmitStatus({ formStatus: 'error', formError: errorMessage })
     } finally {
       setIsLoading(false);
     }
@@ -144,7 +124,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
 
   const handleRetryOTP = async (token: string) => {
     if (!selectedChannel) return false;
-
+    
     try {
       const success = await retryOtp(phoneNumber, selectedChannel, token);
       if (success) {
@@ -154,73 +134,68 @@ export const OTPStep: React.FC<OTPStepProps> = ({
       }
       return false;
     } catch (error) {
-      console.error("Error retrying OTP:", error);
+      console.error('Error retrying OTP:', error);
       return false;
     }
   };
 
-  const initiateRetry = (channel: "whatsapp" | "sms" | "voice") => {
+
+  const initiateRetry = (channel: 'whatsapp' | 'sms' | 'voice') => {
     setSelectedChannel(channel);
     setShowTurnstile(true);
     trackClickEventHandler({
-      clickType: "click",
+      clickType: 'click',
       clickText: `Resend OTP via ${channel}`,
       clickSource: trackingSources.waitlistLoginOTPForm,
       custom: {
-        modal_status: "open",
-      },
-    });
+        modal_status: 'open',
+      }
+    })
   };
 
-  const trackClickEventHandler = ({
-    clickType,
-    clickText,
-    clickSource,
-    custom,
-  }: TrackingProps) => {
+  const trackClickEventHandler = ({clickType, clickText, clickSource, custom}: TrackingProps) => {
     trackEvent.click({
       clickType,
       clickText,
       clickSource,
       custom,
-    });
-  };
+    })
+  }
 
   const onSubmitError = (error: any) => {
     trackFormSubmitStatus({
-      formStatus: "error",
+      formStatus: 'error',
       formError: error,
     });
-  };
+  }; 
 
   return (
     <div className={styles.container}>
       <h3 className={styles.heading}>Enter verification code</h3>
-      <Text className={styles.subHeading}>OTP have been sent to</Text>
+      <Text className={styles.subHeading}>
+        OTP have been sent to
+      </Text>
       <div className={styles.contactInfo}>
         <Text>{phoneNumber}</Text> <span className={styles.divider}>|</span>
         <Link onClick={onWrongNumber} className={styles.wrongNumber}>
           Wrong Contact Details ?
         </Link>
       </div>
-
-      <form
-        onSubmit={handleSubmit(onSubmitForm, onSubmitError)}
-        className={styles.form}
-      >
+      
+      <form onSubmit={handleSubmit(onSubmitForm, onSubmitError)} className={styles.form}>
         <Form.Item
-          validateStatus={errors.otp ? "error" : ""}
+          validateStatus={errors.otp ? 'error' : ''}
           help={errors.otp?.message}
         >
           <Controller
             name="otp"
             control={control}
             rules={{
-              required: "OTP is required",
+              required: 'OTP is required',
               pattern: {
                 value: /^[0-9]{6}$/,
-                message: "Please enter a valid 6-digit OTP",
-              },
+                message: 'Please enter a valid 6-digit OTP'
+              }
             }}
             render={({ field }) => (
               <Input
@@ -228,29 +203,27 @@ export const OTPStep: React.FC<OTPStepProps> = ({
                 placeholder="Enter OTP"
                 maxLength={6}
                 className={styles.otpInput}
-                onClick={() =>
-                  trackClickEventHandler({
-                    clickType: "click",
-                    clickText: trackingEvents.formInputFocus,
-                    clickSource: trackingSources.waitlistLoginOTPForm,
-                    custom: {
-                      field_type: "otp",
-                    },
-                  })
-                }
+                onClick={() => trackClickEventHandler({
+                  clickType: 'click',
+                  clickText: trackingEvents.formInputFocus,
+                  clickSource: trackingSources.waitlistLoginOTPForm,
+                  custom: {
+                    field_type: 'otp',
+                  }
+                })} 
                 onBlur={() => {
                   trackClickEventHandler({
-                    clickType: "click",
+                    clickType: 'click',
                     clickText: trackingEvents.formInputFilled,
                     clickSource: trackingSources.waitlistLoginOTPForm,
                     custom: {
-                      field_type: "otp",
+                      field_type: 'otp',
                       field_value: field.value,
-                    },
-                  });
+                    }
+                  })
                 }}
                 onChange={(e) => {
-                  const value = e.target.value.replace(/[^0-9]/g, "");
+                  const value = e.target.value.replace(/[^0-9]/g, '');
                   field.onChange(value);
                 }}
               />
@@ -264,27 +237,38 @@ export const OTPStep: React.FC<OTPStepProps> = ({
               type="primary"
               icon={<WhatsAppOutlined />}
               className={styles.whatsappButton}
-              onClick={() => initiateRetry("whatsapp")}
+              onClick={() => initiateRetry('whatsapp')}
             >
               Resend OTP via WhatsApp
             </Button>
             <div className={styles.otherOptions}>
-              <Link onClick={() => initiateRetry("sms")}>
+              <Link onClick={() => initiateRetry('sms')}>
                 Resend OTP via SMS
               </Link>
               <span>|</span>
-              <Link onClick={() => initiateRetry("voice")}>
+              <Link onClick={() => initiateRetry('voice')}>
                 Resend OTP via Call
               </Link>
             </div>
           </div>
         ) : (
-          <Text className={styles.timer}>Resend OTP in {timeLeft}s</Text>
+          <Text className={styles.timer}>
+            Resend OTP in {timeLeft}s
+          </Text>
         )}
 
         <div className={styles.submitSection}>
-          {formError && <div className={styles.formError}>{formError}</div>}
-          <Button type="primary" htmlType="submit" loading={isLoading} block>
+          {formError && (
+            <div className={styles.formError}>
+              {formError}
+            </div>
+          )}
+          <Button 
+            type="primary"
+            htmlType="submit"
+            loading={isLoading}
+            block
+          >
             Verify
           </Button>
         </div>

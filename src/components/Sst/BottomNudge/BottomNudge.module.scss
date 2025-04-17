@@ -1,0 +1,38 @@
+$highlighted-text-color: #e22d4c;
+$shadow-color: rgba(2, 16, 40, 0.16);
+$text-color: #000000;
+$font-montserrat: 'Montserrat';
+
+.container {
+  @include font-montserrat;
+
+  display: none;
+
+  @include tablet {
+    @include flex-col-c;
+  
+    gap: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $white-color;
+    box-sizing: border-box;
+    padding: 1.6rem;
+    box-shadow: 0rem 0rem 0.4rem 0rem $shadow-color;
+    font-size: $h5-size;
+    border-radius: $border-radius-large $border-radius-large 0 0;
+  }
+}
+
+.text {
+  width: 100%;
+  text-align: center;
+  color: $text-color;
+  font-weight: $bold-font-weight;
+  
+  & > span{
+    color: $highlighted-text-color;
+  }
+}
