@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useMemo } from "react";
+import { createContext, useContext, useState, ReactNode, useMemo, useEffect } from "react";
 
 import { useWaitlistCheck } from "@hooks/useWaitlistCheck";
 import {
@@ -30,17 +30,18 @@ export default function LoginModalProvider({
   const { showWaitlistModal, setShowWaitlistModal } = useWaitlistCheck();
 
   const isModalOpen = useMemo(() => {
-    const shouldOpen = isLoginModalOpen || showWaitlistModal;
+   return isLoginModalOpen || showWaitlistModal;
+  }, [isLoginModalOpen, showWaitlistModal]);
 
-    if (shouldOpen) {
+  useEffect(() => {
+    if (isModalOpen) {
       trackEvent.sectionView({
         sectionName: showWaitlistModal ?
           trackingSources.waitlistForm : trackingSources.waitlistLoginMobileForm
       });
     }
 
-    return shouldOpen;
-  }, [isLoginModalOpen, showWaitlistModal]);
+  }, [isModalOpen])
 
   const handleModalClose = () => {
     setIsLoginModalOpen(false);
