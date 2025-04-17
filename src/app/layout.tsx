@@ -18,7 +18,7 @@ import {
   SUB_PRODUCTS,
 } from '@/components/common/Analytics/constants';
 
-import ExperimentsProvider from '@context/ExperimentContext';
+import ExperimentsProvider from '@context/sst/ExperimentContext';
 import QueryProvider from '@components/common/Analytics/QueryProvider';
 
 import './globals.css';

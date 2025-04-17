@@ -33,6 +33,7 @@ $announcement-strip-highlight-color: #fec601;
   @include mobile {
     font-size: 1.1rem;
     line-height: normal;
+    text-align: center;
   }
 
   & > a{

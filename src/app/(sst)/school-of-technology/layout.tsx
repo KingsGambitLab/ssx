@@ -7,7 +7,7 @@ import { AlumniProvider } from "@modules/sst/alumni-directory/context/AlumniCont
 import { METADATA } from "@utils/common/metadata";
 import { ANNOUNCEMENT_STRIP_CONTENT } from "@utils/sst/constants";
 
-import LoginModalProvider from "@context/LoginModalContext";
+import LoginModalProvider from "@context/sst/LoginModalContext";
 import BottomNavbar from "@components/Sst/BottomNavbar";
 
 export const metadata: Metadata = METADATA.SST;
