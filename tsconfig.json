@@ -27,7 +27,8 @@
       "@common*": ["./src/common/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@modules/*": ["./src/modules/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@lib/*": ["./src/lib/*"],
+      "@context/*": ["./src/context/*"]
     }
   },
   "include": [

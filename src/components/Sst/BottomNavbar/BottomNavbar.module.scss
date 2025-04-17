@@ -1,0 +1,78 @@
+$bottom-navbar-shadow-color: rgba(2, 16, 40, 0.16);
+$blue-color: #083CA0;
+$inactive-grey-color: #515151;
+
+.bottom-navbar {
+  z-index: 100;
+}
+
+.wrapper {
+  display: none;
+  @include tablet {
+    @include flex-row;
+
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: $white-color;
+    z-index: 100;
+    border-radius: $border-radius-large $border-radius-large 0 0;
+    box-shadow: 0rem 0rem 0.4rem 0rem $bottom-navbar-shadow-color;
+  }
+}
+
+.container {
+  display: none;
+    @include tablet {
+    @include flex-row;
+
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 1.6rem;
+    width: 45%;
+    position: relative;
+    z-index: 5;
+  }
+}
+
+.linkContainer {
+  @include flex-row-c;
+  
+  & > a {
+    text-decoration: none;
+  }
+}
+
+.link {
+  @include flex-col-c;
+
+  gap: 0.2rem;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: $inactive-grey-color;
+
+  & > span {
+    color: $blue-color;
+  }
+}
+
+.linkIcon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.applyButtonContainer {
+  width: 100%;
+  position: absolute;
+  top: -3.2rem;
+  width: 100%;
+  z-index: 6;
+
+  & > button {
+    @include flex-row-c;
+  }
+}

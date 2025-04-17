@@ -11,9 +11,11 @@ import useUser from '@/hooks/useUser';
 export default function Analytics({
   product,
   subProduct,
+  experiments,
 }: {
   product: string;
   subProduct: string;
+  experiments: Record<string, string>;
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -22,6 +24,9 @@ export default function Analytics({
     isError: isUserFetchError,
   } = useUser();
 
+  // TODO: remove this as curently not setting experiments as data attributes
+  
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const fetchExperiments = () => {
     const elements = document.querySelectorAll('[data-variant-key]');
     const experiments: Record<string, string> = {};
@@ -43,7 +48,6 @@ export default function Analytics({
   }, []);
 
   useEffect(() => {
-    const experiments = fetchExperiments();
     const pageUrl = getURLWithUTMParams(window.location.href);
 
     tracker.pushtoPendingList = true;
