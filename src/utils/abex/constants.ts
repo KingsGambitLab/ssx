@@ -2,7 +2,7 @@
 export const ABEX_FLAG_CONFIG = {
   BOTTOM_NAVBAR: {
     KEY: 'sst_bottom_navbar',
-    DEFAULT_VARIANT: 'sst_bottom_navbar_v1',
+    DEFAULT_VARIANT: 'hide_sst_bottom_navbar',
   },
 };
 
