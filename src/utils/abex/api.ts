@@ -6,7 +6,7 @@ export async function getAbExperimentVariant(payload: {
   flagkey: string;
 }) {
   try {
-    const res = await fetch(`https://${ABEX_API_URL}/api/v1/evaluation`, {
+    const res = await fetch(`${ABEX_API_URL}/api/v1/evaluation`, {
       method: "POST",
       credentials: "include",
       headers: ABEX_REQUEST_HEADERS,
