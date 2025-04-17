@@ -14,7 +14,7 @@ export const BOTTOM_NAVBAR_LINKS = {
     {
       icon: hatInactive,
       text: "Admission & Fees",
-      redirectUrl: '/school-of-technology',
+      redirectUrl: '/school-of-technology/admission',
       active: false,
     },
   ],
@@ -22,13 +22,13 @@ export const BOTTOM_NAVBAR_LINKS = {
     {
       icon: buildingInactive,
       text: 'Campus Life',
-      redirectUrl: '/school-of-technology',
+      redirectUrl: '/school-of-technology/campus-life',
       active: false,
     },
     {
       icon: usersActive,
       text: `Our Students`,
-      redirectUrl: '/school-of-technology',
+      redirectUrl: '/school-of-technology/alum-directory/',
       active: true,
     },
   ],
