@@ -63,7 +63,7 @@ export default function Navbar({
   }
 
   return (
-    <Section section_class='navbar' id='navbar'>
+    <Section section_class={styles.navbar} id='navbar'>
       <div className={classNames(styles.container, className)} >
         <Link href={homePageUrl} prefetch={false} onClick={() => trackEventHandler(pageTrackingEvents.navbarLogoClicked)}>
           <Image
