@@ -9,10 +9,8 @@ $inactive-grey-color: #515151;
 .wrapper {
   display: none;
   @include tablet {
-    @include flex-row;
+    @include flex-col-c;
 
-    align-items: flex-start;
-    justify-content: center;
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -24,16 +22,21 @@ $inactive-grey-color: #515151;
   }
 }
 
+.navLinksContainer {
+  @include flex-row-c;
+
+  width: 100%;
+}
+
 .container {
   display: none;
-    @include tablet {
-    @include flex-row;
+  @include tablet {
+    @include flex-row-c;
 
     align-items: flex-start;
     justify-content: space-around;
     padding: 1.6rem;
-    width: 45%;
-    position: relative;
+    width: 100%;
     z-index: 5;
   }
 }
@@ -67,10 +70,9 @@ $inactive-grey-color: #515151;
 
 .applyButtonContainer {
   width: 100%;
-  position: absolute;
-  top: -3.2rem;
-  width: 100%;
   z-index: 6;
+  padding: 1.6rem 1.6rem 0 1.6rem;
+  box-sizing: border-box;
 
   & > button {
     @include flex-row-c;
