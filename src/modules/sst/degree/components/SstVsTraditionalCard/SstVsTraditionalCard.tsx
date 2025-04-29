@@ -1,20 +1,35 @@
 "use client";
 
+import { useState } from 'react';
 import Image from 'next/image';
-import classnames from 'classnames';
+import classNames from 'classnames';
+
+import { Modal } from 'antd';
+import { ZoomInOutlined } from '@ant-design/icons';
 
 import { useDeviceType } from '@hooks/useDeviceType';
-import { ZoomInOutlined } from '@ant-design/icons';
+
 import { SstVsTraditionalCardProps } from '@modules/sst/degree/types';
+
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll/HorizontalScroll';
 
 import styles from './SstVsTraditionalCard.module.scss';
 
 const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['articles'] }) => {
+  const { isMobile } = useDeviceType();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const openModal = (imageUrl: string) => setSelectedImage(imageUrl);
+  const closeModal = () => setSelectedImage(null);
+
+  const modalStyleClass = {
+    mask: styles.imageModalMask
+  }
+
   return (
     <>
       {articles?.map((article, index) => {
-        const isTextCard = article?.text;
+        const isTextCard = !!article?.text;
 
         if (!isTextCard) {
           return (
@@ -25,12 +40,12 @@ const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['artic
                 width={300}
                 height={324}
               />
-              <div className={styles.zoomIcon}>
+              <div className={styles.zoomIcon} onClick={() => openModal(article.image)}>
                 <ZoomInOutlined className={styles.zoomIconIcon} />
               </div>
             </div>
           );
-        } else {
+        } else if (!isMobile) {
           return (
             <div key={index} className={styles.articleTextCard}>
               <Image
@@ -45,7 +60,28 @@ const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['artic
             </div>
           );
         }
+
+        return null;
       })}
+
+      <Modal
+        centered
+        open={!!selectedImage}
+        onCancel={closeModal}
+        footer={null}
+        classNames={modalStyleClass}
+        className={styles.imageModal}
+      >
+        {selectedImage && (
+          <Image
+            src={selectedImage}
+            alt="Zoomed Image"
+            className={styles.zoomedArticleImage}
+            width={319}
+            height={625}
+          />
+        )}
+      </Modal>
     </>
   );
 };
@@ -60,21 +96,27 @@ export default function SstVsTraditionalCard({
 }: SstVsTraditionalCardProps) {
   const { isMobile } = useDeviceType();
 
-  const isTextCard = articles?.some((article) => article?.text);
-  const isRedCard = variant === 'red';
-  const isBlueCard = variant === 'blue';
+  const isTextCardAvailable = articles?.some(article => article?.text);
+  const isRedVariant = variant === 'red';
+  const isBlueVariant = variant === 'blue';
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <Image src={icon} alt={altIcon} width={80} height={80} className={styles.icon} />
+        <Image
+          src={icon}
+          alt={altIcon}
+          width={80}
+          height={80}
+          className={styles.icon}
+        />
 
         <div className={styles.infoWrapper}>
           <div className={styles.keyPointsWrapper}>
-            <div className={classnames(
+            <div className={classNames(
               styles.title,
-              { [styles.redTitle]: isRedCard },
-              { [styles.blueTitle]: isBlueCard }
+              { [styles.redTitle]: isRedVariant },
+              { [styles.blueTitle]: isBlueVariant }
             )}>
               {title}
             </div>
@@ -104,7 +146,7 @@ export default function SstVsTraditionalCard({
             </div>
           </div>
 
-          {(!isTextCard || !isMobile) && (
+          {(!isTextCardAvailable || !isMobile) && (
             <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={isMobile ? 1.2 : 1.8}>
               <ArticlesCard articles={articles} />
             </HorizontalScrollWrapper>

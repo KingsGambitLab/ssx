@@ -2,6 +2,8 @@ $sst-vs-traditional-card-border-color: #e4e4e4;
 $sst-vs-traditional-card-background-color: #fafafa;
 $sst-vs-traditional-card-key-point-font-color: #171717;
 $sst-vs-traditional-card-article-background-color: #ececec;
+$sst-vs-traditional-card-close-icon-color: #212121;
+$sst-vs-traditional-image-modal-mask-color: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.75) 100%);
 $sst-vs-traditional-card-zoom-icon-box-shadow-color: rgba(18, 18, 18, 0.16);
 $sst-vs-traditional-card-red-title-gradient: linear-gradient(90deg, #661422 0%, #cc2844 71.07%);
 $sst-vs-traditional-card-blue-title-gradient: linear-gradient(90deg, #0a2661 -2.14%, #154ec7 72.14%);
@@ -165,7 +167,7 @@ $sst-vs-traditional-card-blue-title-gradient: linear-gradient(90deg, #0a2661 -2.
 
 .articleTextCard {
   @include flex-col;
-  
+
   max-height: 32.4rem;
   border-radius: 0.76rem;
   border: 0.09rem solid $sst-vs-traditional-card-border-color;
@@ -245,6 +247,61 @@ $sst-vs-traditional-card-blue-title-gradient: linear-gradient(90deg, #0a2661 -2.
   @include mobile {
     height: 2.73rem;
     width: 2.73rem;
+  }
+}
+
+.zoomedArticleImage {
+  width: auto;
+  object-fit: contain;
+
+  @include mobile {
+    max-height: 70vh;
+    max-width: 100%;
+  }
+}
+
+.imageModalMask {
+  background: $sst-vs-traditional-image-modal-mask-color;
+}
+
+.imageModal {
+  width: 62vw !important;
+  height: 70vh !important;
+
+  @include mobile {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 70vh !important;
+    margin: 0 !important;
+    top: 10rem !important;
+  }
+
+  :global(.ant-modal-content) {
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  :global(.ant-modal-close) {
+    @include flex-row-c;
+
+    top: -6.2rem !important;
+    inset-inline-end: 0 !important;
+    width: 4.8rem !important;
+    height: 4.8rem !important;
+    padding: 0.8rem !important;
+    border-radius: 4rem !important;
+    background: $sst-vs-traditional-card-background-color !important;
+
+    svg {
+      height: 3.2rem;
+      width: 3.2rem;
+      color: $sst-vs-traditional-card-close-icon-color;
+
+      @include mobile {
+        height: 2.4rem;
+        width: 2.4rem;
+      }
+    }
   }
 }
 

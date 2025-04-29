@@ -1,10 +1,14 @@
 "use client";
 
-import Image from 'next/image';
+import { Modal } from 'antd';
 import { ZoomInOutlined } from '@ant-design/icons';
 
-import { KeyFeatureCardProps } from '@modules/sst/degree/types';
+import { useState } from 'react';
+import Image from 'next/image';
+
 import { useDeviceType } from '@hooks/useDeviceType';
+import { KeyFeatureCardProps } from '@modules/sst/degree/types';
+
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll';
 
 import styles from './KeyFeatureCard.module.scss';
@@ -17,8 +21,18 @@ export default function KeyFeatureCard({
   featureList,
 }: KeyFeatureCardProps) {
   const { isMobile } = useDeviceType();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const openModal = (imageUrl: string) => setSelectedImage(imageUrl);
+  const closeModal = () => setSelectedImage(null);
+
+  const modalStyleClass = {
+    mask: styles.imageModalMask
+  }
+
   return (
-    <div className={styles.container}>
+    <>
+      <div className={styles.container}>
       <Image
         src={icon}
         alt={alt}
@@ -44,7 +58,7 @@ export default function KeyFeatureCard({
                   height={264}
                   className={styles.featureListItemImage}
                 />
-                <div className={styles.zoomIcon}>
+                <div className={styles.zoomIcon} onClick={() => openModal(item.image)}>
                   <ZoomInOutlined className={styles.zoomIconIcon} />
                 </div>
               </div>
@@ -53,5 +67,25 @@ export default function KeyFeatureCard({
         )}
       </div>
     </div>
+
+    <Modal
+        centered
+        open={!!selectedImage}
+        onCancel={closeModal}
+        footer={null}
+        classNames={modalStyleClass}
+        className={styles.imageModal}
+      >
+        {selectedImage && (
+          <Image
+            src={selectedImage}
+            alt="Zoomed Image"
+            className={styles.zoomedArticleImage}
+            width={319}
+            height={625}
+          />
+        )}
+      </Modal>
+    </>
   );
 }
