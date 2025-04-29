@@ -24,21 +24,19 @@ export default function SstNavbar() {
   };
 
   return (
-    <div>
-      <Navbar
-        logoSrc={SSTLogo?.src}
-        logoAlt="School of Technology Logo"
-        homePageUrl="/school-of-technology"
-        loggedOutData={loggedOutNavItems}
-        loggedInData={loggedInNavItems}
-        actionButtons={
-          <AuthActions
-            onLogin={onLoginHandler}
-            onApply={onApplyHandler}
-            onResumeApplication={onResumeApplicationHandler}
-          />
-        }
-      />
-    </div>
+    <Navbar
+      logoSrc={SSTLogo?.src}
+      logoAlt="School of Technology Logo"
+      homePageUrl="/school-of-technology"
+      loggedOutData={loggedOutNavItems}
+      loggedInData={loggedInNavItems}
+      actionButtons={
+        <AuthActions
+          onLogin={onLoginHandler}
+          onApply={onApplyHandler}
+          onResumeApplication={onResumeApplicationHandler}
+        />
+      }
+    />
   );
 }

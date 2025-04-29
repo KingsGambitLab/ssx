@@ -20,6 +20,7 @@ import {
 import NavItems from '../NavItems/NavItems';
 
 import styles from './Navbar.module.scss';
+import Section from '@components/common/Section';
 
 
 type NavbarProps = {
@@ -62,51 +63,53 @@ export default function Navbar({
   }
 
   return (
-    <div className={classNames(styles.container, className)} >
-      <Link href={homePageUrl} prefetch={false} onClick={() => trackEventHandler(pageTrackingEvents.navbarLogoClicked)}>
-        <Image
+    <Section section_class='navbar' id='navbar'>
+      <div className={classNames(styles.container, className)} >
+        <Link href={homePageUrl} prefetch={false} onClick={() => trackEventHandler(pageTrackingEvents.navbarLogoClicked)}>
+          <Image
           src={logoSrc}
           alt={logoAlt}
           width={117}
           height={34}
           className={styles.logoImage}
         />
-      </Link>
-      <div className={styles.rightSection}>
-        {isTabletOrMobile ? (
-          <div className={styles.hamburgerWrapper}>
-            <Button
-              type="text"
-              icon={<MenuOutlined />}
-              className={styles.barsMenu}
-              onClick={() => {
-                trackEventHandler(pageTrackingEvents.userMenuOpened);
-                setHamburgerMenuOpen(true);
-              }}
-            />
-            <Drawer
-              title={false}
-              placement="right"
-              open={hamburgerMenuOpen}
-              rootClassName={styles.hamburgerDrawer}
-              onClose={() => {
-                trackEventHandler(pageTrackingEvents.userMenuClosed);
-                setHamburgerMenuOpen(false);
-              }}
-            >
-              <div className={styles.hamburgerMenu}>
-                <NavItems data={userData?.isloggedIn ? loggedInData : loggedOutData} />
-                {actionButtons}
-              </div>
-            </Drawer>
-          </div>
-        ) : (
-          <>
-            <NavItems data={loggedOutData} />
-            {actionButtons}
-          </>
-        )}
+        </Link>
+        <div className={styles.rightSection}>
+          {isTabletOrMobile ? (
+            <div className={styles.hamburgerWrapper}>
+              <Button
+                type="text"
+                icon={<MenuOutlined />}
+                className={styles.barsMenu}
+                onClick={() => {
+                  trackEventHandler(pageTrackingEvents.userMenuOpened);
+                  setHamburgerMenuOpen(true);
+                }}
+              />
+              <Drawer
+                title={false}
+                placement="right"
+                open={hamburgerMenuOpen}
+                rootClassName={styles.hamburgerDrawer}
+                onClose={() => {
+                  trackEventHandler(pageTrackingEvents.userMenuClosed);
+                  setHamburgerMenuOpen(false);
+                }}
+              >
+                <div className={styles.hamburgerMenu}>
+                  <NavItems data={userData?.isloggedIn ? loggedInData : loggedOutData} />
+                  {actionButtons}
+                </div>
+              </Drawer>
+            </div>
+          ) : (
+            <>
+              <NavItems data={loggedOutData} />
+              {actionButtons}
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </Section>
   )
 }
