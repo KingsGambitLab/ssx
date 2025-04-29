@@ -1,0 +1,307 @@
+$sst-vs-traditional-card-border-color: #e4e4e4;
+$sst-vs-traditional-card-background-color: #fafafa;
+$sst-vs-traditional-card-key-point-font-color: #171717;
+$sst-vs-traditional-card-article-background-color: #ececec;
+$sst-vs-traditional-card-close-icon-color: #212121;
+$sst-vs-traditional-image-modal-mask-color: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.75) 100%);
+$sst-vs-traditional-card-zoom-icon-box-shadow-color: rgba(18, 18, 18, 0.16);
+$sst-vs-traditional-card-red-title-gradient: linear-gradient(90deg, #661422 0%, #cc2844 71.07%);
+$sst-vs-traditional-card-blue-title-gradient: linear-gradient(90deg, #0a2661 -2.14%, #154ec7 72.14%);
+
+.container {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 2rem;
+  align-self: stretch;
+  flex: 0 0 50%;
+}
+
+.content {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 4rem;
+  height: 100%;
+  align-self: stretch;
+  padding: 3.2rem;
+  border-radius: $border-radius-large;
+  border: 0.1rem solid $sst-vs-traditional-card-border-color;
+  background: $white-color;
+
+  @include mobile {
+    gap: 0.8rem;
+    padding: 2rem;
+  }
+}
+
+.icon {
+  width: 8rem;
+  height: 8rem;
+
+  @include mobile {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+
+.infoWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 2.4rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 2rem;
+  }
+}
+
+.keyPointsWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 3.2rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 1.4rem;
+  }
+}
+
+.title {
+  font-size: $desktop-font-title-1;
+  font-weight: $semi-bold-font-weight;
+  line-height: 5.6rem;
+
+  @include mobile {
+    font-size: $mobile-font-title-1;
+    font-style: normal;
+    line-height: 3.36rem;
+  }
+}
+
+.redTitle {
+  background: $sst-vs-traditional-card-red-title-gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blueTitle {
+  background: $sst-vs-traditional-card-blue-title-gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.keyPoints {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 2.4rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 1.4rem;
+  }
+}
+
+.keyPoint {
+  @include flex-col-y-c;
+
+  padding: 2.4rem;
+  gap: 1.6rem;
+  align-self: stretch;
+  border-radius: $border-radius-default;
+  background: $sst-vs-traditional-card-background-color;
+
+  @include mobile {
+    padding: 1.4rem;
+    gap: 0.8rem;
+  }
+}
+
+.keyPointHeading {
+  color: $sst-vs-traditional-card-key-point-font-color;
+  font-size: $h3-size;
+  font-weight: $bold-font-weight;
+  line-height: 3.3rem;
+
+  & > span {
+    font-weight: $bold-font-weight;
+  }
+
+  @include mobile {
+    font-size: $mobile-font-body-secondary;
+    line-height: 1.9rem;
+  }
+}
+
+.keyPointSubHeading {
+  color: $sst-vs-traditional-card-key-point-font-color;
+  font-size: $desktop-font-body;
+  font-weight: $normal-font-weight;
+  line-height: 2.8rem;
+
+  & > ul {
+    @include flex-col;
+    
+    margin: 0;
+    gap: 1rem;
+
+    @include mobile {
+      gap: 0.6rem;
+    }
+  }
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.6rem;
+  }
+}
+
+.articlesWrapper {
+  @include flex-row;
+}
+
+.articleTextCard {
+  @include flex-col;
+
+  max-height: 32.4rem;
+  border-radius: 0.76rem;
+  border: 0.09rem solid $sst-vs-traditional-card-border-color;
+  overflow: hidden;
+  position: relative;
+
+  & > img {
+    object-fit: cover;
+    object-position: top left;
+    width: 100%;
+    height: 100%;
+
+    @include mobile {
+      height: 24rem;
+    }
+  }
+}
+
+.articleText {
+  @include flex-row-c;
+
+  flex: 1;
+  padding: 1.74rem;
+  gap: 0.87rem;
+  align-self: stretch;
+  background: $sst-vs-traditional-card-background-color;
+  color: $neutral-scale-12;
+  font-size: $desktop-font-body-tertiary;
+  font-weight: $default-font-weight;
+  line-height: 2.5rem;
+}
+
+.articleImageCard {
+  max-height: 32.4rem;
+  border-radius: 0.76rem;
+  border: 0.09rem solid $sst-vs-traditional-card-border-color;
+  overflow: hidden;
+  position: relative;
+
+  & > img {
+    object-fit: cover;
+    object-position: top left;
+    width: 100%;
+    height: 100%;
+
+    @include mobile {
+      height: 24rem;
+    }
+  }
+}
+
+.zoomIcon {
+  @include flex-row-y-c;
+
+  position: absolute;
+  bottom: 2rem;
+  z-index: 2;
+  right: 2rem;
+  cursor: pointer;
+  padding: 2.4rem;
+  gap: 1rem;
+  border-radius: 9.9rem;
+  background: $sst-vs-traditional-card-background-color;
+  box-shadow: 0 0.8rem 1.6rem 0px $sst-vs-traditional-card-zoom-icon-box-shadow-color;
+
+  @include mobile {
+    padding: 1.778rem;
+    right: 1.48rem;
+    bottom: 1.48rem;
+  }
+}
+
+.zoomIconIcon svg {
+  height: 3.2rem;
+  width: 3.2rem;
+
+  @include mobile {
+    height: 2.73rem;
+    width: 2.73rem;
+  }
+}
+
+.zoomedArticleImage {
+  width: auto;
+  object-fit: contain;
+
+  @include mobile {
+    max-height: 70vh;
+    max-width: 100%;
+  }
+}
+
+.imageModalMask {
+  background: $sst-vs-traditional-image-modal-mask-color;
+}
+
+.imageModal {
+  width: 62vw !important;
+  height: 70vh !important;
+
+  @include mobile {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 70vh !important;
+    margin: 0 !important;
+    top: 10rem !important;
+  }
+
+  :global(.ant-modal-content) {
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  :global(.ant-modal-close) {
+    @include flex-row-c;
+
+    top: -6.2rem !important;
+    inset-inline-end: 0 !important;
+    width: 4.8rem !important;
+    height: 4.8rem !important;
+    padding: 0.8rem !important;
+    border-radius: 4rem !important;
+    background: $sst-vs-traditional-card-background-color !important;
+
+    svg {
+      height: 3.2rem;
+      width: 3.2rem;
+      color: $sst-vs-traditional-card-close-icon-color;
+
+      @include mobile {
+        height: 2.4rem;
+        width: 2.4rem;
+      }
+    }
+  }
+}
+

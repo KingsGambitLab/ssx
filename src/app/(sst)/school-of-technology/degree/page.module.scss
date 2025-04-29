@@ -1,12 +1,14 @@
-$alum-directory-container-background-color: #fafafa;
+$degree-container-background-color: #fafafa;
 
 .container {
+  @include flex-col;
+
+  gap: 2.4rem;
   margin-top: 11rem;
   min-height: 100vh;
   font-family: 'Plus Jakarta Sans' !important;
-  padding: 3.2rem 0;
-  background-color: $alum-directory-container-background-color;
-
+  padding: 3.2rem 10.4rem;
+  background-color: $degree-container-background-color;
 
   @include mobile {
     margin-top: 10.6rem;
