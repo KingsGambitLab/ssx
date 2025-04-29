@@ -11,8 +11,6 @@ import HorizontalScrollWrapper from '@components/common/HorizontalScroll/Horizon
 import styles from './SstVsTraditionalCard.module.scss';
 
 const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['articles'] }) => {
-  const { isMobile } = useDeviceType();
-
   return (
     <>
       {articles?.map((article, index) => {
