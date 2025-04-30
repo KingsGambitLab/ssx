@@ -1,3 +1,5 @@
+import { BASE_URL } from '@utils/common/url';
+
 import OpenBookIcon from '@public/images/sst/svg/open-book.svg';
 import StarBadgeIcon from '@public/images/sst/svg/star-badge.svg';
 import RatingIcon from '@public/images/sst/svg/seal-check.svg';
@@ -11,6 +13,10 @@ import UgcSection22ArticleImage from '@public/images/sst/webp/articles/sst-vs-tr
 import UgcWebsiteFaqArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/ugc-website-faq.webp';
 import UpscEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/upsc-eligibility.webp';
 import CatEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/cat-eligibility.webp';
+import GateEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/gate-eligibility.webp';
+import GraduateEducationArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-education.webp';
+import DegreeEquivalenceArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/degree-equivalence.webp';
+import GraduateProgramEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-program-eligibility.webp';
 
 export const sstVsTraditionalData = [
   {
@@ -20,11 +26,11 @@ export const sstVsTraditionalData = [
     title: "Why the traditional system is flawed",
     points: [
       {
-        heading: "Most B.Tech curriculums were designed decades ago, are outdated and lack faculty with industry experience",
+        heading: "Most B.Tech curriculums were <b>designed decades ago, are outdated and lack faculty with industry experience</b>",
         subHeading: ""
       },
       {
-        heading: "As a result, students from even top colleges have to do double-work: ",
+        heading: "<b>As a result, students from even top colleges have to do double-work: </b>",
         subHeading: [
           "study theoretical concepts to purely pass exams and,",
           "self-study for clearing job interviews, higher studies, and even startup success."
@@ -49,11 +55,11 @@ export const sstVsTraditionalData = [
     title: "The Ideal Tech Education - Best of Both Worlds",
     points: [
       {
-        heading: "A degree is necessary—but it shouldn’t come at the cost of real learning.",
+        heading: "<b>A degree is necessary—but it shouldn’t come at the cost of real learning.</b>",
         subHeading: "Traditional education forces outdated subjects and rigid structures, leaving students unprepared for industry. "
       },
       {
-        heading: "Students at SST have the option to explore independent degree programs",
+        heading: "<b>Students at SST have the option to explore independent degree programs</b>",
         subHeading: "that align with their academic and career goals while gaining hands-on, modern CS training at SST."
       }
     ],
@@ -72,43 +78,67 @@ export const sstVsTraditionalData = [
   }
 ]
 
-export const keyFeaturesData = [
-  {
-    icon: CertificateIcon.src,
-    altIcon: "Certificate Icon",
-    title: "UGC-Recognized Bachelor’s Degree",
-    desc: "Recognized by employers, these UGC-approved degrees from BITS Pilani or IIT Madras can be independently pursued by students along their studies at SST.",
-    featureList: [
-      {
-        image: UgcSection22ArticleImage.src,
-        alt: "UGC Section 22 Article"
-      },
-      {
-        image: UgcWebsiteFaqArticleImage.src,
-        alt: "UGC Website FAQ Article"
-      }
-    ]
-  },
-  {
-    icon: ShootingStarIcon.src,
-    altIcon: "Shooting Star Icon",
-    title: "Holds the Same Value as an Offline Degree",
-    desc: "Meet eligibility criteria for jobs, UPSC, & further studies (MBA, MS, or PhD).",
-    featureList: [
-      {
-        image: UpscEligibilityArticleImage.src,
-        alt: "UPSC Eligibility Article"
-      },
-      {
-        image: CatEligibilityArticleImage.src,
-        alt: "CAT Eligibility Article"
-      }
-    ]
-  },
-  {
-    icon: RatingIcon.src,
-    altIcon: "Rating Icon",
-    title: "Accepted by Global Universities",
-    desc: "Meets eligibility criteria to apply for further studies programs abroad, including MS, MBA, and PhD.",
+export const keyFeaturesData = {
+  features: [
+    {
+      icon: CertificateIcon.src,
+      altIcon: "Certificate Icon",
+      title: "UGC-Recognized Bachelor’s Degree",
+      desc: `Recognized by employers, these UGC-approved degrees from BITS Pilani or IIT Madras can be independently pursued by students along their studies at SST.`,
+      featureList: [
+        {
+          image: UgcSection22ArticleImage.src,
+          alt: "UGC Section 22 Article"
+        },
+        {
+          image: UgcWebsiteFaqArticleImage.src,
+          alt: "UGC Website FAQ Article"
+        }
+      ]
+    },
+    {
+      icon: ShootingStarIcon.src,
+      altIcon: "Shooting Star Icon",
+      title: "Holds the Same Value as an Offline Degree",
+      desc: "Meet eligibility criteria for jobs, UPSC, & further studies (MBA, MS, or PhD).",
+      featureList: [
+        {
+          image: UpscEligibilityArticleImage.src,
+          alt: "UPSC Eligibility Article"
+        },
+        {
+          image: CatEligibilityArticleImage.src,
+          alt: "CAT Eligibility Article"
+        },
+        {
+          image: GateEligibilityArticleImage.src,
+          alt: "GATE Eligibility Article"
+        }
+      ]
+    },
+    {
+      icon: RatingIcon.src,
+      altIcon: "Rating Icon",
+      title: "Accepted by Global Universities",
+      desc: "Meets eligibility criteria to apply for further studies programs abroad, including MS, MBA, and PhD.",
+      featureList: [
+        {
+          image: GraduateEducationArticleImage.src,
+          alt: "Graduate Education Article"
+        },
+        {
+          image: DegreeEquivalenceArticleImage.src,
+          alt: "Degree Equivalence Article"
+        },
+        {
+          image: GraduateProgramEligibilityArticleImage.src,
+          alt: "Graduate Program Eligibility Article"
+        }
+      ]
+    }
+  ],
+  cta: {
+    title: "Explore Placement @SST",
+    link: `${BASE_URL}/school-of-technology/career-outcomes`
   }
-]
+}

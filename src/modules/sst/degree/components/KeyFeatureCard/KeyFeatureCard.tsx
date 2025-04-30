@@ -6,8 +6,9 @@ import { ZoomInOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Image from 'next/image';
 
-import { useDeviceType } from '@hooks/useDeviceType';
 import { KeyFeatureCardProps } from '@modules/sst/degree/types';
+
+import { useDeviceType } from '@hooks/useDeviceType';
 
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll';
 
@@ -47,8 +48,8 @@ export default function KeyFeatureCard({
           <div className={styles.desc}>{desc}</div>
         </div>
 
-        {featureList && featureList?.length > 0 && !isMobile && (
-          <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={1.8}>
+        {featureList && featureList?.length > 0  && (
+            <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={1.2}>
             {featureList.map((item, index) => (
               <div key={index} className={styles.featureListItem}>
                 <Image
