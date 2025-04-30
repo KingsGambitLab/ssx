@@ -96,9 +96,27 @@ export default function SstVsTraditionalCard({
 }: SstVsTraditionalCardProps) {
   const { isMobile } = useDeviceType();
 
-  const isTextCardAvailable = articles?.some(article => article?.text);
+  const isTextCard = articles?.some(article => article?.text);
   const isRedVariant = variant === 'red';
   const isBlueVariant = variant === 'blue';
+
+  const parseHtmlTags = (text: string): React.ReactNode => {
+    if (!text) return null;
+  
+    const parts = text.split(/(<b>.*?<\/b>)/g);
+  
+    return parts.map((part, index) => {
+      if (part.startsWith('<b>') && part.endsWith('</b>')) {
+        const content = part.replace(/<\/?b>/g, '');
+        return (
+          <span key={index} className={styles.highlight}>
+            {content}
+          </span>
+        );
+      }
+      return part;
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -124,7 +142,7 @@ export default function SstVsTraditionalCard({
             <div className={styles.keyPoints}>
               {points.map((point, index) => (
                 <div key={index} className={styles.keyPoint}>
-                  <div className={styles.keyPointHeading}>{point.heading}</div>
+                  <div className={styles.keyPointHeading}>{parseHtmlTags(point.heading)}</div>
 
                   {point.subHeading && (
                     <div className={styles.keyPointSubHeading}>
@@ -137,7 +155,7 @@ export default function SstVsTraditionalCard({
                           ))}
                         </ul>
                       ) : (
-                        <div>{point.subHeading}</div>
+                        <div>{parseHtmlTags(point.subHeading)}</div>
                       )}
                     </div>
                   )}
@@ -146,7 +164,7 @@ export default function SstVsTraditionalCard({
             </div>
           </div>
 
-          {(!isTextCardAvailable || !isMobile) && (
+          {(!isTextCard || !isMobile) && (
             <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={isMobile ? 1.2 : 1.8}>
               <ArticlesCard articles={articles} />
             </HorizontalScrollWrapper>
