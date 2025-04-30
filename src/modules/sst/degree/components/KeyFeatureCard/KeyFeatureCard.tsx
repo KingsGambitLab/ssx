@@ -8,8 +8,6 @@ import Image from 'next/image';
 
 import { KeyFeatureCardProps } from '@modules/sst/degree/types';
 
-import { useDeviceType } from '@hooks/useDeviceType';
-
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll';
 
 import styles from './KeyFeatureCard.module.scss';
