@@ -27,6 +27,12 @@ $key-features-title-font-color: #3a3a3a;
 }
 
 .content {
+  @include flex-col-c;
+
+  gap: 5.4rem;
+}
+
+.features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: stretch;
@@ -36,5 +42,24 @@ $key-features-title-font-color: #3a3a3a;
   @include mobile {
     grid-template-columns: repeat(1, 1fr);
     gap: 1.4rem;
+  }
+}
+
+.placementButton {
+  @include flex-row-c;
+
+  padding: 1.2rem 5.4rem !important;
+  border-radius: $border-radius-default !important;
+  background: $primary-color !important;
+  box-sizing: content-box !important;
+
+  & > span {
+    @include font-plus-jakarta-sans;
+    @include flex-row-c;
+
+    color: $white-color !important;
+    font-size: $desktop-font-body !important;
+    font-weight: $medium-font-weight !important;
+    line-height: 2.8rem !important;
   }
 }

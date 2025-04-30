@@ -125,17 +125,16 @@ $sst-vs-traditional-card-blue-title-gradient: linear-gradient(90deg, #0a2661 -2.
 .keyPointHeading {
   color: $sst-vs-traditional-card-key-point-font-color;
   font-size: $h3-size;
-  font-weight: $bold-font-weight;
   line-height: 3.3rem;
-
-  & > span {
-    font-weight: $bold-font-weight;
-  }
 
   @include mobile {
     font-size: $mobile-font-body-secondary;
     line-height: 1.9rem;
   }
+}
+
+.highlight {
+  font-weight: $bold-font-weight;
 }
 
 .keyPointSubHeading {
@@ -251,7 +250,7 @@ $sst-vs-traditional-card-blue-title-gradient: linear-gradient(90deg, #0a2661 -2.
 }
 
 .zoomedArticleImage {
-  width: auto;
+  width: 100%;
   object-fit: contain;
 
   @include mobile {
@@ -304,4 +303,3 @@ $sst-vs-traditional-card-blue-title-gradient: linear-gradient(90deg, #0a2661 -2.
     }
   }
 }
-

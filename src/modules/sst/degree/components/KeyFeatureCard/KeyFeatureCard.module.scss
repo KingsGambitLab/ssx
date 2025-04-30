@@ -16,8 +16,6 @@ $key-feature-card-icon-background-color: linear-gradient(180deg, #FFF 0%, #0041c
   border-radius: $border-radius-large;
   border: 0.1rem solid $key-feature-card-border-color;
   background: $white-color;
-  flex: 0 0 33.33%;
-  min-width: 0;
 
   @include mobile {
     padding: 1.6rem;
@@ -88,12 +86,11 @@ $key-feature-card-icon-background-color: linear-gradient(180deg, #FFF 0%, #0041c
 }
 
 .featureListItem {
-  max-height: 32.4rem;
+  max-height: 26.4rem;
   border-radius: 0.76rem;
   border: 0.09rem solid $key-feature-card-border-color;
   overflow: hidden;
   position: relative;
-  min-width: 27rem !important;
 
   & > img {
     object-fit: cover;
@@ -110,6 +107,12 @@ $key-feature-card-icon-background-color: linear-gradient(180deg, #FFF 0%, #0041c
 .featureListItemImage {
   height: 26.4rem;
   width: 27.1rem;
+  object-fit: cover;
+  object-position: top left;
+
+  @include mobile {
+    height: 24rem;
+  }
 }
 
 .zoomIcon {

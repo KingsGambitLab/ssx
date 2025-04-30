@@ -6,7 +6,6 @@ import { ZoomInOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Image from 'next/image';
 
-import { useDeviceType } from '@hooks/useDeviceType';
 import { KeyFeatureCardProps } from '@modules/sst/degree/types';
 
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll';
@@ -20,11 +19,14 @@ export default function KeyFeatureCard({
   alt,
   featureList,
 }: KeyFeatureCardProps) {
-  const { isMobile } = useDeviceType();
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<{isOpen: boolean, imageUrl: string | null}>({isOpen: false, imageUrl: null});
 
-  const openModal = (imageUrl: string) => setSelectedImage(imageUrl);
-  const closeModal = () => setSelectedImage(null);
+  const openModal = (imageUrl: string) => {
+    setIsModalOpen({isOpen: true, imageUrl});
+  };
+  const afterCloseModal = () => {
+    setIsModalOpen({isOpen: false, imageUrl: null});
+  };
 
   const modalStyleClass = {
     mask: styles.imageModalMask
@@ -47,8 +49,8 @@ export default function KeyFeatureCard({
           <div className={styles.desc}>{desc}</div>
         </div>
 
-        {featureList && featureList?.length > 0 && !isMobile && (
-          <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={1.8}>
+        {featureList && featureList?.length > 0  && (
+            <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={1.2}>
             {featureList.map((item, index) => (
               <div key={index} className={styles.featureListItem}>
                 <Image
@@ -70,15 +72,16 @@ export default function KeyFeatureCard({
 
     <Modal
         centered
-        open={!!selectedImage}
-        onCancel={closeModal}
+        open={isModalOpen.isOpen}
+        onCancel={() => setIsModalOpen(prev => ({ ...prev, isOpen: false }))}
+        afterClose={afterCloseModal}
         footer={null}
         classNames={modalStyleClass}
         className={styles.imageModal}
       >
-        {selectedImage && (
+        {isModalOpen?.imageUrl && (
           <Image
-            src={selectedImage}
+            src={isModalOpen?.imageUrl}
             alt="Zoomed Image"
             className={styles.zoomedArticleImage}
             width={319}
