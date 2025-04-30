@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Section from '@components/common/Section';
 import styles from './DegreeHero.module.scss';
+import DegreeHeroImage from '@public/images/sst/png/degree-hero.png';
+
 
 const DegreeHero = () => {
   return (
@@ -22,7 +24,7 @@ const DegreeHero = () => {
           </div>
           <div className={styles.imageWrapper}>
             <Image
-              src="/images/degree/degree-hero.png"
+              src={DegreeHeroImage}
               alt="Students using VR technology"
               width={541}
               height={306}
