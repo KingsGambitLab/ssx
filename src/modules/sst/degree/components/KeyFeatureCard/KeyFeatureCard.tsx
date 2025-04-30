@@ -21,7 +21,6 @@ export default function KeyFeatureCard({
   alt,
   featureList,
 }: KeyFeatureCardProps) {
-  const { isMobile } = useDeviceType();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const openModal = (imageUrl: string) => setSelectedImage(imageUrl);
