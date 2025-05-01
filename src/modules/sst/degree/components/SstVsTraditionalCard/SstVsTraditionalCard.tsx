@@ -17,10 +17,10 @@ import styles from './SstVsTraditionalCard.module.scss';
 
 const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['articles'] }) => {
   const { isMobile } = useDeviceType();
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<{isOpen: boolean, imageUrl: string | null}>({isOpen: false, imageUrl: null});
 
-  const openModal = (imageUrl: string) => setSelectedImage(imageUrl);
-  const closeModal = () => setSelectedImage(null);
+  const openModal = (imageUrl: string) => setIsModalOpen({isOpen: true, imageUrl});
+  const closeModal = () => setIsModalOpen({isOpen: false, imageUrl: null});
 
   const modalStyleClass = {
     mask: styles.imageModalMask
@@ -66,15 +66,16 @@ const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['artic
 
       <Modal
         centered
-        open={!!selectedImage}
-        onCancel={closeModal}
+        open={isModalOpen.isOpen}
+        onCancel={() => setIsModalOpen(prev => ({ ...prev, isOpen: false }))}
+        afterClose={closeModal}
         footer={null}
         classNames={modalStyleClass}
         className={styles.imageModal}
       >
-        {selectedImage && (
+        {isModalOpen?.imageUrl && (
           <Image
-            src={selectedImage}
+            src={isModalOpen?.imageUrl}
             alt="Zoomed Image"
             className={styles.zoomedArticleImage}
             width={319}
@@ -96,9 +97,27 @@ export default function SstVsTraditionalCard({
 }: SstVsTraditionalCardProps) {
   const { isMobile } = useDeviceType();
 
-  const isTextCardAvailable = articles?.some(article => article?.text);
+  const isTextCard = articles?.some(article => article?.text);
   const isRedVariant = variant === 'red';
   const isBlueVariant = variant === 'blue';
+
+  const parseHtmlTags = (text: string): React.ReactNode => {
+    if (!text) return null;
+  
+    const parts = text.split(/(<b>.*?<\/b>)/g);
+  
+    return parts.map((part, index) => {
+      if (part.startsWith('<b>') && part.endsWith('</b>')) {
+        const content = part.replace(/<\/?b>/g, '');
+        return (
+          <span key={index} className={styles.highlight}>
+            {content}
+          </span>
+        );
+      }
+      return part;
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -124,7 +143,7 @@ export default function SstVsTraditionalCard({
             <div className={styles.keyPoints}>
               {points.map((point, index) => (
                 <div key={index} className={styles.keyPoint}>
-                  <div className={styles.keyPointHeading}>{point.heading}</div>
+                  <div className={styles.keyPointHeading}>{parseHtmlTags(point.heading)}</div>
 
                   {point.subHeading && (
                     <div className={styles.keyPointSubHeading}>
@@ -137,7 +156,7 @@ export default function SstVsTraditionalCard({
                           ))}
                         </ul>
                       ) : (
-                        <div>{point.subHeading}</div>
+                        <div>{parseHtmlTags(point.subHeading)}</div>
                       )}
                     </div>
                   )}
@@ -146,7 +165,7 @@ export default function SstVsTraditionalCard({
             </div>
           </div>
 
-          {(!isTextCardAvailable || !isMobile) && (
+          {(!isTextCard || !isMobile) && (
             <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={isMobile ? 1.2 : 1.8}>
               <ArticlesCard articles={articles} />
             </HorizontalScrollWrapper>

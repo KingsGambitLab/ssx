@@ -3,8 +3,10 @@ import { useRef, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
-import ArrowLeft from '@public/images/common/svg/arrow-left.svg';
-import ArrowLeftDisabled from '@public/images/common/svg/arrow-left-disabled.svg';
+import ArrowLeft from '@public/images/common/svg/arrow-left-active.svg';
+import ArrowLeftDisabled from '@public/images/common/svg/arrow-left-disable.svg';
+import ArrowRight from '@public/images/common/svg/arrow-right-active.svg';
+import ArrowRightDisabled from '@public/images/common/svg/arrow-right-disable.svg';
 
 import styles from './HorizontalScroll.module.scss';
 
@@ -131,7 +133,7 @@ export default function HorizontalScrollWrapper({
           variant="solid"
           shape="circle"
           disabled={isAtEnd}
-          icon={<img src={isAtEnd ? ArrowLeftDisabled.src : ArrowLeft.src} alt="arrow-right" className={styles.scrollButtonIcon} />}
+          icon={<img src={isAtEnd ? ArrowRightDisabled.src : ArrowRight.src} alt="arrow-right" className={styles.scrollButtonIcon} />}
         />
       </div>
     </div>
