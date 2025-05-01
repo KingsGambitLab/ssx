@@ -1,0 +1,171 @@
+// Color variables
+$light-black: #171717;
+$text-secondary: #3a3a3a;
+$light-gray: #e4e4e4;
+$hover-bg: rgba(0, 0, 0, 0.02);
+$blue-gradient-start: #0080ff;
+$blue-gradient-end: #083ca0;
+$light-blue: #e6f7ff;
+$border-color: #e4e4e4;
+
+.sstVsTraditionalSection {
+  margin: 4rem 0;
+  
+  .headerContainer {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 5.6rem;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sectionTitle {
+      font-size: $desktop-font-header;
+      font-weight: $semi-bold-font-weight;
+      width: 50%;
+
+      @include mobile {
+        text-align: center;
+        width: 100%;
+        font-size: $mobile-font-header !important;
+      }
+    }
+    
+    .sectionDescription {
+      font-size: $desktop-font-body;
+      color: $text-secondary;
+      width: 50%;
+
+      @include mobile {
+        text-align: center;
+        width: 100%;
+        font-size: $mobile-font-card-subtitle !important;
+      }
+    }
+
+    .sectionDescriptionSecondary {
+      display: none;
+
+      @include mobile {
+        display: block;
+        font-size: $desktop-font-body;
+        text-align: center;
+        width: 100%;
+        font-size: $mobile-font-card-subtitle !important;
+      }
+    }
+  }
+  
+  .tableContainer {
+    margin: 0 auto;
+    
+    .comparisonTable {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    :global(.ant-table-thead > tr) {
+      > th {
+        padding: 2.2rem 1.2rem;
+        text-align: center;
+
+        @include mobile {
+          padding: 1.1rem 0.6rem;
+        }
+      }
+
+      .parameterColumn {
+        background-color: $light-gray;
+        font-weight: $medium-font-weight;
+        font-size: $desktop-font-body;
+        color: $light-black;
+
+        @include mobile {
+          font-size: $mobile-font-card-subtitle !important;
+        }
+      }
+    
+      .sstColumn {
+        background: linear-gradient(151deg, $blue-gradient-start 23%, $blue-gradient-end 100%);
+        font-weight: $semi-bold-font-weight;
+        font-size: 2.8rem;
+        color: $white-color;
+
+        @include mobile {
+          font-size: $mobile-font-body-secondary !important;
+        }
+      }
+      
+      .traditionalColumn {
+        background-color: $light-gray;
+        font-weight: $bold-font-weight;
+        font-size: $desktop-font-subtitle;
+
+        @include mobile {
+          font-size: $mobile-font-card-subtitle !important;
+          font-weight: $medium-font-weight;
+        }
+      }
+    }
+
+    :global(.ant-table-tbody > tr) {
+      > td {
+        padding: 1.6rem;
+        color: $light-black;
+        font-weight: $medium-font-weight;
+        font-size: $desktop-font-body;
+        border: 0.1rem solid $border-color;
+
+        @include mobile {
+          font-size: 1rem;
+          padding: 0.8rem;
+        }
+      }
+    
+      .sstColumn {
+        background-color: $light-blue;
+
+        @include mobile {
+          background-color: $white-color;
+        }
+      }
+    }
+  }
+  
+  .tableRow {
+    &:hover {
+      background-color: $hover-bg;
+    }
+  }
+}
+
+/* Global styles for table headers and cells */
+:global(.ant-table-thead > tr > th) {
+  font-weight: 600;
+  padding: 16px 24px;
+}
+
+:global(.ant-table-tbody > tr > td) {
+  padding: 16px 24px;
+}
+
+@include mobile {
+  .sstVsTraditionalSection {
+    .headerContainer {
+      padding: 0 1rem;
+      
+      .sectionTitle {
+        font-size: 2rem;
+      }
+    }
+    
+    .tableContainer {
+      overflow-x: auto;
+      padding: 0 1rem;
+    }
+  }
+} 
