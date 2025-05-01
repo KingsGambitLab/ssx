@@ -1,0 +1,66 @@
+.faqSection {
+  padding: 6rem 0;
+  background-color: #fafafa;
+  
+  @include mobile {
+    padding: 4rem 0;
+  }
+
+  :global(.ant-collapse-header) {
+    flex-direction: row-reverse;
+    gap: 2rem;
+  }
+}
+
+.sstFaq {
+  // SST-specific styling overrides can go here
+  background-color: transparent;
+  
+  :global(.ant-collapse-content-box) {
+    background-color: $neutral-scale-11 !important;
+  }
+}
+
+.faqFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.6rem;
+}
+
+.readAllButton {
+  background-color: transparent !important;
+  border: 1px solid $color-scale-50 !important;
+  color: $color-scale-50 !important;
+  padding: 0.8rem 2.4rem !important;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 2.4rem;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  
+  &:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+}
+
+.contactContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.contactText {
+  font-size: 1.6rem;
+  color: #666;
+}
+
+.contactLink {
+  font-size: 1.6rem;
+  color: $color-scale-50 !important;
+  font-weight: 500;
+}

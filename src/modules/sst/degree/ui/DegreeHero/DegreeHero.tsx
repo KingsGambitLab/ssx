@@ -4,7 +4,7 @@ import styles from './DegreeHero.module.scss';
 
 const DegreeHero = () => {
   return (
-    <Section>
+    <Section section_class={styles.degreeHero} id="degree-hero">
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
