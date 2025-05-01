@@ -3,8 +3,7 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
 
-import { useLoginModalContext, ExperimentsContext } from '@context/sst';
-import { useUser } from '@hooks';
+import { ExperimentsContext } from '@context/sst';
 import { ABEX_FLAG_CONFIG } from '@utils/abex/constants';
 import {
   pageTrackingEvents,
@@ -12,22 +11,18 @@ import {
   trackEvent,
 } from '@modules/sst/alumni-directory/utils';
 
-import ActionButton from './ActionButton/ActionButton';
 import SstBottomNudge from '@components/Sst/BottomNudge';
 
 import { BOTTOM_NAVBAR_LINKS } from './data';
 
 import styles from './BottomNavbar.module.scss';
+import ApplyButton from '../ApplyButton';
 
 
 export default function BottomNavbar() {
-  const { setIsLoginModalOpen } = useLoginModalContext();
-  const { data: userData } = useUser();
   const { experiments } = useContext(ExperimentsContext);
   const bottomNavbarVariant = experiments[ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.KEY];
   const isOldVersion = bottomNavbarVariant === ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.DEFAULT_VARIANT;
-
-  const isLoggedIn = userData?.isloggedIn ?? false;
 
   const trackEventHandler = (clickText: string) => {
     trackEvent.click({
@@ -35,16 +30,6 @@ export default function BottomNavbar() {
       clickText,
       clickSource: pageTrackingSources.bottomNavbar,
     });
-  };
-
-  const onApplyHandler = () => {
-    trackEventHandler(pageTrackingEvents.applyButtonClicked);
-    setIsLoginModalOpen(true);
-  };
-
-  const onResumeApplicationHandler = () => {
-    trackEventHandler(pageTrackingEvents.resumeApplicationButtonClicked);
-    window.open("/school-of-technology/application/");
   };
 
   if (!isOldVersion) {
@@ -74,10 +59,10 @@ export default function BottomNavbar() {
             })}
           </div>
           <div className={styles.applyButtonContainer}>
-            <ActionButton
-              isLoggedIn={isLoggedIn}
-              onApply={onApplyHandler}
-              onResumeApplication={onResumeApplicationHandler}
+            <ApplyButton
+              className={styles.actionButton}
+              size="large"
+              block
             />
           </div>
           <div className={styles.container}>

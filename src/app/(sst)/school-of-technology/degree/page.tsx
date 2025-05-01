@@ -1,5 +1,8 @@
+import ApplyCtaBanner from "@components/Sst/ApplyCtaBanner";
 import SstVsTraditional from "@modules/sst/degree/ui/SstVsTraditional";
 import KeyFeatures from "@modules/sst/degree/ui/KeyFeatures";
+import DegreeFaq from "@modules/sst/degree/ui/DegreeFaq";
+
 import styles from "./page.module.scss";
 
 export default function Page() {
@@ -8,6 +11,8 @@ export default function Page() {
     <div className={styles.container}>
       <SstVsTraditional />
       <KeyFeatures />
+      <ApplyCtaBanner />
+      <DegreeFaq />
     </div>
   );
 }

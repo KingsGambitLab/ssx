@@ -1,0 +1,159 @@
+.applyCtaBanner {
+  padding: 0 0 10.8rem 0 !important;
+  margin-top: 20rem;
+  position: relative;
+  
+  @include font-plus-jakarta-sans;
+
+  @include mobile {
+    padding-bottom: 0 !important;
+  }
+}
+
+.bannerContainer {
+  width: 100%;
+  background-color: #111 !important;
+  color: white !important;
+  padding: 0 !important;
+  border-radius: 8px;
+  overflow: visible !important; /* Allow content to overflow */
+  margin-bottom: 24px;
+  
+  :global(.ant-card-body) {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  
+  :global(.ant-typography) {
+    color: white;
+  }
+}
+
+.contentContainer {
+  @include flex-row;
+  width: 100%;
+  position: relative;
+  
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.textContent {
+  padding: 4rem 0 4rem 4rem;
+  max-width: 50%;
+
+  @include mobile {
+    text-align: center;
+    max-width: 100%;
+    padding: 0 2rem 2rem;
+    order: 2;
+  }
+}
+
+.textSpace {
+  @include flex-col;
+
+  justify-content: space-between !important;
+  width: 100%;
+  gap: 24px;
+}
+
+.heading {
+  font-size: 4rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 24px !important;
+  margin-top: 0;
+  color: white !important;
+  font-family: 'Plus Jakarta Sans' !important;
+  
+  @include mobile {
+    font-size: 2rem !important;
+    text-align: center;
+  }
+}
+
+.buttonWrapper {
+  margin-top: auto;
+
+  @include mobile {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.batchInfo {
+  font-size: 14px !important;
+  margin-top: 8px !important;
+  color: #f5f5f5 !important;
+  
+  @include mobile {
+    text-align: center;
+  }
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  
+  @include mobile {
+    justify-content: center;
+    order: 1;
+  }
+}
+
+.ellipseBackground {
+  position: absolute;
+  width: 40rem;
+  height: 40rem;
+  background-image: url('/images/sst/svg/ellipse.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  top: -40px;
+  right: 150px;
+  z-index: 1;
+  
+  @include mobile {
+    display: none;
+  }
+}
+
+.bannerImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  margin-top: -10rem; /* Move the image up by 10rem */
+  position: relative;
+  z-index: 2; /* Ensure image is above the ellipse */
+
+  @include mobile {
+    margin-top: -15rem;
+  }
+}
+
+.sectionWrapper {
+  width: 100%;
+  padding: 1.2rem 0;
+  
+  @include mobile {
+    padding: 0.8rem 0;
+  }
+} 
+
+.applyButton {
+  font-size: $desktop-font-body !important;
+  border-radius: 0.4rem !important;
+  font-weight: $bold-font-weight !important;
+  padding: 1.6rem 6rem !important;
+  font-family: 'Plus Jakarta Sans' !important;
+
+  @include mobile {
+    width: 100%;
+    font-size: $tablet-font-body !important;
+  }
+}
