@@ -11,7 +11,7 @@ import { LoginFormData } from '../../types';
 import styles from './index.module.scss';
 
 import { trackEvent, trackingSources, trackingEvents } from '../../utils/tracking';
-import { TrackingProps } from '../types';
+import { TrackingProps } from '@modules/sst/waitlist/types';
 
 
 interface PhoneEmailStepProps {

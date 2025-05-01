@@ -7,6 +7,10 @@ import ShootingStarIcon from '@public/images/sst/svg/shooting-star.svg';
 import CertificateIcon from '@public/images/sst/svg/certificate.svg';
 import WeekArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/week-article.webp';
 import HackerEarthArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/hacker-earth.webp';
+import JobCrisisArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/job-crisis.webp';
+import SkillsGapArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/skills-gap.webp';
+import HrWorldArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/hr-world.webp';
+import UnEmployabilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/unemployability.webp';
 import TimesOfIndiaArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/times-of-india.webp';
 import FinancialExpressArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/financial-express.webp';
 import UgcSection22ArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/ugc-section22.webp';
@@ -40,11 +44,27 @@ export const sstVsTraditionalData = [
     articles: [
       {
         image: WeekArticleImage.src,
-        alt: "Engineering News Article"
+        alt: "Engineers Tech Skills Article"
       },
       {
         image: HackerEarthArticleImage.src,
-        alt: "Engineering News Article"
+        alt: "Engineers Unemployed Article"
+      },
+      {
+        image: JobCrisisArticleImage.src,
+        alt: "Engineering Job Crisis Article"
+      },
+      {
+        image: SkillsGapArticleImage.src,
+        alt: "Skills Gap Article"
+      },
+      {
+        image: HrWorldArticleImage.src,
+        alt: "HR Employability Gap Article"
+      },
+      {
+        image: UnEmployabilityArticleImage.src,
+        alt: "Unemployability Article"
       }
     ]
   },
