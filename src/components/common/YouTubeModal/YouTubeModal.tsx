@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'antd';
+
+import { useDeviceType } from '@hooks/useDeviceType';
+
 import styles from './YouTubeModal.module.scss';
 
 interface YouTubeModalProps {
@@ -8,6 +11,8 @@ interface YouTubeModalProps {
   onClose: () => void;
   width?: number | string;
   height?: number | string;
+  mobileWidth?: number | string;
+  mobileHeight?: number | string;
 }
 
 const YouTubeModal: React.FC<YouTubeModalProps> = ({
@@ -16,8 +21,11 @@ const YouTubeModal: React.FC<YouTubeModalProps> = ({
   onClose,
   width = '40%',
   height = '40vh',
+  mobileWidth = '90%',
+  mobileHeight = '50vh',
 }) => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const { isMobile } = useDeviceType();
 
   // Only load the iframe when the modal is opened
   useEffect(() => {
@@ -38,13 +46,13 @@ const YouTubeModal: React.FC<YouTubeModalProps> = ({
       open={isOpen}
       onCancel={onClose}
       footer={null}
-      width={width}
+      width={isMobile ? mobileWidth : width}
       centered
       destroyOnClose
       className={styles.videoModal}
       maskClosable={true}
     >
-      <div className={styles.videoContainer} style={{ height }}>
+      <div className={styles.videoContainer} style={{ height: isMobile ? mobileHeight : height }}>
         {iframeLoaded && (
           <iframe
             src={youtubeEmbedUrl}
