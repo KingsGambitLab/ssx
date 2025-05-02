@@ -10,6 +10,7 @@ import CareerOfficersTeam from "@modules/sst/career-outcomes/ui/CareerOfficersTe
 import EducationTeam from "@modules/sst/career-outcomes/ui/EducationTeam";
 import Startups from "@modules/sst/career-outcomes/ui/Startups";
 import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers/GuestSpeakers";
+import SuccessStories from "@modules/sst/career-outcomes/components/SuccessStories";
 
 export default function Page() {
   return (

@@ -31,6 +31,11 @@ import JioHotstar from '@public/images/sst/webp/guest-speakers/jio-hotstar.webp'
 import BillionDollar from '@public/images/sst/webp/guest-speakers/billion-dollar.webp';
 import FounderUdaan from '@public/images/sst/webp/guest-speakers/founder-of-udaan.webp';
 import JacobSingh from '@public/images/sst/webp/guest-speakers/jacob-singh.webp';
+import Neosapiens from '@public/images/sst/webp/success-stories/neosapiens.webp';
+import Abhinav from '@public/images/sst/webp/success-stories/abhinav.webp';
+import KrishnaPatidar from '@public/images/sst/webp/success-stories/krishna-patidar.webp';
+import Sourashish from '@public/images/sst/webp/success-stories/sourashish.webp';
+import BhashiniProject from '@public/images/sst/webp/success-stories/bhashini-project.webp';
 
 
 import { HigherStudiesCardProps } from '../types';
@@ -333,3 +338,44 @@ export const GuestSpeakersData = {
     }
   ]
 }
+
+export const SuccessStoriesData = [
+  {
+    thumbnail: Neosapiens,
+    title: "Neosapiens",
+    desc: "A startup nurtured at SST’s very own Incubation lab, secures funding at Shark Tank India.",
+    videoLink: "https://www.youtube.com/embed/gJtS3b5gCuk",
+    link: "https://www.youtube.com/embed/gJtS3b5gCuk",
+    ctaText: "View the full Story"
+  },
+  {
+    thumbnail: KrishnaPatidar,
+    title: "Krishna Patidar",
+    desc: "SST student Krishna Patidar, cracks prestigious Apple Academy Programme at Bali",
+    link: "https://www.linkedin.com/posts/scaler-school-of-technology_dropping-out-from-previous-college-to-apple-activity-7273173538121949185-h7Is",
+    ctaText: "View the full Story"
+  },
+  {
+    thumbnail: Abhinav,
+    title: "Abhinav",
+    desc: "Built an for KONE at a Finland hackathon, interned in a German company and co‑created Triangles and Scaler  Companion—AI now running 90 % of SST interviews",
+    videoLink: "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/122/021/original/abhinav-final_%281%29_%281%29.mp4?1745419215",
+    link: "https://www.instagram.com/p/DFnMXLWyJjh/",
+    ctaText: "View the full Story"
+  },
+  {
+    thumbnail: Sourashish,
+    title: "Sourashish",
+    desc: "ICPC Regionals qualifier & Knight on LeetCode, Landed internships at Dukaan, Emergent & Scaler—all in 2024",
+    link: "https://www.linkedin.com/posts/sourashis-sarkar-b957a7215_icpc-amritapuri-icpcregionals-activity-7279568408352890880-1Gnc",
+    ctaText: "View the full Story"
+  },
+  {
+    thumbnail: BhashiniProject,
+    title: "Indias Bhashini Project",
+    desc: "Hear our first-year students discuss developing an app for India's Bhashini Project.",
+    videoLink: "https://www.youtube.com/embed/S2A7nck_aU8",
+    link: "https://www.youtube.com/embed/S2A7nck_aU8",
+    ctaText: "View the full Story"
+  }
+]
