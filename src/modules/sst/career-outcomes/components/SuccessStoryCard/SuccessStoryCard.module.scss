@@ -1,0 +1,106 @@
+$success-story-card-border-color: #e4e4e4;
+$success-story-card-desc-font-color: #616161;
+$success-story-card-cta-button-color: #f5f5f5;
+$success-story-card-cta-button-font-color: #171717;
+$success-story-card-cta-button-font-size: 1.4336rem;
+$success-story-card-title-color: linear-gradient(90deg, #083ca0 0%, #0080ff 100%);
+
+.container {
+  @include flex-col;
+
+  align-items: flex-end;
+  align-self: stretch;
+  border-radius: 0.716rem;
+  border: 0.08rem solid $success-story-card-border-color;
+  background: $white-color;
+  overflow: hidden;
+}
+
+.videoWrapper {
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+} 
+
+.videoThumbnail,
+.projectImage {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  aspect-ratio: 357.50/201.09;
+  object-fit: cover;
+  object-position: center;
+  transition: width 0.3s ease, height 0.3s ease;
+
+  @include mobile {
+    height: auto;
+    aspect-ratio: 246/139;
+  }
+}
+
+.videoThumbnail {
+  cursor: pointer;
+}
+
+.content {
+  @include flex-col;
+  @include flex-fill;
+
+  padding: 1.792rem 2.150rem 2.150rem 2.150rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 1.6rem;
+
+  @include mobile {
+    padding: 1.4rem 1.6rem 1.6rem 1.6rem;
+  }
+}
+
+.infoContainer {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.075rem;
+  align-self: stretch;
+}
+
+.title {
+  font-size: $desktop-font-body;
+  font-weight: $semi-bold-font-weight;
+  background: $success-story-card-title-color;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include mobile {
+    font-size: $mobile-font-title;
+  }
+}
+
+.desc {
+  color: $success-story-card-desc-font-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $default-font-weight;
+  line-height: 2.24rem;
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.68rem;
+  }
+}
+
+.ctaButton {
+  color: $success-story-card-cta-button-font-color !important;
+  font-size: $success-story-card-cta-button-font-size !important;
+  font-weight: $bold-font-weight !important;
+  height: 4.5rem !important;
+  line-height: 2.007rem !important;
+  padding: 1.25rem 2.15rem !important;
+  border-radius: 0.358rem !important;
+  background: $success-story-card-cta-button-color !important;
+}

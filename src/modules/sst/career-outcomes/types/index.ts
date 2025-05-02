@@ -32,3 +32,14 @@ export type GuestSpeakersCardProps = {
   videoLink: string;
   desc: React.ReactNode;
 }
+
+export type SuccessStoryCardProps = {
+  isVideoCard: boolean;
+  thumbnail: string;
+  title: string;
+  desc: string;
+  videoId?: string;
+  videoLink?: string;
+  link?: string;
+  ctaText: string;
+}

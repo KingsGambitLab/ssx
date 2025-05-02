@@ -7,6 +7,7 @@ import styles from './YouTubeModal.module.scss';
 
 interface YouTubeModalProps {
   videoId: string;
+  videoLink?: string;
   isOpen: boolean;
   onClose: () => void;
   width?: number | string;
@@ -17,6 +18,7 @@ interface YouTubeModalProps {
 
 const YouTubeModal: React.FC<YouTubeModalProps> = ({
   videoId,
+  videoLink,
   isOpen,
   onClose,
   width = '40%',
@@ -39,7 +41,9 @@ const YouTubeModal: React.FC<YouTubeModalProps> = ({
   }, [isOpen]);
 
   // Construct the YouTube embed URL with autoplay
-  const youtubeEmbedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  const youtubeEmbedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0` : videoLink;
+
+  console.log("youtubeEmbedUrl", youtubeEmbedUrl);
 
   return (
     <Modal
@@ -48,6 +52,7 @@ const YouTubeModal: React.FC<YouTubeModalProps> = ({
       footer={null}
       width={isMobile ? mobileWidth : width}
       centered
+      closable={false}
       destroyOnClose
       className={styles.videoModal}
       maskClosable={true}
