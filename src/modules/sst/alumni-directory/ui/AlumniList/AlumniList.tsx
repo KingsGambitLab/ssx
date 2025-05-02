@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 
 import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
 import { Button } from 'antd';
+import dynamic from 'next/dynamic';
 
 import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
 import AlumniCard from '@modules/sst/alumni-directory/components/AlumniCard';
@@ -13,13 +14,12 @@ import {
   pageTrackingSources,
   trackEvent,
 } from '@modules/sst/alumni-directory/utils';
+import Section from '@components/common/Section';
 
 import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
 
 import styles from './AlumniList.module.scss';
 
-import dynamic from 'next/dynamic';
-import Section from '@components/common/Section';
 const AlumniDetailsModal = dynamic(
   () => import('@modules/sst/alumni-directory/components/AlumniDetailsModal'),
   {

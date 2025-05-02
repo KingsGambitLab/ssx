@@ -1,0 +1,45 @@
+.container {
+  @include flex-col;
+
+  gap: 4rem;
+}
+
+.content {
+  @include flex-row;
+
+  align-items: stretch;
+  gap: 2.4rem;
+  align-self: stretch;
+
+  @include tablet {
+    @include flex-col;
+
+    flex-wrap: wrap;
+  }
+}
+
+.leftContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+  flex: 1 0 0;
+}
+
+.rightContent {
+  & > img {
+    height: 100%;
+
+    @include tablet {
+      height: auto;
+      width: 100%;
+    }
+  }
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+
+
+
