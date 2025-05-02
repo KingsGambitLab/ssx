@@ -130,7 +130,8 @@ export const CareerStatsData = {
   ],
   video: {
     thumbnail: NeoSapianThumbnail.src
-  }
+  },
+  brochureLink: "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123"
 }
 
 export const EntrepreneurshipTeamData = {

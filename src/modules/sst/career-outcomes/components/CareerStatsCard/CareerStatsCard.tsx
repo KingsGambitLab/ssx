@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
-import { CareerStatsCardProps } from '../../types';
 import { useDeviceType } from '@hooks/useDeviceType';
-import styles from './CareerStatsCard.module.scss';
+import { CareerStatsCardProps } from '../../types';
 
+import styles from './CareerStatsCard.module.scss';
 
 export default function CareerStatsCard({ title, desc, image, variant = "primary", fullWidth = false }: CareerStatsCardProps) {
   const { isMobile } = useDeviceType();
