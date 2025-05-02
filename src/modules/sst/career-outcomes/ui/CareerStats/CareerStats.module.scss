@@ -2,6 +2,10 @@
   @include flex-col;
 
   gap: 4rem;
+
+  @include mobile {
+    gap: 2.4rem;
+  }
 }
 
 .content {
@@ -36,9 +40,18 @@
   }
 }
 
+.downloadBrochure {
+  @include flex-row-c;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
 .fullWidth {
   grid-column: 1 / -1;
 }
+
 
 
 
