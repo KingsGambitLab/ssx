@@ -4,6 +4,7 @@ import Section from '@components/common/Section';
 import Image from 'next/image';
 import styles from './Mentorship.module.scss';
 import { mentorshipData } from './data';
+import CompaniesIcon from '@public/images/sst/svg/career_outcomes/mentorship/companies.svg';
 
 const Mentorship: React.FC = () => {
   return (
@@ -42,7 +43,7 @@ const Mentorship: React.FC = () => {
         </p>
         <div className={styles.companyLogos}>
           <Image 
-            src="/images/sst/svg/career_outcomes/higher_studies/companies.svg"
+            src={CompaniesIcon.src}
             alt="Investor companies"
             width={444}
             height={41}
