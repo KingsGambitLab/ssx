@@ -1,5 +1,10 @@
 $text-secondary: #3a3a3a;
 
+.higherStudies {
+  padding-top: 5.4rem !important;
+  padding-bottom: 5.4rem !important;
+}
+
 .container {
   @include flex-col-c;
 
@@ -14,7 +19,6 @@ $text-secondary: #3a3a3a;
     justify-content: space-between;
     align-items: center;
     gap: 4rem;
-    margin-bottom: 5.6rem;
 
     @include mobile {
       flex-direction: column;
