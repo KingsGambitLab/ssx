@@ -6,11 +6,6 @@ $career-officers-team-subtitle-color: #171717;
 
   padding: 5.4rem 0;
   gap: 5.4rem;
-
-  @include mobile {
-    padding: 2.4rem 0;
-    gap: 2.4rem;
-  }
 }
 
 .header {
@@ -18,10 +13,6 @@ $career-officers-team-subtitle-color: #171717;
 
   gap: 0.8rem;
   align-self: stretch;
-
-  @include mobile {
-    gap: 0.2rem;
-  }
 }
 
 .title {

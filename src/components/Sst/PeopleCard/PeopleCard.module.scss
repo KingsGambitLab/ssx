@@ -17,12 +17,11 @@ $people-card-organisation-color: #3a3a3a;
 
   padding: 2.4rem;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 2.4rem;
   align-self: stretch;
 
   @include mobile {
     gap: 0.55rem;
-    padding: 1.6rem;
   }
 }
 
