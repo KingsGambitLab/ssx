@@ -1,12 +1,11 @@
-$outcomes-container-background-color: #fafafa;
+$outcomes-page-background-color: #fafafa;
 
 .container {
   margin-top: 11rem;
   min-height: 100vh;
   font-family: 'Plus Jakarta Sans' !important;
   padding: 3.2rem 0;
-  background-color: $outcomes-container-background-color;
-
+  background-color: $outcomes-page-background-color;
 
   @include mobile {
     margin-top: 10.6rem;
