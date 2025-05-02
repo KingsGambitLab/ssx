@@ -1,0 +1,50 @@
+$entrepreneurship-team-background-color: #fafafa;
+$entrepreneurship-team-title-color: #616161;
+$entrepreneurship-team-sub-title-color: #171717;
+
+.container {
+  @include flex-col-c;
+
+  padding-top: 5.4rem;
+  gap: 5.4rem;
+  background: $entrepreneurship-team-background-color;
+  width: 100%;
+}
+
+.header {
+  @include flex-col-c;
+
+  gap: 0.8rem;
+  align-self: stretch;
+}
+
+.title {
+  color: $entrepreneurship-team-title-color;
+  text-align: center;
+  font-size: $desktop-font-body;
+  font-weight: $bolder-font-weight;
+  letter-spacing: 0.26rem;
+  text-transform: uppercase;
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.68rem;
+    letter-spacing: 0.15rem;
+  }
+}
+
+.subTitle {
+  color: $entrepreneurship-team-sub-title-color;
+  text-align: center;
+  font-size: $desktop-font-header;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: $mobile-font-header;
+    letter-spacing: 0.01rem;
+  }
+}
+
+.peoplesWrapper {
+  width: 100%;
+}
