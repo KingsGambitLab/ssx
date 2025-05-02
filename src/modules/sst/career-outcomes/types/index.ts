@@ -17,12 +17,3 @@ export type CareerStatsCardProps = {
   fullWidth?: boolean;
   mobileOnly?: boolean;
 }
-
-export type EntrepreneurshipTeamPerson = {
-  key: number;
-  image: string;
-  name: string;
-  prevOrganisation: string;
-  currOrganisation: string;
-}
-

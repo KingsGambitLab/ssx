@@ -40,10 +40,11 @@ $people-card-organisation-color: #3a3a3a;
 .peopleImage {
   width: 100%;
   object-fit: cover;
+  object-position: center;
+  transition: width 0.3s ease, height 0.3s ease;
 
   @include mobile {
-    width: 27rem;
-  height: 20.25rem;
+    height: 20.25rem;
   }
 }
 
