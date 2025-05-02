@@ -272,7 +272,7 @@ export const SuccessStoriesData = [
     thumbnail: Neosapiens,
     title: "Neosapiens",
     desc: "A startup nurtured at SST’s very own Incubation lab, secures funding at Shark Tank India.",
-    videoLink: "https://www.youtube.com/embed/gJtS3b5gCuk",
+    videoId: "gJtS3b5gCuk",
     link: "https://www.youtube.com/embed/gJtS3b5gCuk",
     ctaText: "View the full Story"
   },
@@ -302,7 +302,7 @@ export const SuccessStoriesData = [
     thumbnail: BhashiniProject,
     title: "Indias Bhashini Project",
     desc: "Hear our first-year students discuss developing an app for India's Bhashini Project.",
-    videoLink: "https://www.youtube.com/embed/S2A7nck_aU8",
+    videoId: "S2A7nck_aU8",
     link: "https://www.youtube.com/embed/S2A7nck_aU8",
     ctaText: "View the full Story"
   }

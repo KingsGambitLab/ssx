@@ -26,6 +26,7 @@ export type SuccessStoryCardProps = {
   thumbnail: string;
   title: string;
   desc: string;
+  videoId?: string;
   videoLink?: string;
   link?: string;
   ctaText: string;

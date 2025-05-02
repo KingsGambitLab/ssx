@@ -15,10 +15,11 @@ export default function SuccessStories() {
           {SuccessStoriesData.map((story, index) => (
             <SuccessStoryCard
               key={index}
-              isVideoCard={story?.videoLink ? true : false}
+              isVideoCard={story?.videoId || story?.videoLink ? true : false}
               thumbnail={story?.thumbnail?.src}
               title={story?.title}
               desc={story?.desc}
+              videoId={story?.videoId}
               videoLink={story?.videoLink}
               link={story?.link}
               ctaText={story?.ctaText}
