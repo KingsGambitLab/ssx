@@ -7,7 +7,7 @@ import scalerMlab from '@public/images/sst/webp/scaler-mlab.webp';
 import Section from '@components/common/Section';
 import ApplyButton from '@components/Sst/ApplyButton';
 
-const { Title, Paragraph } = Typography
+const { Title, Paragraph } = Typography;
 
 const ApplyCtaBanner: React.FC = () => {
   return (
