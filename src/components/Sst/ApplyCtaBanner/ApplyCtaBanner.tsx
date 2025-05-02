@@ -4,6 +4,7 @@ import React from 'react';
 import { Image, Typography, Space, Card } from 'antd';
 import styles from './ApplyCtaBanner.module.scss';
 import scalerMlab from '@public/images/sst/webp/scaler-mlab.webp';
+import ellipse from '@public/images/sst/svg/ellipse.svg';
 import Section from '@components/common/Section';
 import ApplyButton from '@components/Sst/ApplyButton';
 
@@ -35,7 +36,15 @@ const ApplyCtaBanner: React.FC = () => {
             </Space>
           </div>
           <div className={styles.imageContainer}>
-            <div className={styles.ellipseBackground}></div>
+            <div className={styles.ellipseWrapper}>
+              <Image 
+                src={ellipse.src}
+                alt="Background ellipse"
+                width={400}
+                height={400}
+                className={styles.ellipseImage}
+              />
+            </div>
             <Image 
               src={scalerMlab.src} 
               alt="Software Engineer with VR headset" 

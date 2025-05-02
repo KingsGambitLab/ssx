@@ -105,14 +105,8 @@
   }
 }
 
-.ellipseBackground {
+.ellipseWrapper {
   position: absolute;
-  width: 40rem;
-  height: 40rem;
-  background-image: url('/images/sst/svg/ellipse.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
   top: -40px;
   right: 150px;
   z-index: 1;
@@ -120,6 +114,12 @@
   @include mobile {
     display: none;
   }
+}
+
+.ellipseImage {
+  width: 40rem;
+  height: 40rem;
+  object-fit: contain;
 }
 
 .bannerImage {
