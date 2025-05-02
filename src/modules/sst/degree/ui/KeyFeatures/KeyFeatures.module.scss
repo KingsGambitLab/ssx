@@ -4,9 +4,11 @@ $key-features-title-font-color: #3a3a3a;
   @include flex-col-c;
 
   gap: 4rem;
+  padding: 5.4rem 0;
 
   @include mobile {
     gap: 1.4rem;
+    padding: 2.4rem 0;
   }
 }
 
