@@ -9,6 +9,11 @@ $entrepreneurship-team-sub-title-color: #171717;
   gap: 5.4rem;
   background: $entrepreneurship-team-background-color;
   width: 100%;
+
+  @include mobile {
+    padding-top: 2.4rem;
+    gap: 2.4rem;
+  }
 }
 
 .header {
@@ -16,6 +21,10 @@ $entrepreneurship-team-sub-title-color: #171717;
 
   gap: 0.8rem;
   align-self: stretch;
+
+  @include mobile {
+    gap: 0.2rem;
+  }
 }
 
 .title {

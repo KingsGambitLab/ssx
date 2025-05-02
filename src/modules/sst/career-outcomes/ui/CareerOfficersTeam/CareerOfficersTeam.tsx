@@ -26,7 +26,7 @@ export default function CareerOfficersTeam() {
             {CareerOfficersTeamData.team.map((teamMember, index) => (
               <PeopleCard
                 key={index}
-                image={teamMember.image}
+                image={teamMember?.image?.src}
                 name={teamMember.name}
                 prevOrganisation={teamMember.prevOrganisation}
               currOrganisation={teamMember.currOrganisation}

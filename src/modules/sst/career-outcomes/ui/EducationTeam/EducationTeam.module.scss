@@ -1,20 +1,20 @@
-$career-officers-team-title-color: #616161;
-$career-officers-team-subtitle-color: #171717;
+$education-team-title-font-color: #616161;
+$education-team-subtitle-font-color: #171717;
 
 .container {
   @include flex-col-x-c;
 
-  padding: 5.4rem 0;
+  padding-top: 5.4rem;
   gap: 5.4rem;
 
   @include mobile {
-    padding: 2.4rem 0;
+    padding-top: 2.4rem;
     gap: 2.4rem;
   }
 }
 
 .header {
-  @include flex-col-x-c;
+  @include flex-col-c;
 
   gap: 0.8rem;
   align-self: stretch;
@@ -25,7 +25,7 @@ $career-officers-team-subtitle-color: #171717;
 }
 
 .title {
-  color:$career-officers-team-title-color;
+  color: $education-team-title-font-color;
   text-align: center;
   font-size: $desktop-font-body;
   font-weight: $bolder-font-weight;
@@ -35,12 +35,12 @@ $career-officers-team-subtitle-color: #171717;
   @include mobile {
     font-size: $mobile-font-card-body;
     line-height: 1.68rem;
-    letter-spacing: 0.15rem;
+    letter-spacing: 0.156rem;
   }
 }
 
 .subtitle {
-  color: $career-officers-team-subtitle-color;
+  color: $education-team-subtitle-font-color;
   text-align: center;
   font-size: $desktop-font-header;
   font-weight: $semi-bold-font-weight;
@@ -51,9 +51,6 @@ $career-officers-team-subtitle-color: #171717;
   }
 }
 
-.teamContainer {
-  @include flex-row-x-c;
-
-  gap: 2.4rem;
+.teamWrapper {
   width: 100%;
 }
