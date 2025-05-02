@@ -31,8 +31,6 @@ const TabLayout: React.FC<TabLayoutProps> = ({
     children: tab.content,
   }));
 
-  console.log(styles.customTab);
-
   return (
     <Tabs
       defaultActiveKey={defaultActiveKey || tabs[0].key}
