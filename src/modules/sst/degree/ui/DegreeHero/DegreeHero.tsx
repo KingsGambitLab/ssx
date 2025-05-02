@@ -1,9 +1,35 @@
+"use client";
+
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import Section from '@components/common/Section';
-import DegreeHeroImage from '@public/images/sst/png/degree-hero.png';
+import DegreeHeroImage from '@public/images/sst/webp/degree.webp';
 import styles from './DegreeHero.module.scss';
 
 const DegreeHero = () => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    // Use Intersection Observer to detect when the component enters viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('video-container');
+    if (element) observer.observe(element);
+
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, []);
+
   return (
     <Section section_class="degree-hero" id="degree-hero">
       <div className={styles.container}>
@@ -21,14 +47,46 @@ const DegreeHero = () => {
               for cutting-edge jobs, entrepreneurship, and higher studies across the world
             </div>
           </div>
-          <div className={styles.imageWrapper}>
-            <Image
-              src={DegreeHeroImage}
-              alt="Students using VR technology"
-              width={541}
-              height={306}
-              className={styles.image}
-            />
+          <div id="video-container" className={styles.imageWrapper}>
+            {isInView ? (
+              <div className={styles.videoContainer}>
+                {!isVideoLoaded && (
+                  <div className={styles.thumbnailContainer}>
+                    <Image
+                      src={DegreeHeroImage}
+                      alt="Students using VR technology"
+                      width={541}
+                      height={306}
+                      className={styles.image}
+                    />
+                    <div className={styles.playButton} onClick={() => setIsVideoLoaded(true)}>
+                      <span className={styles.playIcon}></span>
+                    </div>
+                  </div>
+                )}
+                {(isInView && isVideoLoaded) && (
+                  <iframe
+                    src="https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1"
+                    title="Scaler School of Technology Video"
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                    className={styles.iframe}
+                  ></iframe>
+                )}
+              </div>
+            ) : (
+              <Image
+                src={DegreeHeroImage}
+                alt="Students using VR technology"
+                width={541}
+                height={306}
+                className={styles.image}
+              />
+            )}
           </div>
         </div>
       </div>
