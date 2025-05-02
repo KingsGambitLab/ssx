@@ -1,0 +1,213 @@
+.footer {
+  background-color: #000000;
+  padding: 0;
+  width: 100%;
+}
+
+.container {
+  max-width: 1232px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 104px 24px 104px;
+
+  @media (max-width: 768px) {
+    padding: 40px 20px 24px 20px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+
+  @media (min-width: 768px) {
+    width: 340px;
+    margin-right: 2rem;
+  }
+}
+
+.logoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 9.6px;
+  max-width: 438px;
+
+  .logo {
+    object-fit: contain;
+    height: auto;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .slogan {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
+    font-size: 24px;
+    line-height: 33.6px;
+    letter-spacing: 0.15px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+}
+
+.downloadSection {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.qrCode {
+  width: 72px;
+  height: 72px;
+  border-radius: 5.82px;
+  overflow: hidden;
+  background-color: #F1F1F1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.downloadText {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  color: #FFFFFF;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.16px;
+  margin-bottom: 8px;
+}
+
+.downloadContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.playStoreButton {
+  display: inline-block;
+  padding: 6px 9px;
+}
+
+.navColumns {
+  display: flex;
+  width: 607px;
+  gap: 16px;
+  flex-direction: column;
+  margin-top: 0;
+  padding-top: 0;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 15px;
+  }
+}
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @media (min-width: 768px) {
+    width: 192px;
+  }
+}
+
+.navColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columnTitle {
+  color: #ADD5FF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.columnLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.link {
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  text-align: left;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.socialIcons {
+  display: flex;
+  gap: 12px;
+}
+
+.copyright {
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 56px;
+  padding-top: 1.5rem;
+  word-wrap: break-word;
+}
+
+// Mobile specific styles
+@media (max-width: 767px) {
+  .content {
+    position: relative;
+  }
+
+  .navColumns {
+    width: 100%;
+  }
+
+  .navGroup {
+    width: 100%;
+  }
+
+  .columnTitle {
+    font-size: 14px;
+    line-height: 22.4px;
+    letter-spacing: 0.1px;
+  }
+
+  .link {
+    font-size: 12px;
+    line-height: 19.6px;
+    letter-spacing: 0.1px;
+  }
+}
