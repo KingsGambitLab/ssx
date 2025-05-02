@@ -1,9 +1,12 @@
+// External libraries
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './Footer.module.scss';
 
-// Social Icons
+// Constants
+import { FOOTER_SECTIONS, SOCIAL_LINKS, APP_DOWNLOAD_LINK } from './constants';
+
+// Default exports (assets)
 import YouTubeIcon from '@public/images/sst/svg//youtube.svg';
 import InstagramIcon from '@public/images/sst/svg//instalogo.svg';
 import LinkedInIcon from '@public/images/sst/svg//linkedin-icon.svg';
@@ -13,8 +16,8 @@ import QuoraIcon from '@public/images/sst/svg//quora.svg';
 import GooglePlayIcon from '@public/images/sst/svg/downloadongoogleplay.svg';
 import SSTLogoLight from '@public/images/sst/svg/sst-logo-light.svg';
 
-// Constants
-import { FOOTER_SECTIONS, SOCIAL_LINKS, APP_DOWNLOAD_LINK } from './constants';
+// Styles
+import styles from './Footer.module.scss';
 
 const Footer: React.FC = () => {
   // Function to get appropriate icon based on platform
