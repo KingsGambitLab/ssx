@@ -3,6 +3,10 @@
 
   width: 100%;
   gap: 5.4rem;
+
+  @include tablet {
+    gap: 2.4rem;
+  }
 }
 
 .header {
@@ -19,6 +23,10 @@
   text-align: center;
   font-size: 4.8rem;
   font-weight: $semi-bold-font-weight;
+
+  @include tablet {
+    font-size: 2.8rem;
+  }
 }
 
 .subtitle {
@@ -30,6 +38,10 @@
   font-weight: $bolder-font-weight;
   letter-spacing: 0.26rem;
   text-transform: uppercase;
+
+  @include tablet {
+    font-size: 1.4rem;
+  }
 }
 
 .tabLayoutContainer {
@@ -44,20 +56,10 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: row !important;
-}
 
-.label {
-  @include flex-row-c;
-  @include font-plus-jakarta-sans;
-
-  width: 100%;
-  font-size: 2rem;
-  gap: 0.8rem;
-  font-weight: $bold-font-weight;
-  line-height: 140%;
-
-  & > img {
-    stroke: black;
+  @include tablet {
+    gap: 1rem !important;
+    flex-direction: column !important;
   }
 }
 
@@ -65,6 +67,13 @@
   @include flex-col-c;
 
   gap: 2rem !important;
+
+  @include tablet {
+    @include flex-row-c;
+
+    width: 100% !important;
+    flex-direction: row !important;
+  }
 }
 .tabLayout :global(.ant-tabs-tab-btn) {
   padding: 0 !important;
@@ -91,6 +100,10 @@
   width: 20rem !important;
   padding: 0 !important;
   border: none !important;
+
+  @include tablet {
+    width: 100% !important;
+  }
 }
 
 .tabLayout :global(.ant-tabs-nav-wrap) {
@@ -99,4 +112,13 @@
 
 .tabLayout :global(.ant-tabs-nav-list) {
   width: 100% !important;
+}
+
+.tabLayout :global(.ant-tabs-content-holder) {
+  width: 100% !important;
+
+  @include tablet {
+    border: 0.1rem solid #0041CA !important;
+    border-radius: 0.8rem !important;
+  }
 }

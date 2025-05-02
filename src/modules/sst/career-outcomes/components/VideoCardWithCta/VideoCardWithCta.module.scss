@@ -21,7 +21,7 @@
   justify-content: flex-start;
   gap: 1.8rem;
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
   height: 100%;
   box-sizing: border-box;
 }
@@ -35,6 +35,10 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @include tablet {
+    font-size: 1.6rem;
+  }
 }
 
 .desc {
@@ -43,6 +47,10 @@
   color: #3A3A3A;
   font-size: 1.6rem;
   line-height: 140%;
+
+  @include tablet {
+    font-size: 1.2rem;
+  }
 }
 
 .ctaContainer {

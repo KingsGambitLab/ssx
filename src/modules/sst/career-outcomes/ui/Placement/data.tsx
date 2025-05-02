@@ -58,6 +58,16 @@ type Image = {
   src: string;
 };
 
+type Header = {
+  title: string;
+  subtitle: string;
+};
+
+export const HEADER: Header = {
+  title: "Placement = Profile + Access + Eligibility",
+  subtitle: "How tech Companies Hire",
+};
+
 export type PlacementTabData = {
   badge: string;
   title: string;

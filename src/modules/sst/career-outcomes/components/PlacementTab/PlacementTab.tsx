@@ -32,7 +32,7 @@ export default function PlacementTab({
       </div>
       {header && <div className={styles.header}>{header}</div>}
       <div className={styles.scrollView}>
-        <HorizontalScrollWrapper slidesToShow={2.2}>
+        <HorizontalScrollWrapper slidesToShow={1.2}>
           {videoCards &&
             videoCards.map((video) => {
               return (

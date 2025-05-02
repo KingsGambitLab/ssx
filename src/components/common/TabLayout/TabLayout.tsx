@@ -6,7 +6,7 @@ import type { TabsProps } from "antd";
 
 export type TabData = {
   key: string;
-  label: string | JSX.Element;
+  label: string;
   content: JSX.Element;
 };
 
