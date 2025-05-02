@@ -4,6 +4,8 @@ import CertificateBlack from "@public/images/sst/svg/certificate-black.svg";
 import FourYearDegreeCardsContainer from "./FourYearDegreeCardsContainer/FourYearDegreeCardsContainer";
 import ThreeYearDegreeCardsContainer from "./ThreeYearDegreeCardsContainer/ThreeYearDegreeCardsContainer";
 
+import styles from "@modules/sst/degree/components/DegreeCard/DegreeCard.module.scss";
+
 export type DegreeData = {
   src?: string;
   degree: JSX.Element;
@@ -35,7 +37,7 @@ const FourYearDegreeData: DegreeData[] = [
     degree: (
       <>
         Bachelor of Science (BS) in Data Science and Applications with{" "}
-        <span className="blue">IIT Madras</span>
+        <span className={styles.blue}>IIT Madras</span>
       </>
     ),
   },
@@ -44,7 +46,7 @@ const FourYearDegreeData: DegreeData[] = [
     degree: (
       <>
         Bachelor of Science (BSc Hons.) in Computer Science with{" "}
-        <span className="pink">BITS Pilani</span>
+        <span className={styles.pink}>BITS Pilani</span>
       </>
     ),
   },
@@ -54,7 +56,8 @@ const ThreeYearDegreeData: DegreeData[] = [
   {
     degree: (
       <>
-        <span className="blue">IIT Madras</span> - Programming & Data Science
+        <span className={styles.blue}>IIT Madras</span> - Programming & Data
+        Science
       </>
     ),
     duration: "3 YEARS",
@@ -62,7 +65,7 @@ const ThreeYearDegreeData: DegreeData[] = [
   {
     degree: (
       <>
-        MS in Computer Science from <span className="pink">Woolf</span>
+        MS in Computer Science from <span className={styles.pink}>Woolf</span>
       </>
     ),
     duration: "1 YEAR",
@@ -70,7 +73,8 @@ const ThreeYearDegreeData: DegreeData[] = [
   {
     degree: (
       <>
-        <span className="pink">BITS Pilani</span> - Programming & Data Science
+        <span className={styles.pink}>BITS Pilani</span> - Programming & Data
+        Science
       </>
     ),
     duration: "3 YEARS",
@@ -78,7 +82,7 @@ const ThreeYearDegreeData: DegreeData[] = [
   {
     degree: (
       <>
-        MS in Computer Science from <span className="pink">Woolf</span>
+        MS in Computer Science from <span className={styles.pink}>Woolf</span>
       </>
     ),
     duration: "1 YEAR",

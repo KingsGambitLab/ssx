@@ -83,11 +83,11 @@ $violet-color: #6D2A9E;
   }
 }
 
-:global(.blue) {
+.blue {
     color: $primary-blue;
     font-weight: $semi-bold-font-weight;
   }
-:global(.pink) {
+.pink {
   color: $violet-color;
   font-weight: $semi-bold-font-weight;
 }
