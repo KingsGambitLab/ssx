@@ -1,0 +1,192 @@
+$higher-studies-card-border-color: #e4e4e4;
+$higher-studies-card-zoom-icon-background-color: #fafafa;
+$higher-studies-card-zoom-icon-box-shadow-color: rgba(18, 18, 18, 0.16);
+$higher-studies-card-title-font-color: #171717;
+$higher-studies-card-title-font-size: 2.8rem;
+$higher-studies-card-desc-font-color: #3a3a3a;
+$higher-studies-card-close-icon-color: #212121;
+$higher-studies-card-image-modal-mask-color: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.75) 100%);
+$higher-studies-card-icon-background-color: linear-gradient(180deg, #FFF 0%, #0041ca 100%);
+
+.container {
+  @include flex-col;
+
+  padding: 3.2rem;
+  gap: 2rem;
+  border-radius: $border-radius-large;
+  border: 0.1rem solid $higher-studies-card-border-color;
+  background: $white-color;
+
+  @include mobile {
+    padding: 1.6rem;
+    gap: 1.4rem;
+  }
+}
+
+.iconContainer {
+  flex-shrink: 0;
+}
+
+.content {
+  @include flex-col-c;
+
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 2.4rem;
+  height: 100%;
+
+}
+
+.info {
+  @include flex-col-x-c;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 0.8rem;
+  }
+}
+
+.title {
+  color: $higher-studies-card-title-font-color;
+  font-size: $higher-studies-card-title-font-size;
+  font-weight: $semi-bold-font-weight;
+  line-height: 3.92rem;
+
+  @include mobile {
+    font-size: $mobile-font-title-3;
+    line-height: 2.24rem;
+  }
+}
+
+.desc {
+  color: $higher-studies-card-desc-font-color;
+  font-size: $desktop-font-body;
+  font-weight: $default-font-weight;
+  line-height: 2.8rem;
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.68rem;
+  }
+}
+
+.featureListItem {
+  max-height: 26.4rem;
+  border-radius: 0.76rem;
+  border: 0.09rem solid $higher-studies-card-border-color;
+  overflow: hidden;
+  position: relative;
+
+  & > img {
+    object-fit: cover;
+    object-position: top left;
+    width: 100%;
+    height: 100%;
+
+    @include mobile {
+      height: 24rem;
+    }
+  }
+}
+
+.featureListItemImage {
+  height: 26.4rem;
+  width: 27.1rem;
+  object-fit: cover;
+  object-position: top left;
+
+  @include mobile {
+    height: 24rem;
+  }
+}
+
+.zoomIcon {
+  @include flex-row-y-c;
+
+  position: absolute;
+  bottom: 2rem;
+  z-index: 2;
+  right: 2rem;
+  cursor: pointer;
+  padding: 2.4rem;
+  gap: 1rem;
+  border-radius: 9.9rem;
+  background: $higher-studies-card-zoom-icon-background-color;
+  box-shadow: 0 0.8rem 1.6rem 0px $higher-studies-card-zoom-icon-box-shadow-color;
+
+  @include mobile {
+    padding: 1.778rem;
+    right: 1.48rem;
+    bottom: 1.48rem;
+  }
+}
+
+.zoomIconIcon svg {
+  height: 3.2rem;
+  width: 3.2rem;
+
+  @include mobile {
+    height: 2.73rem;
+    width: 2.73rem;
+  }
+}
+
+.zoomedArticleImage {
+  max-width: 100%;
+  width: 100%;
+  object-fit: contain;
+
+  @include mobile {
+    max-height: 70vh;
+    max-width: 100%;
+  }
+}
+
+.imageModalMask {
+  background: $higher-studies-card-image-modal-mask-color;
+}
+
+.imageModal {
+  width: 62vw !important;
+  height: 70vh !important;
+
+  @include mobile {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 70vh !important;
+    margin: 0 !important;
+    top: 10rem !important;
+  }
+
+  :global(.ant-modal-content) {
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  :global(.ant-modal-close) {
+    @include flex-row-c;
+
+    top: -6.2rem !important;
+    inset-inline-end: 0 !important;
+    width: 4.8rem !important;
+    height: 4.8rem !important;
+    padding: 0.8rem !important;
+    border-radius: 4rem !important;
+    background: $higher-studies-card-zoom-icon-background-color !important;
+
+    svg {
+      height: 3.2rem;
+      width: 3.2rem;
+      color: $higher-studies-card-close-icon-color;
+
+      @include mobile {
+        height: 2.4rem;
+        width: 2.4rem;
+      }
+    }
+  }
+}
