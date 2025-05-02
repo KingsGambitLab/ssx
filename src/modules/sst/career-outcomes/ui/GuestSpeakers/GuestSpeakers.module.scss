@@ -58,6 +58,12 @@ $guest-speakers-subtitle-font-color: #171717;
   }
 }
 
+.scrollContainer {
+  @include mobile {
+    gap: 1.6rem;
+  }
+}
+
 .cards {
   width: 100%;
 }

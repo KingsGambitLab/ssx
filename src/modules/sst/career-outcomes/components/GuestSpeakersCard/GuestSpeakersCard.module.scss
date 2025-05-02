@@ -20,6 +20,10 @@ $guest-speakers-card-desc-font-color: #616161;
   aspect-ratio: 357.33/201.00;
   object-fit: cover;
   transition: width 0.3s ease, height 0.3s ease;
+
+  @include mobile {
+    height: 13.8375rem;
+  }
 }
 
 .content {
@@ -29,6 +33,10 @@ $guest-speakers-card-desc-font-color: #616161;
   align-items: flex-start;
   gap: 2.15rem;
   align-self: stretch;
+
+  @include mobile {
+    padding: 1.4rem 1.6rem 1.6rem 1.6rem;
+  }
 }
 
 
@@ -45,6 +53,11 @@ $guest-speakers-card-desc-font-color: #616161;
       font-weight: $bold-font-weight;
     }
   }
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.68rem;
+  }
 }
 
 .imageWrapper {
@@ -56,3 +69,4 @@ $guest-speakers-card-desc-font-color: #616161;
   border: none;
   background: none;
 }
+
