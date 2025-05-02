@@ -9,6 +9,9 @@ import HigherStudies from "@modules/sst/career-outcomes/ui/HigherStudies";
 import CareerOfficersTeam from "@modules/sst/career-outcomes/ui/CareerOfficersTeam/CareerOfficersTeam";
 import EducationTeam from "@modules/sst/career-outcomes/ui/EducationTeam";
 import Startups from "@modules/sst/career-outcomes/ui/Startups";
+import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
+import Placement from "@modules/sst/career-outcomes/ui/Placement/Placement";
+import InnovationLabProjects from "@modules/sst/career-outcomes/ui/InnovationLabProjects";
 import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers/GuestSpeakers";
 import SuccessStories from "@modules/sst/career-outcomes/components/SuccessStories";
 
@@ -18,7 +21,10 @@ export default function Page() {
       <CareerStats />
       <GuestSpeakers />
       <Startups />
+      <Placement />
+      <InnovationLabProjects />
       <HigherStudies />
+      <Entrepreneurship />
       <SuccessStories />
       <Mentorship />
       <SstVsTraditional />
