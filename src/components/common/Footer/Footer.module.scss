@@ -2,212 +2,274 @@
   background-color: #000000;
   padding: 0;
   width: 100%;
+  margin-bottom: 0;
+  color: #FFFFFF;
+
+  &__container {
+    max-width: 1232px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 80px 104px 24px 104px;
+    margin-bottom: 56px;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      padding: 40px 20px 24px 20px;
+      margin-bottom: 32px;
+      gap: 36px;
+    }
+  }
+
+  &__branding {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    
+    @media (max-width: 768px) {
+      gap: 32px;
+    }
+    
+    @media (min-width: 768px) {
+      width: 340px;
+      margin-right: 2rem;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    gap: 9.6px;
+    max-width: 438px;
+    font-size: 24px;
+    width: 292px;
+
+    img {
+      object-fit: contain;
+      height: auto;
+      width: 100%;
+      max-width: 300px;
+
+      @media (max-width: 768px) {
+        width: 227px;
+        height: 65px;
+      }
+    }
+
+    div {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      color: #FFFFFF;
+      font-size: 24px;
+      line-height: 33.6px;
+      letter-spacing: 0.15px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 10px;
+      word-wrap: break-word;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+        line-height: 22.4px;
+        letter-spacing: 0.1px;
+      }
+    }
+  }
+
+  &__coloumn {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex-wrap: wrap;
+    height: 385px;
+    width: 607px;
+    
+    @media (max-width: 768px) {
+      height: auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: 
+        "offerings resources"
+        "teach social"
+        "company other";
+      gap: 32px 16px;
+    }
+  }
+
+  &__social {
+    @media (max-width: 768px) {
+      grid-area: social;
+    }
+  }
+
+  &__copyright {
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 56px;
+    padding-top: 1.5rem;
+    padding-bottom: 24px;
+    word-wrap: break-word;
+    
+    @media (max-width: 768px) {
+      font-size: 14px;
+      padding-bottom: 56px;
+    }
+  }
 }
 
-.container {
-  max-width: 1232px;
-  margin: 0 auto;
+.footer-items {
   display: flex;
   flex-direction: column;
-  padding: 80px 104px 24px 104px;
+  gap: 16px;
 
   @media (max-width: 768px) {
-    padding: 40px 20px 24px 20px;
-  }
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-}
-
-.leftColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 56px;
-
-  @media (min-width: 768px) {
-    width: 340px;
-    margin-right: 2rem;
-  }
-}
-
-.logoSection {
-  display: flex;
-  flex-direction: column;
-  gap: 9.6px;
-  max-width: 438px;
-
-  .logo {
-    object-fit: contain;
-    height: auto;
-    width: 100%;
-    max-width: 300px;
+    &:nth-child(1) {
+      grid-area: offerings;
+    }
+    &:nth-child(2) {
+      grid-area: resources;
+    }
+    &:nth-child(3) {
+      grid-area: teach;
+    }
+    &:nth-child(4) {
+      grid-area: company;
+    }
+    &:nth-child(6) {
+      grid-area: other;
+    }
   }
 
-  .slogan {
+  &__heading {
+    color: #ADD5FF;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 400;
-    color: #FFFFFF;
     font-size: 24px;
-    line-height: 33.6px;
-    letter-spacing: 0.15px;
-    width: 100%;
+    font-weight: 600;
+    margin: 0;
+    word-wrap: break-word;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+      line-height: 22.4px;
+      letter-spacing: 0.1px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__content {
     display: flex;
-    justify-content: flex-start;
-    margin-top: 10px;
-  }
-}
+    flex-direction: column;
+    gap: 16px;
 
-.downloadSection {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-.qrCode {
-  width: 72px;
-  height: 72px;
-  border-radius: 5.82px;
-  overflow: hidden;
-  background-color: #F1F1F1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.downloadText {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
-  color: #FFFFFF;
-  font-weight: 600;
-  line-height: 22px;
-  letter-spacing: 0.16px;
-  margin-bottom: 8px;
-}
-
-.downloadContent {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.playStoreButton {
-  display: inline-block;
-  padding: 6px 9px;
-}
-
-.navColumns {
-  display: flex;
-  width: 607px;
-  gap: 16px;
-  flex-direction: column;
-  margin-top: 0;
-  padding-top: 0;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-top: 15px;
-  }
-}
-
-.navGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-
-  @media (min-width: 768px) {
-    width: 192px;
-  }
-}
-
-.navColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.columnTitle {
-  color: #ADD5FF;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.columnLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.link {
-  color: #FFFFFF;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-  text-align: left;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
-.socialIcons {
-  display: flex;
-  gap: 12px;
-}
-
-.copyright {
-  color: #FFFFFF;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  text-align: center;
-  margin-top: 56px;
-  padding-top: 1.5rem;
-  word-wrap: break-word;
-}
-
-// Mobile specific styles
-@media (max-width: 767px) {
-  .content {
-    position: relative;
+    @media (max-width: 768px) {
+      gap: 16px;
+      align-self: stretch;
+    }
   }
 
-  .navColumns {
-    width: 100%;
-  }
-
-  .navGroup {
-    width: 100%;
-  }
-
-  .columnTitle {
+  &__link {
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 14px;
-    line-height: 22.4px;
-    letter-spacing: 0.1px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    text-align: left;
+    word-wrap: break-word;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+      line-height: 19.6px;
+      letter-spacing: 0.1px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-self: stretch;
+    }
   }
 
-  .link {
-    font-size: 12px;
-    line-height: 19.6px;
-    letter-spacing: 0.1px;
+  &__social {
+    display: flex;
+    gap: 12px;
+    width: 120px;
+    
+    a {
+      width: 24px;
+      height: 24px;
+    }
+    
+    a:nth-child(5),
+    a:nth-child(6) {
+      display: none;
+      
+      @media (max-width: 768px) {
+        display: flex;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 12px;
+      max-width: 130px;
+    }
+  }
+}
+
+.playstore {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  &__content {
+    color: #FFFFFF;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0.16px;
+    word-wrap: break-word;
+  }
+  
+  &__link {
+    display: inline-block;
+    padding: 6px 9px;
+    text-decoration: none;
+    
+    @media (max-width: 768px) {
+      margin-left: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &__image {
+    width: 216px;
+    height: 72px;
+    object-fit: contain;
+    
+    @media (max-width: 768px) {
+      width: 128.7px;
+      height: 38.02px;
+    }
   }
 }
