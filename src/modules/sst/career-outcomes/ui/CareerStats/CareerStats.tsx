@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useDeviceType } from '@hooks/useDeviceType';
 
 import Section from '@components/common/Section';
-import CareerStatsCard from '../components/CareerStatsCard/CareerStatsCard';
+import CareerStatsCard from '../../components/CareerStatsCard/CareerStatsCard';
 
-import CareerStatsData from '../utils/statsData';
+import { CareerStatsData } from '../../utils/data';
 
 import styles from './CareerStats.module.scss';
 
