@@ -9,6 +9,11 @@ $degree-hero-desc-font-color: #616161;
   width: 100%;
   background: $degree-hero-bg-color;
   align-items: stretch;
+  padding: 5.4rem 0;
+
+  @include mobile {
+    padding: 2.4rem 0;
+  }
 
   .content {
     @include flex-col-c;
