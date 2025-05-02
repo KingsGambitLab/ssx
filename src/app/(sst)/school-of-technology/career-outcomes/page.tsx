@@ -6,11 +6,13 @@ import Mentorship from "@modules/sst/career-outcomes/ui/Mentorship";
 import HigherStudies from "@modules/sst/career-outcomes/ui/HigherStudies";
 import CareerStats from "@modules/sst/career-outcomes/ui/CareerStats";
 import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
+import Placement from "@modules/sst/career-outcomes/ui/Placement/Placement";
 
 export default function Page() {
   return (
     <div className={styles.container}>
       <CareerStats />
+      <Placement />
       <HigherStudies />
       <Entrepreneurship />
       <Mentorship />
