@@ -16,6 +16,15 @@ import SunilSeetharaman from '@public/images/sst/webp/people/sunil-seetharaman.w
 import AkhandPratapSingh from '@public/images/sst/webp/people/akhand-pratap.webp';
 import AmardeepSaxena from '@public/images/sst/webp/people/amardeep-saxena.webp';
 import ShrutiSagar from '@public/images/sst/webp/people/shruti-sagar.webp';
+import BuildmyNotes from '@public/images/sst/webp/startups/build-my-notes.webp';
+import Certcy from '@public/images/sst/webp/startups/certcy.webp';
+import HealthNivaran from '@public/images/sst/webp/startups/nivaran.webp';
+import Triangles from '@public/images/sst/webp/startups/triangles.webp';
+import Photosage from '@public/images/sst/webp/startups/photosage.webp';
+import Repsai from '@public/images/sst/webp/startups/reps-ai.webp';
+import Fortura from '@public/images/sst/webp/startups/fortura.webp';
+import Percevia from '@public/images/sst/webp/startups/percevia.webp';
+import XrGame from '@public/images/sst/webp/startups/xr-game.webp';
 
 import { HigherStudiesCardProps } from '../types';
 
@@ -194,6 +203,75 @@ export const EducationTeamData = {
       name: "Shruti Sagar",
       currOrganisation: "Ex-IIT Kharagpur",
       prevOrganisation: "LEK Consulting",
+    }
+  ]
+}
+
+export const StartupsData = {
+  title: "Innovation Lab Startups by SST students",
+  startups: [
+    {
+      image: BuildmyNotes,
+      name: "BuildmyNotes app",
+      desc: "An AI-powered app that transforms your recorded lectures into clear, structured study notes. Making learning faster, easier, and more organised.",
+      cta_text: "BuildmyNotes app",
+      link: "http://www.buildmynotes.com"
+    },
+    {
+      image: Certcy,
+      name: "Certcy",
+      desc: "Predicts layoff risks and empowers professionals to pivot fast with AI-driven career guidance and coaching, because no one should face layoffs alone.",
+      cta_text: "Certcy",
+      link: "https://www.certcy.space/"
+    },
+    {
+      image: HealthNivaran,
+      name: "HealthNivaran",
+      desc: "Helps patients decode their symptoms, understand lab reports & get mental health insights. Connect with the right doctor at the right time.",
+      cta_text: "HealthNivaran",
+      link: "https://www.healthnivaran.in/"
+    },
+    {
+      image: Triangles,
+      name: "Triangles",
+      desc: "Co-founded with a student from Maters Union and backed by Microsoft, a platform helping students discover global opportunities - from hackathons and competitions to vibrant micro-communities.",
+      cta_text: "Triangles",
+      link: "http://triangles.site/"
+    },
+    {
+      image: Photosage,
+      name: "Photosage",
+      desc: "A smart image search engine for mobile and laptop. Just describe the photo you need, and it finds it from your gallery. Built especially for content creators who shoot hundreds of images and need fast, accurate searches for editing.",
+      cta_text: "Photosage",
+      link: "https://sensational-frangollo-7f66eb.netlify.app/"
+    },
+    {
+      image: Repsai,
+      name: "Reps-ai",
+      desc: "An AI voice agent that identifies and engages gym leads, qualifying them through smart conversations  and helping turn more prospects into members.",
+      cta_text: "Reps-ai",
+      link: "https://drive.google.com/file/d/14cfXFR6r3wxL8fgA3APrmqdSg-6Cpaar/view"
+    },
+    {
+      image: Fortura,
+      name: "Fortura",
+      desc: "A next-gen AI-powered finance platform that goes beyond expense tracking. Predicting cash flow risks, cutting unnecessary spending, and automating real-time financial forecasting.",
+      cta_text: "Fortura",
+      link: "https://drive.google.com/file/d/19xn43DLeHcqsROp75lJ5mKFranrS_uEl/view"
+    },
+    {
+      image: Percevia,
+      name: "Percevia",
+      desc: "Smart glasses that help the visually impaired navigate. They by detecting objects and delivering real-time audio cues, turning vision into perception.",
+      cta_text: "Percevia",
+      link: "https://drive.google.com/file/d/1N34QBXZVjXxGhY8Mwq98FL49mPjR2GLw/view"
+    },
+    {
+      image: XrGame,
+      name: "XR based game",
+      desc: "Building an immersive Meta Quest game with hand tracking, 3D scaling. With a gameplay prototype already in action, they're set to change the way you experience gaming.",
+      cta_text: "XR based game",
+      link: "https://drive.google.com/file/d/1XlqowSXdixzS_ygbbxNVh2TCgvJF9eWR/view?usp=drivesdk"
     }
   ]
 }
