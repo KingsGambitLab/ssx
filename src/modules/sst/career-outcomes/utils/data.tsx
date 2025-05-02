@@ -25,6 +25,13 @@ import Repsai from '@public/images/sst/webp/startups/reps-ai.webp';
 import Fortura from '@public/images/sst/webp/startups/fortura.webp';
 import Percevia from '@public/images/sst/webp/startups/percevia.webp';
 import XrGame from '@public/images/sst/webp/startups/xr-game.webp';
+import RajanAnandan from '@public/images/sst/webp/guest-speakers/rajan-anandan.webp';
+import NitinVijay from '@public/images/sst/webp/guest-speakers/nitin-vijay.webp';
+import JioHotstar from '@public/images/sst/webp/guest-speakers/jio-hotstar.webp';
+import BillionDollar from '@public/images/sst/webp/guest-speakers/billion-dollar.webp';
+import FounderUdaan from '@public/images/sst/webp/guest-speakers/founder-of-udaan.webp';
+import JacobSingh from '@public/images/sst/webp/guest-speakers/jacob-singh.webp';
+
 
 import { HigherStudiesCardProps } from '../types';
 
@@ -243,7 +250,7 @@ export const StartupsData = {
       name: "Photosage",
       desc: "A smart image search engine for mobile and laptop. Just describe the photo you need, and it finds it from your gallery. Built especially for content creators who shoot hundreds of images and need fast, accurate searches for editing.",
       cta_text: "Photosage",
-      link: "https://sensational-frangollo-7f66eb.netlify.app/"
+      link: "https://photosage.in/"
     },
     {
       image: Repsai,
@@ -272,6 +279,57 @@ export const StartupsData = {
       desc: "Building an immersive Meta Quest game with hand tracking, 3D scaling. With a gameplay prototype already in action, they're set to change the way you experience gaming.",
       cta_text: "XR based game",
       link: "https://drive.google.com/file/d/1XlqowSXdixzS_ygbbxNVh2TCgvJF9eWR/view?usp=drivesdk"
+    }
+  ]
+}
+
+export const GuestSpeakersData = {
+  title: "learn what they had to say ABOUT SST",
+  title_mobile: "Watch these videos to learn what they had to say",
+  subTitle: "We invited leading educators to SST",
+  subTitle_mobile: "We invited leading educators to SST",
+  guestSpeakers: [
+    {
+      thumbnail: RajanAnandan,
+      videoLink: "M7H1SHc1f2Q",
+      desc: (
+        <p>Building the Future in Tech - <span>Advice from India's Biggest VC Rajan Anandan</span></p>
+      )
+    },
+    {
+      thumbnail: NitinVijay,
+      videoLink: "TYCT_34lQWI",
+      desc: (
+        <p>Advice for CSE & AI Aspirants from Real-Life Jeetu Bhaiya - <span>Nitin Vijay Sir(Founder of Motion)</span></p>
+      )
+    },
+    {
+      thumbnail: JioHotstar,
+      videoLink: "XLHqG3KzJ7Y",
+      desc: (
+        <p><span>JioHotstar Secrets Revealed</span> For IPL Live Streaming</p>
+      )
+    },
+    {
+      thumbnail: BillionDollar,
+      videoLink: "27BikkECTd4",
+      desc: (
+        <p>How This Man From Chennai <span>Made a 1.5 Billion Dollar Company?</span></p>
+      )
+    },
+    {
+      thumbnail: FounderUdaan,
+      videoLink: "340HnbTZHEw?",
+      desc: (
+        <p>How 10x Engineers Think & Code ft. <span>Founder of Udaan</span></p>
+      )
+    },
+    {
+      thumbnail: JacobSingh,
+      videoLink: "CZT-i7SL1s4",
+      desc: (
+        <p>Supermentor on SST's vision | <span>Jacob Singh, CTO, Alpha Wave Global</span></p>
+      )
     }
   ]
 }

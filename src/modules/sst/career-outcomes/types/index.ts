@@ -18,7 +18,6 @@ export type CareerStatsCardProps = {
   mobileOnly?: boolean;
 }
 
-
 export type StartupCardProps = {
   key: string;
   image: string;
@@ -26,4 +25,10 @@ export type StartupCardProps = {
   desc: string;
   cta_text: string;
   link: string;
+}
+
+export type GuestSpeakersCardProps = {
+  thumbnail: string;
+  videoLink: string;
+  desc: React.ReactNode;
 }
