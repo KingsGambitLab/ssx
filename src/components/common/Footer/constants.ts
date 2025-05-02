@@ -63,5 +63,9 @@ export const SOCIAL_LINKS: FooterSocialLink[] = [
   { platform: "YouTube", href: "https://www.youtube.com/@ScalerSchoolOfTechnology", ariaLabel: "YouTube" },
   { platform: "Instagram", href: "https://www.instagram.com/scaler_school_of_technology/", ariaLabel: "Instagram" },
   { platform: "LinkedIn", href: "https://www.scaler.com/school-of-technology/", ariaLabel: "LinkedIn" },
-  { platform: "Twitter", href: "https://x.com/Scaler_SST", ariaLabel: "Twitter" }
+  { platform: "Twitter", href: "https://x.com/Scaler_SST", ariaLabel: "Twitter" },
+  { platform: "Facebook", href: "https://www.facebook.com/ScalerSchoolOfTechnology/", ariaLabel: "Facebook" },
+  { platform: "Quora", href: "https://www.quora.com/What-is-your-review-of-Scaler-Academy", ariaLabel: "Quora" }
 ];
+
+export const APP_DOWNLOAD_LINK = "https://play.google.com/store/apps/details?id=com.scaler.app&utm_source=scaler-footer-menu&utm_campaign=scaler-app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1";
