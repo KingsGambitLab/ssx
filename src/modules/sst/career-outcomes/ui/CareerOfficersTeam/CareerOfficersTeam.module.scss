@@ -1,0 +1,51 @@
+$career-officers-team-title-color: #616161;
+$career-officers-team-subtitle-color: #171717;
+
+.container {
+  @include flex-col-x-c;
+
+  padding: 5.4rem 0;
+  gap: 5.4rem;
+}
+
+.header {
+  @include flex-col-x-c;
+
+  gap: 0.8rem;
+  align-self: stretch;
+}
+
+.title {
+  color:$career-officers-team-title-color;
+  text-align: center;
+  font-size: $desktop-font-body;
+  font-weight: $bolder-font-weight;
+  letter-spacing: 0.26rem;
+  text-transform: uppercase;
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.68rem;
+    letter-spacing: 0.15rem;
+  }
+}
+
+.subtitle {
+  color: $career-officers-team-subtitle-color;
+  text-align: center;
+  font-size: $desktop-font-header;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: $mobile-font-header;
+    letter-spacing: 0.01rem;
+  }
+}
+
+.teamContainer {
+  @include flex-row-x-c;
+
+  padding: 0 10.4rem 1.6rem 10.4rem;
+  gap: 2.4rem;
+  width: 100%;
+}

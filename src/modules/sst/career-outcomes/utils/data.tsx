@@ -4,6 +4,9 @@ import MartinReindl from '@public/images/sst/webp/people/martin-reindl.webp';
 import AdhirajArora from '@public/images/sst/webp/people/adhiraj-arora.webp';
 import KshitijMishra from '@public/images/sst/webp/people/kshitij-mishra.webp';
 import ManmeetSinghAkali from '@public/images/sst/webp/people/manmeet.webp';
+import SunilSeetharaman from '@public/images/sst/webp/people/sunil-seetharaman.webp';
+import AkhandPratapSingh from '@public/images/sst/webp/people/akhand-pratap.webp';
+import AmardeepSaxena from '@public/images/sst/webp/people/amardeep-saxena.webp';
 
 export const CareerStatsData = {
   stats: [
@@ -63,6 +66,30 @@ export const EntrepreneurshipTeamData = {
       name: "Manmeet Singh Akali",
       prevOrganisation: "Ex-Founder Klarity,",
       currOrganisation: "(Acquired)",
+    }
+  ]
+}
+
+
+export const CareerOfficersTeamData = {
+  title: "THE TEAM",
+  subTitle: "Office of Career Services",
+  team: [
+    {
+      image: SunilSeetharaman.src,
+      name: "Sunil Seetharaman",
+      prevOrganisation: "Ex ISB, Zomato"
+    },
+    {
+      image: AkhandPratapSingh.src,
+      name: "Akhand Pratap Singh",
+      prevOrganisation: "Ex Zomato, Ola"
+    },
+    {
+      image: AmardeepSaxena.src,
+      name: "Amardeep Saxena",
+      prevOrganisation: "Ex ISB, Zomato",
+      currOrganisation: "HackerRank"
     }
   ]
 }

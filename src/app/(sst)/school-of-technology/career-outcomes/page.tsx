@@ -1,7 +1,9 @@
 import styles from "./page.module.scss";
 
+
 import CareerStats from "@modules/sst/career-outcomes/ui/CareerStats/CareerStats";
 import EntrepreneurshipTeam from "@modules/sst/career-outcomes/ui/EntrepreneurshipTeam/EntrepreneurshipTeam";
+import CareerOfficersTeam from "@modules/sst/career-outcomes/ui/CareerOfficersTeam/CareerOfficersTeam";
 
 export default function Page() {
 
@@ -9,6 +11,7 @@ export default function Page() {
     <div className={styles.container}>
       <CareerStats />
       <EntrepreneurshipTeam />
+      <CareerOfficersTeam />
     </div>
   );
 }

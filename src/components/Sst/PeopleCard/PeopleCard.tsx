@@ -2,9 +2,15 @@ import Image from 'next/image';
 
 import styles from './PeopleCard.module.scss';
 
-import { EntrepreneurshipTeamPerson } from '@modules/sst/career-outcomes/types';
+type PeopleCardProps = {
+  key: number;
+  image: string;
+  name: string;
+  prevOrganisation?: string;
+  currOrganisation?: string;
+}
 
-export default function PeopleCard({ key, image, name, prevOrganisation, currOrganisation }: EntrepreneurshipTeamPerson) {
+export default function PeopleCard({ key, image, name, prevOrganisation, currOrganisation }: PeopleCardProps) {
   return (
     <div className={styles.container} key={key}>
       {image && (
@@ -14,8 +20,8 @@ export default function PeopleCard({ key, image, name, prevOrganisation, currOrg
         <div className={styles.name}>{name}</div>
 
         <div className={styles.organisationContainer}>
-          <div>{prevOrganisation}</div>
-          <div>{currOrganisation}</div>
+          {prevOrganisation && <div>{prevOrganisation}</div>}
+          {currOrganisation && <div>{currOrganisation}</div>}
         </div>
       </div>
 

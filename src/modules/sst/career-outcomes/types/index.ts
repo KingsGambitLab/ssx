@@ -5,11 +5,3 @@ export type CareerStatsCardProps = {
   variant?: "primary" | "tertiary";
   fullWidth?: boolean;
 }
-
-export type EntrepreneurshipTeamPerson = {
-  key: number;
-  image: string;
-  name: string;
-  prevOrganisation: string;
-  currOrganisation: string;
-}
