@@ -1,0 +1,67 @@
+$text-secondary: #3a3a3a;
+
+.container {
+  @include flex-col-c;
+
+  gap: 4rem;
+
+  @include mobile {
+    gap: 1.4rem;
+  }
+
+  .headerContainer {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 5.6rem;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sectionTitle {
+      font-size: $desktop-font-header;
+      font-weight: $semi-bold-font-weight;
+      width: 50%;
+
+      @include mobile {
+        text-align: center;
+        width: 100%;
+        font-size: $mobile-font-header !important;
+      }
+    }
+    
+    .sectionDescription {
+      font-size: $desktop-font-body;
+      color: $text-secondary;
+      width: 50%;
+
+      @include mobile {
+        text-align: center;
+        width: 100%;
+        font-size: $mobile-font-card-subtitle !important;
+      }
+    }
+  }
+}
+
+.content {
+  @include flex-col-c;
+
+  gap: 5.4rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+  gap: 3.2rem;
+  align-self: stretch;
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.4rem;
+  }
+}
