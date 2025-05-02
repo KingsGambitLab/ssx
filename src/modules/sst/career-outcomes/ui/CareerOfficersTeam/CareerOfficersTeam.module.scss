@@ -45,7 +45,6 @@ $career-officers-team-subtitle-color: #171717;
 .teamContainer {
   @include flex-row-x-c;
 
-  padding: 0 10.4rem 1.6rem 10.4rem;
   gap: 2.4rem;
   width: 100%;
 }
