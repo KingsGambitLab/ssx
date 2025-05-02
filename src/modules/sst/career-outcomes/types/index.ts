@@ -17,3 +17,13 @@ export type CareerStatsCardProps = {
   fullWidth?: boolean;
   mobileOnly?: boolean;
 }
+
+
+export type StartupCardProps = {
+  key: string;
+  image: string;
+  name: string;
+  desc: string;
+  cta_text: string;
+  link: string;
+}

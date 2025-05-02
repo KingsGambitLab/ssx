@@ -1,0 +1,32 @@
+$career-outcomes-title-font-color: #171717;
+
+.container {
+  @include flex-col-x-c;
+
+  padding: 5.4rem 0;
+  gap: 5.4rem;
+  justify-content: space-between;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 2.4rem;
+    padding: 2.4rem 0;
+  }
+}
+
+.title {
+  color: $career-outcomes-title-font-color;
+  text-align: center;
+  font-size: $desktop-font-header;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: $mobile-font-header;
+    line-height: 3.36rem;
+    letter-spacing: 0.01rem;
+  }
+}
+
+.startups {
+  width: 100%;
+}
