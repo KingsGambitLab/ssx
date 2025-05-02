@@ -6,7 +6,7 @@ import { higherStudiesCardData } from '../../utils/data';
 
 export default function HigherStudies() { 
   return (
-    <Section section_class={styles.HigherStudies} id='higher-studies'>
+    <Section section_class={styles.higherStudies} id='higher-studies'>
       <div className = {styles.container}>
         <div className={styles.headerContainer}>
           <div className={styles.sectionTitle}>

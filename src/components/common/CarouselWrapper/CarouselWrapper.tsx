@@ -20,6 +20,7 @@ export default function CarouselWrapper({
   slideItemMinWidthInMobile,
   scrollContainerClassName,
   scrollControlsClassName,
+  showInMobileOnly = false,
 }: {
   children: React.ReactNode,
   slidesToScrollInDesktop?: number,
@@ -30,6 +31,7 @@ export default function CarouselWrapper({
   slideItemMinWidthInMobile?: number,
   scrollContainerClassName?: string,
   scrollControlsClassName?: string,
+  showInMobileOnly?: boolean,
 }) {
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -37,16 +39,26 @@ export default function CarouselWrapper({
   const [isAtEnd, setIsAtEnd] = useState(false);
   const [dotCount, setDotCount] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const dotCountRef = useRef(dotCount);
 
   const { isMobile } = useDeviceType();
 
+  useEffect(() => {
+    dotCountRef.current = dotCount;
+  }, [dotCount]);
+
   const updateScrollButtons = () => {
     if (carouselRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      const { scrollLeft, scrollWidth, clientWidth, children } = carouselRef.current;
       setIsAtStart(scrollLeft === 0);
       setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 1);
-      const index = Math.round(scrollLeft / clientWidth);
-      setActiveIndex(index);
+
+      const child = children[0] as HTMLElement;
+      const childWidth = child?.offsetWidth || 1;
+      const slidesToScroll = isMobile ? slidesToScrollInMobile : slidesToScrollInDesktop;
+      const index = Math.round(scrollLeft / (childWidth * slidesToScroll));
+
+      setActiveIndex(Math.min(index, dotCountRef.current - 1));
     }
   };
 
@@ -116,6 +128,10 @@ export default function CarouselWrapper({
     }
     setTimeout(updateScrollButtons, 500);
   };
+
+  if (showInMobileOnly && !isMobile) {
+    return children;
+  }
 
   return (
     <div className={classNames(styles.container, {

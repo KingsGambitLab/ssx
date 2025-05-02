@@ -1,3 +1,4 @@
+import BurstBgImage from '@public/images/common/webp/burst-bg.webp';
 import OpenBookIcon from '@public/images/sst/svg/career_outcomes/higher_studies/book-open.svg';
 import GlobeIcon from '@public/images/sst/svg/career_outcomes/higher_studies/globe.svg';
 import UpscEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/upsc-eligibility.webp';
@@ -6,12 +7,15 @@ import GateEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs
 import GraduateEducationArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-education.webp';
 import DegreeEquivalenceArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/degree-equivalence.webp';
 import GraduateProgramEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-program-eligibility.webp';
-import BurstBgImage from '@public/images/common/webp/burst-bg.webp';
 import NeoSapianThumbnail from '@public/images/sst/webp/neosapian-thumbnail.webp';
 import MartinReindl from '@public/images/sst/webp/people/martin-reindl.webp';
 import AdhirajArora from '@public/images/sst/webp/people/adhiraj-arora.webp';
 import KshitijMishra from '@public/images/sst/webp/people/kshitij-mishra.webp';
 import ManmeetSinghAkali from '@public/images/sst/webp/people/manmeet.webp';
+import SunilSeetharaman from '@public/images/sst/webp/people/sunil-seetharaman.webp';
+import AkhandPratapSingh from '@public/images/sst/webp/people/akhand-pratap.webp';
+import AmardeepSaxena from '@public/images/sst/webp/people/amardeep-saxena.webp';
+
 import { HigherStudiesCardProps } from '../types';
 
 export const higherStudiesCardData: HigherStudiesCardProps[] = [
@@ -134,6 +138,30 @@ export const EntrepreneurshipTeamData = {
       name: "Manmeet Singh Akali",
       prevOrganisation: "Ex-Founder Klarity,",
       currOrganisation: "(Acquired)",
+    }
+  ]
+}
+
+
+export const CareerOfficersTeamData = {
+  title: "THE TEAM",
+  subTitle: "Office of Career Services",
+  team: [
+    {
+      image: SunilSeetharaman.src,
+      name: "Sunil Seetharaman",
+      prevOrganisation: "Ex ISB, Zomato"
+    },
+    {
+      image: AkhandPratapSingh.src,
+      name: "Akhand Pratap Singh",
+      prevOrganisation: "Ex Zomato, Ola"
+    },
+    {
+      image: AmardeepSaxena.src,
+      name: "Amardeep Saxena",
+      prevOrganisation: "Ex ISB, Zomato",
+      currOrganisation: "HackerRank"
     }
   ]
 }

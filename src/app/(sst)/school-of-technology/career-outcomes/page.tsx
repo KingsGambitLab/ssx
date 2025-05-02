@@ -6,6 +6,7 @@ import Mentorship from "@modules/sst/career-outcomes/ui/Mentorship";
 import CareerStats from "@modules/sst/career-outcomes/ui/CareerStats/CareerStats";
 import EntrepreneurshipTeam from "@modules/sst/career-outcomes/ui/EntrepreneurshipTeam/EntrepreneurshipTeam";
 import HigherStudies from "@modules/sst/career-outcomes/ui/HigherStudies";
+import CareerOfficersTeam from "@modules/sst/career-outcomes/ui/CareerOfficersTeam/CareerOfficersTeam";
 
 export default function Page() {
 
@@ -17,7 +18,9 @@ export default function Page() {
       <SstVsTraditional />
       <ApplyCtaBanner />
       <EntrepreneurshipTeam />
+      <CareerOfficersTeam />
       <Faq />
+      <CareerOfficersTeam />
     </div>
   );
 }
