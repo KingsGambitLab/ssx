@@ -1,0 +1,270 @@
+$footer-bg-color: #000000;
+$footer-text-color: #ffffff;
+$footer-heading-color: #add5ff;
+
+.footer {
+  background-color: $footer-bg-color;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 0;
+  color: $footer-text-color;
+
+  &__container {
+    max-width: 1232px;
+    margin: 0 auto;
+    @include flex-row;
+    padding: 80px 104px 24px 104px;
+    margin-bottom: 56px;
+    justify-content: space-between;
+
+    @include mobile {
+      flex-direction: column;
+      padding: 40px 20px 24px 20px;
+      margin-bottom: 32px;
+      gap: 36px;
+    }
+  }
+
+  &__branding {
+    @include flex-col;
+    gap: 56px;
+    
+    @include mobile {
+      gap: 32px;
+    }
+    
+    @media (min-width: 768px) {
+      width: 340px;
+      margin-right: 2rem;
+    }
+  }
+
+  &__logo {
+    @include flex-col;
+    gap: 9.6px;
+    max-width: 438px;
+    font-size: 24px;
+    width: 292px;
+
+    img {
+      object-fit: contain;
+      height: auto;
+      width: 100%;
+      max-width: 300px;
+
+      @include mobile {
+        width: 227px;
+        height: 65px;
+      }
+    }
+
+    div {
+      @include font-plus-jakarta-sans;
+      font-weight: 400;
+      color: $footer-text-color;
+      font-size: 24px;
+      line-height: 33.6px;
+      letter-spacing: 0.15px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 10px;
+      word-wrap: break-word;
+
+      @include mobile {
+        font-size: 16px;
+        line-height: 22.4px;
+        letter-spacing: 0.1px;
+      }
+    }
+  }
+
+  &__coloumn {
+    @include flex-col;
+    gap: 40px;
+    flex-wrap: wrap;
+    height: 385px;
+    width: 607px;
+    
+    @include mobile {
+      height: auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: 
+        "offerings resources"
+        "teach social"
+        "company other";
+      gap: 32px 16px;
+    }
+  }
+
+  &__social {
+    @include mobile {
+      grid-area: social;
+    }
+  }
+
+  &__copyright {
+    color: $footer-text-color;
+    @include font-plus-jakarta-sans;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 56px;
+    padding-top: 1.5rem;
+    padding-bottom: 24px;
+    word-wrap: break-word;
+    
+    @include mobile {
+      font-size: 14px;
+      padding-bottom: 56px;
+    }
+  }
+}
+
+.footer-items {
+  @include flex-col;
+  gap: 16px;
+
+  @include mobile {
+    &:nth-child(1) {
+      grid-area: offerings;
+    }
+    &:nth-child(2) {
+      grid-area: resources;
+    }
+    &:nth-child(3) {
+      grid-area: teach;
+    }
+    &:nth-child(4) {
+      grid-area: company;
+    }
+    &:nth-child(6) {
+      grid-area: other;
+    }
+  }
+
+  &__heading {
+    color: $footer-heading-color;
+    @include font-plus-jakarta-sans;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    word-wrap: break-word;
+
+    @include mobile {
+      font-size: 14px;
+      line-height: 22.4px;
+      letter-spacing: 0.1px;
+      justify-content: center;
+      @include flex-col;
+    }
+  }
+
+  &__content {
+    @include flex-col;
+    gap: 16px;
+
+    @include mobile {
+      gap: 16px;
+      align-self: stretch;
+    }
+  }
+
+  &__link {
+    color: $footer-text-color;
+    @include font-plus-jakarta-sans;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    text-align: left;
+    word-wrap: break-word;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    @include mobile {
+      font-size: 12px;
+      line-height: 19.6px;
+      letter-spacing: 0.1px;
+      justify-content: center;
+      @include flex-col;
+      align-self: stretch;
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 12px;
+    width: 120px;
+    
+    a {
+      width: 24px;
+      height: 24px;
+    }
+    
+    a:nth-child(5),
+    a:nth-child(6) {
+      display: none;
+      
+      @include mobile {
+        display: flex;
+      }
+    }
+    
+    @include mobile {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 12px;
+      max-width: 130px;
+    }
+  }
+}
+
+.playstore {
+  @include flex-row;
+  @include align-c;
+  
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  &__content {
+    color: $footer-text-color;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0.16px;
+    word-wrap: break-word;
+  }
+  
+  &__link {
+    display: inline-block;
+    padding: 6px 9px;
+    text-decoration: none;
+    
+    @include mobile {
+      margin-left: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &__image {
+    width: 216px;
+    height: 72px;
+    object-fit: contain;
+    
+    @include mobile {
+      width: 128.7px;
+      height: 38.02px;
+    }
+  }
+}
