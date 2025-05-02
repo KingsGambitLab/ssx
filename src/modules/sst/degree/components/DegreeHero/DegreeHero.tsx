@@ -1,18 +1,17 @@
 import Image from 'next/image';
 import Section from '@components/common/Section';
-import styles from './DegreeHero.module.scss';
 import DegreeHeroImage from '@public/images/sst/png/degree-hero.png';
-
+import styles from './DegreeHero.module.scss';
 
 const DegreeHero = () => {
   return (
-    <Section>
+    <Section section_class="degree-hero" id="degree-hero">
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
-            <h1 className={styles.title}>
+            <h2 className={styles.title}>
               A Degree Designed for the Future, Not the Past
-            </h1>
+            </h2>
             <div className={styles.description}>
               Traditional engineering degrees were designed decades ago, but the world
               of technology moves fast.

@@ -1,66 +1,67 @@
-@import "@/styles/base.scss";
-
-$neutral-background-color: #FAFAFA;
-$gradient-start-color: #083CA0;
-$gradient-end-color: #0080FF;
-$text-tertiary-color: #616161;
+$degree-hero-bg-color: #fafafa;
+$degree-hero-gradient-start: #083ca0;
+$degree-hero-gradient-end: #0080ff;
+$degree-hero-desc-font-color: #616161;
 
 .container {
-  width: 100%;
-  background: var(--surface-neutral-layer-01, $neutral-background-color);
   @include flex-col;
+
+  width: 100%;
+  background: $degree-hero-bg-color;
   align-items: stretch;
 
   .content {
+    @include flex-col-c;
+
     width: 100%;
-    @include flex-col;
-    @include align-c;
     gap: 2rem;
     padding: 0;
     margin: 0;
 
     .textContent {
+      @include flex-col-c;
+
       width: 32rem;
       height: 18.1rem;
       gap: 1.6rem;
-      @include flex-col;
-      @include align-c;
       margin: 2.4rem 0;
       padding: 0;
 
       .title {
+        @include font-plus-jakarta-sans;
+        @include flex-row-c;
+
         width: 32rem;
         height: 6.8rem;
-        @include font-plus-jakarta-sans;
         font-weight: 700;
         font-size: 2.4rem;
         line-height: 140%;
-        letter-spacing: 0.1px;
+        letter-spacing: 0.1rem;
         text-align: center;
         vertical-align: middle;
         margin: 0;
         padding: 0;
-        background: linear-gradient(91.92deg, $gradient-start-color 19.69%, $gradient-end-color 86.31%);
+        background: linear-gradient(91.92deg, $degree-hero-gradient-start 19.69%, $degree-hero-gradient-end 86.31%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        @include flex-row-c;
       }
 
       .description {
+        @include font-plus-jakarta-sans;
+        @include flex-row-c;
+
         width: 32rem;
         height: 3.4rem;
-        @include font-plus-jakarta-sans;
         font-weight: 500;
         font-size: 1.2rem;
         line-height: 140%;
-        letter-spacing: 0px;
+        letter-spacing: 0;
         text-align: center;
         vertical-align: middle;
-        color: var(--text-neutral-tertiary, $text-tertiary-color);
+        color: $degree-hero-desc-font-color;
         margin: 0;
         padding: 0;
-        @include flex-row-c;
         white-space: pre-wrap;
         word-break: break-word;
 
@@ -90,15 +91,13 @@ $text-tertiary-color: #616161;
       }
     }
   }
-}
 
-/* Web view */
-@media (min-width: 64rem) {
-  .container {
+  @include desktop-only {
     @include align-c;
 
     .content {
       @include flex-r;
+
       justify-content: space-between;
       align-items: flex-start;
       gap: 7.9rem;
