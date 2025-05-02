@@ -219,42 +219,42 @@ export const GuestSpeakersData = {
   guestSpeakers: [
     {
       thumbnail: RajanAnandan,
-      videoLink: "https://www.youtube.com/embed/M7H1SHc1f2Q",
+      videoLink: "M7H1SHc1f2Q",
       desc: (
         <p>Building the Future in Tech - <span>Advice from India's Biggest VC Rajan Anandan</span></p>
       )
     },
     {
       thumbnail: NitinVijay,
-      videoLink: "https://www.youtube.com/embed/TYCT_34lQWI",
+      videoLink: "TYCT_34lQWI",
       desc: (
         <p>Advice for CSE & AI Aspirants from Real-Life Jeetu Bhaiya - <span>Nitin Vijay Sir(Founder of Motion)</span></p>
       )
     },
     {
       thumbnail: JioHotstar,
-      videoLink: "https://www.youtube.com/embed/XLHqG3KzJ7Y",
+      videoLink: "XLHqG3KzJ7Y",
       desc: (
         <p><span>JioHotstar Secrets Revealed</span> For IPL Live Streaming</p>
       )
     },
     {
       thumbnail: BillionDollar,
-      videoLink: "https://www.youtube.com/embed/27BikkECTd4",
+      videoLink: "27BikkECTd4",
       desc: (
         <p>How This Man From Chennai <span>Made a 1.5 Billion Dollar Company?</span></p>
       )
     },
     {
       thumbnail: FounderUdaan,
-      videoLink: "https://www.youtube.com/embed/340HnbTZHEw?",
+      videoLink: "340HnbTZHEw?",
       desc: (
         <p>How 10x Engineers Think & Code ft. <span>Founder of Udaan</span></p>
       )
     },
     {
       thumbnail: JacobSingh,
-      videoLink: "https://www.youtube.com/embed/CZT-i7SL1s4",
+      videoLink: "CZT-i7SL1s4",
       desc: (
         <p>Supermentor on SST's vision | <span>Jacob Singh, CTO, Alpha Wave Global</span></p>
       )

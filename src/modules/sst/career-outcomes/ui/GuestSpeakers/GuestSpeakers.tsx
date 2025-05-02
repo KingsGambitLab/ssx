@@ -5,7 +5,6 @@ import { useDeviceType } from "@hooks/useDeviceType";
 import { GuestSpeakersData } from "../../utils/data";
 
 import GuestSpeakersCard from "../../components/GuestSpeakersCard/GuestSpeakersCard";
-// import YoutubeModal from "@components/common/YoutubeModal";
 
 import styles from "./GuestSpeakers.module.scss";
 import CarouselWrapper from "@components/common/CarouselWrapper";
@@ -24,7 +23,11 @@ export default function GuestSpeakers() {
           </div>
         </div>
         <div className={styles.cards}>
-          <CarouselWrapper slidesToShowInDesktop={3.5} slidesToScrollInDesktop={1}>
+          <CarouselWrapper
+            slidesToShowInDesktop={3.5}
+            slidesToShowInMobile={1.4}
+            scrollContainerClassName={styles.scrollContainer}
+          >
             {GuestSpeakersData.guestSpeakers.map((card,index) => (
               <GuestSpeakersCard
                 key={index}
