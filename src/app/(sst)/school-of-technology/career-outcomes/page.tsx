@@ -5,13 +5,14 @@ import SstVsTraditional from "@modules/sst/career-outcomes/ui/SstVsTraditional";
 import Mentorship from "@modules/sst/career-outcomes/ui/Mentorship";
 import HigherStudies from "@modules/sst/career-outcomes/ui/HigherStudies";
 import CareerStats from "@modules/sst/career-outcomes/ui/CareerStats";
+import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
 
 export default function Page() {
-
   return (
     <div className={styles.container}>
       <CareerStats />
       <HigherStudies />
+      <Entrepreneurship />
       <Mentorship />
       <SstVsTraditional />
       <ApplyCtaBanner />

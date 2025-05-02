@@ -1,0 +1,42 @@
+.container {
+  @include flex-col-c;
+
+  gap: 5.4rem;
+  width: 100%;
+}
+
+.header {
+  @include font-plus-jakarta-sans;
+
+  color: #171717;
+  text-align: center;
+  font-size: 4.8rem;
+  font-weight: $semi-bold-font-weight;
+
+  @include tablet {
+    font-size: 3.2rem;
+  }
+
+  @include mobile {
+    font-size: 2.6rem;
+  }
+}
+
+.statsCardContainer {
+  @include flex-row-c;
+
+  gap: 2.4rem;
+  width: 100%;
+
+  @include mobile {
+    @include flex-col-c;
+
+    gap: 1.6rem;
+  }
+}
+
+.videoCardContainer {
+  @include flex-row-c;
+
+  width: 100%;
+}
