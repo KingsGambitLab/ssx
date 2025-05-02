@@ -16,8 +16,7 @@ import SstBottomNudge from '@components/Sst/BottomNudge';
 import { BOTTOM_NAVBAR_LINKS } from './data';
 
 import styles from './BottomNavbar.module.scss';
-import ApplyButton from '../ApplyButton';
-
+import ApplyButton from '@components/Sst/ApplyButton';
 
 export default function BottomNavbar() {
   const { experiments } = useContext(ExperimentsContext);
