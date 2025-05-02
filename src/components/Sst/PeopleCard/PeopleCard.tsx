@@ -6,7 +6,7 @@ import { EntrepreneurshipTeamPerson } from '@modules/sst/career-outcomes/types';
 
 export default function PeopleCard({ key, image, name, prevOrganisation, currOrganisation }: EntrepreneurshipTeamPerson) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} key={key}>
       {image && (
         <Image src={image} alt={name} width={392} height={294} className={styles.peopleImage}/>
       )}
