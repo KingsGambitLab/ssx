@@ -1,0 +1,60 @@
+$people-card-border-color: #e4e4e4;
+$people-card-name-color: #171717;
+$people-card-organisation-color: #3a3a3a;
+
+.container {
+  @include flex-col;
+
+  align-items: flex-start;
+  border-radius: $border-radius-large;
+  border: 0.1rem solid $people-card-border-color;
+  background: $white-color;
+  overflow: hidden;
+}
+
+.infoContainer {
+  @include flex-col;
+
+  padding: 2.4rem;
+  align-items: flex-start;
+  gap: 2.4rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 0.55rem;
+  }
+}
+
+.name {
+  color: $people-card-name-color;
+  font-size: $desktop-font-title-3;
+  font-weight: $bold-font-weight;
+  line-height: 3.4rem;
+
+  @include mobile {
+    font-size: $mobile-font-body;
+    line-height: 2.3rem;
+  }
+}
+
+.peopleImage {
+  width: 100%;
+  object-fit: cover;
+
+  @include mobile {
+    width: 27rem;
+  height: 20.25rem;
+  }
+}
+
+.organisationContainer {
+  color: $people-card-organisation-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $medium-font-weight;
+  line-height: 2.6rem;
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.6rem;
+  }
+}
