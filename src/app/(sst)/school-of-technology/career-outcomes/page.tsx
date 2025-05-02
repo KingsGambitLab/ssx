@@ -16,8 +16,8 @@ export default function Page() {
       <Mentorship />
       <SstVsTraditional />
       <ApplyCtaBanner />
-      <Faq />
       <EntrepreneurshipTeam />
+      <Faq />
     </div>
   );
 }
