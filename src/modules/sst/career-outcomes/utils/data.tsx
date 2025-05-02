@@ -15,6 +15,7 @@ import ManmeetSinghAkali from '@public/images/sst/webp/people/manmeet.webp';
 import SunilSeetharaman from '@public/images/sst/webp/people/sunil-seetharaman.webp';
 import AkhandPratapSingh from '@public/images/sst/webp/people/akhand-pratap.webp';
 import AmardeepSaxena from '@public/images/sst/webp/people/amardeep-saxena.webp';
+import ShrutiSagar from '@public/images/sst/webp/people/shruti-sagar.webp';
 
 import { HigherStudiesCardProps } from '../types';
 
@@ -148,20 +149,51 @@ export const CareerOfficersTeamData = {
   subTitle: "Office of Career Services",
   team: [
     {
-      image: SunilSeetharaman.src,
+      image: SunilSeetharaman,
       name: "Sunil Seetharaman",
       prevOrganisation: "Ex ISB, Zomato"
     },
     {
-      image: AkhandPratapSingh.src,
+      image: AkhandPratapSingh,
       name: "Akhand Pratap Singh",
       prevOrganisation: "Ex Zomato, Ola"
     },
     {
-      image: AmardeepSaxena.src,
+      image: AmardeepSaxena,
       name: "Amardeep Saxena",
       prevOrganisation: "Ex ISB, Zomato",
       currOrganisation: "HackerRank"
+    }
+  ]
+}
+
+export const EducationTeamData = {
+  title: "THE TEAM",
+  subTitle: "Office of Further Education",
+  team: [
+    {
+      image: MartinReindl,
+      name: "Martin Reindl",
+      currOrganisation: "Ex Harvard, MIT Solan,",
+      prevOrganisation: "Oliver Wyman",
+    },
+    {
+      image: AdhirajArora,
+      name: "Adhiraj Arora",
+      currOrganisation: "Ex IIT Kanpur, ISB,",
+      prevOrganisation: "BCG",
+    },
+    {
+      image: KshitijMishra,
+      name: "Kshitij Mishra",
+      currOrganisation: "Ex IIIT Hyd,",
+      prevOrganisation: "Snapdeal",
+    },
+    {
+      image: ShrutiSagar,
+      name: "Shruti Sagar",
+      currOrganisation: "Ex-IIT Kharagpur",
+      prevOrganisation: "LEK Consulting",
     }
   ]
 }
