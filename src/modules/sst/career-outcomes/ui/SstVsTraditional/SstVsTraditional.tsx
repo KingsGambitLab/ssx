@@ -5,7 +5,12 @@ import styles from './SstVsTraditional.module.scss';
 import { comparisonData, tableColumns } from './data';
 
 const SstVsTraditional: React.FC = () => {
-  const columns = tableColumns(styles);
+  const columns = tableColumns({
+    parameterColumn: styles.parameterColumn,
+    sstColumn: styles.sstColumn,
+    traditionalColumn: styles.traditionalColumn,
+    ...styles
+  });
 
   return (
     <Section section_class={styles.sstVsTraditionalSection}>
@@ -18,7 +23,7 @@ const SstVsTraditional: React.FC = () => {
           But traditional colleges are bound by rigid policies, outdated syllabi, and slow curriculum change cycles.
         </div>
         <div className={styles.sectionDescriptionSecondary}>
-          But we’re not bound by traditional degree structures, we do what others can’t: teach for the future, not the past.
+          But we're not bound by traditional degree structures, we do what others can't: teach for the future, not the past.
         </div>
       </div>
       

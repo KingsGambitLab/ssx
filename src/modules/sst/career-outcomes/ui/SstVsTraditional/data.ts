@@ -27,7 +27,15 @@ export const comparisonData: ComparisonItem[] = [
   },
 ];
 
-export const tableColumns = (styles: any) => [
+// Define a proper type for the styles parameter
+interface TableStyles {
+  parameterColumn: string;
+  sstColumn: string;
+  traditionalColumn: string;
+  [key: string]: string; // For any other style properties that might be used
+}
+
+export const tableColumns = (styles: TableStyles) => [
   {
     title: 'Future Ready Parameter',
     dataIndex: 'parameter',

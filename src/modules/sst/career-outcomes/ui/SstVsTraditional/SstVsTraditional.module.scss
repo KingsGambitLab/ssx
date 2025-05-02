@@ -143,16 +143,6 @@ $border-color: #e4e4e4;
   }
 }
 
-/* Global styles for table headers and cells */
-:global(.ant-table-thead > tr > th) {
-  font-weight: 600;
-  padding: 16px 24px;
-}
-
-:global(.ant-table-tbody > tr > td) {
-  padding: 16px 24px;
-}
-
 @include mobile {
   .sstVsTraditionalSection {
     .headerContainer {
