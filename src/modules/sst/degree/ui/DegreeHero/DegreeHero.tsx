@@ -1,16 +1,17 @@
 import Image from 'next/image';
 import Section from '@components/common/Section';
+import DegreeHeroImage from '@public/images/sst/png/degree-hero.png';
 import styles from './DegreeHero.module.scss';
-import degreeHeroImage from '@public/images/degree/degree-hero.png';
+
 const DegreeHero = () => {
   return (
-    <Section section_class={styles.degreeHero} id="degree-hero">
+    <Section section_class="degree-hero" id="degree-hero">
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
-            <h1 className={styles.title}>
+            <h2 className={styles.title}>
               A Degree Designed for the Future, Not the Past
-            </h1>
+            </h2>
             <div className={styles.description}>
               Traditional engineering degrees were designed decades ago, but the world
               of technology moves fast.
@@ -22,7 +23,7 @@ const DegreeHero = () => {
           </div>
           <div className={styles.imageWrapper}>
             <Image
-              src={degreeHeroImage.src}
+              src={DegreeHeroImage}
               alt="Students using VR technology"
               width={541}
               height={306}

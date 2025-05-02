@@ -1,0 +1,93 @@
+$title-black: #171717;
+$primary-blue: #0041CA;
+$background-color: #FAFAFA;
+$border-blue: #73B9FF;
+$border-pink: #E8C3FF;
+$violet-color: #6D2A9E;
+
+.container {
+  @include flex-col;
+
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 1.6rem;
+  padding: 2rem;
+  background-color: $background-color;
+  border-radius: 0.8rem;
+  min-height: 20rem;
+
+  @include tablet {
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 15rem;
+  }
+
+  &Blue {
+    border: 0.1rem solid $border-blue;
+  }
+
+  &Pink {
+    border: 0.1rem solid $border-pink;
+  }
+
+  &Duration {
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.imageContainer {
+  @include flex-row;
+
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.image {
+  width: 4rem;
+  height: 4rem;
+
+  @include mobile {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.degree {
+  @include font-plus-jakarta-sans;
+
+  color: $title-black;
+  font-size: $tablet-font-title-2;
+  font-weight: $bold-font-weight;
+  line-height: 140%;
+
+  @include mobile {
+    font-size: 1.4rem;
+  }
+}
+
+.duration {
+  width: 100%;
+  background: #171717;
+  color: white;
+  padding: 1.2rem 1.24rem;
+  border-radius: 0.8rem;
+  text-align: center;
+  font-weight: $bolder-font-weight;
+
+  @include mobile {
+    border-radius: 0.4rem;
+    background: linear-gradient(90deg, #083CA0 0%, #7F76D6 100%);
+  }
+}
+
+.blue {
+    color: $primary-blue;
+    font-weight: $semi-bold-font-weight;
+  }
+.pink {
+  color: $violet-color;
+  font-weight: $semi-bold-font-weight;
+}
