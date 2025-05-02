@@ -1,6 +1,6 @@
 import tracker from '@lib/tracking';
 
-import { TrackingProps } from '@modules/sst/waitlist/components/types';
+import { TrackingProps } from '@modules/sst/waitlist/types';
 
 export const trackingSources = {
   waitlistLoginMobileForm: 'waitlist-login-mobile-form',

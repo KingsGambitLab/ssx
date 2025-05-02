@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 
 import { AnnouncementStrip, Header } from "@components/common";
-import { Navbar } from "@components/Sst";
+import Navbar from "@components/Sst/Navbar";
 import { LoginModalWrapper } from "@components/Sst/LoginModalWrapper";
 import { METADATA } from "@utils/common/metadata";
 import { ANNOUNCEMENT_STRIP_CONTENT } from "@utils/sst/constants";
 
 import LoginModalProvider from "@context/sst/LoginModalContext";
 import BottomNavbar from "@components/Sst/BottomNavbar";
+import Footer from "@components/common/Footer";
 
 export const metadata: Metadata = METADATA.SST;
 
@@ -25,6 +26,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Header>
       <main>{children}</main>
       <BottomNavbar />
+      <Footer />  
       <LoginModalWrapper />
     </LoginModalProvider>
   );

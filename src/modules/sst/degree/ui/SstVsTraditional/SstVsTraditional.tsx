@@ -6,7 +6,7 @@ import styles from './SstVsTraditional.module.scss';
 
 export default function SstVsTraditional() {
   return (
-    <Section section_class='sst-vs-traditional' id='sst-vs-traditional'>
+    <Section section_class={styles.sstVsTraditional} id='sst-vs-traditional'>
       <div className={styles.container}>
         {sstVsTraditionalData.map((item) => (
           <SstVsTraditionalCard 
