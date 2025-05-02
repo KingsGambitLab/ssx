@@ -1,8 +1,11 @@
 $text-secondary: #3a3a3a;
 
 .higherStudies {
-  padding-top: 5.4rem !important;
-  padding-bottom: 5.4rem !important;
+  padding: 5.4rem 0;
+
+  @include mobile {
+    padding: 2.4rem 0;
+  }
 }
 
 .container {

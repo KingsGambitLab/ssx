@@ -19,6 +19,7 @@ export default function Page() {
       <GuestSpeakers />
       <Startups />
       <HigherStudies />
+      <SuccessStories />
       <Mentorship />
       <SstVsTraditional />
       <ApplyCtaBanner />

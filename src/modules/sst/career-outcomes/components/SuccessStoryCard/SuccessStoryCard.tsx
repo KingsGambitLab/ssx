@@ -5,6 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { SuccessStoryCardProps } from "@modules/sst/career-outcomes/types";
+import YoutubeModal from "@components/common/YouTubeModal";
 
 import styles from "./SuccessStoryCard.module.scss";
 
@@ -12,6 +13,7 @@ export default function SuccessStoryCard({
   thumbnail,
   title,
   desc,
+  videoId,
   videoLink,
   link,
   ctaText,
@@ -23,7 +25,8 @@ export default function SuccessStoryCard({
   const handleClose = () => setIsVideoOpen(false);
 
   return (
-    <div className={styles.container}>
+    <>
+      <div className={styles.container}>
       {thumbnail &&
         (isVideoCard ? (
           <button
@@ -66,5 +69,19 @@ export default function SuccessStoryCard({
         </Button>
       </div>
     </div>
+
+    {isVideoCard && (
+      <YoutubeModal
+        videoId={videoId || ""}
+        videoLink={videoLink || ""}
+        isOpen={isVideoOpen}
+        onClose={handleClose}
+        width="50%"
+        mobileWidth="100%"
+        height="50vh"
+        mobileHeight="50vh"
+      />
+    )}
+    </>
   );
 }
