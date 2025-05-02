@@ -19,10 +19,14 @@ export default function KeyFeatureCard({
   alt,
   featureList,
 }: KeyFeatureCardProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<{isOpen: boolean, imageUrl: string | null}>({isOpen: false, imageUrl: null});
 
-  const openModal = (imageUrl: string) => setSelectedImage(imageUrl);
-  const closeModal = () => setSelectedImage(null);
+  const openModal = (imageUrl: string) => {
+    setIsModalOpen({isOpen: true, imageUrl});
+  };
+  const afterCloseModal = () => {
+    setIsModalOpen({isOpen: false, imageUrl: null});
+  };
 
   const modalStyleClass = {
     mask: styles.imageModalMask
@@ -68,15 +72,16 @@ export default function KeyFeatureCard({
 
     <Modal
         centered
-        open={!!selectedImage}
-        onCancel={closeModal}
+        open={isModalOpen.isOpen}
+        onCancel={() => setIsModalOpen(prev => ({ ...prev, isOpen: false }))}
+        afterClose={afterCloseModal}
         footer={null}
         classNames={modalStyleClass}
         className={styles.imageModal}
       >
-        {selectedImage && (
+        {isModalOpen?.imageUrl && (
           <Image
-            src={selectedImage}
+            src={isModalOpen?.imageUrl}
             alt="Zoomed Image"
             className={styles.zoomedArticleImage}
             width={319}
