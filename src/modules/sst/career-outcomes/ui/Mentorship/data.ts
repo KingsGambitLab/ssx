@@ -1,5 +1,5 @@
-import PeopleIcon from '@public/images/sst/svg/career_outcomes/higher_studies/people.svg';
-import HandshakeIcon from '@public/images/sst/svg/career_outcomes/higher_studies/handshake.svg';
+import PeopleIcon from '@public/images/sst/svg/career_outcomes/mentorship/people.svg';
+import HandshakeIcon from '@public/images/sst/svg/career_outcomes/mentorship/handshake.svg';
 
 export interface MentorshipItem {
   title: string;
