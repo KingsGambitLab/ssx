@@ -78,3 +78,7 @@ $inactive-grey-color: #515151;
     @include flex-row-c;
   }
 }
+
+.actionButton {
+  width: 100%;
+}

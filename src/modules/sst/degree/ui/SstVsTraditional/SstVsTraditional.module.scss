@@ -1,3 +1,11 @@
+.sstVsTraditional {
+  padding-bottom: 10.8rem !important;
+
+  @include mobile {
+    padding-bottom: 5.4rem !important;
+  }
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

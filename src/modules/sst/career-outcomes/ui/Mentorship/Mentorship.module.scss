@@ -1,0 +1,140 @@
+// Color variables
+$light-black: #171717;
+$text-secondary: #3a3a3a;
+$card-border: #e8e8e8;
+$highlight-blue: #0080ff;
+$light-blue: #73b9ff;
+$cream: #fff7e0;
+$dark-bg: #121212;
+$light-gray: #fafafa;
+$transparent: transparent;
+
+.mentorshipSection {
+  margin: 6rem 0;
+  padding: 0 !important;
+
+  > :global(.sr-container) {
+    @include mobile {
+      padding: 2rem !important;
+      background-color: $white-color;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      border-radius: $border-radius-large;
+    }
+  }
+  
+  .sectionTitle {
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    h2 {
+      font-size: $desktop-font-header;
+      font-weight: $semi-bold-font-weight;
+      
+      @include mobile {
+        font-size: $mobile-font-header;
+      }
+    }
+  }
+  
+  .cardsContainer {
+    margin-bottom: 5rem;
+  }
+
+  .mentorCard {
+    height: 100%;
+    border-radius: 12px;
+
+    @include mobile {
+      background-color: $light-gray;
+    }
+
+    .cardHeader {
+      @include flex-col;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .iconContainer {
+      flex-shrink: 0;
+    }
+
+    .cardTitle {
+      font-size: $desktop-font-subtitle;
+      font-weight: $semi-bold-font-weight;
+      margin: 0;
+      
+      @include mobile {
+        font-size: $mobile-font-subtitle;
+      }
+    }
+
+    .cardDescription {
+      font-size: $desktop-font-body;
+      color: $text-secondary;
+      margin-bottom: 0;
+      
+      @include mobile {
+        font-size: $mobile-font-body;
+      }
+    }
+  }
+  
+  .investorSection {
+    background-color: $dark-bg;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: $white-color;
+    
+    .investorTitle {
+      font-size: $desktop-font-header;
+      font-weight: $semi-bold-font-weight;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, $light-blue 0%, $cream 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: $transparent;
+      background-clip: text;
+      display: inline-block;
+      
+      .highlight {
+        color: $highlight-blue;
+        -webkit-text-fill-color: $light-blue;
+      }
+      
+      @include mobile {
+        font-size: $mobile-font-header;
+      }
+    }
+    
+    .investorQuote {
+      font-size: $desktop-font-body;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+      
+      @include mobile {
+        font-size: $mobile-font-body;
+      }
+    }
+    
+    .companyLogos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      @include mobile {
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .mentorshipSection {
+    margin: 3rem 0;
+    padding: 0 1rem;
+  }
+} 
