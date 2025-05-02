@@ -17,7 +17,7 @@ export default function SkillsVsDegree() {
   const { title, subtitle } = HEADER;
 
   return (
-    <Section>
+    <Section section_class={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.title}>{title}</div>

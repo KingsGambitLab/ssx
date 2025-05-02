@@ -6,6 +6,7 @@ import { headerData, tabsData } from "./data";
 
 import styles from "./DegreePathways.module.scss";
 import TabLayout from "@components/common/TabLayout/TabLayout";
+import Section from "@components/common/Section";
 
 type HeaderProps = {
   src: string;
@@ -31,9 +32,11 @@ export default function DegreePathways() {
   const { title, subtitle } = headerData;
 
   return (
-    <div className={styles.container}>
-      <Header src={GraduationHat} title={title} subtitle={subtitle} />
-      <TabLayout tabs={tabsData} />
-    </div>
+    <Section>
+      <div className={styles.container}>
+        <Header src={GraduationHat} title={title} subtitle={subtitle} />
+        <TabLayout tabs={tabsData} />
+      </div>
+    </Section>
   );
 }

@@ -6,13 +6,7 @@ $subtitle-black: #3A3A3A;
 
   box-sizing: border-box;
   width: 100%;
-  padding: 3rem 0;
   gap: 3.2rem;
-
-  
-  @include mobile {
-    padding: 0 3.2rem;
-  }
 }
 
 .header {
