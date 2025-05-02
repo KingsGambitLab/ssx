@@ -52,6 +52,7 @@ export default function CareerStats() {
             text="Download Brochure"
             brochureLink={CareerStatsData?.brochureLink}
             buttonSize="large"
+            className={styles.downloadBrochureButton}
           />
        </div>
       </div>
