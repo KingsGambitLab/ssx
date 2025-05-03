@@ -49,7 +49,7 @@ export default function ProvenTrackRecord() {
   };
 
   return (
-    <Section section_class={styles.section}>
+    <Section section_class={styles.provenTrackRecord}>
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.header}>

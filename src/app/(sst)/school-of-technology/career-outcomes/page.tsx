@@ -18,6 +18,7 @@ import InnovationLabProjects from "@modules/sst/career-outcomes/ui/InnovationLab
 import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers/GuestSpeakers";
 import SuccessStories from "@modules/sst/career-outcomes/components/SuccessStories";
 import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
+import StudentTestimonials from '@/modules/sst/career-outcomes/ui/StudentTestimonials/StudentTestimonials';
 
 export default function Page() {
   const navItems = [
@@ -45,6 +46,7 @@ export default function Page() {
       <HigherStudies />
       <SuccessStories />
       <EducationTeam />
+      <StudentTestimonials />
       <GuestSpeakers />
       <SstVsTraditional />
       <ApplyCtaBanner />
