@@ -10,7 +10,7 @@ const Mentorship: React.FC = () => {
   return (
     <Section section_class={styles.mentorshipSection} id="mentorship">
       <div className={styles.sectionTitle}>
-        <h2>Industry Mentorship & Collaboration</h2>
+        <h2>Key Features</h2>
       </div>
       
       <Row gutter={[24, 24]} className={styles.cardsContainer}>

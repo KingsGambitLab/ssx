@@ -28,19 +28,19 @@ export default function Page() {
     <div className={styles.container}>
       <FloatingNavbar items={navItems} />
       <CareerStats />
-      <GuestSpeakers />
-      <Startups />
       <Placement />
-      <InnovationLabProjects />
-      <HigherStudies />
-      <SuccessStories />
+      <CareerOfficersTeam />
       <Entrepreneurship />
       <Mentorship />
+      <Startups />
+      <InnovationLabProjects />
+      <EntrepreneurshipTeam />
+      <HigherStudies />
+      <SuccessStories />
+      <EducationTeam />
+      <GuestSpeakers />
       <SstVsTraditional />
       <ApplyCtaBanner />
-      <EntrepreneurshipTeam />
-      <CareerOfficersTeam />
-      <EducationTeam />
       <Faq />
     </div>
   );
