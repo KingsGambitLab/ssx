@@ -10,6 +10,7 @@ type VideoCard = {
   thumbnail: string;
   content: string;
   footer: string;
+  videoId: string;
 };
 
 export const STATS : Stats[] = [
@@ -39,6 +40,7 @@ export const VIDEO_CARD : VideoCard = {
   thumbnail: VideoThumbnail.src,
   content: '“Joining Scaler Innovation Lab is a game-changer for us. The funding, mentorship, and access to top-tier talent will significantly boost our growth trajectory...”',
   footer: "NeoSapien Co-Founder Dhananjay Yadav",
+  videoId: "gJtS3b5gCuk"
 }
 
 export const HEADER = "Our Office of Entrepreneurship Helps You Build the Future"

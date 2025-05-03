@@ -1,3 +1,8 @@
+$video-card-with-cta-button-background-color: #f5f5f5;
+$video-card-with-cta-button-font-color: #171717;
+$video-card-with-cta-button-font-size: 1.43rem;
+$video-card-with-cta-button-hover-border-color: #73b9ff;
+
 .container {
   @include flex-col;
 
@@ -62,18 +67,28 @@
   box-sizing: border-box;
 }
 
-.cta {
+.ctaButton {
   @include flex-row-c;
-  @include font-plus-jakarta-sans;
 
-  height: 4.5rem;
-  padding: 1.25rem 2.15rem;
-  border-radius: 0.4rem;
-  width: 100%;
-  font-size: 1.4rem;
-  font-weight: $bold-font-weight;
-  line-height: 140%;
-  color: #171717;
-  background: #F5F5F5;
-  box-sizing: border-box;
+  gap: 0.71rem !important;
+  height: 4.5695rem !important;
+  padding: 1.25rem 2.15rem !important;
+  border-radius: 0.35rem !important;
+  background: $video-card-with-cta-button-background-color !important;
+
+  & > span {
+    color:  $video-card-with-cta-button-font-color !important;
+    font-size: $video-card-with-cta-button-font-size !important;
+    font-weight: $bold-font-weight !important;
+    line-height: 2.007rem !important;
+  }
+
+  &:hover {
+    border: 0.08rem solid $video-card-with-cta-button-hover-border-color !important;
+    background: $white-color !important;
+
+    & > span {
+      color: $primary-color !important;
+    }
+  }
 }

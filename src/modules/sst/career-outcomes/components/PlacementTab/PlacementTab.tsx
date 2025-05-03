@@ -2,10 +2,12 @@ import React from "react";
 import Image from "next/image";
 
 import HorizontalScrollWrapper from "@components/common/HorizontalScroll";
+import VideoCardWithCta from "../VideoCardWithCta/VideoCardWithCta";
+
+import { PlacementTabData } from "@modules/sst/career-outcomes/ui/Placement/data";
+import { useDeviceType } from "@hooks/useDeviceType";
 
 import styles from "./PlacementTab.module.scss";
-import VideoCardWithCta from "../VideoCardWithCta/VideoCardWithCta";
-import { PlacementTabData } from "@modules/sst/career-outcomes/ui/Placement/data";
 
 export default function PlacementTab({
   badge,
@@ -16,6 +18,7 @@ export default function PlacementTab({
   videoCards,
   images,
 }: PlacementTabData) {
+  const { isMobile } = useDeviceType();
   return (
     <div className={styles.container}>
       <div className={styles.badge}>{badge}</div>
@@ -32,7 +35,7 @@ export default function PlacementTab({
       </div>
       {header && <div className={styles.header}>{header}</div>}
       <div className={styles.scrollView}>
-        <HorizontalScrollWrapper slidesToShow={1.2}>
+        <HorizontalScrollWrapper slidesToShow={isMobile ? 1.1 : 2.5}>
           {videoCards &&
             videoCards.map((video) => {
               return (
@@ -42,6 +45,7 @@ export default function PlacementTab({
                   desc={video.desc}
                   thumbnail={video.thumbnail}
                   ctaText={video.ctaText}
+                  link={video.link}
                 />
               );
             })}
