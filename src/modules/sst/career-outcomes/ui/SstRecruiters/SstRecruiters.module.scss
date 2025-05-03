@@ -3,13 +3,13 @@
   width: 100%;
 
   .title {
-    font-size: 32px;
-    font-weight: 600;
+    font-size: $desktop-font-title-2;
+    font-weight: $bold-font-weight;
     text-align: center;
     margin-bottom: 40px;
 
-    @media (max-width: 768px) {
-      font-size: 24px;
+    @include mobile {
+      font-size: $mobile-font-header;
       margin-bottom: 28px;
     }
   }
@@ -24,12 +24,12 @@
     margin: 0 auto;
     padding: 0 20px;
 
-    @media (max-width: 1024px) {
+    @include tablet {
       grid-template-columns: repeat(4, 1fr);
       gap: 24px;
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
       grid-template-columns: repeat(4, 1fr);
       gap: 19px;
       padding: 0 16px;
@@ -41,7 +41,7 @@
       position: relative;
       overflow: hidden;
 
-      @media (max-width: 768px) {
+      @include mobile {
         width: 65.63px;
         height: 31.87px;
       }
@@ -55,7 +55,7 @@
         height: auto;
         object-fit: contain;
 
-        @media (max-width: 768px) {
+        @include mobile {
           width: 65.63px;
           height: auto;
         }
@@ -67,66 +67,66 @@
     margin-top: 40px;
     text-align: center;
 
-    @media (max-width: 768px) {
+    @include mobile {
       margin-top: 16px;
     }
 
     .pill {
-      display: inline-flex;
-      align-items: center;
+      @include flex-row;
+      @include align-c;
       padding: 8px 30px;
       background: #F5F5F5;
       border-radius: 101px;
       border: 2px solid #E4E4E4;
 
-      @media (max-width: 768px) {
+      @include mobile {
         padding: 8px 20px;
       }
 
       .desktopText {
-        display: flex;
-        align-items: center;
+        @include flex-row;
+        @include align-c;
 
-        @media (max-width: 768px) {
+        @include mobile {
           display: none;
         }
 
         .count {
-          color: #003087;
-          font-size: 20px;
-          font-weight: 700;
+          color: $primary-color-dark;
+          font-size: $desktop-font-body;
+          font-weight: $semi-bold-font-weight;
           line-height: 34px;
         }
 
         .text {
-          color: #171717;
-          font-size: 20px;
-          font-weight: 600;
+          color: $neutral-scale-13;
+          font-size: $desktop-font-body;
+          font-weight: $bold-font-weight;
           line-height: 34px;
         }
       }
 
       .mobileText {
         display: none;
-        align-items: center;
+        @include align-c;
 
-        @media (max-width: 768px) {
-          display: flex;
+        @include mobile {
+          @include flex-row;
         }
 
         .count {
-          color: #083CA0;
-          font-size: 12px;
-          font-family: Montserrat;
-          font-weight: 700;
+          color: $primary-color;
+          font-size: $mobile-font-card-subtitle;
+          @include font-montserrat;
+          font-weight: $semi-bold-font-weight;
           line-height: 34px;
         }
 
         .text {
-          color: #171717;
-          font-size: 12px;
-          font-family: Montserrat;
-          font-weight: 600;
+          color: $neutral-scale-13;
+          font-size: $mobile-font-card-subtitle;
+          @include font-montserrat;
+          font-weight: $bold-font-weight;
           line-height: 34px;
           margin-left: 4px;
         }
