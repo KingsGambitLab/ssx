@@ -3,11 +3,11 @@
 import Image from 'next/image';
 
 import { useDeviceType } from '@hooks/useDeviceType';
+import { CareerStatsData } from '../../utils/data';
 
 import Section from '@components/common/Section';
+import DownloadBrochure from '@components/Sst/DownloadBrochure';
 import CareerStatsCard from '../../components/CareerStatsCard/CareerStatsCard';
-
-import { CareerStatsData } from '../../utils/data';
 
 import styles from './CareerStats.module.scss';
 
@@ -47,6 +47,14 @@ export default function CareerStats() {
             )
           }
         </div>
+        <div className={styles.downloadBrochure}>
+          <DownloadBrochure 
+            text="Download Brochure"
+            brochureLink={CareerStatsData?.brochureLink}
+            buttonSize="large"
+            className={styles.downloadBrochureButton}
+          />
+       </div>
       </div>
     </Section>
   )

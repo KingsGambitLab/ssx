@@ -1,7 +1,7 @@
 .applyCtaBanner {
-  padding: 0 0 4.8rem 0 !important;
-  margin-top: 20rem;
+  padding: 5.4rem 0 4.8rem !important;
   position: relative;
+  margin-top: 8rem;
   
   @include font-plus-jakarta-sans;
 
@@ -105,14 +105,8 @@
   }
 }
 
-.ellipseBackground {
+.ellipseWrapper {
   position: absolute;
-  width: 40rem;
-  height: 40rem;
-  background-image: url('/images/sst/svg/ellipse.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
   top: -40px;
   right: 150px;
   z-index: 1;
@@ -120,6 +114,12 @@
   @include mobile {
     display: none;
   }
+}
+
+.ellipseImage {
+  width: 40rem;
+  height: 40rem;
+  object-fit: contain;
 }
 
 .bannerImage {

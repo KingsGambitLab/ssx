@@ -11,22 +11,43 @@ import EducationTeam from "@modules/sst/career-outcomes/ui/EducationTeam";
 import OutcomeHero from "@modules/sst/career-outcomes/ui/OutcomeHero";
 import NowAtSST from "@modules/sst/career-outcomes/ui/NowAtSST";
 import SstRecruiters from "@modules/sst/career-outcomes/ui/SstRecruiters";
-import ProvenTrackRecord from "@modules/sst/career-outcomes/ui/ProvenTrackRecord";
+import ProvenTrackRecord from "@modules/sst/career-outcomes/ui/ProvenTrackRecord";import Startups from "@modules/sst/career-outcomes/ui/Startups";
+import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
+import Placement from "@modules/sst/career-outcomes/ui/Placement/Placement";
+import InnovationLabProjects from "@modules/sst/career-outcomes/ui/InnovationLabProjects";
+import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers/GuestSpeakers";
+import SuccessStories from "@modules/sst/career-outcomes/components/SuccessStories";
+import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
+
 export default function Page() {
+  const navItems = [
+    { label: "Job Prospectus", key: "career-stats", href: "#career-stats" },
+    { label: "Higher Studies", key: "higher-studies", href: "#higher-studies" },
+    { label: "Entrepreneurship", key: "entrepreneurship", href: "#mentorship" },
+    { label: "FAQs", key: "faqs", href: "#faqs" },
+  ];
+
   return (
     <div className={styles.container}>
+      <FloatingNavbar items={navItems} />
       <OutcomeHero />
       <CareerStats />
       <NowAtSST />
       <ProvenTrackRecord />
       <SstRecruiters />
-      <HigherStudies />
+      <Placement />
+      <CareerOfficersTeam />
+      <Entrepreneurship />
       <Mentorship />
+      <Startups />
+      <InnovationLabProjects />
+      <EntrepreneurshipTeam />
+      <HigherStudies />
+      <SuccessStories />
+      <EducationTeam />
+      <GuestSpeakers />
       <SstVsTraditional />
       <ApplyCtaBanner />
-      <EntrepreneurshipTeam />
-      <CareerOfficersTeam />
-      <EducationTeam />
       <Faq />
     </div>
   );

@@ -1,0 +1,109 @@
+$startup-card-border-color: #e4e4e4;
+$startup-card-desc-color: #616161;
+$startup-card-cta-button-background-color: #f5f5f5;
+$startup-card-cta-button-font-color: #171717;
+$startup-card-cta-button-font-size: 1.43rem;
+$startup-card-name-gradient: linear-gradient(90deg, #083ca0 0%, #0080ff 100%);
+
+.container {
+  @include flex-col;
+
+  align-items: flex-end;
+  align-self: stretch;
+  border-radius: 0.71rem;
+  border: 0.089rem solid $startup-card-border-color;
+  background: $white-color;
+  overflow: hidden;
+}
+
+.projectImage {
+  width: 100%;
+  height: 20.1rem;
+  flex-shrink: 0;
+  aspect-ratio: 119/67;
+  object-fit: cover;
+  transition: width 0.3s ease, height 0.3s ease;
+
+  @include mobile {
+    height: 13.9rem;
+    aspect-ratio: 246/139;
+  }
+}
+
+.content {
+  @include flex-col;
+  @include flex-fill;
+
+  padding: 1.79rem 2.15rem 2.15rem 2.15rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 1.6rem;
+
+  @include mobile {
+    padding: 1.4rem 1.6rem 1.6rem 1.6rem;
+  }
+}
+
+.infoWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.075rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 0.74rem;
+  }
+}
+
+.name {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.075rem;
+  font-size: $desktop-font-body;
+  font-weight: $semi-bold-font-weight;
+  align-self: stretch;
+  background: $startup-card-name-gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include mobile {
+    font-size: $mobile-font-body;
+  }
+}
+
+.desc {
+  color: $startup-card-desc-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $default-font-weight;
+  line-height: 2.24rem;
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.68rem;
+  }
+}
+
+.ctaButton {
+  @include flex-row-c;
+
+  gap: 0.71rem !important;
+  height: 4.5695rem !important;
+  padding: 1.25rem 2.15rem !important;
+  border-radius: 0.35rem !important;
+  background: $startup-card-cta-button-background-color !important;
+
+  & > span {
+    color:  $startup-card-cta-button-font-color !important;
+    font-size: $startup-card-cta-button-font-size !important;
+    font-weight: $bold-font-weight !important;
+    line-height: 2.007rem !important;
+  }
+
+  :global(.ant-btn-icon) {
+    align-self: baseline !important;
+  }
+}

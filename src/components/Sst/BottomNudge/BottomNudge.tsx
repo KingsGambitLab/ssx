@@ -2,7 +2,7 @@ import React from "react";
 
 import { useUser } from "@hooks";
 
-import ApplyButton from "../ApplyButton"; 
+import ApplyButton from "@components/Sst/ApplyButton"; 
 import styles from "./BottomNudge.module.scss";
 
 export default function SstBottomNudge() {
@@ -16,7 +16,7 @@ export default function SstBottomNudge() {
           Admissions Open for <span>2025</span>
         </div>
       )}
-      <ApplyButton />
+      <ApplyButton className={styles.applyButton} />
     </div>
   );
 }
