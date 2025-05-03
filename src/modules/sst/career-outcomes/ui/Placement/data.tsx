@@ -52,7 +52,10 @@ type VideoCard = {
 
 type Cta = {
   text: string;
-  icon: string;
+  link?: string;
+  icon?: string;
+  brochureLink?: string;
+  type?: "DownloadBrochure" | "PlacementReport" | "link";
 };
 
 type Image = {
@@ -151,7 +154,8 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
   ],
   cta: {
     text: "Student Directory",
-    icon: ArrowRightUp.src,
+    link: "/scaler-school-of-technology/alum-directory",
+    brochureLink: "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123"
   },
 };
 
@@ -221,6 +225,7 @@ export const ACCESS_SECTION_DATA: PlacementTabData = {
     },
   ],
   cta: {
+    type: "DownloadBrochure",
     text: "Download Brochure",
     icon: ArrowRightUp.src,
   },
@@ -273,6 +278,7 @@ export const ELIGIBILITY_SECTION_DATA: PlacementTabData = {
     },
   ],
   cta: {
+    type: "PlacementReport",
     text: "Download Placement Report",
     icon: ArrowRightUp.src,
   },
