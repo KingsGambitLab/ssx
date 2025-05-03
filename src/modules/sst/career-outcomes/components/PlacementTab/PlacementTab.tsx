@@ -1,13 +1,55 @@
+import { Button } from "antd";
 import React from "react";
 import Image from "next/image";
 
+import DownloadBrochure from "@components/Sst/DownloadBrochure/DownloadBrochure";
+import DownloadReport from "@components/Sst/DownloadReport/DownloadReport";
 import HorizontalScrollWrapper from "@components/common/HorizontalScroll";
 import VideoCardWithCta from "../VideoCardWithCta/VideoCardWithCta";
 
 import { PlacementTabData } from "@modules/sst/career-outcomes/ui/Placement/data";
 import { useDeviceType } from "@hooks/useDeviceType";
 
+import ArrowUpRightIcon from "@public/images/common/svg/arrow-up-right.svg";
+
 import styles from "./PlacementTab.module.scss";
+
+const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
+  if (cta.type === "DownloadBrochure") {
+    return (
+      <DownloadBrochure
+        text="Download Brochure"
+        brochureLink={cta?.brochureLink}
+        buttonSize="large"
+        className={styles.downloadBrochureButton}
+      />
+    )
+  }
+
+  if (cta.type === "PlacementReport") {
+    return (
+      <DownloadReport
+        text="Download Report"
+        brochureLink={cta?.brochureLink}
+        buttonSize="large"
+      />
+    )
+  }
+
+  return (
+    <Button
+      type="primary"
+      size="large"
+      className={styles.cta}
+      block={true}
+      iconPosition="end"
+      icon={<img src={ArrowUpRightIcon.src} alt="arrow-up-right" />}
+      onClick={() => window.open(cta.link, "_blank")}
+    >
+      {cta.text}
+    </Button>
+  )
+}
 
 export default function PlacementTab({
   badge,
@@ -63,10 +105,8 @@ export default function PlacementTab({
             })}
         </HorizontalScrollWrapper>
       </div>
-      <div className={styles.cta}>
-        {cta.text}
-        <Image height={40} width={40} src={cta.icon} alt="" />
-      </div>
+
+      <PlacmentTabCta cta={cta} />
     </div>
   );
 }
