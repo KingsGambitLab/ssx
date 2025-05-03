@@ -27,7 +27,7 @@ export default function DegreeTab({ data }: DegreeTabProps) {
           <div className={styles.subtitle}>{subtitle}</div>
           {cardContainer}
           <div className={styles.pointers}>{pointers}</div>
-          <div className={styles.ctaContainer}>
+          {/* <div className={styles.ctaContainer}>
             <div className={styles.cta}>
               {ctaText}
               <Image
@@ -36,7 +36,7 @@ export default function DegreeTab({ data }: DegreeTabProps) {
                 alt="arrow-right-up"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

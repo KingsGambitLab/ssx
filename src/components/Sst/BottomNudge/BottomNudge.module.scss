@@ -25,6 +25,10 @@ $font-montserrat: 'Montserrat';
     font-size: $h5-size;
     border-radius: $border-radius-large $border-radius-large 0 0;
   }
+
+  .applyButton {
+    width: 100%;
+  }
 }
 
 .text {
