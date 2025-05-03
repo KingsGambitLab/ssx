@@ -8,7 +8,10 @@ import EntrepreneurshipTeam from "@modules/sst/career-outcomes/ui/Entrepreneursh
 import HigherStudies from "@modules/sst/career-outcomes/ui/HigherStudies";
 import CareerOfficersTeam from "@modules/sst/career-outcomes/ui/CareerOfficersTeam/CareerOfficersTeam";
 import EducationTeam from "@modules/sst/career-outcomes/ui/EducationTeam";
-import Startups from "@modules/sst/career-outcomes/ui/Startups";
+import OutcomeHero from "@modules/sst/career-outcomes/ui/OutcomeHero";
+import NowAtSST from "@modules/sst/career-outcomes/ui/NowAtSST";
+import SstRecruiters from "@modules/sst/career-outcomes/ui/SstRecruiters";
+import ProvenTrackRecord from "@modules/sst/career-outcomes/ui/ProvenTrackRecord";import Startups from "@modules/sst/career-outcomes/ui/Startups";
 import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
 import Placement from "@modules/sst/career-outcomes/ui/Placement/Placement";
 import InnovationLabProjects from "@modules/sst/career-outcomes/ui/InnovationLabProjects";
@@ -27,7 +30,11 @@ export default function Page() {
   return (
     <div className={styles.container}>
       <FloatingNavbar items={navItems} />
+      <OutcomeHero />
       <CareerStats />
+      <NowAtSST />
+      <ProvenTrackRecord />
+      <SstRecruiters />
       <Placement />
       <CareerOfficersTeam />
       <Entrepreneurship />
