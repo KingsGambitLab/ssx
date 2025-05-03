@@ -8,6 +8,8 @@ import ArrowUpRightIcon from "@public/images/common/svg/arrow-up-right.svg";
 
 import styles from './DownloadBrochure.module.scss';
 
+const BROCHURE_LINK = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123";
+
 type DownloadBrochureProps = {
   text?: string;
   brochureLink?: string;
@@ -19,7 +21,7 @@ type DownloadBrochureProps = {
 export default function DownloadBrochure(
   {
     text = "Download Brochure",
-    brochureLink = "",
+    brochureLink = BROCHURE_LINK,
     className = "",
     buttonSize = "middle",
     block = false

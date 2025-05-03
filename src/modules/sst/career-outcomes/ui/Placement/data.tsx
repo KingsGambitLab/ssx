@@ -154,8 +154,7 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
   ],
   cta: {
     text: "Student Directory",
-    link: "/scaler-school-of-technology/alum-directory",
-    brochureLink: "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123"
+    link: "/school-of-technology/alum-directory"
   },
 };
 
@@ -227,6 +226,7 @@ export const ACCESS_SECTION_DATA: PlacementTabData = {
   cta: {
     type: "DownloadBrochure",
     text: "Download Brochure",
+    brochureLink: "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123",
     icon: ArrowRightUp.src,
   },
 };
