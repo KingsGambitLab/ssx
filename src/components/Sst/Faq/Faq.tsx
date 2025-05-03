@@ -59,7 +59,7 @@ const SstFaq: React.FC<SstFaqProps> = ({
   };
 
   return (
-    <Section section_class={`${styles.faqSection} ${sectionClass}`}>
+    <Section section_class={`${styles.faqSection} ${sectionClass}`} id="faqs">
       <CommonFaq
         title={title}
         subtitle={subtitle}

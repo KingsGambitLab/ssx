@@ -7,10 +7,19 @@ import SkillsVsDegree from "@modules/sst/degree/ui/SkillsVsDegree";
 import SstVsTraditional from "@modules/sst/degree/ui/SstVsTraditional";
 
 import styles from "./page.module.scss";
+import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
 
 export default function Page() {
+  const navItems = [
+    { label: 'Scaler vs Traditional', key: 'sst-vs-traditional', href: '#sst-vs-traditional' },
+    { label: 'Degree Programme', key: 'degree-programme', href: '#degree-pathways' },
+    { label: 'Key Features', key: 'key-features', href: '#key-features' },
+    { label: 'FAQs', key: 'faqs', href: '#faqs' },
+  ];
+
   return (
     <div className={styles.container}>
+      <FloatingNavbar items={navItems} />
       <DegreeHero />
       <SstVsTraditional />
       <DegreePathways />
