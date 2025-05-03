@@ -12,6 +12,9 @@ import Startups from "@modules/sst/career-outcomes/ui/Startups";
 import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers/GuestSpeakers";
 import SuccessStories from "@modules/sst/career-outcomes/components/SuccessStories";
 import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
+import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
+import Placement from "@modules/sst/career-outcomes/ui/Placement/Placement";
+import InnovationLabProjects from "@modules/sst/career-outcomes/ui/InnovationLabProjects";
 
 export default function Page() {
   const navItems = [
@@ -27,8 +30,11 @@ export default function Page() {
       <CareerStats />
       <GuestSpeakers />
       <Startups />
+      <Placement />
+      <InnovationLabProjects />
       <HigherStudies />
       <SuccessStories />
+      <Entrepreneurship />
       <Mentorship />
       <SstVsTraditional />
       <ApplyCtaBanner />
