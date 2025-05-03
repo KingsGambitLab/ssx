@@ -8,11 +8,18 @@ import EntrepreneurshipTeam from "@modules/sst/career-outcomes/ui/Entrepreneursh
 import HigherStudies from "@modules/sst/career-outcomes/ui/HigherStudies";
 import CareerOfficersTeam from "@modules/sst/career-outcomes/ui/CareerOfficersTeam/CareerOfficersTeam";
 import EducationTeam from "@modules/sst/career-outcomes/ui/EducationTeam";
-
+import OutcomeHero from "@modules/sst/career-outcomes/ui/OutcomeHero";
+import NowAtSST from "@modules/sst/career-outcomes/ui/NowAtSST";
+import SstRecruiters from "@modules/sst/career-outcomes/ui/SstRecruiters";
+import ProvenTrackRecord from "@modules/sst/career-outcomes/ui/ProvenTrackRecord";
 export default function Page() {
   return (
     <div className={styles.container}>
+      <OutcomeHero />
       <CareerStats />
+      <NowAtSST />
+      <ProvenTrackRecord />
+      <SstRecruiters />
       <HigherStudies />
       <Mentorship />
       <SstVsTraditional />
