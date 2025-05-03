@@ -11,7 +11,7 @@ export default function Placement() {
   const { subtitle, title } = HEADER;
 
   return (
-    <Section>
+    <Section section_class={styles.placement}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.subtitle}>{subtitle}</div>
