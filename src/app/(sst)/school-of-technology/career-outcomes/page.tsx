@@ -10,12 +10,15 @@ import CareerOfficersTeam from "@modules/sst/career-outcomes/ui/CareerOfficersTe
 import EducationTeam from "@modules/sst/career-outcomes/ui/EducationTeam";
 import OutcomeHero from "@modules/sst/career-outcomes/ui/OutcomeHero";
 import NowAtSST from "@modules/sst/career-outcomes/ui/NowAtSST";
+import SstRecruiters from "@modules/sst/career-outcomes/ui/SstRecruiters";
+
 export default function Page() {
   return (
     <div className={styles.container}>
       <OutcomeHero />
       <CareerStats />
       <NowAtSST />
+      <SstRecruiters />
       <HigherStudies />
       <Mentorship />
       <SstVsTraditional />
