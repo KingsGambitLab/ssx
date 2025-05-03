@@ -1,0 +1,61 @@
+.container {
+  @include flex-row-c;
+
+  width: 100%;
+  border-radius: 0.8rem;
+  border: 0.1rem solid #E4E4E4;
+  background: white;
+
+  @include mobile {
+    @include flex-col;
+  }
+}
+
+.thumbnail {
+  object-fit: cover;
+  border-radius: 0.8rem 0 0 0.8rem;
+  width: 50%;
+  height: auto;
+
+  @include mobile {
+    width: 100%;
+    border-radius: 0.8rem 0.8rem 0 0;
+  }
+}
+
+.content {
+  @include flex-col;
+
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.4rem;
+  padding: 4.2rem;
+  height: 100%;
+
+  @include mobile {
+    padding: 2rem;
+  }
+}
+
+.body {
+  @include font-plus-jakarta-sans;
+
+  color: #3A3A3A;
+  font-size: 2.4rem;
+  font-weight: $medium-font-weight;
+  line-height: 140%;
+
+  @include tablet {
+    font-size: 1.6rem;
+  }
+}
+
+.footer {
+  font-size: 2.4rem;
+  font-weight: $semi-bold-font-weight;
+  line-height: 140%;
+
+  @include tablet {
+    font-size: 1.6rem;
+  }
+}
