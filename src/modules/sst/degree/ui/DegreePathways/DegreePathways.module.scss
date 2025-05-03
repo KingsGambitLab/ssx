@@ -1,0 +1,56 @@
+$title-black: #171717;
+$subtitle-black: #3A3A3A;
+
+.container {
+  @include flex-col-c;
+
+  box-sizing: border-box;
+  width: 100%;
+  gap: 3.2rem;
+}
+
+.header {
+  @include flex-col-c;
+  
+  width: 100%;
+  gap: 2rem;
+}
+
+.headerImage {
+  width: 8rem;
+  height: 8rem;
+}
+
+.title {
+  @include font-plus-jakarta-sans;
+  
+  color: $title-black;
+  text-align: center;
+  font-size: $desktop-font-header;
+  font-weight: $semi-bold-font-weight;
+  line-height: 140%;
+  letter-spacing: 0.01rem;
+
+  @include tablet {
+    font-size: 2.4rem;
+  }
+}
+
+.subtitle {
+  @include font-plus-jakarta-sans;
+
+  color: $subtitle-black;
+  text-align: center;
+  font-size: $desktop-font-body;
+  font-weight: $medium-font-weight;
+  line-height: 140%;
+
+  @include tablet {
+    font-size: 1.2rem;
+  }
+
+  & > span {
+    color: $title-black;
+    font-weight: $semi-bold-font-weight;
+  }
+}
