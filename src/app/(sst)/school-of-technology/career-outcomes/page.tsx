@@ -9,19 +9,19 @@ import HigherStudies from "@modules/sst/career-outcomes/ui/HigherStudies";
 import CareerOfficersTeam from "@modules/sst/career-outcomes/ui/CareerOfficersTeam/CareerOfficersTeam";
 import EducationTeam from "@modules/sst/career-outcomes/ui/EducationTeam";
 import Startups from "@modules/sst/career-outcomes/ui/Startups";
-import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers/GuestSpeakers";
-import SuccessStories from "@modules/sst/career-outcomes/components/SuccessStories";
-import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
 import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
 import Placement from "@modules/sst/career-outcomes/ui/Placement/Placement";
 import InnovationLabProjects from "@modules/sst/career-outcomes/ui/InnovationLabProjects";
+import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers/GuestSpeakers";
+import SuccessStories from "@modules/sst/career-outcomes/components/SuccessStories";
+import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
 
 export default function Page() {
   const navItems = [
-    { label: 'Job Prospectus', key: 'career-stats', href: '#career-stats' },
-    { label: 'Higher Studies', key: 'higher-studies', href: '#higher-studies' },
-    { label: 'Entrepreneurship', key: 'entrepreneurship', href: '#mentorship' },
-    { label: 'FAQs', key: 'faqs', href: '#faqs' },
+    { label: "Job Prospectus", key: "career-stats", href: "#career-stats" },
+    { label: "Higher Studies", key: "higher-studies", href: "#higher-studies" },
+    { label: "Entrepreneurship", key: "entrepreneurship", href: "#mentorship" },
+    { label: "FAQs", key: "faqs", href: "#faqs" },
   ];
 
   return (
