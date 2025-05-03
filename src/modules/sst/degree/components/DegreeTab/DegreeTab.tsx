@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { FourYearsData, ThreeYearsData } from "./data";
 
 import styles from "./DegreeTab.module.scss";
@@ -10,7 +10,7 @@ type DegreeTabProps = {
 };
 
 export default function DegreeTab({ data }: DegreeTabProps) {
-  const { title, subtitle, cardContainer, pointers, ctaText, ctaIcon } = data;
+  const { title, subtitle, cardContainer, pointers } = data;
 
   const badge = "badge" in data ? data.badge : null;
 
