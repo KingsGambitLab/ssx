@@ -13,7 +13,7 @@ const SstVsTraditional: React.FC = () => {
   });
 
   return (
-    <Section section_class={styles.sstVsTraditionalSection}>
+    <Section section_class={styles.sstVsTraditionalSection} id="sst-vs-traditional">
       <div className={styles.headerContainer}>
         <div className={styles.sectionTitle}>
           Tech is evolving faster than ever
