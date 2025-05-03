@@ -32,7 +32,7 @@ export default function DegreePathways() {
   const { title, subtitle } = headerData;
 
   return (
-    <Section>
+    <Section id="degree-pathways">
       <div className={styles.container}>
         <Header src={GraduationHat} title={title} subtitle={subtitle} />
         <TabLayout tabs={tabsData} />

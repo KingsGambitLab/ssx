@@ -4,6 +4,11 @@ export const ABEX_FLAG_CONFIG = {
     KEY: 'sst_bottom_navbar',
     DEFAULT_VARIANT: 'hide_sst_bottom_navbar',
   },
+  SST_LP_REVAMP: {
+    KEY: 'sst-homepage-revamp',
+    DEFAULT_VARIANT: 'hide_new_page',
+    NEW_VARIANT: 'show_new_page',
+  },
 };
 
 
