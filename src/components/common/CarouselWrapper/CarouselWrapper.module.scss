@@ -18,7 +18,7 @@ $carousel-wrapper-dots-background-color: #d3d3d3;
     content: '';
     position: absolute;
     height: 100%;
-    width: 18.9rem;
+    width: 12.9rem;
     z-index: 2;
     background: $carousel-overlay-gradient-color;
 
@@ -61,7 +61,6 @@ $carousel-wrapper-dots-background-color: #d3d3d3;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   gap: 2.4rem;
-  // max-width: 128rem;
 
   &::-webkit-scrollbar {
     display: none;
@@ -83,8 +82,7 @@ $carousel-wrapper-dots-background-color: #d3d3d3;
 
   & > button {
     position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
+    top: 40% !important;
     z-index: 3 !important;
     width: 6rem !important;
     height: 6rem !important;
