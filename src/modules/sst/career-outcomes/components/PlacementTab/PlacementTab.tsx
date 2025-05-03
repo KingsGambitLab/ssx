@@ -30,8 +30,8 @@ const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
     return (
       <DownloadReport
         text="Download Report"
-        brochureLink={cta?.brochureLink}
         buttonSize="large"
+        className={styles.downloadReportButton}
       />
     )
   }
