@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image';
 
 import Adobe from '@public/images/sst/svg/adobelogo.svg';
@@ -13,12 +14,13 @@ import Walmart from '@public/images/sst/svg/walmart.svg';
 import Flipkart from '@public/images/sst/png/flipkartlogo.png';
 import Target from '@public/images/sst/png/target.png';
 import ArrowUpRight from '@public/images/sst/svg/arrow-up-right.svg';
-import RightLine from '@public/images/sst/svg/right-vector-our-alumini.svg';
 import LeftLine from '@public/images/sst/svg/left-vetor-our-alumini.svg';
 
 import Section from '@components/common/Section';
 
 import styles from './ProvenTrackRecord.module.scss';
+import { useLoginModalContext } from '@context/sst';
+import { useUser } from '@hooks';
 
 export default function ProvenTrackRecord() {
   const companies = [
@@ -35,6 +37,16 @@ export default function ProvenTrackRecord() {
     { src: Google, alt: 'Google' },
     { src: Razorpay, alt: 'Razorpay' },
   ];
+  const { data: userData } = useUser();
+  const isLoggedIn = userData?.isloggedIn;
+  const { setIsLoginModalOpen } = useLoginModalContext();
+  const handleDownloadBrochureClick = () => {
+    if (isLoggedIn && window !== undefined) {
+      window.open("https://content.interviewbit.com/scaler_career_transition_assesment_report-academy.pdf", "_blank");
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
 
   return (
     <Section section_class={styles.section}>
@@ -76,7 +88,7 @@ export default function ProvenTrackRecord() {
           </div>
 
           <div className={styles.reportSection}>
-            <button className={styles.downloadButton}>
+            <button className={styles.downloadButton} onClick={handleDownloadBrochureClick}>
               <span>Download Report</span>
               <Image 
                 src={ArrowUpRight} 

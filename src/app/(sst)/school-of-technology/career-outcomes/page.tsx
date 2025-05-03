@@ -34,8 +34,8 @@ export default function Page() {
       <CareerStats />
       <NowAtSST />
       <ProvenTrackRecord />
-      <SstRecruiters />
       <Placement />
+      <SstRecruiters />
       <CareerOfficersTeam />
       <Entrepreneurship />
       <Mentorship />
