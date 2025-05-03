@@ -8,7 +8,7 @@ import CompaniesIcon from '@public/images/sst/svg/career_outcomes/mentorship/com
 
 const Mentorship: React.FC = () => {
   return (
-    <Section section_class={styles.mentorshipSection}>
+    <Section section_class={styles.mentorshipSection} id="mentorship">
       <div className={styles.sectionTitle}>
         <h2>Industry Mentorship & Collaboration</h2>
       </div>
