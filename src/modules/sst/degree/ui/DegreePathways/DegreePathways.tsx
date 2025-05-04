@@ -35,7 +35,7 @@ export default function DegreePathways() {
     <Section id="degree-pathways">
       <div className={styles.container}>
         <Header src={GraduationHat} title={title} subtitle={subtitle} />
-        <TabLayout tabs={tabsData} />
+        <TabLayout className={styles.customTab} tabs={tabsData} />
       </div>
     </Section>
   );
