@@ -34,6 +34,10 @@ $violet-color: #6D2A9E;
   &Duration {
     align-items: center;
     justify-content: space-between;
+
+    @include bp(400px) {
+      min-height: 20rem;
+    }
   }
 }
 
@@ -78,6 +82,7 @@ $violet-color: #6D2A9E;
   font-weight: $bolder-font-weight;
 
   @include mobile {
+    padding: 0.4rem;
     border-radius: 0.4rem;
     background: linear-gradient(90deg, #083CA0 0%, #7F76D6 100%);
   }
