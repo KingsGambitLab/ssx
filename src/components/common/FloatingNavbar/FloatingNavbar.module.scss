@@ -16,6 +16,20 @@ $internal-link-hover-bg: #f2f8ff;
     background-color: $white-color !important;
   }
   
+  // Add this menuWrapper class to your SCSS
+  .menuWrapper {
+    @include tablet {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      
+      &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+    }
+  }
+  
   &.bottom {
     border-radius: 3rem;
   }
@@ -43,9 +57,18 @@ $internal-link-hover-bg: #f2f8ff;
     background: transparent;
     border-bottom: none;
     
+    @include tablet {
+      width: max-content; // This ensures the menu expands to fit all items
+      min-width: 100%; // Makes sure it takes at least full width of container
+    }
+    
     :global(.ant-menu-horizontal) {
       border-bottom: none;
       line-height: 38px;
+      
+      @include tablet {
+        white-space: nowrap; // Prevents menu items from wrapping
+      }
       
       &::before {
         display: none !important;
@@ -57,6 +80,8 @@ $internal-link-hover-bg: #f2f8ff;
       margin: 0 4px;
       border-radius: 20px;
       transition: all 0.3s ease;
+      color: #1a2C47;
+      font-weight: $normal-font-weight;
       
       &:hover {
         color: $primary-color;
@@ -79,18 +104,6 @@ $internal-link-hover-bg: #f2f8ff;
           background-color: $white-color !important;
         }
       }
-      
-      @include mobile {
-        padding: 0 12px;
-        margin: 0 2px;
-        font-size: $mobile-font-body-secondary;
-      }
-    }
-    
-    @include mobile {
-      white-space: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
     }
   }
 }
@@ -105,4 +118,4 @@ $internal-link-hover-bg: #f2f8ff;
   position: relative;
   top: -0.5rem;
   font-weight: bold;
-} 
+}
