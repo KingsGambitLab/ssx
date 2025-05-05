@@ -54,6 +54,13 @@ export default function ScrollableTabLayout({
         const elem = document.getElementById(`${tab}__content`);
         elem?.classList.remove("hidden");
       });
+    } else {
+      tabs.forEach((tab, index) => {
+        if (index !== 0) {
+          const elem = document.getElementById(`${tab}__content`);
+          elem?.classList.add("hidden");
+        }
+      });
     }
   }, []);
 
