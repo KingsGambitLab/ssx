@@ -1,6 +1,6 @@
 import { BASE_URL } from '@utils/common/url';
 
-import OpenBookIcon from '@public/images/sst/svg/open-book.svg';
+import OpenBookIcon from '@public/images/sst/svg/open-book-icon.svg';
 import StarBadgeIcon from '@public/images/sst/svg/star-badge.svg';
 import RatingIcon from '@public/images/sst/svg/seal-check.svg';
 import ShootingStarIcon from '@public/images/sst/svg/shooting-star.svg';
@@ -45,15 +45,15 @@ export const sstVsTraditionalData = [
     articles: [
       {
         image: WeekArticleImage.src,
-        alt: "Engineers Tech Skills Article"
+        alt: "Week Article"
       },
       {
         image: HackerEarthArticleImage.src,
-        alt: "Engineers Unemployed Article"
+        alt: "HackerEarth Article"
       },
       {
         image: JobCrisisArticleImage.src,
-        alt: "Engineering Job Crisis Article"
+        alt: "Job Crisis Article"
       },
       {
         image: SkillsGapArticleImage.src,
@@ -61,7 +61,7 @@ export const sstVsTraditionalData = [
       },
       {
         image: HrWorldArticleImage.src,
-        alt: "HR Employability Gap Article"
+        alt: "HR World Article"
       },
       {
         image: UnEmployabilityArticleImage.src,
@@ -87,12 +87,12 @@ export const sstVsTraditionalData = [
     articles: [
       {
         image: TimesOfIndiaArticleImage.src,
-        alt: "",
+        alt: "Times of India Article",
         text: "Scaler School of Technology emerges as one of the top computer science colleges in India"
       },
       {
         image: FinancialExpressArticleImage.src,
-        alt: "",
+        alt: "Financial Express Article",
         text: "30% of students choose ‘Scaler School of Technology’ over prestigious Indian institutes."
       }
     ]

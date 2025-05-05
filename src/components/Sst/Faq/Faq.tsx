@@ -1,10 +1,18 @@
-"use client";
+'use client';
 
 import React from 'react';
-import CommonFaq, { FaqItem } from '@components/common/Faq';
 import { Button, Typography } from 'antd';
-import styles from './Faq.module.scss';
+
 import Section from '@components/common/Section';
+import CommonFaq, { FaqItem } from '@components/common/Faq';
+
+import {
+  trackEvent,
+  pageTrackingEvents,
+  pageTrackingSources,
+} from '@modules/sst/degree/utils/tracking';
+
+import styles from './Faq.module.scss';
 
 const { Text, Link } = Typography;
 
@@ -42,6 +50,15 @@ const SstFaq: React.FC<SstFaqProps> = ({
           type="link"
           href={faqsUrl}
           target="_blank"
+          onClick={() => {
+            trackEvent.click({
+              clickType: pageTrackingEvents.ReadAllFaqs,
+              clickSource: pageTrackingSources.Faq,
+              custom: {
+                link: faqsUrl,
+              }
+            });
+          }}
           className={styles.readAllButton}
         >
           Read all FAQs
@@ -49,7 +66,15 @@ const SstFaq: React.FC<SstFaqProps> = ({
         {contactText && contactLink && (
           <div className={styles.contactContainer}>
             <Text className={styles.contactText}>{contactText}</Text>{' '}
-            <Link href={contactUrl} className={styles.contactLink}>
+            <Link href={contactUrl} className={styles.contactLink} onClick={() => {
+              trackEvent.click({
+                clickText: pageTrackingEvents.ContactUs,
+                clickSource: pageTrackingSources.Faq,
+                custom: {
+                  link: contactUrl,
+                }
+              });
+            }}>
               {contactLink}
             </Link>
           </div>

@@ -20,9 +20,6 @@ import ApplyButton from '@components/Sst/ApplyButton';
 
 export default function BottomNavbar() {
   const { experiments } = useContext(ExperimentsContext);
-  const bottomNavbarVariant = experiments[ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.KEY];
-  const isOldVersion =
-    bottomNavbarVariant === ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.DEFAULT_VARIANT;
   const revampedVariant = experiments[ABEX_FLAG_CONFIG.SST_LP_REVAMP.KEY];
   const isRevampedVersion = revampedVariant === ABEX_FLAG_CONFIG.SST_LP_REVAMP.NEW_VARIANT;
 
@@ -34,7 +31,7 @@ export default function BottomNavbar() {
     });
   };
 
-  if (!isOldVersion) {
+  if (isRevampedVersion) {
     return (
       <>
         <div className={styles.wrapper}>

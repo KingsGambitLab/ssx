@@ -40,17 +40,19 @@ export const trackEvent = {
       section_name: sectionName,
     });
   },
-  formSubmitStatus: ({ clickType, clickText, clickSource, attributes }: {
+  formSubmitStatus: ({ clickType, clickText, clickSource, attributes, extraInfo }: {
     clickType: string;
     clickText: string;
     clickSource: string;
     attributes: object;
+    extraInfo: object;
   }) => {
     tracker.formSubmitStatus({
       click_type: clickType,
       click_text: clickText,
       click_source: clickSource,
       ...attributes,
+      extra_info: extraInfo,
     });
   }
 }

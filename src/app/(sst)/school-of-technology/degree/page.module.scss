@@ -1,7 +1,7 @@
 $degree-container-background-color: #fafafa;
 
 .container {
-  margin-top: 11rem;
+  margin-top: 8rem;
   min-height: 100vh;
   font-family: 'Plus Jakarta Sans' !important;
   padding: 3.2rem 0;
@@ -10,7 +10,7 @@ $degree-container-background-color: #fafafa;
 
   @include mobile {
     margin-top: 10.6rem;
-    padding: 1.6rem 0 13rem;
+    padding: 1.6rem 0 2.8rem;
   }
 
   @include bp(415px) {

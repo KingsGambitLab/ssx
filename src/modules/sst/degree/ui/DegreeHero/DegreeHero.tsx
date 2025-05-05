@@ -1,9 +1,18 @@
-"use client";
+'use client';
 
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+
 import Section from '@components/common/Section';
-import DegreeHeroImage from '@public/images/sst/webp/degreevideo.webp';
+
+import {
+  trackEvent,
+  pageTrackingEvents,
+  pageTrackingSources,
+} from '@modules/sst/degree/utils/tracking';
+
+import DegreeHeroImage from '@public/images/sst/webp/degree.webp';
+
 import styles from './DegreeHero.module.scss';
 
 const DegreeHero = () => {
@@ -59,6 +68,18 @@ const DegreeHero = () => {
                       height={306}
                       className={styles.image}
                     />
+                    <div className={styles.playButton} onClick={() => {
+                      setIsVideoLoaded(true);
+                      trackEvent.click({
+                        clickType: pageTrackingEvents.videoPlayed,
+                        clickSource: pageTrackingSources.DegreeHero,
+                        custom: {
+                          videoLink: "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
+                        },
+                      });
+                    }}>
+                      <span className={styles.playIcon}></span>
+                    </div>
                   </div>
                 )}
                 {(isInView && isVideoLoaded) && (
