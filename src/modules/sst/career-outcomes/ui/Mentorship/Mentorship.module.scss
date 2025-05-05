@@ -15,8 +15,8 @@ $transparent: transparent;
 
   > :global(.sr-container) {
     @include mobile {
-      padding: 2rem !important;
-      background-color: $white-color;
+      padding: 0 !important;
+      background-color: $light-gray;
       margin-left: 2rem;
       margin-right: 2rem;
       border-radius: $border-radius-large;
