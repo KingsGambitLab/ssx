@@ -93,7 +93,7 @@ export default function ScrollableTabLayout({
         ))}
       </div>
       <div className={styles.contentContainer}>
-        {tabs.map((tab, index) => (
+        {tabs.map((tab) => (
           <div
             key={tab.key}
             id={`${tab.key}__content`}
