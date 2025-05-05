@@ -88,7 +88,6 @@ export default function SuccessStoryCard({
             trackEventHandler(
               title,
               pageTrackingSources.successStories, {
-              cta_text: ctaText,
               link: link,
             });
             window.open(link, "_blank");
