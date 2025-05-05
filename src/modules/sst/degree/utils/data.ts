@@ -1,6 +1,6 @@
 import { BASE_URL } from '@utils/common/url';
 
-import OpenBookIcon from '@public/images/sst/svg/open-book.svg';
+import OpenBookIcon from '@public/images/sst/svg/open-book-icon.svg';
 import StarBadgeIcon from '@public/images/sst/svg/star-badge.svg';
 import RatingIcon from '@public/images/sst/svg/seal-check.svg';
 import ShootingStarIcon from '@public/images/sst/svg/shooting-star.svg';
