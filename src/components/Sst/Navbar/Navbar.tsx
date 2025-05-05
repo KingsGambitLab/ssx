@@ -17,11 +17,11 @@ export default function SstNavbar() {
   const isRevamped = experiments[ABEX_FLAG_CONFIG.SST_LP_REVAMP.KEY] === ABEX_FLAG_CONFIG.SST_LP_REVAMP.NEW_VARIANT;
 
   const onLoginHandler = () => {
-    setIsLoginModalOpen(true);
+    setIsLoginModalOpen(true, 'navbar', 'login');
   };
 
   const onApplyHandler = () => {
-    setIsLoginModalOpen(true);
+    setIsLoginModalOpen(true, 'navbar', 'apply');
   };
 
   const onResumeApplicationHandler = () => {

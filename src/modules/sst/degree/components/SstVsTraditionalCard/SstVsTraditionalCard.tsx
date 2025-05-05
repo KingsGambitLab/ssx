@@ -1,26 +1,59 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
-import classNames from 'classnames';
 
+import classNames from 'classnames';
 import { Modal } from 'antd';
 import { ZoomInOutlined } from '@ant-design/icons';
 
 import { useDeviceType } from '@hooks/useDeviceType';
 
 import { SstVsTraditionalCardProps } from '@modules/sst/degree/types';
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent
+} from '@modules/sst/degree/utils/tracking';
 
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll/HorizontalScroll';
 
 import styles from './SstVsTraditionalCard.module.scss';
 
+
 const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['articles'] }) => {
   const { isMobile } = useDeviceType();
-  const [isModalOpen, setIsModalOpen] = useState<{isOpen: boolean, imageUrl: string | null}>({isOpen: false, imageUrl: null});
+  const [isModalOpen, setIsModalOpen] = useState<{
+    isOpen: boolean,
+    imageUrl: string | null,
+    imageAlt: string | null
+  }>({ isOpen: false, imageUrl: null, imageAlt: null });
 
-  const openModal = (imageUrl: string) => setIsModalOpen({isOpen: true, imageUrl});
-  const closeModal = () => setIsModalOpen({isOpen: false, imageUrl: null});
+  const openModal = (imageUrl: string, alt: string) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.modalOpened,
+      clickText: pageTrackingEvents.modalOpened,
+      clickSource: pageTrackingSources.sstVsTraditionalCard,
+      custom: {
+        text: alt,
+        link: imageUrl
+      }
+    });
+    setIsModalOpen({ isOpen: true, imageUrl, imageAlt: alt });
+  };
+
+  const closeModal = () => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.modalClosed,
+      clickText: pageTrackingEvents.modalClosed,
+      clickSource: pageTrackingSources.sstVsTraditionalCard,
+      custom: {
+        text: isModalOpen.imageAlt || '',
+        link: isModalOpen.imageUrl || ''
+      }
+    });
+    setIsModalOpen({ isOpen: false, imageUrl: null, imageAlt: null });
+  };
 
   const modalStyleClass = {
     mask: styles.imageModalMask
@@ -40,7 +73,7 @@ const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['artic
                 width={300}
                 height={324}
               />
-              <div className={styles.zoomIcon} onClick={() => openModal(article.image)}>
+              <div className={styles.zoomIcon} onClick={() => openModal(article.image, article.alt)}>
                 <ZoomInOutlined className={styles.zoomIconIcon} />
               </div>
             </div>
@@ -166,7 +199,11 @@ export default function SstVsTraditionalCard({
           </div>
 
           {(!isTextCard || !isMobile) && (
-            <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={isMobile ? 1.2 : 1.8}>
+            <HorizontalScrollWrapper
+              slidesToScroll={1}
+              slidesToShow={isMobile ? 1.2 : 1.8}
+              clickSource={pageTrackingSources.sstVsTraditionalCard}
+            >
               <ArticlesCard articles={articles} />
             </HorizontalScrollWrapper>
           )}

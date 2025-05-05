@@ -7,6 +7,11 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 import { KeyFeatureCardProps } from '@modules/sst/degree/types';
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent
+} from '@modules/sst/degree/utils/tracking';
 
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll';
 
@@ -19,13 +24,35 @@ export default function KeyFeatureCard({
   alt,
   featureList,
 }: KeyFeatureCardProps) {
-  const [isModalOpen, setIsModalOpen] = useState<{isOpen: boolean, imageUrl: string | null}>({isOpen: false, imageUrl: null});
+  const [isModalOpen, setIsModalOpen] = useState<{
+    isOpen: boolean,
+    imageUrl: string | null,
+    imageAlt: string | null
+  }>({ isOpen: false, imageUrl: null, imageAlt: null });
 
-  const openModal = (imageUrl: string) => {
-    setIsModalOpen({isOpen: true, imageUrl});
+  const openModal = (imageUrl: string, imageAlt: string) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.modalOpened,
+      clickText: pageTrackingEvents.modalOpened,
+      clickSource: pageTrackingSources.keyFeatureCard,
+      custom: {
+        text: imageAlt,
+        link: imageUrl
+      }
+    });
+    setIsModalOpen({isOpen: true, imageUrl, imageAlt});
   };
   const afterCloseModal = () => {
-    setIsModalOpen({isOpen: false, imageUrl: null});
+    trackEvent.click({
+      clickType: pageTrackingEvents.modalClosed,
+      clickText: pageTrackingEvents.modalClosed,
+      clickSource: pageTrackingSources.keyFeatureCard,
+      custom: {
+        text: isModalOpen.imageAlt || '',
+        link: isModalOpen.imageUrl || ''
+      }
+    });
+    setIsModalOpen({isOpen: false, imageUrl: null, imageAlt: null});
   };
 
   const modalStyleClass = {
@@ -50,7 +77,11 @@ export default function KeyFeatureCard({
         </div>
 
         {featureList && featureList?.length > 0  && (
-            <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={1.2}>
+            <HorizontalScrollWrapper
+              slidesToScroll={1}
+              slidesToShow={1.2}
+              clickSource={pageTrackingSources.keyFeatureCard}
+            >
             {featureList.map((item, index) => (
               <div key={index} className={styles.featureListItem}>
                 <Image
@@ -60,7 +91,7 @@ export default function KeyFeatureCard({
                   height={264}
                   className={styles.featureListItemImage}
                 />
-                <div className={styles.zoomIcon} onClick={() => openModal(item.image)}>
+                <div className={styles.zoomIcon} onClick={() => openModal(item.image, item.alt)}>
                   <ZoomInOutlined className={styles.zoomIconIcon} />
                 </div>
               </div>

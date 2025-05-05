@@ -25,6 +25,8 @@ interface OTPStepProps {
   errors: FieldErrors<OTPFormData>;
   handleSubmit: UseFormHandleSubmit<OTPFormData>;
   control: any;
+  trackEventClickSource?: string;
+  trackEventCtaText?: string;
 }
 
 export const OTPStep: React.FC<OTPStepProps> = ({
@@ -36,6 +38,8 @@ export const OTPStep: React.FC<OTPStepProps> = ({
   errors,
   handleSubmit,
   control,
+  trackEventClickSource,
+  trackEventCtaText
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
@@ -76,6 +80,10 @@ export const OTPStep: React.FC<OTPStepProps> = ({
         status: formStatus,
         message: formError? formattedErrors(formError) : 'success',
         form_id: trackingSources.waitlistLoginOTPForm,
+      },
+      extraInfo: {
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
       }
     })
   }
@@ -158,7 +166,11 @@ export const OTPStep: React.FC<OTPStepProps> = ({
       clickType,
       clickText,
       clickSource,
-      custom,
+      custom: {
+        ...custom,
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
+      }
     })
   }
 

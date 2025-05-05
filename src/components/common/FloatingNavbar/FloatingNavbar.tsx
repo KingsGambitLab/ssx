@@ -3,6 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { Affix, Menu } from 'antd';
 import type { MenuProps } from 'antd';
+
+import {
+  trackEvent,
+  pageTrackingEvents,
+  pageTrackingSources,
+} from '@modules/sst/degree/utils/tracking';
+
 import styles from './FloatingNavbar.module.scss';
 
 export interface NavItem {
@@ -111,6 +118,11 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: i
   }));
 
   const onClick: MenuProps['onClick'] = (e) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.ctaClicked,
+      clickText: e.key,
+      clickSource: pageTrackingSources.FloatingNavbar,
+    });
     scrollToSection(e.key);
   };
 
