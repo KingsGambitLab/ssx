@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Image, Typography, Space, Card } from 'antd';
+import Image from 'next/image';
+import { Typography, Space, Card } from 'antd';
 
 import Section from '@components/common/Section';
 import ApplyButton from '@components/Sst/ApplyButton';
@@ -52,11 +53,12 @@ const ApplyCtaBanner: React.FC = () => {
                 className={styles.ellipseImage}
               />
             </div>
-            <Image 
+            <Image
               src={scalerMlab.src} 
               alt="Software Engineer with VR headset" 
               className={styles.bannerImage}
-              preview={false}
+              width={600}
+              height={430}
             />
           </div>
         </div>
