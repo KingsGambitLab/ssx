@@ -1,3 +1,5 @@
+import { BASE_URL } from '@utils/common/url';
+
 import BurstBgImage from '@public/images/common/webp/burst-bg.webp';
 import OpenBookIcon from '@public/images/sst/svg/career_outcomes/higher_studies/book-open.svg';
 import GlobeIcon from '@public/images/sst/svg/career_outcomes/higher_studies/globe.svg';
@@ -380,3 +382,5 @@ export const SuccessStoriesData = [
     ctaText: "View the full Story"
   }
 ]
+
+export const DegreePageLink = `${BASE_URL}/school-of-technology/degree`;

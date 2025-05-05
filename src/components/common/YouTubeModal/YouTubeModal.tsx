@@ -43,8 +43,6 @@ const YouTubeModal: React.FC<YouTubeModalProps> = ({
   // Construct the YouTube embed URL with autoplay
   const youtubeEmbedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0` : videoLink;
 
-  console.log("youtubeEmbedUrl", youtubeEmbedUrl);
-
   return (
     <Modal
       open={isOpen}
