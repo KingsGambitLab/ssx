@@ -60,7 +60,7 @@ export default function VideoCardWithDesc({
             alt={"video-thumbnail"}
           />
         </button>
-        {title || desc && (
+        {(title || desc) && (
           <div className={styles.content}>
             {title && <div className={styles.title}>{title}</div>}
             {desc && <div className={styles.desc}>{desc}</div>}
