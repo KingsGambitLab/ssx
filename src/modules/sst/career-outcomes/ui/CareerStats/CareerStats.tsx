@@ -53,6 +53,7 @@ export default function CareerStats() {
             brochureLink={CareerStatsData?.brochureLink}
             buttonSize="large"
             className={styles.downloadBrochureButton}
+            trackEventSource="career_stats"
           />
        </div>
       </div>

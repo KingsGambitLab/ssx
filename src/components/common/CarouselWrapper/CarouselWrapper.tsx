@@ -4,6 +4,9 @@ import { useRef, useEffect, useState } from 'react';
 
 import { useDeviceType } from '@hooks/useDeviceType';
 
+import { trackEvent } from "@modules/sst/degree/utils/tracking";
+import { TrackingProps } from "@modules/sst/degree/types";
+
 import classNames from 'classnames';
 import ArrowLeft from '@public/images/common/svg/arrow-left-black.svg';
 import ArrowRight from '@public/images/common/svg/arrow-right-black.svg';
@@ -21,6 +24,7 @@ export default function CarouselWrapper({
   scrollContainerClassName,
   scrollControlsClassName,
   showInMobileOnly = false,
+  trackEventSource = "",
 }: {
   children: React.ReactNode,
   slidesToScrollInDesktop?: number,
@@ -32,6 +36,7 @@ export default function CarouselWrapper({
   scrollContainerClassName?: string,
   scrollControlsClassName?: string,
   showInMobileOnly?: boolean,
+  trackEventSource?: string,
 }) {
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -109,12 +114,24 @@ export default function CarouselWrapper({
     };
   }, [slidesToShowInDesktop, slidesToShowInMobile, children, slideItemMinWidthInDesktop, slideItemMinWidthInMobile, isMobile]);
 
+  const trackScrollEvent = ({ clickText, custom }: TrackingProps) => {
+    trackEvent.click({
+      clickType: 'horizontal_scroll',
+      clickText,
+      clickSource: trackEventSource || '',
+      custom,
+    });
+  }
+
+
   const nextSlide = () => {
     if (carouselRef.current) {
       const scrollContainer = carouselRef.current;
       const childWidth = (scrollContainer.firstChild as HTMLElement)?.offsetWidth || 0;
       const scrollAmount = childWidth * (isMobile ? slidesToScrollInMobile : slidesToScrollInDesktop);
       scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+
+      trackScrollEvent({ clickText: 'next_slide'});
     }
     setTimeout(updateScrollButtons, 500);
   };
@@ -125,6 +142,8 @@ export default function CarouselWrapper({
       const childWidth = (scrollContainer.firstChild as HTMLElement)?.offsetWidth || 0;
       const scrollAmount = childWidth * (isMobile ? slidesToScrollInMobile : slidesToScrollInDesktop);
       scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+
+      trackScrollEvent({ clickText: 'prev_slide'});
     }
     setTimeout(updateScrollButtons, 500);
   };

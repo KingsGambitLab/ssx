@@ -44,7 +44,7 @@ export default function ProvenTrackRecord() {
     if (isLoggedIn && window !== undefined) {
       window.open("https://content.interviewbit.com/scaler_career_transition_assesment_report-academy.pdf", "_blank");
     } else {
-      setIsLoginModalOpen(true);
+      setIsLoginModalOpen(true, "proven_track_record", "download_report");
     }
   };
 
