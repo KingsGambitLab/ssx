@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import classNames from "classnames";
 
 import { TabData } from "@components/common/TabLayout/TabLayout";
+import { trackEvent, pageTrackingSources } from "@modules/sst/career-outcomes/utils/tracking";
 
 import styles from "./ScrollableTabLayout.module.scss";
 import { useScrollSpy } from "@hooks/useScrollSpy";
@@ -60,6 +61,19 @@ export default function ScrollableTabLayout({
     return null;
   }
 
+  const trackEventHandler = (tabKey: string) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: tabKey,
+      clickSource: pageTrackingSources.placementTab,
+    });
+  };
+
+  const handleTabClick = (tabKey: string) => {
+    trackEventHandler(tabKey);
+    scrollToTabContent(tabKey, tabs.map((tab) => tab.key));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.labelContainer}>
@@ -72,12 +86,7 @@ export default function ScrollableTabLayout({
               extraLabelClassName,
               tab.key === activeTabId && styles.active
             )}
-            onClick={() =>
-              scrollToTabContent(
-                tab.key,
-                tabs.map((tab) => tab.key)
-              )
-            }
+            onClick={() => handleTabClick(tab.key)}
           >
             {activeTabId === tab.key ? tab.labelActive : tab.label}
           </div>
