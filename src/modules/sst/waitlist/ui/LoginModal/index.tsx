@@ -8,8 +8,10 @@ import { LoginFormData, OTPFormData, LoginStep } from '../../types';
 import Banner from '@modules/sst/waitlist/components/Banner';
 import { ProgressBar } from '@modules/sst/waitlist/components/ProgressBar';
 import { WaitlistForm } from '@modules/sst/waitlist/components/WaitlistForm';
+import { useLoginModalContext } from '@context/sst/LoginModalContext';
 import { trackEvent, trackingEvents, trackingSources } from '@modules/sst/waitlist/utils/tracking';
 import useUser from '@/hooks/useUser';
+
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -30,6 +32,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 }) => {
   const { data: userData } = useUser();
   const [step, setStep] = useState<LoginStep>(initialStep);
+  const { setCurrentStep } = useLoginModalContext();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   
@@ -81,6 +84,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
         },
       })
     }
+    setCurrentStep(currentStep);
     setStep(currentStep);
   }
 
