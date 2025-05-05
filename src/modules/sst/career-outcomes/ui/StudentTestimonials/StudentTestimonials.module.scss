@@ -1,6 +1,5 @@
 .testimonialSection {
   padding: 60px 0;
-  overflow: hidden;
   position: relative;
 }
 
@@ -19,16 +18,21 @@
       margin-bottom: 2rem;
     }
   }
+
+  .testimonialTitle {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+  }
 }
 
 .carouselContainer {
   position: relative;
   margin: 0 auto;
+  width: 100%;
+}
 
-  :global(.ant-carousel) {
-    width: 85%;
-    margin: 0 auto;
-  }
+.slideWrapper {
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .carousel {
@@ -97,11 +101,6 @@
   align-items: center;
   justify-content: center;
   color: #333;
-}
-
-.slideWrapper {
-  padding: 20px;
-  box-sizing: border-box;
 }
 
 .testimonialCard {
