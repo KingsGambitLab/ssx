@@ -29,7 +29,7 @@ const ApplyCtaBanner: React.FC = () => {
               <div className={styles.actionContainer}>
                 <div className={styles.buttonWrapper}>
                   <ApplyButton
-                    className={styles.applyButton}
+                    className={styles.applyCtaButton}
                     size="large"
                     shouldTrack={true}
                     trackEventSource={pageTrackingSources.applyCtaBanner}
