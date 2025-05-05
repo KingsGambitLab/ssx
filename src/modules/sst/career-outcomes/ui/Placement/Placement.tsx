@@ -3,9 +3,9 @@
 import React from "react";
 
 import styles from "./Placement.module.scss";
-import TabLayout from "@components/common/TabLayout/TabLayout";
 import { HEADER, TABS_DATA } from "./data";
 import Section from "@components/common/Section";
+import ScrollableTabLayout from "@modules/sst/career-outcomes/components/ScrollableTabLayout";
 
 export default function Placement() {
   const { subtitle, title } = HEADER;
@@ -18,7 +18,7 @@ export default function Placement() {
           <div className={styles.title}>{title}</div>
         </div>
         <div className={styles.tabLayoutContainer}>
-          <TabLayout className={styles.tabLayout} tabs={TABS_DATA} />
+          <ScrollableTabLayout tabs={TABS_DATA} />
         </div>
       </div>
     </Section>

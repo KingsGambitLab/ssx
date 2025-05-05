@@ -8,12 +8,13 @@ import type { TabsProps } from "antd";
 import {
   pageTrackingEvents,
   pageTrackingSources,
-  trackEvent
-} from '@modules/sst/degree/utils/tracking';
+  trackEvent,
+} from "@modules/sst/degree/utils/tracking";
 
 export type TabData = {
   key: string;
-  label: string;
+  label: string | JSX.Element;
+  labelActive?: string | JSX.Element;
   content: JSX.Element;
 };
 
