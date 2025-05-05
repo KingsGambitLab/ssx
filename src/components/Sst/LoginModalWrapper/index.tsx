@@ -10,6 +10,8 @@ export function LoginModalWrapper() {
     setIsLoginModalOpen,
     showWaitlistModal,
     setShowWaitlistModal,
+    trackEventSource,
+    trackEventCtaText,
   } = useLoginModalContext();
 
   const handleModalClose = () => {
@@ -23,6 +25,8 @@ export function LoginModalWrapper() {
       onClose={handleModalClose}
       onLoginSuccess={handleModalClose}
       initialStep={showWaitlistModal ? "WAITLIST" : "LOGIN"}
+      trackEventClickSource={trackEventSource}
+      trackEventCtaText={trackEventCtaText}
     />
   );
 }

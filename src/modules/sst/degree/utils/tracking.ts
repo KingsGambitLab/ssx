@@ -1,6 +1,6 @@
 import tracker from '@lib/tracking';
 
-import { TrackingProps } from '@modules/sst/alumni-directory/types';
+import { TrackingProps } from '@modules/sst/degree/types';
 
 export const pageTrackingSources = {
   sstVsTraditionalCard: "sst_vs_traditional_card",
@@ -11,6 +11,8 @@ export const pageTrackingSources = {
   Footer: "footer",
   FloatingNavbar: "floating_navbar",
   DegreeHero: "degree_hero",
+  degreePathways: "degree_pathways",
+  skillsVsDegree: "skills_vs_degree",
 }
 
 export const pageTrackingEvents = {
@@ -28,7 +30,7 @@ export const pageTrackingEvents = {
 }
 
 export const trackEvent = {
-  click: ({ clickType, clickText, clickSource, custom }: TrackingProps) => {
+  click: ({clickType = 'click', clickText, clickSource, custom }: TrackingProps) => {
     tracker.click({
       click_type: clickType,
       click_text: clickText,
