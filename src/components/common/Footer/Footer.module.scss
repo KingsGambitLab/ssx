@@ -17,6 +17,10 @@ $footer-heading-color: #add5ff;
     margin-bottom: 56px;
     justify-content: space-between;
 
+    @include tablet {
+      padding: 60px 20px 24px 20px;
+    }
+
     @include mobile {
       flex-direction: column;
       padding: 40px 20px 24px 20px;
@@ -86,7 +90,7 @@ $footer-heading-color: #add5ff;
     height: 385px;
     width: 607px;
     
-    @include mobile {
+    @include tablet {
       height: auto;
       width: 100%;
       display: grid;

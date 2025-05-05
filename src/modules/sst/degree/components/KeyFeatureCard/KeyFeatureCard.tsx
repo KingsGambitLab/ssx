@@ -36,8 +36,8 @@ export default function KeyFeatureCard({
       clickText: pageTrackingEvents.modalOpened,
       clickSource: pageTrackingSources.keyFeatureCard,
       custom: {
-        imageAlt: imageAlt,
-        imageUrl: imageUrl
+        text: imageAlt,
+        link: imageUrl
       }
     });
     setIsModalOpen({isOpen: true, imageUrl, imageAlt});
@@ -48,8 +48,8 @@ export default function KeyFeatureCard({
       clickText: pageTrackingEvents.modalClosed,
       clickSource: pageTrackingSources.keyFeatureCard,
       custom: {
-        imageAlt: isModalOpen.imageAlt || '',
-        imageUrl: isModalOpen.imageUrl || ''
+        text: isModalOpen.imageAlt || '',
+        link: isModalOpen.imageUrl || ''
       }
     });
     setIsModalOpen({isOpen: false, imageUrl: null, imageAlt: null});
@@ -77,7 +77,11 @@ export default function KeyFeatureCard({
         </div>
 
         {featureList && featureList?.length > 0  && (
-            <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={1.2}>
+            <HorizontalScrollWrapper
+              slidesToScroll={1}
+              slidesToShow={1.2}
+              clickSource={pageTrackingSources.keyFeatureCard}
+            >
             {featureList.map((item, index) => (
               <div key={index} className={styles.featureListItem}>
                 <Image

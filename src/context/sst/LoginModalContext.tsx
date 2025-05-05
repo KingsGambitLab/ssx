@@ -10,11 +10,15 @@ import {
 
 interface LoginModalContextType {
   isLoginModalOpen: boolean;
-  setIsLoginModalOpen: (value: boolean) => void;
+  setIsLoginModalOpen: (value: boolean, source?: string, ctaText?: string) => void;
   isModalOpen: boolean;
   handleModalClose: () => void;
   showWaitlistModal: boolean;
   setShowWaitlistModal: (value: boolean) => void;
+  trackEventSource: string;
+  trackEventCtaText: string;
+  currentStep: string;
+  setCurrentStep: (value: string) => void;
 }
 
 const LoginModalContext = createContext<LoginModalContextType | undefined>(
@@ -26,35 +30,63 @@ export default function LoginModalProvider({
 }: {
   children: ReactNode;
 }) {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [loginModal, setLoginModal] = useState<{
+    isOpen: boolean,
+    source: string,
+    ctaText: string
+  }>({ isOpen: false, source: 'waitlist_form', ctaText: '' });
+
+  const [currentStep, setCurrentStep] = useState<string>('');
+
   const { showWaitlistModal, setShowWaitlistModal } = useWaitlistCheck();
 
   const isModalOpen = useMemo(() => {
-   return isLoginModalOpen || showWaitlistModal;
-  }, [isLoginModalOpen, showWaitlistModal]);
+   return loginModal.isOpen || showWaitlistModal;
+  }, [loginModal.isOpen, showWaitlistModal]);
+
+  const getFormType = (currentStep: string) => {
+    if (currentStep !== '') {
+      return currentStep;
+    } else if (showWaitlistModal) {
+      return trackingSources.waitlistForm;
+    }
+    return trackingSources.waitlistLoginMobileForm;
+  }
 
   useEffect(() => {
     if (isModalOpen) {
-      trackEvent.sectionView({
-        sectionName: showWaitlistModal ?
-          trackingSources.waitlistForm : trackingSources.waitlistLoginMobileForm
+      trackEvent.click({
+        clickType: 'click',
+        clickText: getFormType(currentStep),
+        clickSource: loginModal.source,
+        custom: {
+          cta_text: loginModal.ctaText,
+        },
       });
     }
 
   }, [isModalOpen])
 
   const handleModalClose = () => {
-    setIsLoginModalOpen(false);
+    setLoginModal({ isOpen: false, source: loginModal.source, ctaText: loginModal.ctaText });
     setShowWaitlistModal(false);
   };
 
   const value: LoginModalContextType = {
-    isLoginModalOpen,
-    setIsLoginModalOpen,
+    isLoginModalOpen: loginModal.isOpen,
+    setIsLoginModalOpen: (
+      value: boolean,
+      source: string = 'waitlist_form',
+      ctaText: string = ''
+    ) => setLoginModal({ isOpen: value, source, ctaText }),
+    trackEventSource: loginModal.source,
+    trackEventCtaText: loginModal.ctaText,
     isModalOpen,
     handleModalClose,
     showWaitlistModal,
     setShowWaitlistModal,
+    currentStep,
+    setCurrentStep,
   };
 
   return (

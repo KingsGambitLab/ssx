@@ -16,10 +16,14 @@ import { trackingEvents, trackingSources, trackEvent } from '../../utils/trackin
 
 interface WaitlistFormProps {
   onSubmitSuccess: () => void;
+  trackEventClickSource?: string;
+  trackEventCtaText?: string;
 }
 
 export const WaitlistForm: React.FC<WaitlistFormProps> = ({ 
   onSubmitSuccess,
+  trackEventClickSource,
+  trackEventCtaText
 }) => {
   const { handleCategoryChange, formFields, setShowWaitlistModal } = useWaitlistCheck();
   const { submitWaitlistForm } = useWaitlistApi();
@@ -60,7 +64,15 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     clickSource: string;
     custom: any;
   }) => {
-    trackEvent.click({ clickType, clickText, clickSource, custom });
+    trackEvent.click({ 
+      clickType, 
+      clickText, 
+      clickSource, 
+      custom: {
+        ...custom,
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
+      } });
   }
 
   // Handle category change - make it immediate
@@ -80,6 +92,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource: trackingSources.waitlistForm,
       custom: {
         category: newCategory,
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
       }
     })
   }, [categoryField, setValue, handleCategoryChange]);
@@ -118,6 +132,10 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickType: 'form_submit',
       clickText: trackingEvents.waitlistFormSubmit,
       clickSource: trackingSources.waitlistForm,
+      extraInfo: {
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
+      },
       attributes: {
         status: formStatus,
         message: formError? formattedErrors(formError) : 'success',
@@ -156,6 +174,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource: trackingSources.waitlistForm,
       custom: {
         form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
       }
     })
     form.submit(); // This will trigger the onFinish handler

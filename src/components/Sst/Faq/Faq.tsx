@@ -68,7 +68,7 @@ const SstFaq: React.FC<SstFaqProps> = ({
             <Text className={styles.contactText}>{contactText}</Text>{' '}
             <Link href={contactUrl} className={styles.contactLink} onClick={() => {
               trackEvent.click({
-                clickType: pageTrackingEvents.ContactUs,
+                clickText: pageTrackingEvents.ContactUs,
                 clickSource: pageTrackingSources.Faq,
                 custom: {
                   link: contactUrl,

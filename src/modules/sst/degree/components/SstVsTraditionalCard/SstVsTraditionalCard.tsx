@@ -35,8 +35,8 @@ const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['artic
       clickText: pageTrackingEvents.modalOpened,
       clickSource: pageTrackingSources.sstVsTraditionalCard,
       custom: {
-        imageAlt: alt,
-        imageUrl: imageUrl
+        text: alt,
+        link: imageUrl
       }
     });
     setIsModalOpen({ isOpen: true, imageUrl, imageAlt: alt });
@@ -48,8 +48,8 @@ const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['artic
       clickText: pageTrackingEvents.modalClosed,
       clickSource: pageTrackingSources.sstVsTraditionalCard,
       custom: {
-        imageAlt: isModalOpen.imageAlt || '',
-        imageUrl: isModalOpen.imageUrl || ''
+        text: isModalOpen.imageAlt || '',
+        link: isModalOpen.imageUrl || ''
       }
     });
     setIsModalOpen({ isOpen: false, imageUrl: null, imageAlt: null });
@@ -199,7 +199,11 @@ export default function SstVsTraditionalCard({
           </div>
 
           {(!isTextCard || !isMobile) && (
-            <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={isMobile ? 1.2 : 1.8}>
+            <HorizontalScrollWrapper
+              slidesToScroll={1}
+              slidesToShow={isMobile ? 1.2 : 1.8}
+              clickSource={pageTrackingSources.sstVsTraditionalCard}
+            >
               <ArticlesCard articles={articles} />
             </HorizontalScrollWrapper>
           )}
