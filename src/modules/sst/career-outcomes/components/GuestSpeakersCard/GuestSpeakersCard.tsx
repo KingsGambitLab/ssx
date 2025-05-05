@@ -4,15 +4,43 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { GuestSpeakersCardProps } from "../../types";
+import { pageTrackingEvents, pageTrackingSources, trackEvent } from "@modules/sst/career-outcomes/utils/tracking";
+
 import YoutubeModal from "@components/common/YouTubeModal";
 
 import styles from "./GuestSpeakersCard.module.scss";
 
-export default function GuestSpeakersCard({ thumbnail, videoLink, desc }: GuestSpeakersCardProps) {
+export default function GuestSpeakersCard({ thumbnail, videoLink, desc, title }: GuestSpeakersCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+  const trackEventHandler = (clickText: string, clickSource: string, custom?: object) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: clickText,
+      clickSource: clickSource,
+      custom: custom,
+    });
+  }
+  const handleOpen = () => {
+    trackEventHandler(
+      pageTrackingEvents.videoPlayed,
+      pageTrackingSources.guestSpeakers,
+      {
+      title: title,
+      link: `https://www.youtube.com/watch?v=${videoLink}`,
+    });
+    setIsOpen(true);
+  }
+  const handleClose = () => {
+    trackEventHandler(
+      pageTrackingEvents.videoClosed,
+      pageTrackingSources.guestSpeakers,
+      {
+      title: title,
+      link: `https://www.youtube.com/watch?v=${videoLink}`,
+    });
+    setIsOpen(false);
+  }
 
   return (
     <>

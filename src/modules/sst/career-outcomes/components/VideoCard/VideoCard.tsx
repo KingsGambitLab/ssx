@@ -2,6 +2,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent,
+} from "@modules/sst/career-outcomes/utils/tracking";
+
 import YoutubeModal from "@components/common/YouTubeModal";
 
 import styles from "./VideoCard.module.scss";
@@ -21,8 +27,29 @@ export default function VideoCard({
 }: VideoCardProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-  const handleOpen = () => setIsVideoOpen(true);
-  const handleClose = () => setIsVideoOpen(false);
+  const handleOpen = () => {
+    setIsVideoOpen(true);
+    trackEvent.click({
+      clickType: 'click',
+      clickText: pageTrackingEvents.videoPlayed,
+      clickSource: pageTrackingSources.Entrepreneurship,
+      custom: {
+        link: `https://www.youtube.com/watch?v=${videoId}`,
+      }
+    })
+  }
+  
+  const handleClose = () => {
+    setIsVideoOpen(false);
+    trackEvent.click({
+      clickType: 'click',
+      clickText: pageTrackingEvents.videoClosed,
+      clickSource: pageTrackingSources.Entrepreneurship,
+      custom: {
+        link: `https://www.youtube.com/watch?v=${videoId}`,
+      }
+    })
+  }
 
   return (
     <>

@@ -1,14 +1,16 @@
-import { Button } from "antd";
 import React from "react";
 import Image from "next/image";
+import { Button } from "antd";
 
+import { useDeviceType } from "@hooks/useDeviceType";
+
+import HorizontalScrollWrapper from "@components/common/HorizontalScroll";
 import DownloadBrochure from "@components/Sst/DownloadBrochure/DownloadBrochure";
 import DownloadReport from "@components/Sst/DownloadReport/DownloadReport";
-import HorizontalScrollWrapper from "@components/common/HorizontalScroll";
 import VideoCardWithCta from "../VideoCardWithCta/VideoCardWithCta";
 
 import { PlacementTabData } from "@modules/sst/career-outcomes/ui/Placement/data";
-import { useDeviceType } from "@hooks/useDeviceType";
+import { trackEvent, pageTrackingSources } from "@modules/sst/career-outcomes/utils/tracking";
 
 import ArrowUpRightIcon from "@public/images/common/svg/arrow-up-right.svg";
 
@@ -22,6 +24,7 @@ const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
         brochureLink={cta?.brochureLink}
         buttonSize="large"
         className={styles.downloadBrochureButton}
+        trackEventSource={pageTrackingSources.placementTab}
       />
     )
   }
@@ -32,6 +35,7 @@ const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
         text="Download Report"
         buttonSize="large"
         className={styles.downloadReportButton}
+        trackEventSource={pageTrackingSources.placementTab}
       />
     )
   }
@@ -44,7 +48,17 @@ const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
       block={true}
       iconPosition="end"
       icon={<img src={ArrowUpRightIcon.src} alt="arrow-up-right" />}
-      onClick={() => window.open(cta.link, "_blank")}
+      onClick={() => {
+        trackEvent.click({
+          clickType: 'click',
+          clickText: cta.text,
+          clickSource: pageTrackingSources.placementTab,
+          custom: {
+            link: cta.link,
+          }
+        })
+        window.open(cta.link, "_blank")
+      }}
     >
       {cta.text}
     </Button>
@@ -77,7 +91,7 @@ export default function PlacementTab({
       </div>
       {header && <div className={styles.header}>{header}</div>}
       <div className={styles.scrollView}>
-        <HorizontalScrollWrapper slidesToShow={isMobile ? 1.1 : 2.5}>
+        <HorizontalScrollWrapper slidesToShow={isMobile ? 1.1 : 2.5} clickSource={pageTrackingSources.placementTab}>
           {videoCards &&
             videoCards.map((video) => {
               return (

@@ -4,10 +4,12 @@ import Section from "@components/common/Section";
 import { useDeviceType } from "@hooks/useDeviceType";
 import { GuestSpeakersData } from "../../utils/data";
 
+import { pageTrackingSources } from "@modules/sst/career-outcomes/utils/tracking";
 import GuestSpeakersCard from "../../components/GuestSpeakersCard/GuestSpeakersCard";
 
-import styles from "./GuestSpeakers.module.scss";
 import CarouselWrapper from "@components/common/CarouselWrapper";
+
+import styles from "./GuestSpeakers.module.scss";
 
 export default function GuestSpeakers() {
   const { isMobile } = useDeviceType();
@@ -27,10 +29,12 @@ export default function GuestSpeakers() {
             slidesToShowInDesktop={3.5}
             slidesToShowInMobile={1.4}
             scrollContainerClassName={styles.scrollContainer}
+            trackEventSource={pageTrackingSources.guestSpeakers}
           >
             {GuestSpeakersData.guestSpeakers.map((card,index) => (
               <GuestSpeakersCard
                 key={index}
+                title={card?.title}
                 thumbnail={card?.thumbnail?.src}
                 videoLink={card?.videoLink}
                 desc={card?.desc}

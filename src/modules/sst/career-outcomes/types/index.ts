@@ -31,6 +31,7 @@ export type GuestSpeakersCardProps = {
   thumbnail: string;
   videoLink: string;
   desc: React.ReactNode;
+  title?: string;
 }
 
 export type SuccessStoryCardProps = {
@@ -43,3 +44,10 @@ export type SuccessStoryCardProps = {
   link?: string;
   ctaText: string;
 }
+
+export type TrackingProps = {
+  clickType?: string;
+  clickText?: string;
+  clickSource?: string;
+  custom?: object;
+};
