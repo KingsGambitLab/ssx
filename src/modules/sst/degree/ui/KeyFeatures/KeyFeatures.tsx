@@ -1,11 +1,16 @@
-"use client";
+'use client';
 
 import { Button } from 'antd';
 
 import Section from '@components/common/Section';
-import KeyFeatureCard from '@modules/sst/degree/components/KeyFeatureCard';
 
+import KeyFeatureCard from '@modules/sst/degree/components/KeyFeatureCard';
 import { keyFeaturesData } from '@modules/sst/degree/utils/data';
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent,
+} from '@modules/sst/degree/utils/tracking';
 
 import ArrowUpRight from '@public/images/common/svg/arrow-up-right.svg';
 
@@ -38,7 +43,17 @@ export default function KeyFeatures() {
               type="primary"
               icon={<img src={ArrowUpRight.src} alt='arrow-up-right' />}
               iconPosition="end"
-              onClick={() => window.open(keyFeaturesData?.cta?.link, '_blank')}
+              onClick={() => { 
+                trackEvent.click({
+                  clickType: pageTrackingEvents.ctaClicked,
+                  clickText: pageTrackingEvents.explorePlacementButtonClicked,
+                  clickSource: pageTrackingSources.keyFeatures,
+                  custom: {
+                    link: keyFeaturesData?.cta?.link
+                  }
+                });
+                window.open(keyFeaturesData?.cta?.link, '_blank');
+              }}
               className={styles.placementButton}
             >
               {keyFeaturesData?.cta?.title}

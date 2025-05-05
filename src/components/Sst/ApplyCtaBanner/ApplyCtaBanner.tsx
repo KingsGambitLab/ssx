@@ -1,12 +1,17 @@
-"use client";
+'use client';
 
 import React from 'react';
 import { Image, Typography, Space, Card } from 'antd';
-import styles from './ApplyCtaBanner.module.scss';
-import scalerMlab from '@public/images/sst/webp/scaler-mlab.webp';
-import ellipse from '@public/images/sst/svg/ellipse.svg';
+
 import Section from '@components/common/Section';
 import ApplyButton from '@components/Sst/ApplyButton';
+
+import { pageTrackingSources } from '@modules/sst/degree/utils/tracking';
+
+import scalerMlab from '@public/images/sst/webp/scaler-mlab.webp';
+import ellipse from '@public/images/sst/svg/ellipse.svg';
+
+import styles from './ApplyCtaBanner.module.scss';
 
 const { Title, Paragraph } = Typography;
 
@@ -26,6 +31,8 @@ const ApplyCtaBanner: React.FC = () => {
                   <ApplyButton
                     className={styles.applyButton}
                     size="large"
+                    shouldTrack={true}
+                    trackEventSource={pageTrackingSources.applyCtaBanner}
                     showIcon
                   />
                 </div>
