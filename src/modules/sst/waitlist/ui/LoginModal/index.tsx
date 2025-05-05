@@ -71,8 +71,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 
   const handleStepChange = (currentStep: LoginStep) => {
     if(isOpen) {
-      trackEvent.sectionView({
-        sectionName: getFormType(currentStep)
+      trackEvent.click({
+        clickType: 'click',
+        clickText: 'step_change',
+        clickSource: getFormType(currentStep),
+        custom: {
+          form_source: trackEventClickSource,
+          cta_text: trackEventCtaText,
+        },
       })
     }
     setStep(currentStep);
