@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import attribution from '@lib/attribution';
 import { getURLWithUTMParams, getUTMPropagationParams, initializeUtmPropagation } from '@utils/common/url';
-import { lazyLoadGtm, pushServerEvents } from '@lib/tracking/utils';
+import { lazyLoadGtm, pushServerEvents, trackSectionView } from '@lib/tracking/utils';
 import useUser from '@/hooks/useUser';
 
 export default function Analytics({
@@ -45,6 +45,7 @@ export default function Analytics({
     initializeUtmPropagation();
     lazyLoadGtm();
     pushServerEvents();
+    trackSectionView();
   }, []);
 
   useEffect(() => {
