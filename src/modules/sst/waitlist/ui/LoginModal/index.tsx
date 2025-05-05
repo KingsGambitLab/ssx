@@ -16,12 +16,16 @@ interface LoginModalProps {
   onClose: () => void;
   onLoginSuccess?: () => void;
   initialStep?: LoginStep;
+  trackEventClickSource?: string;
+  trackEventCtaText?: string;
 }
 
 export const LoginModal: React.FC<LoginModalProps> = ({ 
   isOpen, 
   onClose,
   onLoginSuccess,
+  trackEventClickSource,
+  trackEventCtaText,
   initialStep = 'LOGIN',
 }) => {
   const { data: userData } = useUser();
@@ -106,6 +110,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       clickType: 'click',
       clickText: trackingEvents.wrongPhoneNumber,
       clickSource: trackingSources.waitlistLoginOTPForm,
+      custom: {
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
+      },
     })
   };
 
@@ -121,6 +129,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       clickType: 'click',
       clickText: trackingEvents.waitlistModalClose,
       clickSource: getFormType(step),
+      custom: {
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
+      },
     })
     onClose();
   }
@@ -150,6 +162,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               setError={setLoginError}
               clearErrors={clearLoginErrors}
               handleSubmit={handleSubmit}
+              trackEventClickSource={trackEventClickSource}
+              trackEventCtaText={trackEventCtaText}
             />
           ) : step === 'OTP' ? (
             <OTPStep
@@ -162,10 +176,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               errors={otpErrors}
               handleSubmit={handleOTPSubmit}
               control={otpControl}
+              trackEventClickSource={trackEventClickSource}
+              trackEventCtaText={trackEventCtaText}
             />
           ) : (
             <WaitlistForm
               onSubmitSuccess={handleWaitlistSuccess}
+              trackEventClickSource={trackEventClickSource}
+              trackEventCtaText={trackEventCtaText}
             />
           )}
         </div>

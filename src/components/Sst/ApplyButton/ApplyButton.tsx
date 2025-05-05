@@ -9,7 +9,6 @@ import { useLoginModalContext } from '@context/sst/LoginModalContext';
 
 import {
   pageTrackingEvents,
-  pageTrackingSources,
   trackEvent,
 } from '@modules/sst/degree/utils/tracking';
 
@@ -52,7 +51,7 @@ const ApplyButton: React.FC<ApplyButtonProps> = ({
         custom: trackEventCustom,
       });
     }
-    setIsLoginModalOpen(true);
+    setIsLoginModalOpen(true, trackEventSource, 'apply_now');
   };
 
   const onResumeApplicationHandler = () => {

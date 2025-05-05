@@ -3,11 +3,13 @@
 import React, { JSX } from "react";
 import Image from "next/image";
 
+import Section from "@components/common/Section";
 import HorizontalScrollWrapper from "@components/common/HorizontalScroll";
 
-import styles from "./StylesVsDegree.module.scss";
+import { pageTrackingSources } from "@modules/sst/degree/utils/tracking";
 import { HEADER, JOB_POSTINGS } from "./data";
-import Section from "@components/common/Section";
+
+import styles from "./StylesVsDegree.module.scss";
 
 function JobPostingSource(): JSX.Element {
   return <div className={styles.source}>{JOB_POSTINGS.source}</div>;
@@ -28,6 +30,7 @@ export default function SkillsVsDegree() {
             extraComponent={JobPostingSource()}
             slidesToScroll={1}
             slidesToShow={1.4}
+            clickSource={pageTrackingSources.skillsVsDegree}
             scrollControlsClassName={styles.scrollControls}
           >
             {JOB_POSTINGS.jobs.map((item) => {
