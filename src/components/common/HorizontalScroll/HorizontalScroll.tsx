@@ -3,12 +3,16 @@ import { useRef, useEffect, useState, JSX } from "react";
 
 import classNames from "classnames";
 
+import { trackEvent } from "@modules/sst/degree/utils/tracking";
+import { TrackingProps } from "@modules/sst/degree/types";
+
 import ArrowLeft from "@public/images/common/svg/arrow-left-active.svg";
 import ArrowLeftDisabled from "@public/images/common/svg/arrow-left-disable.svg";
 import ArrowRight from "@public/images/common/svg/arrow-right-active.svg";
 import ArrowRightDisabled from "@public/images/common/svg/arrow-right-disable.svg";
 
 import styles from "./HorizontalScroll.module.scss";
+
 
 export default function HorizontalScrollWrapper({
   children,
@@ -18,6 +22,7 @@ export default function HorizontalScrollWrapper({
   scrollContainerClassName,
   scrollControlsClassName,
   extraComponent,
+  clickSource,
 }: {
   children: React.ReactNode;
   slidesToScroll?: number;
@@ -26,6 +31,7 @@ export default function HorizontalScrollWrapper({
   scrollContainerClassName?: string;
   scrollControlsClassName?: string;
   extraComponent?: JSX.Element;
+  clickSource?: string;
 }) {
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -65,6 +71,15 @@ export default function HorizontalScrollWrapper({
     }
   };
 
+  const trackScrollEvent = ({ clickText, custom }: TrackingProps) => {
+    trackEvent.click({
+      clickType: 'horizontal_scroll',
+      clickText,
+      clickSource: clickSource || '',
+      custom,
+    });
+  }
+
   useEffect(() => {
     const scrollContainer = carouselRef.current;
     if (scrollContainer) {
@@ -93,6 +108,7 @@ export default function HorizontalScrollWrapper({
         left: scrollAmount,
         behavior: "smooth",
       });
+      trackScrollEvent({ clickText: 'next_slide'})
     }
     setTimeout(updateScrollButtons, 500);
   };
@@ -107,6 +123,8 @@ export default function HorizontalScrollWrapper({
         left: -scrollAmount,
         behavior: "smooth",
       });
+
+      trackScrollEvent({ clickText: 'prev_slide'})
     }
     setTimeout(updateScrollButtons, 500);
   };

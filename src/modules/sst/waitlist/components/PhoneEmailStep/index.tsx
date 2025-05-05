@@ -22,6 +22,8 @@ interface PhoneEmailStepProps {
   clearErrors: UseFormClearErrors<LoginFormData>;
   handleSubmit: UseFormHandleSubmit<LoginFormData>;
   control: any;
+  trackEventClickSource?: string;
+  trackEventCtaText?: string;
 }
 
 export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
@@ -30,7 +32,9 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
   handleSubmit,
   control,
   setError,
-  clearErrors
+  clearErrors,
+  trackEventClickSource,
+  trackEventCtaText
 }) => {
   const [token, setToken] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -56,7 +60,11 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
       attributes: {
         status: formStatus,
         message: formError? formattedErrors(formError) : 'success',
-        form_id: trackingSources.waitlistLoginMobileForm,
+        form_id: trackingSources.waitlistLoginMobileForm
+      },
+      extraInfo: {
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
       }
     })
   }
@@ -118,6 +126,8 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
       clickSource: trackingSources.waitlistLoginMobileForm,
       custom: {
         ...custom,
+        form_source: trackEventClickSource,
+        cta_text: trackEventCtaText,
       }
     })
   }

@@ -1,8 +1,15 @@
+"use client";
 import React from "react";
 import type { JSX } from "react";
 import classNames from "classnames";
 import { Tabs } from "antd";
 import type { TabsProps } from "antd";
+
+import {
+  pageTrackingEvents,
+  pageTrackingSources,
+  trackEvent
+} from '@modules/sst/degree/utils/tracking';
 
 export type TabData = {
   key: string;
@@ -31,9 +38,17 @@ const TabLayout: React.FC<TabLayoutProps> = ({
     children: tab.content,
   }));
 
+  const handleTabChange = (key: string) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.ctaClicked,
+      clickText: key,
+      clickSource: pageTrackingSources.degreePathways,
+    });
+  };
   return (
     <Tabs
       defaultActiveKey={defaultActiveKey || tabs[0].key}
+      onChange={handleTabChange}
       items={items}
       centered={centered}
       className={classNames(styles.customTab, className)}
