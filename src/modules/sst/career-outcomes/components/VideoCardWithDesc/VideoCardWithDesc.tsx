@@ -60,10 +60,12 @@ export default function VideoCardWithDesc({
             alt={"video-thumbnail"}
           />
         </button>
-      <div className={styles.content}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.desc}>{desc}</div>
-      </div>
+        {title || desc && (
+          <div className={styles.content}>
+            {title && <div className={styles.title}>{title}</div>}
+            {desc && <div className={styles.desc}>{desc}</div>}
+          </div>
+        )}
     </div>
 
     <YoutubeModal
