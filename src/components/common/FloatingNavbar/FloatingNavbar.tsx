@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Affix, Menu } from 'antd';
 import type { MenuProps } from 'antd';
 
+import { useDeviceType } from '@hooks/useDeviceType';
 import {
   trackEvent,
   pageTrackingEvents,
@@ -25,28 +26,8 @@ interface FloatingNavbarProps {
 }
 
 const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: initialActiveSection }) => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
+  const { isMobile, isTablet } = useDeviceType();
   const [activeSection, setActiveSection] = useState(initialActiveSection || '');
-
-  // Handle responsive behavior
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
-    };
-
-    // Initial check
-    handleResize();
-    
-    // Add event listeners
-    window.addEventListener('resize', handleResize);
-    
-    // Clean up
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   // Track the active section based on scroll position
   useEffect(() => {
@@ -85,22 +66,11 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: i
     };
   }, [items, activeSection]);
 
-  // Calculate the offset based on device type
-  const getOffset = () => {
-    if (isMobile) {
-      return 60; // Height of mobile header
-    } else if (isTablet) {
-      return 80; // Height of tablet header
-    } else {
-      return 0; // Bottom position for desktop
-    }
-  };
-
   const scrollToSection = (key: string) => {
     const href = items.find(item => item.key === key)?.href || '';
     const element = document.getElementById(href.replace('#', ''));
     if (element) {
-      const yOffset = -getOffset() - 20; // Additional offset for padding
+      const yOffset = - 20; // Additional offset for padding
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
@@ -146,7 +116,7 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: i
 
   // For mobile and tablet, use Affix at the top
   return (
-    <Affix offsetTop={getOffset()}>
+    <Affix>
       <div className={`${styles.floatingNav} ${styles.top}`}>
         <Menu
           mode="horizontal"
