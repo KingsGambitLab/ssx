@@ -9,7 +9,11 @@ $degree-container-background-color: #fafafa;
 
 
   @include mobile {
-    margin-top: 8rem;
-    padding: 1.6rem 0;
+    margin-top: 10.6rem;
+    padding: 1.6rem 0 2.8rem;
+  }
+
+  @include bp(415px) {
+    margin-top: 12.7rem;
   }
 }

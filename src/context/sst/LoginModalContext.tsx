@@ -45,13 +45,13 @@ export default function LoginModalProvider({
   }, [loginModal.isOpen, showWaitlistModal]);
 
   const getFormType = (currentStep: string) => {
-    if (currentStep !== '') {
-      return currentStep;
-    } else if (showWaitlistModal) {
-      return trackingSources.waitlistForm;
-    }
-    return trackingSources.waitlistLoginMobileForm;
-  }
+    if (currentStep === 'LOGIN') return trackingSources.waitlistLoginMobileForm;
+    if (currentStep === 'OTP') return trackingSources.waitlistLoginOTPForm;
+    if (currentStep) return trackingSources.waitlistForm;
+    return showWaitlistModal
+      ? trackingSources.waitlistForm
+      : trackingSources.waitlistLoginMobileForm;
+  };  
 
   useEffect(() => {
     if (isModalOpen) {
