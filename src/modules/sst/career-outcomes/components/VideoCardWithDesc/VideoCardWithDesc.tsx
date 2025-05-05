@@ -4,12 +4,16 @@ import Image from "next/image";
 import YoutubeModal from "@components/common/YouTubeModal";
 
 import styles from "./VideoCardWithDesc.module.scss";
+import { pageTrackingSources } from "@modules/sst/degree/utils/tracking";
+import { pageTrackingEvents } from "@modules/sst/degree/utils/tracking";
+import { trackEvent } from "@modules/sst/degree/utils/tracking";
 
 type VideoCardWithDescProps = {
   thumbnail: string;
   title: string;
   desc: string;
   videoId: string;
+  trackEventSource: string;
 };
 
 export default function VideoCardWithDesc({
@@ -17,12 +21,29 @@ export default function VideoCardWithDesc({
   title,
   desc,
   videoId,
+  trackEventSource,
 }: VideoCardWithDescProps) {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
-  const handleOpen = () => setIsVideoModalOpen(true);
-  const handleClose = () => setIsVideoModalOpen(false);
-  
+  const trackEventHandler = (clickText: string) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: clickText,
+      clickSource: trackEventSource,
+      custom: {
+        title: title,
+      }
+    })
+  }
+
+  const handleOpen = () => {
+    trackEventHandler(pageTrackingEvents.videoPlayed);
+    setIsVideoModalOpen(true);
+  }
+  const handleClose = () => {
+    trackEventHandler(pageTrackingEvents.videoClosed);
+    setIsVideoModalOpen(false);
+  }
   return (
     <>
       <div className={styles.container}>

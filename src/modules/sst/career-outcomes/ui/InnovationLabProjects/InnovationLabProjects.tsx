@@ -9,6 +9,7 @@ import Section from "@components/common/Section";
 import { useDeviceType } from "@hooks/useDeviceType";
 
 import { HEADER, VIDEO_CARDS } from "./data";
+import { pageTrackingSources } from "@modules/sst/career-outcomes/utils/tracking";
 
 import styles from "./InnovationLabProjects.module.scss";
 
@@ -21,7 +22,7 @@ export default function InnovationLabProjects() {
       <div className={styles.container}>
         <div className={styles.header}>{title}</div>
         <div className={styles.scrollView}>
-          <HorizontalScrollWrapper slidesToShow={isMobile ? 1.5 : 2.5}>
+          <HorizontalScrollWrapper slidesToShow={isMobile ? 1.5 : 2.5} clickSource={pageTrackingSources.innovationLabProjects}>
             {VIDEO_CARDS.map((video) => {
               return (
                 <VideoCardWithDesc
@@ -30,6 +31,7 @@ export default function InnovationLabProjects() {
                   title={video.title}
                   desc={video.desc}
                   videoId={video.videoId}
+                  trackEventSource={pageTrackingSources.innovationLabProjects}
                 />
               );
             })}

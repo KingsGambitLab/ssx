@@ -7,10 +7,12 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 import { HigherStudiesCardProps } from '@modules/sst/career-outcomes/types';
+import { pageTrackingEvents, pageTrackingSources, trackEvent } from '@modules/sst/career-outcomes/utils/tracking';
 
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll';
 
 import styles from './HigherStudiesCard.module.scss';
+
 
 export default function HigherStudiesCard({
   title,
@@ -19,12 +21,29 @@ export default function HigherStudiesCard({
   alt,
   featureList,
 }: HigherStudiesCardProps) {
-  const [isModalOpen, setIsModalOpen] = useState<{isOpen: boolean, imageUrl: string | null}>({isOpen: false, imageUrl: null});
+  const [isModalOpen, setIsModalOpen] = useState<{ isOpen: boolean, imageUrl: string | null }>({ isOpen: false, imageUrl: null });
+  
+  const trackEventHandler = (clickText: string, custom?: object) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: clickText,
+      clickSource: pageTrackingSources.higherStudiesCard,
+      custom: custom,
+    });
+  }
 
   const openModal = (imageUrl: string) => {
+    trackEventHandler(pageTrackingEvents.modalOpened, {
+      text: alt,
+      link: imageUrl
+    });
     setIsModalOpen({isOpen: true, imageUrl});
   };
   const afterCloseModal = () => {
+    trackEventHandler(pageTrackingEvents.modalClosed, {
+      text: alt,
+      link: isModalOpen.imageUrl
+    });
     setIsModalOpen({isOpen: false, imageUrl: null});
   };
 
@@ -51,7 +70,11 @@ export default function HigherStudiesCard({
         </div>
 
         {featureList && featureList?.length > 0  && (
-            <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={1.2}>
+            <HorizontalScrollWrapper
+              slidesToScroll={1}
+              slidesToShow={1.2}
+              clickSource={pageTrackingSources.higherStudiesCard}
+            >
             {featureList.map((item, index) => (
               <div key={index} className={styles.featureListItem}>
                 <Image
