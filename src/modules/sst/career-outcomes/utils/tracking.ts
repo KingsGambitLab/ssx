@@ -14,6 +14,8 @@ export const pageTrackingSources = {
   innovationLabProjects: "innovation_lab_projects",
   studentTestimonials: "student_testimonials",
   sstVsTraditional: "sst_vs_traditional",
+  heroSection: "hero_section",
+  provenTrackRecord: "proven_track_record",
 }
 
 export const pageTrackingEvents = {
@@ -30,7 +32,6 @@ export const pageTrackingEvents = {
   videoClosed: "video_closed",
   downloadBrochure: "download_brochure",
   downloadReport: "download_report",
-
 }
 
 export const trackEvent = {

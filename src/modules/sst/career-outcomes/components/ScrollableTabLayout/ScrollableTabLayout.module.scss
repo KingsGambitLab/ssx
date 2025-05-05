@@ -1,0 +1,89 @@
+.container {
+  @include flex-row;
+
+  height: 70vh;
+  overflow: hidden;
+  gap: 4rem;
+
+  @include tablet {
+    @include flex-col;
+
+    height: 50vh;
+    gap: 2rem;
+  }
+}
+
+.container :global(.hidden) {
+  display: none;
+}
+
+.labelContainer {
+  @include flex-col;
+
+  gap: 1.6rem;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  min-width: 20%;
+  
+  @include tablet {
+    @include flex-row-c;
+    
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.label {
+  @include flex-row-c;
+  @include font-plus-jakarta-sans;
+
+  padding: 2rem;
+  border-radius: 0.8rem;
+  transition: background 0.3s;
+  font-size: 2.4rem;
+  color: #3A3A3A;
+  background: white;
+  font-weight: $bold-font-weight;
+  line-height: 140%;
+  border: 0.1rem solid #e4e4e4;
+  gap: 0.8rem;
+  
+  @include mobile {
+    font-size: 1.4rem;
+    padding: 1.2rem 1.6rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  & > img {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    @include tablet {
+      display: none;
+    }
+  }
+}
+
+.label.active {
+  background-color: #0041ca;
+  color: white;
+  font-weight: $bold-font-weight;
+}
+
+.contentContainer {
+  @include flex-col;
+
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 0;
+  gap: 4rem;
+  scroll-margin-top: 8rem;
+  scrollbar-width: none;
+}

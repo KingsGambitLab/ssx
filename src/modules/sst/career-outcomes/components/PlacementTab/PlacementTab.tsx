@@ -26,7 +26,7 @@ const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
         className={styles.downloadBrochureButton}
         trackEventSource={pageTrackingSources.placementTab}
       />
-    )
+    );
   }
 
   if (cta.type === "PlacementReport") {
@@ -37,7 +37,7 @@ const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
         className={styles.downloadReportButton}
         trackEventSource={pageTrackingSources.placementTab}
       />
-    )
+    );
   }
 
   return (
@@ -62,8 +62,8 @@ const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
     >
       {cta.text}
     </Button>
-  )
-}
+  );
+};
 
 export default function PlacementTab({
   badge,
