@@ -4,6 +4,8 @@ import classnames from "classnames";
 import useUser from "@hooks/useUser";
 import { useLoginModalContext } from "@context/sst/LoginModalContext";
 
+import { pageTrackingEvents, trackEvent } from "@modules/sst/career-outcomes/utils/tracking";
+
 import ArrowUpRightIcon from "@public/images/common/svg/arrow-up-right.svg";
 
 import styles from './DownloadBrochure.module.scss';
@@ -16,6 +18,7 @@ type DownloadBrochureProps = {
   className?: string;
   buttonSize?: "large" | "middle" | "small";
   block?: boolean;
+  trackEventSource?: string;
 };
 
 export default function DownloadBrochure(
@@ -24,18 +27,31 @@ export default function DownloadBrochure(
     brochureLink = BROCHURE_LINK,
     className = "",
     buttonSize = "middle",
-    block = false
+    block = false,
+    trackEventSource = ""
   }: DownloadBrochureProps) {
   
   const { data: userData } = useUser();
   const isLoggedIn = userData?.isloggedIn;
   const { setIsLoginModalOpen } = useLoginModalContext();
 
+  const trackEventHandler = () => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: pageTrackingEvents.downloadBrochure,
+      clickSource: trackEventSource,
+      custom: {
+        link: brochureLink,
+      }
+    })
+  }
+
   const handleDownloadBrochureClick = () => {
+    trackEventHandler();
     if (isLoggedIn && window !== undefined) {
       window.open(brochureLink, "_blank");
     } else {
-      setIsLoginModalOpen(true);
+      setIsLoginModalOpen(true, trackEventSource, "download_brochure");
     }
   };
   

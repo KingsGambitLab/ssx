@@ -9,6 +9,7 @@ import Section from '@/components/common/Section';
 import Image from 'next/image';
 import styles from './StudentTestimonials.module.scss';
 import { testimonialData } from './data';
+import { pageTrackingSources, trackEvent } from '@modules/sst/career-outcomes/utils/tracking';
 
 const { Title } = Typography;
 
@@ -58,13 +59,23 @@ export const StudentTestimonials: React.FC = () => {
     setPlayingVideo(null);
   };
 
+  const trackEventHandler = (clickText: string, clickSource: string, custom?: object) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: clickText,
+      clickSource: clickSource,
+      custom: custom,
+    });
+  } 
   const handlePrev = () => {
     destroyIframe();
+    trackEventHandler("prev_slide", pageTrackingSources.studentTestimonials);
     carouselRef.current?.prev();
   };
 
   const handleNext = () => {
     destroyIframe();
+    trackEventHandler("next_slide", pageTrackingSources.studentTestimonials);
     carouselRef.current?.next();
   };
 
@@ -74,6 +85,10 @@ export const StudentTestimonials: React.FC = () => {
   };
 
   const handleVideoPlay = (id: string, index: number, event: React.MouseEvent<HTMLDivElement>) => {
+    trackEventHandler("video_play", pageTrackingSources.studentTestimonials, {
+      title: testimonialData.find(item => item.id === id)?.alt,
+      link: testimonialData.find(item => item.id === id)?.youtubeUrl,
+    });
     // Only allow playing video if this is the active slide
     if (index === activeSlide) {
       videoContainerRef.current = event.currentTarget;

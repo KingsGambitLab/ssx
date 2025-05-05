@@ -8,11 +8,13 @@ import Section from '@components/common/Section';
 
 import { comparisonData, tableColumns } from './data';
 import { DegreePageLink } from '@modules/sst/career-outcomes/utils/data';
+import { pageTrackingSources, trackEvent } from '@modules/sst/career-outcomes/utils/tracking';
 
 import ArrowUpRight from '@public/images/common/svg/arrow-up-right.svg';
 import CertificateIcon from '@public/images/sst/svg/certificate-icon.svg';
 
 import styles from './SstVsTraditional.module.scss';
+
 
 const SstVsTraditional: React.FC = () => {
   const columns = tableColumns({
@@ -62,6 +64,15 @@ const SstVsTraditional: React.FC = () => {
             iconPosition='end'
             icon={<img src={ArrowUpRight.src} alt='arrow-up-right' />}
             onClick={() => {
+              trackEvent.click({
+                clickType: 'click',
+                clickText: 'Degree Programmes',
+                clickSource: pageTrackingSources.sstVsTraditional,
+                custom: {
+                  link: DegreePageLink,
+                  text: 'Degree Programmes',
+                }
+              });
               window.open(DegreePageLink, '_blank');
             }}
            className={styles.footerButton}

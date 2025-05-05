@@ -4,6 +4,7 @@ import PeopleCard from '@components/Sst/PeopleCard';
 import CarouselWrapper from '@components/common/CarouselWrapper/CarouselWrapper';
 
 import { EntrepreneurshipTeamData } from '../../utils/data';
+import { pageTrackingSources } from '@modules/sst/career-outcomes/utils/tracking';
 
 import styles from './EntrepreneurshipTeam.module.scss';
 
@@ -20,9 +21,13 @@ export default function EntrepreneurshipTeam() {
           </div>
         </div>
         <div className={styles.peoplesWrapper}>
-          <CarouselWrapper slidesToShowInDesktop={3.25} slidesToShowInMobile={1.25}>
+          <CarouselWrapper
+            slidesToShowInDesktop={3.25}
+            slidesToShowInMobile={1.25}
+            trackEventSource={pageTrackingSources.entrepreneurshipTeam}
+          >
             {EntrepreneurshipTeamData.people.map((person, index) => (
-              <PeopleCard 
+              <PeopleCard
                 key={index}
                 image={person?.image?.src} 
                 name={person.name} 

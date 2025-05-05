@@ -5,9 +5,12 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { SuccessStoryCardProps } from "@modules/sst/career-outcomes/types";
+import { pageTrackingEvents, pageTrackingSources, trackEvent } from "@modules/sst/career-outcomes/utils/tracking";
+
 import YoutubeModal from "@components/common/YouTubeModal";
 
 import styles from "./SuccessStoryCard.module.scss";
+
 
 export default function SuccessStoryCard({
   thumbnail,
@@ -21,8 +24,27 @@ export default function SuccessStoryCard({
 }: SuccessStoryCardProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-  const handleOpen = () => setIsVideoOpen(true);
-  const handleClose = () => setIsVideoOpen(false);
+  const trackEventHandler = (clickText: string, clickSource: string, custom?: object) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: clickText,
+      clickSource: clickSource,
+      custom: custom,
+    });
+  }
+
+  const handleOpen = () => {
+    trackEventHandler(pageTrackingEvents.videoPlayed, pageTrackingSources.successStories, {
+      title: title,
+    });
+    setIsVideoOpen(true);
+  }
+  const handleClose = () => {
+    trackEventHandler(pageTrackingEvents.videoClosed, pageTrackingSources.successStories, {
+      title: title,
+    });
+    setIsVideoOpen(false);
+  }
 
   return (
     <>
@@ -62,7 +84,15 @@ export default function SuccessStoryCard({
           type="primary"
           size="large"
           block
-          onClick={() => window.open(link, "_blank")}
+          onClick={() => {
+            trackEventHandler(
+              title,
+              pageTrackingSources.successStories, {
+              cta_text: ctaText,
+              link: link,
+            });
+            window.open(link, "_blank");
+          }}
           className={styles.ctaButton}
         >
           {ctaText}
