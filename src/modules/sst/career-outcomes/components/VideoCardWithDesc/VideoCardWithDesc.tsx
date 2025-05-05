@@ -3,10 +3,9 @@ import Image from "next/image";
 
 import YoutubeModal from "@components/common/YouTubeModal";
 
+import { pageTrackingEvents, trackEvent } from "@modules/sst/career-outcomes/utils/tracking";
+
 import styles from "./VideoCardWithDesc.module.scss";
-import { pageTrackingSources } from "@modules/sst/degree/utils/tracking";
-import { pageTrackingEvents } from "@modules/sst/degree/utils/tracking";
-import { trackEvent } from "@modules/sst/degree/utils/tracking";
 
 type VideoCardWithDescProps = {
   thumbnail: string;

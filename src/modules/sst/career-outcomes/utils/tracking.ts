@@ -14,6 +14,7 @@ export const pageTrackingSources = {
   innovationLabProjects: "innovation_lab_projects",
   studentTestimonials: "student_testimonials",
   sstVsTraditional: "sst_vs_traditional",
+  heroSection: "hero_section",
 }
 
 export const pageTrackingEvents = {
