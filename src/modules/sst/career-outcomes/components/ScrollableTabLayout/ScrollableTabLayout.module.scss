@@ -56,6 +56,10 @@
     padding: 1.2rem 1.6rem;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+
   & > img {
     width: 3.2rem;
     height: 3.2rem;
