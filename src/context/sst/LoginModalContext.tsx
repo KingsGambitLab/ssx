@@ -17,6 +17,8 @@ interface LoginModalContextType {
   setShowWaitlistModal: (value: boolean) => void;
   trackEventSource: string;
   trackEventCtaText: string;
+  currentStep: string;
+  setCurrentStep: (value: string) => void;
 }
 
 const LoginModalContext = createContext<LoginModalContextType | undefined>(
@@ -34,18 +36,28 @@ export default function LoginModalProvider({
     ctaText: string
   }>({ isOpen: false, source: 'waitlist_form', ctaText: '' });
 
+  const [currentStep, setCurrentStep] = useState<string>('');
+
   const { showWaitlistModal, setShowWaitlistModal } = useWaitlistCheck();
 
   const isModalOpen = useMemo(() => {
    return loginModal.isOpen || showWaitlistModal;
   }, [loginModal.isOpen, showWaitlistModal]);
 
+  const getFormType = (currentStep: string) => {
+    if (currentStep !== '') {
+      return currentStep;
+    } else if (showWaitlistModal) {
+      return trackingSources.waitlistForm;
+    }
+    return trackingSources.waitlistLoginMobileForm;
+  }
+
   useEffect(() => {
     if (isModalOpen) {
       trackEvent.click({
         clickType: 'click',
-        clickText: showWaitlistModal ?
-          trackingSources.waitlistForm : trackingSources.waitlistLoginMobileForm,
+        clickText: getFormType(currentStep),
         clickSource: loginModal.source,
         custom: {
           cta_text: loginModal.ctaText,
@@ -73,6 +85,8 @@ export default function LoginModalProvider({
     handleModalClose,
     showWaitlistModal,
     setShowWaitlistModal,
+    currentStep,
+    setCurrentStep,
   };
 
   return (
