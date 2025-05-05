@@ -1,8 +1,15 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import { Typography, Collapse } from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
+
+import {
+  trackEvent,
+  pageTrackingEvents,
+  pageTrackingSources,
+} from '@modules/sst/degree/utils/tracking';
+
 import styles from './Faq.module.scss';
 
 const { Title } = Typography;
@@ -30,8 +37,31 @@ const Faq: React.FC<FaqProps> = ({
   const [activeKey, setActiveKey] = useState<string | string[]>([]);
 
   const handlePanelChange = (key: string | string[]) => {
+    const newKeys = Array.isArray(key) ? key : [key];
+    const prevKeys = Array.isArray(activeKey) ? activeKey : [activeKey];
+  
+    const opened = newKeys.filter(k => !prevKeys.includes(k));
+    const closed = prevKeys.filter(k => !newKeys.includes(k));
+  
+    opened.forEach(k => {
+      trackEvent.click({
+        clickType: pageTrackingEvents.FaqOpened,
+        clickSource: pageTrackingSources.Faq,
+        custom: { question: items[parseInt(k)].question },
+      });
+    });
+  
+    closed.forEach(k => {
+      trackEvent.click({
+        clickType: pageTrackingEvents.FaqClosed,
+        clickSource: pageTrackingSources.Faq,
+        custom: { question: items[parseInt(k)].question },
+      });
+    });
+  
     setActiveKey(key);
   };
+  
 
   // Custom expand icon based on panel state
   const expandIcon = ({ isActive }: { isActive?: boolean }) => {

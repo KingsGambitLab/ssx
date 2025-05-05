@@ -1,12 +1,11 @@
-// External libraries
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// Constants
 import { FOOTER_SECTIONS, SOCIAL_LINKS, APP_DOWNLOAD_LINK } from './constants';
 
-// Default exports (assets)
 import YouTubeIcon from '@public/images/sst/svg//youtube.svg';
 import InstagramIcon from '@public/images/sst/svg//instalogo.svg';
 import LinkedInIcon from '@public/images/sst/svg//linkedin-icon.svg';
@@ -16,7 +15,12 @@ import QuoraIcon from '@public/images/sst/svg//quora.svg';
 import GooglePlayIcon from '@public/images/sst/svg/downloadongoogleplay.svg';
 import SSTLogoLight from '@public/images/sst/svg/sst-logo-light.svg';
 
-// Styles
+import {
+  trackEvent,
+  pageTrackingEvents,
+  pageTrackingSources,
+} from '@modules/sst/degree/utils/tracking';
+
 import styles from './Footer.module.scss';
 
 const Footer: React.FC = () => {
@@ -40,6 +44,17 @@ const Footer: React.FC = () => {
     }
   };
 
+  const trackEventHandler = (text: string, link: string) => {
+    trackEvent.click({
+      clickType: pageTrackingEvents.ctaClicked,
+      clickSource: pageTrackingSources.Footer,
+      custom: { 
+        link: link,
+        text: text,
+       },
+    });
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
@@ -55,7 +70,11 @@ const Footer: React.FC = () => {
           </div>
           
           <div className={styles.playstore}>
-            <Link href={APP_DOWNLOAD_LINK} className={styles.playstore__link}>
+            <Link
+              href={APP_DOWNLOAD_LINK}
+              className={styles.playstore__link}
+              onClick={() => trackEventHandler("Get it on Google Play", APP_DOWNLOAD_LINK)}
+            >
               <Image 
                 src={GooglePlayIcon} 
                 alt="Get it on Google Play" 
@@ -73,7 +92,12 @@ const Footer: React.FC = () => {
             <h3 className={styles['footer-items__heading']}>{FOOTER_SECTIONS[0].title}</h3>
             <div className={styles['footer-items__content']}>
               {FOOTER_SECTIONS[0].links.map((link) => (
-                <Link key={link.text} href={link.href} className={styles['footer-items__link']}>
+                <Link
+                  key={link.text}
+                  href={link.href}
+                  className={styles['footer-items__link']}
+                  onClick={() => trackEventHandler(link.text, link.href)}
+                >
                   {link.text}
                 </Link>
               ))}
@@ -85,7 +109,12 @@ const Footer: React.FC = () => {
             <h3 className={styles['footer-items__heading']}>{FOOTER_SECTIONS[1].title}</h3>
             <div className={styles['footer-items__content']}>
               {FOOTER_SECTIONS[1].links.map((link) => (
-                <Link key={link.text} href={link.href} className={styles['footer-items__link']}>
+                <Link
+                  key={link.text}
+                  href={link.href}
+                  className={styles['footer-items__link']}
+                  onClick={() => trackEventHandler(link.text, link.href)}
+                >
                   {link.text}
                 </Link>
               ))}
@@ -97,7 +126,12 @@ const Footer: React.FC = () => {
             <h3 className={styles['footer-items__heading']}>{FOOTER_SECTIONS[2].title}</h3>
             <div className={styles['footer-items__content']}>
               {FOOTER_SECTIONS[2].links.map((link) => (
-                <Link key={link.text} href={link.href} className={styles['footer-items__link']}>
+                <Link
+                  key={link.text}
+                  href={link.href}
+                  className={styles['footer-items__link']}
+                  onClick={() => trackEventHandler(link.text, link.href)}
+                >
                   {link.text}
                 </Link>
               ))}
@@ -109,7 +143,12 @@ const Footer: React.FC = () => {
             <h3 className={styles['footer-items__heading']}>{FOOTER_SECTIONS[3].title}</h3>
             <div className={styles['footer-items__content']}>
               {FOOTER_SECTIONS[3].links.map((link) => (
-                <Link key={link.text} href={link.href} className={styles['footer-items__link']}>
+                <Link
+                  key={link.text}
+                  href={link.href}
+                  className={styles['footer-items__link']}
+                  onClick={() => trackEventHandler(link.text, link.href)}
+                >
                   {link.text}
                 </Link>
               ))}
@@ -126,6 +165,7 @@ const Footer: React.FC = () => {
                   href={social.href} 
                   aria-label={social.ariaLabel}
                   className={styles['footer-items__link']}
+                  onClick={() => trackEventHandler(social.platform, social.href)}
                 >
                   <Image 
                     src={getSocialIcon(social.platform)} 
@@ -143,7 +183,12 @@ const Footer: React.FC = () => {
             <h3 className={styles['footer-items__heading']}>{FOOTER_SECTIONS[4].title}</h3>
             <div className={styles['footer-items__content']}>
               {FOOTER_SECTIONS[4].links.map((link) => (
-                <Link key={link.text} href={link.href} className={styles['footer-items__link']}>
+                <Link
+                  key={link.text}
+                  href={link.href}
+                  className={styles['footer-items__link']}
+                  onClick={() => trackEventHandler(link.text, link.href)}
+                >
                   {link.text}
                 </Link>
               ))}

@@ -1,7 +1,5 @@
 import { Suspense } from 'react';
 
-import { AlumniProvider } from '@modules/sst/alumni-directory/context/AlumniContext';
-
 import {
   Analytics,
   AnalyticsFallback,
@@ -16,20 +14,18 @@ import { getAllExperiments } from '@utils/abex/experiment';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const experiments = await getAllExperiments();
-  
+
   return (
     <>
       <Suspense key="gtm-script" fallback={<AnalyticsFallback />}>
         <Analytics
           product={PRODUCTS.SCHOOL_OF_TECHNOLOGY}
-          subProduct={SUB_PRODUCTS.ALUMNI_DIRECTORY}
+          subProduct={SUB_PRODUCTS.DEGREE}
           experiments={experiments}
         />
         <MicrosoftClarity />
       </Suspense>
-      <AlumniProvider>
-        {children}
-      </AlumniProvider>
+      {children}
     </>
   );
 }
