@@ -18,6 +18,8 @@ import LeftLine from '@public/images/sst/svg/left-vetor-our-alumini.svg';
 
 import Section from '@components/common/Section';
 
+import { pageTrackingEvents, pageTrackingSources, trackEvent } from '@modules/sst/career-outcomes/utils/tracking';
+
 import styles from './ProvenTrackRecord.module.scss';
 import { useLoginModalContext } from '@context/sst';
 import { useUser } from '@hooks';
@@ -40,11 +42,29 @@ export default function ProvenTrackRecord() {
   const { data: userData } = useUser();
   const isLoggedIn = userData?.isloggedIn;
   const { setIsLoginModalOpen } = useLoginModalContext();
+
+  const trackEventHandler = ({
+    clickType = 'click',
+    clickText,
+    clickSource,
+  }: {
+    clickType?: string;
+    clickText?: string;
+    clickSource?: string;
+  }) => {
+    trackEvent.click({
+      clickType,
+      clickText,
+      clickSource,
+    });
+  };  
+
   const handleDownloadBrochureClick = () => {
+    trackEventHandler({ clickText: pageTrackingEvents.downloadReport, clickSource: pageTrackingSources.provenTrackRecord });
     if (isLoggedIn && window !== undefined) {
       window.open("https://content.interviewbit.com/scaler_career_transition_assesment_report-academy.pdf", "_blank");
     } else {
-      setIsLoginModalOpen(true, "proven_track_record", "download_report");
+      setIsLoginModalOpen(true, pageTrackingSources.provenTrackRecord, pageTrackingEvents.downloadReport);
     }
   };
 

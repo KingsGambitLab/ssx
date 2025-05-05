@@ -31,6 +31,7 @@ export default function VideoCardWithDesc({
       clickSource: trackEventSource,
       custom: {
         title: title,
+        link: `https://www.youtube.com/watch?v=${videoId}`,
       }
     })
   }
