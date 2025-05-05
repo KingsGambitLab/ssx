@@ -19,8 +19,15 @@ const SstVsTraditional: React.FC = () => {
           Tech is evolving faster than ever
         </div>
         <div className={styles.sectionDescription}>
+          From GenAI to full-stack automation, what the industry demands today wasn't even part of most curriculums five years ago. But traditional colleges are bound by rigid policies, outdated syllabi, and slow curriculum change cycles.
+        </div>
+        <div className={styles.mobileOnlyDescription}>
+          <div className={styles.mobileTextFirst}>
           From GenAI to full-stack automation, what the industry demands today wasn't even part of most curriculums five years ago. 
+          </div>
+          <div className={styles.mobileTextSecond}>
           But traditional colleges are bound by rigid policies, outdated syllabi, and slow curriculum change cycles.
+          </div>
         </div>
         <div className={styles.sectionDescriptionSecondary}>
           But we're not bound by traditional degree structures, we do what others can't: teach for the future, not the past.

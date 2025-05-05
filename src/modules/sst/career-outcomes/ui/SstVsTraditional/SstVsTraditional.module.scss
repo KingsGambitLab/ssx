@@ -1,6 +1,7 @@
 // Color variables
 $light-black: #171717;
 $text-secondary: #3a3a3a;
+$text-tertiary: #616161;
 $light-gray: #e4e4e4;
 $hover-bg: rgba(0, 0, 0, 0.02);
 $blue-gradient-start: #0080ff;
@@ -20,7 +21,7 @@ $border-color: #e4e4e4;
 
     @include mobile {
       flex-direction: column;
-      gap: 2rem;
+      gap: 1rem;
     }
 
     .sectionTitle {
@@ -32,6 +33,7 @@ $border-color: #e4e4e4;
         text-align: center;
         width: 100%;
         font-size: $mobile-font-header !important;
+        margin-bottom: 1rem;
       }
     }
     
@@ -41,9 +43,27 @@ $border-color: #e4e4e4;
       width: 50%;
 
       @include mobile {
-        text-align: center;
+        display: none;
+      }
+    }
+    
+    .mobileOnlyDescription {
+      display: none;
+      
+      @include mobile {
+        display: block;
         width: 100%;
-        font-size: $mobile-font-card-subtitle !important;
+      }
+      
+      .mobileTextFirst, .mobileTextSecond {
+        text-align: center;
+        font-size: 12px !important;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 400;
+        line-height: 16.8px;
+        word-wrap: break-word;
+        color: $text-secondary;
+        margin-bottom: 0.5rem;
       }
     }
 
@@ -52,10 +72,15 @@ $border-color: #e4e4e4;
 
       @include mobile {
         display: block;
-        font-size: $desktop-font-body;
         text-align: center;
         width: 100%;
-        font-size: $mobile-font-card-subtitle !important;
+        font-size: 12px !important;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 400;
+        line-height: 16.8px;
+        word-wrap: break-word;
+        color: $text-secondary;
+        margin-top: 0.5rem;
       }
     }
   }
@@ -80,9 +105,11 @@ $border-color: #e4e4e4;
 
       .parameterColumn {
         background-color: $light-gray;
-        font-weight: $medium-font-weight;
-        font-size: $desktop-font-body;
-        color: $light-black;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: $text-tertiary;
+        word-wrap: break-word;
 
         @include mobile {
           font-size: $mobile-font-card-subtitle !important;
@@ -91,9 +118,11 @@ $border-color: #e4e4e4;
     
       .sstColumn {
         background: linear-gradient(151deg, $blue-gradient-start 23%, $blue-gradient-end 100%);
-        font-weight: $semi-bold-font-weight;
-        font-size: 2.8rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
         color: $white-color;
+        word-wrap: break-word;
 
         @include mobile {
           font-size: $mobile-font-body-secondary !important;
@@ -102,8 +131,11 @@ $border-color: #e4e4e4;
       
       .traditionalColumn {
         background-color: $light-gray;
-        font-weight: $bold-font-weight;
-        font-size: $desktop-font-subtitle;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: $light-black;
+        word-wrap: break-word;
 
         @include mobile {
           font-size: $mobile-font-card-subtitle !important;
@@ -125,12 +157,42 @@ $border-color: #e4e4e4;
           padding: 0.8rem;
         }
       }
+      
+      .parameterColumn {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: $text-secondary;
+        word-wrap: break-word;
+        
+        @include mobile {
+          font-size: 1rem;
+        }
+      }
     
       .sstColumn {
         background-color: $light-blue;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: $light-black;
+        word-wrap: break-word;
 
         @include mobile {
           background-color: $white-color;
+          font-size: 1rem;
+        }
+      }
+
+      .traditionalColumn {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: $text-secondary;
+        word-wrap: break-word;
+
+        @include mobile {
+          font-size: 1rem;
         }
       }
     }
