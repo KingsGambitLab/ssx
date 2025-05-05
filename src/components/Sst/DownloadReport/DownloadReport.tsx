@@ -4,15 +4,15 @@ import classnames from "classnames";
 import useUser from "@hooks/useUser";
 import { useLoginModalContext } from "@context/sst/LoginModalContext";
 
-import { pageTrackingEvents, trackEvent } from "@modules/sst/career-outcomes/utils/tracking";
+import { trackEvent, pageTrackingEvents } from "@modules/sst/career-outcomes/utils/tracking";
 
 import ArrowUpRightIcon from "@public/images/common/svg/arrow-up-right.svg";
 
-import styles from './DownloadBrochure.module.scss';
+import styles from './DownloadReport.module.scss';
 
-const BROCHURE_LINK = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123";
+const REPORT_LINK = "https://content.interviewbit.com/scaler_career_transition_assesment_report-academy.pdf";
 
-type DownloadBrochureProps = {
+type DownloadReportProps = {
   text?: string;
   brochureLink?: string;
   className?: string;
@@ -21,15 +21,15 @@ type DownloadBrochureProps = {
   trackEventSource?: string;
 };
 
-export default function DownloadBrochure(
+export default function DownloadReport(
   {
-    text = "Download Brochure",
-    brochureLink = BROCHURE_LINK,
+    text = "Download Report",
+    brochureLink = REPORT_LINK,
     className = "",
     buttonSize = "middle",
     block = false,
     trackEventSource = ""
-  }: DownloadBrochureProps) {
+  }: DownloadReportProps) {
   
   const { data: userData } = useUser();
   const isLoggedIn = userData?.isloggedIn;
@@ -46,12 +46,12 @@ export default function DownloadBrochure(
     })
   }
 
-  const handleDownloadBrochureClick = () => {
+  const handleDownloadReportClick = () => {
     trackEventHandler();
     if (isLoggedIn && window !== undefined) {
       window.open(brochureLink, "_blank");
     } else {
-      setIsLoginModalOpen(true, trackEventSource, "download_brochure");
+      setIsLoginModalOpen(true, trackEventSource, "download_report");
     }
   };
   
@@ -59,11 +59,11 @@ export default function DownloadBrochure(
     <Button
       type="primary"
       size={buttonSize}
-      className={classnames(styles.downloadBrochureButton, className)}
+      className={classnames(styles.downloadReportButton, className)}
       block={block}
       iconPosition="end"
       icon={<img src={ArrowUpRightIcon.src} alt="arrow-up-right" />}
-      onClick={handleDownloadBrochureClick}
+      onClick={handleDownloadReportClick}
     >
       {text}
     </Button>

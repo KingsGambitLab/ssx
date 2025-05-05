@@ -7,7 +7,7 @@ import VideoCard from "@modules/sst/career-outcomes/components/VideoCard";
 import styles from "./Entrepreneurship.module.scss";
 
 export default function Entrepreneurship() {
-  const { thumbnail, content, footer } = VIDEO_CARD;
+  const { thumbnail, content, footer, videoId } = VIDEO_CARD;
 
   return (
     <Section>
@@ -21,7 +21,7 @@ export default function Entrepreneurship() {
           })}
         </div>
         <div className={styles.videoCardContainer}>
-          <VideoCard thumbnail={thumbnail} content={content} footer={footer} />
+          <VideoCard thumbnail={thumbnail} content={content} footer={footer} videoId={videoId} />
         </div>
       </div>
     </Section>

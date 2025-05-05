@@ -1,3 +1,5 @@
+import { BASE_URL } from '@utils/common/url';
+
 import BurstBgImage from '@public/images/common/webp/burst-bg.webp';
 import OpenBookIcon from '@public/images/sst/svg/career_outcomes/higher_studies/book-open.svg';
 import GlobeIcon from '@public/images/sst/svg/career_outcomes/higher_studies/globe.svg';
@@ -296,6 +298,7 @@ export const GuestSpeakersData = {
   subTitle_mobile: "We invited leading educators to SST",
   guestSpeakers: [
     {
+      title: "Building the Future in Tech - Advice from India's Biggest VC Rajan Anandan",
       thumbnail: RajanAnandan,
       videoLink: "M7H1SHc1f2Q",
       desc: (
@@ -303,6 +306,7 @@ export const GuestSpeakersData = {
       )
     },
     {
+      title: "Advice for CSE & AI Aspirants from Real-Life Jeetu Bhaiya - Nitin Vijay Sir(Founder of Motion)",
       thumbnail: NitinVijay,
       videoLink: "TYCT_34lQWI",
       desc: (
@@ -310,6 +314,7 @@ export const GuestSpeakersData = {
       )
     },
     {
+      title: "JioHotstar Secrets Revealed For IPL Live Streaming",
       thumbnail: JioHotstar,
       videoLink: "XLHqG3KzJ7Y",
       desc: (
@@ -317,6 +322,7 @@ export const GuestSpeakersData = {
       )
     },
     {
+      title: "How This Man From Chennai Made a 1.5 Billion Dollar Company?",
       thumbnail: BillionDollar,
       videoLink: "27BikkECTd4",
       desc: (
@@ -324,6 +330,7 @@ export const GuestSpeakersData = {
       )
     },
     {
+      title: "How 10x Engineers Think & Code ft. Founder of Udaan",
       thumbnail: FounderUdaan,
       videoLink: "340HnbTZHEw?",
       desc: (
@@ -331,6 +338,7 @@ export const GuestSpeakersData = {
       )
     },
     {
+      title: "Supermentor on SST's vision | Jacob Singh, CTO, Alpha Wave Global",
       thumbnail: JacobSingh,
       videoLink: "CZT-i7SL1s4",
       desc: (
@@ -380,3 +388,5 @@ export const SuccessStoriesData = [
     ctaText: "View the full Story"
   }
 ]
+
+export const DegreePageLink = `${BASE_URL}/school-of-technology/degree`;

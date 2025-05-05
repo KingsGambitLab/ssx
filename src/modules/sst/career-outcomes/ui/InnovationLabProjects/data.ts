@@ -10,6 +10,7 @@ type VideoCard = {
   thumbnail: string;
   title: string;
   desc: string;
+  videoId: string;
 }
 
 export const HEADER = {
@@ -20,35 +21,41 @@ export const VIDEO_CARDS: VideoCard[] = [
   {
     id: 0,
     thumbnail: Bhashini.src,
+    videoId: "S2A7nck_aU8",
     title: "INDIA's BHASHINI PROJECT",
     desc: "Hear our first-year students discuss developing an app for India's Bhashini Project.",
   },
   {
     id: 1,
+    videoId: "ZI7Ws5ZCxSs",
     thumbnail: Robodog.src,
     title: "Meet RoboDog from SST Innovation Lab",
     desc: "Where our students training it for actions like dancing, playing football, and opening doors.",
   },
   {
     id: 2,
+    videoId: "8oL6iPmY8q4",
     thumbnail: Drone.src,
     title: "AUTONOMOUS DRONE TO DETECT FIRE",
     desc: "Watch our students build an 'Autonomous Drone' to detect and fight fires on the go!",
   },
   {
     id: 3,
+    videoId: "VnDlxSXf_pI",
     thumbnail: VisionPro.src,
     title: "APP BUILT FOR VISION PRO",
     desc: "An app that helps you realistically envision your home decor and make the perfect design choices",
   },
   {
     id: 4,
+    videoId: "0BTQKLqW6vE",
     thumbnail: AiGlasses.src,
     title: "AI Glasses for the Blind!",
     desc: "A device that can recognise the object in front of you, tells distance, its texture and much more.",
   },
   {
     id: 5,
+    videoId: "TpYSEgmhAKk",
     thumbnail: Ayaan.src,
     title: "HAND GESTURE CONTROLLER",
     desc: "SST student developed a PC racing game controlled by hand gestures, Featured on India Today.",

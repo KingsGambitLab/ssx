@@ -15,9 +15,10 @@ import ProvenTrackRecord from "@modules/sst/career-outcomes/ui/ProvenTrackRecord
 import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
 import Placement from "@modules/sst/career-outcomes/ui/Placement/Placement";
 import InnovationLabProjects from "@modules/sst/career-outcomes/ui/InnovationLabProjects";
-import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers/GuestSpeakers";
-import SuccessStories from "@modules/sst/career-outcomes/components/SuccessStories";
+import GuestSpeakers from "@modules/sst/career-outcomes/ui/GuestSpeakers";
+import SuccessStories from "@modules/sst/career-outcomes/ui/SuccessStories";
 import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
+import StudentTestimonials from '@/modules/sst/career-outcomes/ui/StudentTestimonials/StudentTestimonials';
 
 export default function Page() {
   const navItems = [
@@ -45,6 +46,7 @@ export default function Page() {
       <HigherStudies />
       <SuccessStories />
       <EducationTeam />
+      <StudentTestimonials />
       <GuestSpeakers />
       <SstVsTraditional />
       <ApplyCtaBanner />

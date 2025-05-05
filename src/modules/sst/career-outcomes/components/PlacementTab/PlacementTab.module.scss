@@ -116,21 +116,42 @@
 
 .cta {
   @include flex-row-c;
-  @include font-plus-jakarta-sans;
 
-  width: 100%;
-  background: #0041CA;
-  color: white;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: $medium-font-weight;
-  height: 5.4rem;
-  padding: 1.2rem 5.4rem;
-  box-sizing: border-box;
-  border-radius: 0.4rem;
+  height: auto !important;
+  width: 100% !important;
+  padding: 1.2rem 5.4rem !important;
+  flex-shrink: 0 !important;
+  border-radius: $border-radius-default !important;
+  background: $primary-color !important;
 
-  @include tablet {
-    padding: 1.2rem 2.4rem;
-    font-size: 1.6rem;
+  &:hover {
+    background: $primary-color-hover !important;
   }
+
+  & > span {
+    color: $white-color !important;
+    text-align: center !important;
+    font-size: $desktop-font-body !important;
+    font-weight: $medium-font-weight !important;
+    line-height: 2.8rem !important;
+
+    @include mobile {
+      line-height: 1.68rem !important;
+      font-size: $mobile-font-title !important;
+    }
+  }
+
+  @include mobile {
+    padding: 1.2rem 2.4rem !important;
+  }
+
+
+  :global(.ant-btn-icon) {
+    @include flex-row-c;
+  }
+}
+
+.downloadBrochureButton,
+.downloadReportButton {
+  width: 100% !important;
 }

@@ -119,7 +119,7 @@ export const ThreeYearsData: ThreeYearsData = {
     <ul>
       <li>
         Unlock stellar placement opportunities and higher studies options with a
-        dual degree.
+        UGC recognized degree.
       </li>
       <li>Earn Certification in CS & AI from Scaler School of Technology.</li>
     </ul>

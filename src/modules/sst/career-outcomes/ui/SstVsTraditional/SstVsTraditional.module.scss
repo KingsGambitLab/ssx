@@ -8,16 +8,18 @@ $blue-gradient-start: #0080ff;
 $blue-gradient-end: #083ca0;
 $light-blue: #e6f7ff;
 $border-color: #e4e4e4;
+$sst-vs-traditional-footer-text-title: #171717;
+$sst-vs-traditional-footer-font-size: 2.8rem;
 
 .sstVsTraditionalSection {
   margin: 4rem 0;
   
   .headerContainer {
     @include flex-row;
+
     justify-content: space-between;
     align-items: center;
     gap: 4rem;
-    margin-bottom: 5.6rem;
 
     @include mobile {
       flex-direction: column;
@@ -202,6 +204,77 @@ $border-color: #e4e4e4;
     &:hover {
       background-color: $hover-bg;
     }
+  }
+}
+
+.container {
+  @include flex-col-c;
+
+  gap: 5.4rem;
+}
+
+.footer {
+  @include flex-row;
+
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  @include mobile {
+    @include flex-col-c;
+
+    gap: 2rem;
+  }
+}
+
+.footerText {
+  @include flex-row-y-c;
+
+  gap: 2.4rem;
+
+  @include mobile {
+    gap: 1.6rem;
+  }
+}
+
+.footerTextTitle {
+  color: $sst-vs-traditional-footer-text-title;
+  text-align: center;
+  font-size: $sst-vs-traditional-footer-font-size;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: $desktop-font-body;
+    line-height: 2.8rem;
+  }
+}
+
+.footerButton {
+  @include flex-row-c;
+
+  height: auto !important;
+  padding: 1.2rem 5.4rem !important;
+  border-radius: $border-radius-default !important;
+  background: $primary-color !important;
+
+  color: $white-color !important;
+  font-size: $desktop-font-body !important;
+  font-weight: $medium-font-weight !important;
+  line-height: 2.8rem !important;
+
+  @include mobile {
+    width: 100%;
+    font-size: $mobile-font-body !important;
+  }
+}
+
+.certificateIcon {
+  height: 8rem;
+  width: 8rem;
+
+  @include mobile {
+    height: 5.6rem;
+    width: 5.6rem;
   }
 }
 

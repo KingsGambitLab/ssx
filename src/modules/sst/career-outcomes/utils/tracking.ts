@@ -1,18 +1,8 @@
 import tracker from '@lib/tracking';
 
-import { TrackingProps } from '@modules/sst/degree/types';
+import { TrackingProps } from '@modules/sst/career-outcomes/types';
 
 export const pageTrackingSources = {
-  sstVsTraditionalCard: "sst_vs_traditional_card",
-  keyFeatureCard: "key_feature_card",
-  keyFeatures: "key_features",
-  applyCtaBanner: "apply_cta_banner",
-  Faq: "faq",
-  Footer: "footer",
-  FloatingNavbar: "floating_navbar",
-  DegreeHero: "degree_hero",
-  degreePathways: "degree_pathways",
-  skillsVsDegree: "skills_vs_degree",
   placementTab: "placement_tab",
   Entrepreneurship: "Entrepreneurship",
   successStories: "success_stories",
@@ -20,12 +10,17 @@ export const pageTrackingSources = {
   entrepreneurshipTeam: "entrepreneurship_team",
   guestSpeakers: "guest_speakers",
   startups: "startups",
+  higherStudiesCard: "higher_studies_card",
+  innovationLabProjects: "innovation_lab_projects",
+  studentTestimonials: "student_testimonials",
+  sstVsTraditional: "sst_vs_traditional",
+  heroSection: "hero_section",
+  provenTrackRecord: "proven_track_record",
 }
 
 export const pageTrackingEvents = {
   modalOpened: "modal_opened",
   modalClosed: "modal_closed",
-  explorePlacementButtonClicked: "explore_placement_button_clicked",
   ctaClicked: "cta_clicked",
   applyNowClicked: "apply_now_button_clicked",
   resumeApplicationClicked: "resume_application_button_clicked",
@@ -35,6 +30,8 @@ export const pageTrackingEvents = {
   ReadAllFaqs: "read_all_faqs",
   videoPlayed: "video_played",
   videoClosed: "video_closed",
+  downloadBrochure: "download_brochure",
+  downloadReport: "download_report",
 }
 
 export const trackEvent = {

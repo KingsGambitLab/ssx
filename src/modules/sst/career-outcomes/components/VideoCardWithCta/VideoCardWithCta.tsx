@@ -1,3 +1,4 @@
+import Button from "antd/es/button";
 import React from "react";
 import Image from "next/image";
 
@@ -8,6 +9,7 @@ type VideoCardWitchCtaProps = {
   title: string;
   desc: string;
   ctaText: string;
+  link?: string;
 };
 
 export default function VideoCardWithCta({
@@ -15,6 +17,7 @@ export default function VideoCardWithCta({
   title,
   desc,
   ctaText,
+  link,
 }: VideoCardWitchCtaProps) {
   return (
     <div className={styles.container}>
@@ -29,8 +32,16 @@ export default function VideoCardWithCta({
         <div className={styles.title}>{title}</div>
         <div className={styles.desc}>{desc}</div>
       </div>
-      <div className={styles.ctaContainer}>
-        <div className={styles.cta}>{ctaText}</div>
+      
+      <div className={styles.ctaContainer}>    
+        <Button
+          type="primary"
+          onClick={() => window.open(link, "_blank")}
+          className={styles.ctaButton}
+          block
+        >
+          {ctaText}
+        </Button>
       </div>
     </div>
   );
