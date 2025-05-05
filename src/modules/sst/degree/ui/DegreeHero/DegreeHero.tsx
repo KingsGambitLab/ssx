@@ -60,7 +60,16 @@ const DegreeHero = () => {
             {isInView ? (
               <div className={styles.videoContainer}>
                 {!isVideoLoaded && (
-                  <div className={styles.thumbnailContainer} onClick={() => setIsVideoLoaded(true)}>
+                  <div className={styles.thumbnailContainer} onClick={() => {
+                    trackEvent.click({
+                      clickType: pageTrackingEvents.videoPlayed,
+                      clickSource: pageTrackingSources.DegreeHero,
+                      custom: {
+                        videoLink: "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
+                      },
+                    });
+                    setIsVideoLoaded(true)
+                  }}>
                     <Image
                       src={DegreeHeroImage}
                       alt="Students using VR technology"
@@ -68,16 +77,7 @@ const DegreeHero = () => {
                       height={306}
                       className={styles.image}
                     />
-                    <div className={styles.playButton} onClick={() => {
-                      setIsVideoLoaded(true);
-                      trackEvent.click({
-                        clickType: pageTrackingEvents.videoPlayed,
-                        clickSource: pageTrackingSources.DegreeHero,
-                        custom: {
-                          videoLink: "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
-                        },
-                      });
-                    }}>
+                    <div className={styles.playButton} onClick={() => setIsVideoLoaded(true) }>
                       <span className={styles.playIcon}></span>
                     </div>
                   </div>
