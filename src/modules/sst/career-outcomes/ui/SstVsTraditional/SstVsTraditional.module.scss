@@ -100,6 +100,10 @@ $sst-vs-traditional-footer-font-size: 2.8rem;
         padding: 2.2rem 1.2rem;
         text-align: center;
 
+        ::before {
+          position: static !important;
+        }
+
         @include mobile {
           padding: 1.1rem 0.6rem;
         }
@@ -214,11 +218,10 @@ $sst-vs-traditional-footer-font-size: 2.8rem;
 }
 
 .footer {
-  @include flex-row;
+  @include flex-row-y-c;
 
   width: 100%;
   justify-content: space-between;
-  align-items: center;
 
   @include mobile {
     @include flex-col-c;
@@ -233,6 +236,7 @@ $sst-vs-traditional-footer-font-size: 2.8rem;
   gap: 2.4rem;
 
   @include mobile {
+    align-items: flex-start;
     gap: 1.6rem;
   }
 }
