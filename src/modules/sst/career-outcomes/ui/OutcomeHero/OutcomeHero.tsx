@@ -40,7 +40,7 @@ const DegreeHero = () => {
   }, []);
 
   return (
-    <Section section_class="outcome-hero" id="outcome-hero">
+    <Section section_class={styles.section} id="outcome-hero">
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
@@ -55,7 +55,7 @@ const DegreeHero = () => {
             {isInView ? (
               <div className={styles.videoContainer}>
                 {!isVideoLoaded && (
-                  <div className={styles.thumbnailContainer}>
+                  <div className={styles.thumbnailContainer} onClick={() => setIsVideoLoaded(true)}>
                     <Image
                       src={DegreeHeroImage}
                       alt="Students using VR technology"

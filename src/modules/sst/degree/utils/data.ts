@@ -21,6 +21,7 @@ import GateEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs
 import GraduateEducationArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-education.webp';
 import DegreeEquivalenceArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/degree-equivalence.webp';
 import GraduateProgramEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-program-eligibility.webp';
+import StanfordArticleImage from '@public/images/sst/webp/stanford.webp';
 
 export const sstVsTraditionalData = [
   {
@@ -80,7 +81,7 @@ export const sstVsTraditionalData = [
       },
       {
         heading: "<b>Students at SST have the option to explore independent degree programs</b>",
-        subHeading: "that align with their academic and career goals while gaining hands-on, modern CS training at SST."
+        subHeading: "that align with their academic and career goals while gaining hands-on education at SST."
       }
     ],
     articles: [
@@ -142,6 +143,10 @@ export const keyFeaturesData = {
       title: "Accepted by Global Universities",
       desc: "Meets eligibility criteria to apply for further studies programs abroad, including MS, MBA, and PhD.",
       featureList: [
+        {
+          image: StanfordArticleImage.src,
+          alt: "Stanford Education Article"
+        },
         {
           image: GraduateEducationArticleImage.src,
           alt: "Graduate Education Article"
