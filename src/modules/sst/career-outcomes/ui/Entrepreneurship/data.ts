@@ -27,7 +27,7 @@ export const STATS : Stats[] = [
   {
     id: 2,
     title: "3",
-    desc: "Industry-sponsored Projects. Innovation Lab",
+    desc: "Industry-sponsored Projects from Innovation Lab",
   },
   {
     id: 3,
