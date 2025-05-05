@@ -1,9 +1,16 @@
+import { JSX } from "react";
 import Image from "next/image";
 
 import { TabData } from "@components/common/TabLayout/TabLayout";
 import PlacementTab from "@modules/sst/career-outcomes/components/PlacementTab";
 
 import ArrowRightUp from "@public/images/common/svg/arrow-up-right.svg";
+import UserActive from "@public/images/common/svg/user-white.svg";
+import UserInactive from "@public/images/common/svg/user-grey.svg";
+import HandshakeActive from "@public/images/sst/svg/career_outcomes/placement/handshake-white.svg";
+import HandshakeInactive from "@public/images/sst/svg/career_outcomes/placement/handshake-grey.svg";
+import StarActive from "@public/images/sst/svg/career_outcomes/placement/shooting-star-white.svg";
+import StarInactive from "@public/images/sst/svg/career_outcomes/placement/shooting-star-grey.svg";
 
 import CharanjeetImage from "@public/images/sst/webp/success_stories/charanjeet.webp";
 import OmImage from "@public/images/sst/webp/success_stories/om.webp";
@@ -34,11 +41,12 @@ import Microsoft from "@public/images/sst/webp/job-listings/microsoft.webp";
 import MasterCard from "@public/images/sst/webp/job-listings/mastercard.webp";
 import Oracle from "@public/images/sst/webp/job-listings/oracle.webp";
 import Viacom from "@public/images/sst/webp/job-listings/viacom.webp";
+import Link from "next/link";
 
 type PointData = {
   id: number;
   title: string;
-  desc: string;
+  desc: string | JSX.Element;
 };
 
 type VideoCard = {
@@ -66,6 +74,10 @@ type Header = {
   title: string;
   subtitle: string;
 };
+
+const IIT_DEGREE_LINK = "https://study.iitm.ac.in/ds/academics.html";
+const BITS_DEGREE_LINK =
+  "https://www.coursera.org/degrees/bachelor-of-science-computer-science-bits";
 
 export const HEADER: Header = {
   title: "Placement = Profile + Access + Eligibility",
@@ -239,7 +251,14 @@ export const ELIGIBILITY_SECTION_DATA: PlacementTabData = {
     {
       id: 0,
       title: "Bachelor's Degree Recognized by UGC",
-      desc: "Click Here For Degree Preview",
+      desc: (
+        <>
+          Click Here For Degree Preview:
+          <br />
+          <Link href={IIT_DEGREE_LINK}>IIT Madras</Link>{" "}
+          <Link href={BITS_DEGREE_LINK}>BITS Pilani</Link>
+        </>
+      ),
     },
     {
       id: 1,
@@ -288,7 +307,23 @@ export const ELIGIBILITY_SECTION_DATA: PlacementTabData = {
 export const TABS_DATA: TabData[] = [
   {
     key: "profile",
-    label: "Profile",
+    label: (
+      <>
+        <Image
+          height={20}
+          width={20}
+          src={UserInactive.src}
+          alt="user-inactive"
+        />
+        Profile
+      </>
+    ),
+    labelActive: (
+      <>
+        <Image height={20} width={20} src={UserActive.src} alt="user-active" />
+        Profile
+      </>
+    ),
     content: (
       <PlacementTab
         badge={PROFILE_SECTION_DATA.badge}
@@ -301,7 +336,28 @@ export const TABS_DATA: TabData[] = [
   },
   {
     key: "access",
-    label: "Access",
+    label: (
+      <>
+        <Image
+          height={20}
+          width={20}
+          src={HandshakeInactive.src}
+          alt="user-inactive"
+        />
+        Access
+      </>
+    ),
+    labelActive: (
+      <>
+        <Image
+          height={20}
+          width={20}
+          src={HandshakeActive.src}
+          alt="user-active"
+        />
+        Access
+      </>
+    ),
     content: (
       <PlacementTab
         badge={ACCESS_SECTION_DATA.badge}
@@ -315,7 +371,23 @@ export const TABS_DATA: TabData[] = [
   },
   {
     key: "eligibility",
-    label: "Eligibility",
+    label: (
+      <>
+        <Image
+          height={20}
+          width={20}
+          src={StarInactive.src}
+          alt="user-inactive"
+        />
+        Eligibility
+      </>
+    ),
+    labelActive: (
+      <>
+        <Image height={20} width={20} src={StarActive.src} alt="user-active" />
+        Eligibility
+      </>
+    ),
     content: (
       <PlacementTab
         badge={ELIGIBILITY_SECTION_DATA.badge}
