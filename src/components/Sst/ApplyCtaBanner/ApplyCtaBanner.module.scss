@@ -1,12 +1,13 @@
 .applyCtaBanner {
   padding: 5.4rem 0 4.8rem !important;
   position: relative;
-  margin-top: 12rem;
+  margin-top: 5.4rem;
   
   @include font-plus-jakarta-sans;
 
   @include mobile {
     padding-bottom: 0 !important;
+    margin-top: 10.8rem;
   }
 }
 
