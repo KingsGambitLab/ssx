@@ -143,13 +143,13 @@
   @include mobile {
     padding: 0.8rem 0;
   }
-} 
+}
 
-.applyButton {
+.applyCtaButton {
   font-size: $desktop-font-body !important;
   border-radius: 0.4rem !important;
   font-weight: $bold-font-weight !important;
-  padding: 1.6rem 6rem !important;
+  padding: 3rem 6rem !important;
   font-family: 'Plus Jakarta Sans' !important;
 
   @include mobile {
