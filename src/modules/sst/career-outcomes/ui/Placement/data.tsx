@@ -89,12 +89,12 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
     {
       id: 0,
       title: "1 Year of Real-World, Industry Immersion in 4 years at SST",
-      desc: "(most colleges offer 2-3 months of summer internships at best)"
+      desc: "(most colleges offer 2-3 months of summer internships at best)",
     },
     {
       id: 1,
       title: "50+ Hands-on Projects: Build an E-Comm, IPL Prediction App",
-      desc: "(most colleges have theory-heavy courses with only 1 final year project)"
+      desc: "(most colleges have theory-heavy courses with only 1 final year project)",
     },
     {
       id: 2,
@@ -109,7 +109,7 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
       title: "Read Charanjeet's Story",
       desc: "From 'Not So Good' at CS to Cracking an Internship at Swiggy",
       ctaText: "Read full story on LinkedIn",
-      link: "https://www.linkedin.com/posts/scaler-school-of-technology_from-not-so-good-at-dsa-to-cracking-an-activity-7271518472801558528-BpJt/"
+      link: "https://www.linkedin.com/posts/scaler-school-of-technology_from-not-so-good-at-dsa-to-cracking-an-activity-7271518472801558528-BpJt/",
     },
     {
       id: 1,
@@ -117,7 +117,7 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
       title: "Read Om's Story",
       desc: "Co-founding 'Build-My-Notes' and cracking 2 Internships - all in 2nd year",
       ctaText: "Read full story on LinkedIn",
-      link: "https://www.linkedin.com/feed/update/urn:li:activity:7295011234104426496/"
+      link: "https://www.linkedin.com/feed/update/urn:li:activity:7295011234104426496/",
     },
     {
       id: 2,
@@ -125,7 +125,7 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
       title: "Read Shreshtha's Story",
       desc: "Went from having self doubt to cracking a paid intern in just 1.5 years.",
       ctaText: "Read full story on LinkedIn",
-      link: "https://www.linkedin.com/posts/scaler-school-of-technology_%F0%9D%97%A6%F0%9D%97%B5%F0%9D%97%B2-%F0%9D%97%AF%F0%9D%97%B2%F0%9D%97%B0%F0%9D%97%AE%F0%9D%97%BA%F0%9D%97%B2-%F0%9D%98%81%F0%9D%97%B5%F0%9D%97%B2-%F0%9D%97%B3%F0%9D%97%B6%F0%9D%97%BF%F0%9D%98%80%F0%9D%98%81-%F0%9D%97%B4%F0%9D%97%B6%F0%9D%97%BF%F0%9D%97%B9-activity-7262411123763621888-isis/"
+      link: "https://www.linkedin.com/posts/scaler-school-of-technology_%F0%9D%97%A6%F0%9D%97%B5%F0%9D%97%B2-%F0%9D%97%AF%F0%9D%97%B2%F0%9D%97%B0%F0%9D%97%AE%F0%9D%97%BA%F0%9D%97%B2-%F0%9D%98%81%F0%9D%97%B5%F0%9D%97%B2-%F0%9D%97%B3%F0%9D%97%B6%F0%9D%97%BF%F0%9D%98%80%F0%9D%98%81-%F0%9D%97%B4%F0%9D%97%B6%F0%9D%97%BF%F0%9D%97%B9-activity-7262411123763621888-isis/",
     },
     {
       id: 3,
@@ -133,7 +133,7 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
       title: "Read Shivansh's Story",
       desc: "Achieving milestones and more in just 2 years.",
       ctaText: "Read full story on LinkedIn",
-      link: "https://www.linkedin.com/posts/scaler-school-of-technology_studentsuccess-icpc-competitiveprogramming-activity-7315960835883872257-6_vj/"
+      link: "https://www.linkedin.com/posts/scaler-school-of-technology_studentsuccess-icpc-competitiveprogramming-activity-7315960835883872257-6_vj/",
     },
     {
       id: 4,
@@ -141,7 +141,7 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
       title: "Read Vishesh's Story",
       desc: "From zero programming knowledge to a dev intern at Rocketium.",
       ctaText: "Read full story on LinkedIn",
-      link: "https://www.linkedin.com/posts/scaler-school-of-technology_from-zero-programming-knowledge-to-cracking-activity-7298216248440496130-wPNi/"
+      link: "https://www.linkedin.com/posts/scaler-school-of-technology_from-zero-programming-knowledge-to-cracking-activity-7298216248440496130-wPNi/",
     },
     {
       id: 5,
@@ -149,12 +149,12 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
       title: "Read Ayaan's Story",
       desc: "Built by second year students - Private, fast, AI-powered photo search",
       ctaText: "Read full story on LinkedIn",
-      link: "https://www.linkedin.com/feed/update/urn:li:activity:7302534874488348672/"
+      link: "https://www.linkedin.com/feed/update/urn:li:activity:7302534874488348672/",
     },
   ],
   cta: {
     text: "Student Directory",
-    link: "/school-of-technology/alum-directory"
+    link: "/school-of-technology/alum-directory",
   },
 };
 
@@ -226,13 +226,14 @@ export const ACCESS_SECTION_DATA: PlacementTabData = {
   cta: {
     type: "DownloadBrochure",
     text: "Download Brochure",
-    brochureLink: "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123",
+    brochureLink:
+      "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123",
     icon: ArrowRightUp.src,
   },
 };
 
 export const ELIGIBILITY_SECTION_DATA: PlacementTabData = {
-  badge: "Profile",
+  badge: "Eligibility",
   title: "How SST Students Stand Out",
   pointers: [
     {
