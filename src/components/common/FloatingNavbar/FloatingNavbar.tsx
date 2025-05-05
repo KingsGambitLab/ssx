@@ -116,7 +116,7 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: i
 
   // For mobile and tablet, use Affix at the top
   return (
-    <Affix>
+    <Affix style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100 }}>
       <div className={`${styles.floatingNav} ${styles.top}`}>
         <Menu
           mode="horizontal"

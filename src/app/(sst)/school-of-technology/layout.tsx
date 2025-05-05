@@ -9,18 +9,22 @@ import LoginModalProvider from "@context/sst/LoginModalContext";
 import BottomNavbar from "@components/Sst/BottomNavbar";
 import Footer from "@components/common/Footer";
 
+import styles from "./layout.module.scss";
+
 export const metadata: Metadata = METADATA.SST;
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <LoginModalProvider>
-      <Header>
-        <Navbar />
-      </Header>
-      <main>{children}</main>
-      <BottomNavbar />
-      <Footer />  
-      <LoginModalWrapper />
-    </LoginModalProvider>
+    <div className={styles.sstContainer}>
+       <LoginModalProvider>
+        <Header>
+          <Navbar />
+        </Header>
+        <main>{children}</main>
+        <BottomNavbar />
+        <Footer />  
+        <LoginModalWrapper />
+      </LoginModalProvider>
+   </div>
   );
 }

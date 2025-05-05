@@ -158,8 +158,8 @@ export default function SstVsTraditionalCard({
         <Image
           src={icon}
           alt={altIcon}
-          width={80}
-          height={80}
+          width={60}
+          height={60}
           className={styles.icon}
         />
 
