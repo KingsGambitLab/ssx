@@ -1,4 +1,5 @@
-$text-primary: #000;
+$internal-link-active-bg: #003366;
+$internal-link-hover-bg: #f2f8ff;
 
 .floatingNav {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.6365) 100%);
@@ -33,7 +34,7 @@ $text-primary: #000;
   
   &.fixed {
     position: fixed;
-    bottom: 5rem;
+    bottom: 4rem;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -56,11 +57,11 @@ $text-primary: #000;
       margin: 0 4px;
       border-radius: 20px;
       transition: all 0.3s ease;
-      color: $text-primary;
       
       &:hover {
         color: $primary-color;
-        background-color: $white-color;
+        background-color: $internal-link-hover-bg !important;
+        border-radius: 3rem;
       }
       
       &::after {
@@ -69,8 +70,8 @@ $text-primary: #000;
       
       &:global(.ant-menu-item-selected) {
         color: $white-color !important;
-        font-weight: $semi-bold-font-weight;
-        background-color: #0245B9 !important;
+        font-weight: $bold-font-weight;
+        background-color: $internal-link-active-bg !important;
         border-radius: 3rem;
 
         @include tablet {
@@ -89,15 +90,7 @@ $text-primary: #000;
     @include mobile {
       white-space: nowrap;
       overflow-x: auto;
-      
-      &::-webkit-scrollbar {
-        height: 3px;
-      }
-      
-      &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 3px;
-      }
+      overflow-y: hidden;
     }
   }
 }
