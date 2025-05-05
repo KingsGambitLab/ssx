@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Affix, Menu } from 'antd';
 import type { MenuProps } from 'antd';
 
@@ -28,6 +28,7 @@ interface FloatingNavbarProps {
 const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: initialActiveSection }) => {
   const { isMobile, isTablet } = useDeviceType();
   const [activeSection, setActiveSection] = useState(initialActiveSection || '');
+  const menuWrapperRef = useRef<HTMLDivElement>(null);
 
   // Track the active section based on scroll position
   useEffect(() => {
@@ -65,6 +66,29 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: i
       window.removeEventListener('scroll', handleScroll);
     };
   }, [items, activeSection]);
+
+  // Scroll active menu item into view when it changes
+  useEffect(() => {
+    if ((isMobile || isTablet) && activeSection && menuWrapperRef.current) {
+      const activeMenuItem = menuWrapperRef.current.querySelector('.ant-menu-item-selected');
+      if (activeMenuItem) {
+        // Calculate the scroll position to center the active item
+        const menuWrapper = menuWrapperRef.current;
+        const menuWrapperWidth = menuWrapper.offsetWidth;
+        const activeItemLeft = (activeMenuItem as HTMLElement).offsetLeft;
+        const activeItemWidth = (activeMenuItem as HTMLElement).offsetWidth;
+        
+        // Center the active item in the menu wrapper
+        const scrollPosition = activeItemLeft - (menuWrapperWidth / 2) + (activeItemWidth / 2);
+        
+        // Smooth scroll to the position
+        menuWrapper.scrollTo({
+          left: scrollPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [activeSection, isMobile, isTablet]);
 
   const scrollToSection = (key: string) => {
     const href = items.find(item => item.key === key)?.href || '';
@@ -118,7 +142,7 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: i
   return (
     <Affix style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100 }}>
       <div className={`${styles.floatingNav} ${styles.top}`}>
-        <div className={styles.menuWrapper}>
+        <div className={styles.menuWrapper} ref={menuWrapperRef}>
           <Menu
             mode="horizontal"
             selectedKeys={activeKey ? [activeKey] : []}
