@@ -128,7 +128,6 @@ $degree-hero-desc-font-color: #3A3A3A;
 
   @include desktop-only {
     @include align-c;
-    padding: 54px 0 108px 0;
 
     .content {
       @include flex-r;
