@@ -20,15 +20,14 @@ $text-primary: #000;
   }
   
   &.top {
-    border-radius: 24px;
     margin-top: 1rem;
     margin-bottom: 1rem;
 
     @include tablet {
       border-radius: 0;
-      top: 3rem;
+      top: 4rem;
       position: absolute;
-      z-index: 99;
+      z-index: 100;
     }
   }
   
