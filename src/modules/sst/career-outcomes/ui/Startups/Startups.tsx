@@ -28,9 +28,9 @@ export default function Startups() {
                 image={startup.image.src}
                 name={startup.name}
                 desc={startup.desc}
-              cta_text={startup.cta_text}
-              link={startup.link}
-            />
+                cta_text={startup.cta_text}
+                link={startup.link}
+               />
             ))}
           </CarouselWrapper>
         </div>
