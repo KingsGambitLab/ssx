@@ -118,13 +118,15 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: i
   return (
     <Affix style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100 }}>
       <div className={`${styles.floatingNav} ${styles.top}`}>
-        <Menu
-          mode="horizontal"
-          selectedKeys={activeKey ? [activeKey] : []}
-          onClick={onClick}
-          items={menuItems}
-          className={styles.menu}
-        />
+        <div className={styles.menuWrapper}>
+          <Menu
+            mode="horizontal"
+            selectedKeys={activeKey ? [activeKey] : []}
+            onClick={onClick}
+            items={menuItems}
+            className={styles.menu}
+          />
+        </div>
       </div>
     </Affix>
   );
