@@ -17,11 +17,6 @@ type JopPosting = {
   jobs: JopPostingImages[]
 }
 
-type HeaderData = {
-  title: string;
-  subtitle: string;
-}
-
 export const JOB_POSTINGS: JopPosting = 
 
 {
