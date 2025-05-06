@@ -1,7 +1,6 @@
 import { JSX } from "react";
 import Image from "next/image";
 
-import { TabData } from "@components/common/TabLayout/TabLayout";
 import PlacementTab from "@modules/sst/career-outcomes/components/PlacementTab";
 
 import ArrowRightUp from "@public/images/common/svg/arrow-up-right.svg";

@@ -6,7 +6,7 @@ import { Card, Row, Col } from 'antd';
 
 import Section from '@components/common/Section';
 
-import { pageTrackingEvents, pageTrackingSources, trackEvent } from '@modules/sst/career-outcomes/utils/tracking';
+import { pageTrackingSources, trackEvent } from '@modules/sst/career-outcomes/utils/tracking';
 
 import LeftQuoteIcon from '@public/images/sst/svg/left-quote-mark.svg';
 import RightQuoteIcon from '@public/images/sst/svg/right-quote-mark.svg';
