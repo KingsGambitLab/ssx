@@ -16,7 +16,7 @@ export default function Entrepreneurship() {
         <div className={styles.statsCardContainer}>
           {STATS.map((item) => {
             return (
-              <StatsCard key={item.id} title={item.title} desc={item.desc} />
+              <StatsCard key={item.id} title={item.title} desc={item.desc} titleExtraClassName={styles.statsCardTitle} />
             );
           })}
         </div>

@@ -159,6 +159,10 @@ $placement-tab-footer-text-color: #3a3a3a;
 .downloadBrochureButton,
 .downloadReportButton {
   width: 100% !important;
+
+  @include mobile {
+    gap: 0 !important;
+  }
 }
 
 .ctaContainer {

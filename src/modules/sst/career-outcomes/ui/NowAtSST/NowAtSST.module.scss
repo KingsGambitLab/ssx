@@ -134,6 +134,7 @@ $stat-description-color: #3a3a3a;
     font-weight: 800;
     line-height: 44.80px;
     word-wrap: break-word;
+    min-width: 10rem;
   }
 }
 
@@ -188,7 +189,7 @@ $stat-description-color: #3a3a3a;
   height: 7.4rem;
   
   @include mobile {
-    width: 9.9rem;
+    width: 10rem;
     height: 4rem;
   }
 }

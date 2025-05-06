@@ -17,8 +17,6 @@ import styles from './HigherStudiesCard.module.scss';
 export default function HigherStudiesCard({
   title,
   desc,
-  icon,
-  alt,
   featureList,
 }: HigherStudiesCardProps) {
   const [isModalOpen, setIsModalOpen] = useState<{ isOpen: boolean, imageUrl: string | null }>({ isOpen: false, imageUrl: null });
@@ -34,14 +32,14 @@ export default function HigherStudiesCard({
 
   const openModal = (imageUrl: string) => {
     trackEventHandler(pageTrackingEvents.modalOpened, {
-      text: alt,
+      text: title,
       link: imageUrl
     });
     setIsModalOpen({isOpen: true, imageUrl});
   };
   const afterCloseModal = () => {
     trackEventHandler(pageTrackingEvents.modalClosed, {
-      text: alt,
+      text: title,
       link: isModalOpen.imageUrl
     });
     setIsModalOpen({isOpen: false, imageUrl: null});
@@ -54,15 +52,6 @@ export default function HigherStudiesCard({
   return (
     <>
       <div className={styles.container}>
-      <div className={styles.iconContainer}>
-        <Image 
-          src={icon} 
-          alt={alt} 
-          width={60} 
-          height={60}
-        />
-      </div>
-
       <div className={styles.content}>
         <div className={styles.info}>
           <div className={styles.title}>{title}</div>

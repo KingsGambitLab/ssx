@@ -31,6 +31,7 @@ export default function InnovationLabProjects() {
                   title={video.title}
                   desc={video.desc}
                   videoId={video.videoId}
+                  titleClass={styles.videoCardTitle}
                   trackEventSource={pageTrackingSources.innovationLabProjects}
                 />
               );

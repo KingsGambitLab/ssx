@@ -16,10 +16,8 @@ export default function HigherStudies() {
             {higherStudiesCardData?.map((item, index) => (
             <HigherStudiesCard 
               key={index}
-              alt={item.title}
               title={item.title}
               desc={item.desc}
-              icon={item.icon}
               featureList={item.featureList}
               />
             ))}

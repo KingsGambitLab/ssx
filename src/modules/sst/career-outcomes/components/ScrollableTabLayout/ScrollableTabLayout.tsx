@@ -3,14 +3,20 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
 
-import { TabData } from "@components/common/TabLayout/TabLayout";
 import { trackEvent, pageTrackingSources } from "@modules/sst/career-outcomes/utils/tracking";
 
 import styles from "./ScrollableTabLayout.module.scss";
 import { useScrollSpy } from "@hooks/useScrollSpy";
 
+export type ScrollableTabData = {
+  key: string;
+  label: React.ReactNode;
+  labelActive: React.ReactNode;
+  content: React.ReactNode;
+};
+
 export type ScrollableTabLayoutProps = {
-  tabs: TabData[];
+  tabs: ScrollableTabData[];
   extraLabelClassName?: string;
   extraContentClassName?: string;
 };

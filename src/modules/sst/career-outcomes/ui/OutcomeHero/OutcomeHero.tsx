@@ -53,7 +53,7 @@ const DegreeHero = () => {
               <div className={styles.points}>
                 {OutcomeHeroData.points.map((point, index) => (
                   <div key={index} className={styles.point}>
-                    <Image src={point.icon} alt={point.text} width={24} height={24} />
+                    <Image src={point.icon} alt={point.text} width={24} height={24} className={styles.pointIcon}/>
                     <div className={styles.pointText}>{point.text}</div>
                   </div>
                 ))}
