@@ -33,7 +33,6 @@ export default function EducationTeam() {
                 key={index}
                 name={person.name}
                 prevOrganisation={person.prevOrganisation}
-                currOrganisation={person.currOrganisation}
                 image={person?.image?.src}
               />
             ))}

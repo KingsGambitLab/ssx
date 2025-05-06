@@ -29,7 +29,6 @@ export default function CareerOfficersTeam() {
                 image={teamMember?.image?.src}
                 name={teamMember.name}
                 prevOrganisation={teamMember.prevOrganisation}
-              currOrganisation={teamMember.currOrganisation}
               />
             ))}
           </CarouselWrapper>
