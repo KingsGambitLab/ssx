@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -53,6 +53,11 @@ export default function Navbar({
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const { isTabletOrMobile } = useDeviceType();
   const { data: userData } = useUser();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const trackEventHandler = (clickType: string) => {
     trackEvent.click({
@@ -64,7 +69,7 @@ export default function Navbar({
 
   return (
     <Section section_class={styles.navbar} id='navbar'>
-      <div className={classNames(styles.container, className)} >
+      <div className={classNames(styles.container, className, mounted ? '' : styles.preHydration)} >
         <Link href={homePageUrl} prefetch={false} onClick={() => trackEventHandler(pageTrackingEvents.navbarLogoClicked)}>
           <Image
           src={logoSrc}
@@ -74,7 +79,8 @@ export default function Navbar({
           className={styles.logoImage}
         />
         </Link>
-        <div className={styles.rightSection}>
+        {mounted && (
+          <div className={styles.rightSection}>
           {isTabletOrMobile ? (
             <div className={styles.hamburgerWrapper}>
               <Button
@@ -107,8 +113,9 @@ export default function Navbar({
               <NavItems data={loggedOutData} />
               {actionButtons}
             </>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </Section>
   )

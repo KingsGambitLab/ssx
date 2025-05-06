@@ -58,3 +58,14 @@
   justify-content: space-between;
   height: 100%;
 }
+
+.preHydration {
+  justify-content: space-between;
+  
+  &::after {
+    content: '';
+    width: 40px; // Approximate width of hamburger button
+    height: 40px;
+    visibility: hidden;
+  }
+}
