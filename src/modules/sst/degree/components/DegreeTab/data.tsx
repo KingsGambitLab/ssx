@@ -91,7 +91,7 @@ const ThreeYearDegreeData: DegreeData[] = [
 
 export const FourYearsData: FourYearsData = {
   badge: "Newly Added",
-  title: "4 YEARS PROGRAMS",
+  title: "4 YEARS PROGRAMME",
   subtitle: "Bachelor's degree we recommend our students to pursue in parallel",
   cardContainer: (
     <FourYearDegreeCardsContainer degreeData={FourYearDegreeData} />
@@ -99,8 +99,7 @@ export const FourYearsData: FourYearsData = {
   pointers: (
     <ul>
       <li>
-        Unlock stellar placement opportunities and higher studies options with a
-        dual degree.
+        Unlock stellar placement opportunities and higher studies options with a UGC recognised degree.
       </li>
       <li>Earn Certification in CS & AI from Scaler School of Technology.</li>
     </ul>
@@ -110,7 +109,7 @@ export const FourYearsData: FourYearsData = {
 };
 
 export const ThreeYearsData: ThreeYearsData = {
-  title: "3+1 YEARS PROGRAMS",
+  title: "3+1 YEARS PROGRAMME",
   subtitle: "Bachelor's degree we recommend our students to pursue in parallel",
   cardContainer: (
     <ThreeYearDegreeCardsContainer degreeData={ThreeYearDegreeData} />

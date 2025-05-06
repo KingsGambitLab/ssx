@@ -13,7 +13,7 @@ export const headerData: HeaderText = {
   subtitle: (
     <>
       Choose from a diverse range of degree options:{" "}
-      <span>4-year program or 3+1-year program</span>
+      <span>4-year programme or 3+1-year programme</span>
     </>
   ),
 };
@@ -22,11 +22,11 @@ export const tabsData: TabData[] = [
   {
     key: "four_year_program",
     content: <DegreeTab data={FourYearsData} />,
-    label: "4 Year Program",
+    label: "4 Year Programme",
   },
   {
     key: "three_plus_1_year_program",
     content: <DegreeTab data={ThreeYearsData} />,
-    label: "3+1 Year Program",
+    label: "3+1 Year Programme",
   },
 ];
