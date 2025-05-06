@@ -31,8 +31,7 @@ export default function EntrepreneurshipTeam() {
                 key={index}
                 image={person?.image?.src} 
                 name={person.name} 
-                prevOrganisation={person.prevOrganisation} 
-                currOrganisation={person.currOrganisation}
+                prevOrganisation={person.prevOrganisation}
               />
             ))}
           </CarouselWrapper>
