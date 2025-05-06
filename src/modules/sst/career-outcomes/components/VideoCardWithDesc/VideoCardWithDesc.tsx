@@ -13,6 +13,7 @@ type VideoCardWithDescProps = {
   desc: string;
   videoId: string;
   trackEventSource: string;
+  containerClass?: string;
 };
 
 export default function VideoCardWithDesc({
@@ -21,6 +22,7 @@ export default function VideoCardWithDesc({
   desc,
   videoId,
   trackEventSource,
+  containerClass,
 }: VideoCardWithDescProps) {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
@@ -46,7 +48,7 @@ export default function VideoCardWithDesc({
   }
   return (
     <>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${containerClass}`}>
           <button
             className={styles.videoWrapper}
             onClick={handleOpen}

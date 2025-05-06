@@ -16,6 +16,8 @@ export const pageTrackingSources = {
   sstVsTraditional: "sst_vs_traditional",
   heroSection: "hero_section",
   provenTrackRecord: "proven_track_record",
+  careerStats: "career_stats",
+  mentorship: "mentorship",
 }
 
 export const pageTrackingEvents = {

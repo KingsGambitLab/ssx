@@ -115,9 +115,8 @@ $button-bg: $primary-color;
   gap: 32px;
   align-items: center;
   justify-items: center;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  width: 100%;
 
   @include tablet {
     grid-template-columns: repeat(4, 1fr);
@@ -354,4 +353,12 @@ $button-bg: $primary-color;
       font-size: $mobile-font-body;
     }
   }
+}
+
+
+.footer {
+  @include flex-col-c;
+
+  gap: 2.4rem;
+  align-self: stretch;
 }

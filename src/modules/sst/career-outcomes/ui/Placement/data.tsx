@@ -101,12 +101,12 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
     {
       id: 0,
       title: "1 Year of Real-World, Industry Immersion in 4 years at SST",
-      desc: "(most colleges offer 2-3 months of summer internships at best)",
+      desc: "most colleges offer 2-3 months of summer internships at best",
     },
     {
       id: 1,
       title: "50+ Hands-on Projects: Build an E-Comm, IPL Prediction App",
-      desc: "(most colleges have theory-heavy courses with only 1 final year project)",
+      desc: "most colleges have theory-heavy courses with only 1 final year project",
     },
     {
       id: 2,
@@ -120,8 +120,8 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
       thumbnail: CharanjeetImage.src,
       title: "Read Charanjeet's Story",
       desc: "From 'Not So Good' at CS to Cracking an Internship at Swiggy",
-      ctaText: "Read full story on LinkedIn",
-      link: "https://www.linkedin.com/posts/scaler-school-of-technology_from-not-so-good-at-dsa-to-cracking-an-activity-7271518472801558528-BpJt/",
+      ctaText: "Watch his Story",
+      link: "https://www.youtube.com/watch?v=Sne5WQO6YgI",
     },
     {
       id: 1,
@@ -177,16 +177,16 @@ export const ACCESS_SECTION_DATA: PlacementTabData = {
     {
       id: 0,
       title: "1200+ Hiring Partners",
-      desc: "(Including the likes of Amazon, Google, Microsoft, Flipkart, etc.)",
+      desc: "Including the likes of Amazon, Google, Microsoft, Flipkart, etc.",
     },
     {
       id: 1,
       title: "30K+ Strong Alumni Community",
-      desc: "(Built over the last 10 years of our journey)",
+      desc: "Built over the last 10 years of our journey",
     },
     {
       id: 2,
-      title: "Bangalore Advantage:",
+      title: "Bangalore Advantage",
       desc: "Being in the centre of tech world, companies visit SST campus in-person for placement drives",
     },
   ],
@@ -264,14 +264,19 @@ export const ELIGIBILITY_SECTION_DATA: PlacementTabData = {
       id: 1,
       title:
         "Meets Job Requirements at Top Tech Firms from FAANG to Big Startups",
-      desc: `
-        SST Students are required to independently apply to any one program:
-
-        BS in Data Science & Applications - Offered by IIT Madras
-        BSc (Hons.) in Computer Science - Offered by BITS Pilani
-
-        Note: The IIT Madras and BITS Pilani degree programs are independent of SST. Admission, coursework, and degree conferral are solely at their discretion.
-      `,
+      desc: (
+        <>
+          SST Students are required to independently apply to any one program:
+          <br />
+          <br />
+          BS in Data Science & Applications - Offered by IIT Madras 
+          <br />
+          BSc (Hons.) in Computer Science - Offered by BITS Pilani
+          <br />
+          <br />
+          Note: The IIT Madras and BITS Pilani degree programs are independent of SST. Admission, coursework, and degree conferral are solely at their discretion.
+        </>
+      ),
     },
   ],
   images: [
@@ -304,7 +309,7 @@ export const ELIGIBILITY_SECTION_DATA: PlacementTabData = {
   },
 };
 
-export const TABS_DATA: TabData[] = [
+export const TABS_DATA = [
   {
     key: "profile",
     label: (

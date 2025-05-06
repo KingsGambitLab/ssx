@@ -8,6 +8,8 @@ $cream: #fff7e0;
 $dark-bg: #121212;
 $light-gray: #fafafa;
 $transparent: transparent;
+$mentorship-card-title-color: linear-gradient(90deg, #0041ca 0%, #0080ff 100%);
+$mentorship-footer-text-color: #f0f0f0;
 
 .mentorshipSection {
   margin: 6rem 0;
@@ -39,6 +41,10 @@ $transparent: transparent;
   
   .cardsContainer {
     margin-bottom: 5rem;
+
+    @include mobile {
+      margin: 0 !important;
+    }
   }
 
   .mentorCard {
@@ -52,7 +58,6 @@ $transparent: transparent;
     .cardHeader {
       @include flex-col;
       gap: 1rem;
-      margin-bottom: 1.5rem;
       
       @include mobile {
         display: flex;
@@ -73,7 +78,11 @@ $transparent: transparent;
     .cardTitle {
       font-size: $desktop-font-subtitle;
       font-weight: $semi-bold-font-weight;
-      margin: 0;
+      margin: 0 0 1.6rem;
+      background: $mentorship-card-title-color;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       
       @include mobile {
         font-size: 24px;
@@ -89,10 +98,10 @@ $transparent: transparent;
     .cardDescription {
       font-size: $desktop-font-body;
       color: $text-secondary;
-      margin-bottom: 0;
+      margin: 0;
       
       @include mobile {
-        font-size: $mobile-font-body;
+        font-size: $mobile-font-body-secondary;
       }
     }
   }
@@ -103,6 +112,12 @@ $transparent: transparent;
     padding: 3rem 2rem;
     text-align: center;
     color: $white-color;
+    position: relative;
+    overflow: hidden;
+    
+    @include mobile {
+      margin: 2.4rem 2rem;
+    }
     
     .investorTitle {
       font-size: $desktop-font-header;
@@ -126,27 +141,21 @@ $transparent: transparent;
     
     .investorQuote {
       font-size: $desktop-font-body;
-      margin: 0 auto 3rem;
+      margin: 0 auto 2.4rem;
       line-height: 1.6;
       
       @include mobile {
         font-size: $mobile-font-body;
       }
     }
-    
-    .companyLogos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      
-      @include mobile {
-        img {
-          max-width: 100%;
-          height: auto;
-        }
-      }
-    }
   }
+}
+
+.investorSeparator {
+  height: 0.2rem;
+  width: 32.7rem;
+  margin: 1.2rem auto;
+  background-color: #787878;
 }
 
 @include mobile {
@@ -155,3 +164,64 @@ $transparent: transparent;
     padding: 0 1rem;
   }
 } 
+
+.leftQuote,
+.rightQuote {
+  position: absolute;
+  width: 12.3rem;
+  height: 9.9rem;
+  z-index: 0;
+}
+
+.leftQuote {
+  left: -1.6rem;
+  top: -0.9rem;
+}
+
+.rightQuote {
+  right: 1rem;
+  bottom: -2rem;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.footer {
+  @include flex-row-c;
+
+  gap: 0.8rem;
+}
+
+.footerText {
+  color: $mentorship-footer-text-color;
+  text-align: center;
+  font-size: $desktop-font-body;
+  line-height: 2.8rem;
+
+  @include mobile {
+    text-align: left;
+    font-size: $mobile-font-card-title;
+    line-height: 1.96rem;
+  }
+}
+
+.linkedinButton {
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+}
+
+.linkedinIcon {
+  width: 3.2rem;
+  height: 3.2rem;
+
+  @include mobile {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}

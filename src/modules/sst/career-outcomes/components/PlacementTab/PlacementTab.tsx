@@ -32,7 +32,7 @@ const PlacmentTabCta = ({ cta }: { cta: PlacementTabData["cta"] }) => {
   if (cta.type === "PlacementReport") {
     return (
       <DownloadReport
-        text="Download Report"
+        text="Download Placement Report*"
         buttonSize="large"
         className={styles.downloadReportButton}
         trackEventSource={pageTrackingSources.placementTab}
@@ -120,7 +120,15 @@ export default function PlacementTab({
         </HorizontalScrollWrapper>
       </div>
 
-      <PlacmentTabCta cta={cta} />
+      
+      <div className={styles.ctaContainer}>
+        <PlacmentTabCta cta={cta} />
+          {badge === "Eligibility" && (
+            <div className={styles.footerText}>
+              Scaler’s Online Program Placement Report*
+            </div>
+          )}
+      </div>
     </div>
   );
 }

@@ -103,6 +103,7 @@ $stat-description-color: #3a3a3a;
     align-items: center;
     width: 100%;
     min-height: 68px;
+    gap: 0.8rem;
     height: auto;
     box-sizing: border-box;
   }
@@ -112,7 +113,6 @@ $stat-description-color: #3a3a3a;
   @include mobile {
     display: flex;
     align-items: center;
-    margin-right: 8px;
     height: 100%;
   }
 }
@@ -166,29 +166,30 @@ $stat-description-color: #3a3a3a;
 
 .amazonLogoContainer {
   flex: 1;
-  padding: 32px;
+  padding: 3.2rem;
   background: $card-background;
-  border-radius: 8px;
-  border: 1px solid $card-border-color;
+  border-radius: 0.8rem;
+  border: 0.1rem solid $card-border-color;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1.2rem;
   
   @include mobile {
-    padding: 16px;
-    gap: 12px;
+    padding: 1.6rem;
+    gap: 1.2rem;
+    flex-direction: row;
     width: 100%;
     box-sizing: border-box;
   }
 }
 
 .amazonLogoImage {
-  width: 248px;
-  height: 74px;
+  width: 24.8rem;
+  height: 7.4rem;
   
   @include mobile {
-    width: 134px;
-    height: 40px;
+    width: 9.9rem;
+    height: 4rem;
   }
 }
 

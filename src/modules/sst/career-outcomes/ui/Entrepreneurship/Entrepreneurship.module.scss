@@ -3,6 +3,10 @@
 
   gap: 5.4rem;
   width: 100%;
+
+  @include mobile {
+    gap: 2.4rem;
+  }
 }
 
 .header {

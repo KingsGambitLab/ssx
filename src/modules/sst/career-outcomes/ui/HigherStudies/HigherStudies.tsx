@@ -8,13 +8,8 @@ export default function HigherStudies() {
   return (
     <Section section_class={styles.higherStudies} id='higher-studies'>
       <div className = {styles.container}>
-        <div className={styles.headerContainer}>
-          <div className={styles.sectionTitle}>
-            Our Office of Further Education (OFE) Has Got You Covered
-          </div>
-          <div className={styles.sectionDescription}>
-            SST students become eligible for the world’s best MS / MBA programs & Govt Jobs (UPSC), by passing their chosen degree program (either IIT Madras or BITS Pilani).
-          </div>
+        <div className={styles.sectionTitle}>
+          Our Office of Further Education (OFE) Has Got You Covered
         </div>
         <div className={styles.content}>
           <div className={styles.features}>

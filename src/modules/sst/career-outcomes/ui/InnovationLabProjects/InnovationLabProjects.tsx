@@ -22,7 +22,7 @@ export default function InnovationLabProjects() {
       <div className={styles.container}>
         <div className={styles.header}>{title}</div>
         <div className={styles.scrollView}>
-          <HorizontalScrollWrapper slidesToShow={isMobile ? 1.5 : 2.5} clickSource={pageTrackingSources.innovationLabProjects}>
+          <HorizontalScrollWrapper slidesToShow={isMobile ? 1.5 : 2.4} clickSource={pageTrackingSources.innovationLabProjects}>
             {VIDEO_CARDS.map((video) => {
               return (
                 <VideoCardWithDesc

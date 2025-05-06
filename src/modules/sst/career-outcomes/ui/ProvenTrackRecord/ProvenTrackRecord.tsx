@@ -96,32 +96,30 @@ export default function ProvenTrackRecord() {
             ))}
           </div>
 
-          <div className={styles.otherCompanies}>
-            <div className={styles.pill}>
-              <span>+1200</span>
-              <span>other companies</span>
+          <div className={styles.footer}>
+            <div className={styles.otherCompanies}>
+              <div className={styles.pill}>
+                <span>+1200</span>
+                <span>other companies</span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.outcomeText}>
-            *Outcomes through our Scaler's Academy & DSML Program
-          </div>
-
-          <div className={styles.reportSection}>
-            <button className={styles.downloadButton} onClick={handleDownloadBrochureClick}>
-              <span>Download Report</span>
-              <Image 
-                src={ArrowUpRight} 
-                alt="Download"
-                width={24}
-                height={24}
-                className={styles.downloadIcon}
-              />
-            </button>
-            <div className={styles.reportText}>
-              Scaler's Online Program Placement Report*
+            <div className={styles.reportSection}>
+              <button className={styles.downloadButton} onClick={handleDownloadBrochureClick}>
+                <span>Download Report*</span>
+                <Image 
+                  src={ArrowUpRight} 
+                  alt="Download"
+                  width={24}
+                  height={24}
+                  className={styles.downloadIcon}
+                />
+              </button>
+              <div className={styles.reportText}>
+                Scaler's Online Program Placement Report*
+              </div>
             </div>
-          </div>
+         </div>
         </div>
       </div>
     </Section>

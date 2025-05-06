@@ -1,3 +1,5 @@
+$placement-tab-footer-text-color: #3a3a3a;
+
 .container {
   @include flex-col;
 
@@ -152,4 +154,26 @@
 .downloadBrochureButton,
 .downloadReportButton {
   width: 100% !important;
+}
+
+.ctaContainer {
+  @include flex-col-c;
+
+  align-items: flex-start;
+  gap: 0.8rem;
+  align-self: stretch;
+}
+
+.footerText {
+  color: $placement-tab-footer-text-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $default-font-weight;
+  line-height: 2rem;
+  width: 100%;
+  text-align: center;
+
+  @include mobile {
+    line-height: normal;
+    font-size: $mobile-font-card-body;
+  }
 }
