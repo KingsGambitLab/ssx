@@ -15,8 +15,7 @@ import CatEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-
 import GateEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/gate-eligibility.webp';
 import GraduateEducationArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-education.webp';
 import DegreeEquivalenceArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/degree-equivalence.webp';
-import StanfordArticleImage from '@public/images/sst/webp/stanford.webp';
-import StandfordEngineeringArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/standford-engineering.webp';
+import StandfordEngineeringArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/standford.webp';
 
 export const sstVsTraditionalData = [
   {
@@ -131,7 +130,7 @@ export const keyFeaturesData = {
       desc: "Meets eligibility criteria to apply for further studies programmes abroad, including MS, MBA, and PhD.",
       featureList: [
         {
-          image: StanfordArticleImage.src,
+          image: StandfordEngineeringArticleImage.src,
           alt: "Stanford Education Article"
         },
         {

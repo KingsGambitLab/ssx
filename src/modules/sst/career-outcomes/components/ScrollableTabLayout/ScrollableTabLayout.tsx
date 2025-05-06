@@ -85,6 +85,9 @@ export default function ScrollableTabLayout({
   const handleTabClick = (tabKey: string) => {
     trackEventHandler(tabKey);
     scrollToTabContent(tabKey, tabs.map((tab) => tab.key));
+
+    const container = document.querySelector(`.${styles.contentContainer}`);
+    if (window.innerWidth < 1200 && container) container.scrollTop = 0;
   };
 
   return (

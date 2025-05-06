@@ -10,7 +10,7 @@ export default function Entrepreneurship() {
   const { thumbnail, content, footer, videoId } = VIDEO_CARD;
 
   return (
-    <Section>
+    <Section section_class="entrepreneurship" id="entrepreneurship">
       <div className={styles.container}>
         <div className={styles.header}>{HEADER}</div>
         <div className={styles.statsCardContainer}>

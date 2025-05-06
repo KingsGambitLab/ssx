@@ -119,7 +119,7 @@ export const CareerStatsData = {
       mobileOnly: true
     },
     {
-      title: "100+",
+      title: "140+",
       desc: "Companies registered for Campus Internships",
       variant: "primary"
     }
