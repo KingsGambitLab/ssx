@@ -20,8 +20,6 @@ import styles from './KeyFeatureCard.module.scss';
 export default function KeyFeatureCard({
   title,
   desc,
-  icon,
-  alt,
   featureList,
 }: KeyFeatureCardProps) {
   const [isModalOpen, setIsModalOpen] = useState<{
@@ -62,14 +60,6 @@ export default function KeyFeatureCard({
   return (
     <>
       <div className={styles.container}>
-      <Image
-        src={icon}
-        alt={alt}
-        width={60}
-        height={60}
-        className={styles.icon}
-      />
-
       <div className={styles.content}>
         <div className={styles.info}>
           <div className={styles.title}>{title}</div>

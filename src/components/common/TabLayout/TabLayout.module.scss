@@ -35,6 +35,15 @@
   padding: 1rem;
 }
 
+.customTab :global(.ant-tabs-tab.ant-tabs-tab .ant-tabs-tab-btn) {
+  font-size: $desktop-font-body !important;
+
+  @include mobile {
+    padding: 1.2rem 1rem !important;
+    font-size: $h6-size !important;
+  }
+}
+
 .customTab :global(.ant-tabs-tab:hover) {
   background: transparent;
   color: #3A3A3A;
