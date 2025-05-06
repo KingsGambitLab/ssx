@@ -94,7 +94,7 @@ export default function HigherStudiesCard({
       </div>
     </div>
 
-    <Modal
+      <Modal
         centered
         open={isModalOpen.isOpen}
         onCancel={() => setIsModalOpen(prev => ({ ...prev, isOpen: false }))}

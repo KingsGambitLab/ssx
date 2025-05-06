@@ -8,7 +8,6 @@ import CatEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-
 import GateEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/gate-eligibility.webp';
 import GraduateEducationArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-education.webp';
 import DegreeEquivalenceArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/degree-equivalence.webp';
-import GraduateProgramEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-program-eligibility.webp';
 import NeoSapianThumbnail from '@public/images/sst/webp/neosapian-thumbnail.webp';
 import MartinReindl from '@public/images/sst/webp/people/martin-reindl.webp';
 import AdhirajArora from '@public/images/sst/webp/people/adhiraj-arora.webp';
@@ -38,7 +37,8 @@ import Abhinav from '@public/images/sst/webp/success-stories/abhinav.webp';
 import KrishnaPatidar from '@public/images/sst/webp/success-stories/krishna-patidar.webp';
 import Sourashish from '@public/images/sst/webp/success-stories/sourashish.webp';
 import BhashiniProject from '@public/images/sst/webp/success-stories/bhashini-project.webp';
-
+import StarFourBlue from '@public/images/sst/svg/star-four-blue.svg';
+import StandfordEngineeringArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/standford-engineering.webp';
 
 import { HigherStudiesCardProps } from '../types';
 
@@ -93,12 +93,12 @@ export const higherStudiesCardData: HigherStudiesCardProps[] = [
           alt: "Graduate Education Article"
         },
         {
-          image: DegreeEquivalenceArticleImage.src,
-          alt: "Degree Equivalence Article"
+          image: StandfordEngineeringArticleImage.src,
+          alt: "Standford Engineering Article"
         },
         {
-          image: GraduateProgramEligibilityArticleImage.src,
-          alt: "Graduate Program Eligibility Article"
+          image: DegreeEquivalenceArticleImage.src,
+          alt: "Degree Equivalence Article"
         }
       ]
   },
@@ -395,5 +395,22 @@ export const SuccessStoriesData = [
     ctaText: "View the full Story"
   }
 ]
+
+export const OutcomeHeroData = {
+  points: [
+    {
+      icon: StarFourBlue.src,
+      text: "Job Prospects"
+    },
+    {
+      icon: StarFourBlue.src,
+      text: "Higher Studies"
+    },
+    {
+      icon: StarFourBlue.src,
+      text: "Entrepreneurship"
+    }
+  ]
+}
 
 export const DegreePageLink = `${BASE_URL}/school-of-technology/degree`;

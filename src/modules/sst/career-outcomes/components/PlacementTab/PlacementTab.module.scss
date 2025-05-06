@@ -68,6 +68,11 @@ $placement-tab-footer-text-color: #3a3a3a;
   background: #FAFAFA;
   width: 100%;
   box-sizing: border-box;
+
+  @include mobile {
+    padding: 1.4rem;
+    gap: 0.4rem;
+  }
 }
 
 .pointTitle {

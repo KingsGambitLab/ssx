@@ -41,7 +41,7 @@ $outcome-desc-color-desktop: #3A3A3A;
         font-weight: 700;
         font-size: 2.8rem;
         line-height: 3.92rem;
-        letter-spacing: 0.1rem;
+        letter-spacing: 0.01rem;
         text-align: center;
         margin: 0;
         padding: 0 0.5rem;
@@ -243,3 +243,45 @@ $outcome-desc-color-desktop: #3A3A3A;
     }
   }
 }
+
+.descWrapper {
+  @include flex-col-c;
+
+  align-items: flex-start;
+  gap: 1.4rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 1rem;
+  }
+}
+
+.points {
+  @include flex-row;
+
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include mobile {
+    gap: 0.8rem 1.4rem;
+  }
+}
+
+.point {
+  @include flex-row;
+
+  align-items: center;
+  gap: 0.8rem;
+  color: $outcome-hero-gradient-start;
+  font-size: $desktop-font-body;
+  font-weight: $bold-font-weight;
+  line-height: 2.8rem;
+
+  @include mobile {
+    font-size: $mobile-font-card-title; 
+    line-height: 1.96rem;
+  }
+}
+
