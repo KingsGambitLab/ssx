@@ -11,7 +11,7 @@ import {
   trackEvent
 } from '@modules/sst/career-outcomes/utils/tracking';
 
-import DegreeHeroImage from '@public/images/sst/webp/outcome.webp';
+import DegreeHeroImage from '@public/images/sst/webp/career.webp';
 
 import styles from './OutcomeHero.module.scss';
 
