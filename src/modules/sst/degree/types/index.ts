@@ -15,9 +15,7 @@ export type SstVsTraditionalCardProps = {
 
 export type KeyFeatureCardProps = {
   title: string;
-  alt: string;
   desc: string;
-  icon: string;
   featureList?: Array<{
     image: string;
     alt: string;

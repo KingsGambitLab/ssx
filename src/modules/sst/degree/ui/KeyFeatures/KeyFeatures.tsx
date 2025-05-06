@@ -29,10 +29,8 @@ export default function KeyFeatures() {
             {keyFeaturesData?.features?.map((item, index) => (
             <KeyFeatureCard 
               key={index}
-              alt={item.title}
               title={item.title}
               desc={item.desc}
-              icon={item.icon}
               featureList={item.featureList}
               />
             ))}

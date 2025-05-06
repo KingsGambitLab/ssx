@@ -99,8 +99,6 @@ export const sstVsTraditionalData = [
 export const keyFeaturesData = {
   features: [
     {
-      icon: CertificateIcon.src,
-      altIcon: "Certificate Icon",
       title: "UGC-Recognized Bachelor’s Degree",
       desc: `Recognized by employers, these UGC-approved degrees from BITS Pilani or IIT Madras can be independently pursued by students along their studies at SST.`,
       featureList: [
@@ -115,8 +113,6 @@ export const keyFeaturesData = {
       ]
     },
     {
-      icon: ShootingStarIcon.src,
-      altIcon: "Shooting Star Icon",
       title: "Holds the Same Value as an Offline Degree",
       desc: "Meet eligibility criteria for jobs, UPSC, & further studies (MBA, MS, or PhD).",
       featureList: [
@@ -135,8 +131,6 @@ export const keyFeaturesData = {
       ]
     },
     {
-      icon: RatingIcon.src,
-      altIcon: "Rating Icon",
       title: "Accepted by Global Universities",
       desc: "Meets eligibility criteria to apply for further studies programmes abroad, including MS, MBA, and PhD.",
       featureList: [
