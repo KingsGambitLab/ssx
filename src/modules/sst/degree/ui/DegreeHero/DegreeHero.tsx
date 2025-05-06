@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
-import Section from '@components/common/Section';
+import Section from "@components/common/Section";
 
 import {
   trackEvent,
   pageTrackingEvents,
   pageTrackingSources,
-} from '@modules/sst/degree/utils/tracking';
+} from "@modules/sst/degree/utils/tracking";
 
-import DegreeHeroImage from '@public/images/sst/webp/degree.webp';
+import DegreeHeroImage from "@public/images/sst/webp/degree.webp";
 
-import styles from './DegreeHero.module.scss';
+import styles from "./DegreeHero.module.scss";
 
 const DegreeHero = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -31,7 +31,7 @@ const DegreeHero = () => {
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('video-container');
+    const element = document.getElementById("video-container");
     if (element) observer.observe(element);
 
     return () => {
@@ -48,28 +48,33 @@ const DegreeHero = () => {
               A CS Program Designed for the Future, Not the Past
             </h2>
             <div className={styles.description}>
-              Traditional engineering degrees were designed decades ago, but the world
-              of technology moves fast.
+              Traditional engineering degrees were designed decades ago, but the
+              world of technology moves fast.
             </div>
             <div className={styles.description}>
-              We&apos;ve rethought what a CS programme should be—one that prepares students
-              for cutting-edge jobs, entrepreneurship, and higher studies across the world
+              We&apos;ve rethought what a CS programme should be—one that
+              prepares students for cutting-edge jobs, entrepreneurship, and
+              higher studies across the world.
             </div>
           </div>
           <div id="video-container" className={styles.imageWrapper}>
             {isInView ? (
               <div className={styles.videoContainer}>
                 {!isVideoLoaded && (
-                  <div className={styles.thumbnailContainer} onClick={() => {
-                    trackEvent.click({
-                      clickType: pageTrackingEvents.videoPlayed,
-                      clickSource: pageTrackingSources.DegreeHero,
-                      custom: {
-                        videoLink: "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
-                      },
-                    });
-                    setIsVideoLoaded(true)
-                  }}>
+                  <div
+                    className={styles.thumbnailContainer}
+                    onClick={() => {
+                      trackEvent.click({
+                        clickType: pageTrackingEvents.videoPlayed,
+                        clickSource: pageTrackingSources.DegreeHero,
+                        custom: {
+                          videoLink:
+                            "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
+                        },
+                      });
+                      setIsVideoLoaded(true);
+                    }}
+                  >
                     <Image
                       src={DegreeHeroImage}
                       alt="Students using VR technology"
@@ -77,12 +82,25 @@ const DegreeHero = () => {
                       height={306}
                       className={styles.image}
                     />
-                    <div className={styles.playButton} onClick={() => setIsVideoLoaded(true) }>
+                    <div
+                      className={styles.playButton}
+                      onClick={() => {
+                        setIsVideoLoaded(true);
+                        trackEvent.click({
+                          clickType: pageTrackingEvents.videoPlayed,
+                          clickSource: pageTrackingSources.DegreeHero,
+                          custom: {
+                            videoLink:
+                              "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
+                          },
+                        });
+                      }}
+                    >
                       <span className={styles.playIcon}></span>
                     </div>
                   </div>
                 )}
-                {(isInView && isVideoLoaded) && (
+                {isInView && isVideoLoaded && (
                   <iframe
                     src="https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1"
                     title="Scaler School of Technology Video"
