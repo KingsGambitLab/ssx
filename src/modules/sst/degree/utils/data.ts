@@ -24,7 +24,7 @@ export const sstVsTraditionalData = [
     title: "Why the traditional system is flawed",
     points: [
       {
-        heading: "Most B.Tech curriculums were <b>designed decades ago, are outdated and lack faculty with industry experience</b>",
+        heading: "Most B.Tech curriculums were <b>designed decades ago, are outdated and lack faculty with industry experience</b>.",
         subHeading: ""
       },
       {
