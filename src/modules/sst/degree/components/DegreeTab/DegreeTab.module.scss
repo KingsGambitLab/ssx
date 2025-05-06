@@ -41,6 +41,10 @@
     position: relative;
     top: -2rem;
   }
+
+  @include mobile {
+    padding: 2rem;
+  }
 }
 
 .title {
@@ -99,6 +103,7 @@
   }
 
   & > ul {
+    margin: 0;
     padding-left: 2rem;
   }
 }

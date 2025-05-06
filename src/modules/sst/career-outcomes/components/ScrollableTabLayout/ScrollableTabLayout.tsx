@@ -49,8 +49,20 @@ export default function ScrollableTabLayout({
   const activeTabId = useScrollSpy(tabIds, 10);
 
   useEffect(() => {
-    scrollToTabContent(tabs[0].key, tabs.map((tab) => tab.key));
-  }, [scrollToTabContent, tabs]);
+    if (window.innerWidth >= 1200) {
+      tabs.forEach((tab) => {
+        const elem = document.getElementById(`${tab.key}__content`);
+        elem?.classList.remove("hidden");
+      });
+    } else {
+      tabs.forEach((tab, index) => {
+        if (index !== 0) {
+          const elem = document.getElementById(`${tab.key}__content`);
+          elem?.classList.add("hidden");
+        }
+      });
+    }
+  }, []);
 
   if (tabs.length === 0) {
     return null;

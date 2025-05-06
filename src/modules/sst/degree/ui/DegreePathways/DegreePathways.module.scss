@@ -89,3 +89,10 @@ $subtitle-black: #3A3A3A;
 .customTab :global(.ant-tabs-tab+.ant-tabs-tab) {
   margin: 0 !important;
 }
+
+.customTab :global(.ant-tabs-tab) {
+  @include mobile {
+    padding: 1.2rem 1rem;
+    font-size: $h6-size !important;
+  }
+}

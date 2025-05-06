@@ -1,6 +1,5 @@
 export type SstVsTraditionalCardProps = {
   variant: 'red' | 'blue';
-  icon: string;
   altIcon: string;
   title: string;
   points: Array<{
@@ -16,9 +15,7 @@ export type SstVsTraditionalCardProps = {
 
 export type KeyFeatureCardProps = {
   title: string;
-  alt: string;
   desc: string;
-  icon: string;
   featureList?: Array<{
     image: string;
     alt: string;
