@@ -99,8 +99,7 @@ export const FourYearsData: FourYearsData = {
   pointers: (
     <ul>
       <li>
-        Unlock stellar placement opportunities and higher studies options with a
-        dual degree.
+        Unlock stellar placement opportunities and higher studies options with a UGC recognised degree.
       </li>
       <li>Earn Certification in CS & AI from Scaler School of Technology.</li>
     </ul>
@@ -118,7 +117,8 @@ export const ThreeYearsData: ThreeYearsData = {
   pointers: (
     <ul>
       <li>
-        Unlock stellar placement opportunities and higher studies options with a UGC recognised degree.
+        Unlock stellar placement opportunities and higher studies options with a
+        dual degree.
       </li>
       <li>Earn Certification in CS & AI from Scaler School of Technology.</li>
     </ul>

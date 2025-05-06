@@ -6,55 +6,44 @@ import { FaqItem } from '@components/common/Faq';
 
 const faqItems: FaqItem[] = [
   {
-    question: "Is this a Fully-Residential Programme?",
+    question: "Do students at SST receive a UGC-recognized degree?",
     answer: (
       <p>
-        Yes. The Computer Science Programme at the Scaler School of Technology is a fully-residential,
-        on-campus programme in Bangalore.
+        Yes. SST students have the opportunity to independently enroll in a UGC-recognized off-campus degree program offered by institutions such as IIT Madras or BITS Pilani. This ensures full eligibility for higher studies, government exams, and employment opportunities that require a formal degree.
       </p>
     ),
   },
   {
-    question: "Who can apply for the Scaler School of Technology's UG Programme?",
+    question: "If SST doesn’t offer its own degree, what exactly does it provide?",
     answer: (
       <p>
-        The programme is open to students who have completed their class 12th or are appearing for 12 finals in 2025 and are aged 20 or below.
+        SST provides a full-time, campus-based education, taught by top software engineers from the industry. This curriculum is designed to complement the IIT-M / BITS Pilani off-campus degree programs and focuses on building real-world tech skills and career readiness.
       </p>
     ),
   },
   {
-    question: "What is the selection process for Scaler School of Technology?",
+    question: "Why do I need both: SST’s education and an IIT-M / BITS degree?",
     answer: (
       <p>
-        The candidates have to appear for the Scaler National Scholarship and Entrance Test. Those who qualify the test will be eligible for a personal interview round. For complete details click <a href="/school-of-technology/admission/" target="_blank" rel="noopener noreferrer">here</a>.
+        The degree gives you official recognition from the UGC—essential for higher studies, government exams, and many job applications. SST’s education equips you with real-world skills and career readiness. Together, they offer the best of both worlds: formal credibility and practical ability, both of which are critical for long-term success in tech.
       </p>
     ),
   },
   {
-    question: "Will I be able to pursue a master's degree later, take competitive exams or apply for further education later?",
+    question: "Will managing the parallel degree along with SST’s curriculum be overwhelming?",
     answer: (
       <>
         <p>
-          Yes, students will be eligible to pursue a master’s degree. The 4-year UG Programme in CS and AI will ensure
-          our students get access to the latest curriculum, hands-on experience, and the opportunity to pursue a 1-year
-          cumulative industry immersion via internships, entrepreneurship and projects to achieve success in Computer
-          Science within India and abroad.
+         Not at all. The off-campus degree programs from IIT Madras and BITS Pilani are self-paced and flexible. SST’s curriculum is thoughtfully designed to align with these programs Also, SST’s academic team offers guidance and planning support to help students balance both. Past cohorts have handled both comfortably with our structure.
         </p>
-        <p>SST graduates will be eligible for:</p>
-        <ul>
-          <li>Masters outside India via exams like GRE</li>
-          <li>Getting a work visa for migrating abroad</li>
-          <li>MBA in India and abroad via exams like CAT & GMAT</li>
-          <li>Government Jobs like IAS, IPS via exams like UPSC</li>
-        </ul>
       </>
     ),
   },
   {
-    question: "What is the fee structure of the 4-year programme?",
+    question: "How do I choose between the IIT-M and BITS degree options?",
     answer: (
       <p>
-        The complete details on the fee structure including hostel and mess details are available <a href="/school-of-technology/admission/" target="_blank" rel="noopener noreferrer">here</a>.
+        Both are excellent academic choices. Once you’ve received a provisional admission offer to SST, our program advisors will help you explore which degree might better align with your learning style and career goals. Keep in mind that admission to these degree programs is handled independently by IIT Madras and BITS Pilani.
       </p>
     ),
   },
