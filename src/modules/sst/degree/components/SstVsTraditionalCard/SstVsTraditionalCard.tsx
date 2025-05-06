@@ -121,7 +121,6 @@ const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['artic
 };
 
 export default function SstVsTraditionalCard({
-  icon,
   altIcon,
   title,
   points,
@@ -155,14 +154,6 @@ export default function SstVsTraditionalCard({
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <Image
-          src={icon}
-          alt={altIcon}
-          width={60}
-          height={60}
-          className={styles.icon}
-        />
-
         <div className={styles.infoWrapper}>
           <div className={styles.keyPointsWrapper}>
             <div className={classNames(

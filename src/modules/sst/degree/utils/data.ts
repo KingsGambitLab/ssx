@@ -20,13 +20,11 @@ import CatEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-
 import GateEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/gate-eligibility.webp';
 import GraduateEducationArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-education.webp';
 import DegreeEquivalenceArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/degree-equivalence.webp';
-import GraduateProgramEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/graduate-program-eligibility.webp';
-import StanfordArticleImage from '@public/images/sst/webp/stanford.webp';
+import StandfordEngineeringArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/standford-engineering.webp';
 
 export const sstVsTraditionalData = [
   {
     variant: 'red',
-    icon: OpenBookIcon.src,
     altIcon: "Open Book Icon",
     title: "Why the traditional system is flawed",
     points: [
@@ -71,7 +69,6 @@ export const sstVsTraditionalData = [
   },
   {
     variant: 'blue',
-    icon: StarBadgeIcon.src,
     altIcon: "Start Badge Icon",
     title: "The Ideal Tech Education - Best of Both Worlds",
     points: [
@@ -80,8 +77,8 @@ export const sstVsTraditionalData = [
         subHeading: "Traditional education forces outdated subjects and rigid structures, leaving students unprepared for industry. "
       },
       {
-        heading: "<b>Students at SST have the option to explore independent degree programs</b>",
-        subHeading: "that align with their academic and career goals while gaining hands-on education at SST."
+        heading: "<b>Students at SST have the option to explore independent degree programmes</b>",
+        subHeading: "that align with their academic and career goals while gaining hands-on, modern CS training at SST."
       }
     ],
     articles: [
@@ -141,23 +138,19 @@ export const keyFeaturesData = {
       icon: RatingIcon.src,
       altIcon: "Rating Icon",
       title: "Accepted by Global Universities",
-      desc: "Meets eligibility criteria to apply for further studies programs abroad, including MS, MBA, and PhD.",
+      desc: "Meets eligibility criteria to apply for further studies programmes abroad, including MS, MBA, and PhD.",
       featureList: [
-        {
-          image: StanfordArticleImage.src,
-          alt: "Stanford Education Article"
-        },
         {
           image: GraduateEducationArticleImage.src,
           alt: "Graduate Education Article"
         },
         {
-          image: DegreeEquivalenceArticleImage.src,
-          alt: "Degree Equivalence Article"
+          image: StandfordEngineeringArticleImage.src,
+          alt: "Standford Engineering Article"
         },
         {
-          image: GraduateProgramEligibilityArticleImage.src,
-          alt: "Graduate Program Eligibility Article"
+          image: DegreeEquivalenceArticleImage.src,
+          alt: "Degree Equivalence Article"
         }
       ]
     }
