@@ -1,10 +1,5 @@
 import { BASE_URL } from '@utils/common/url';
 
-import OpenBookIcon from '@public/images/sst/svg/open-book-icon.svg';
-import StarBadgeIcon from '@public/images/sst/svg/star-badge.svg';
-import RatingIcon from '@public/images/sst/svg/seal-check.svg';
-import ShootingStarIcon from '@public/images/sst/svg/shooting-star.svg';
-import CertificateIcon from '@public/images/sst/svg/certificate.svg';
 import WeekArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/week-article.webp';
 import HackerEarthArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/hacker-earth.webp';
 import JobCrisisArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/job-crisis.webp';

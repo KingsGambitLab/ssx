@@ -121,7 +121,6 @@ const ArticlesCard = ({ articles }: { articles: SstVsTraditionalCardProps['artic
 };
 
 export default function SstVsTraditionalCard({
-  altIcon,
   title,
   points,
   articles,
