@@ -6,7 +6,7 @@ import { FaqItem } from '@components/common/Faq';
 
 const faqItems: FaqItem[] = [
   {
-    question: "Is this a Fully-Residential Program?",
+    question: "Is this a Fully-Residential Programme?",
     answer: (
       <p>
         Yes. The Computer Science Programme at the Scaler School of Technology is a fully-residential,
@@ -18,7 +18,7 @@ const faqItems: FaqItem[] = [
     question: "Who can apply for the Scaler School of Technology's UG Programme?",
     answer: (
       <p>
-        The program is open to students who have completed their class 12th or are appearing for 12 finals in 2025 and are aged 20 or below.
+        The programme is open to students who have completed their class 12th or are appearing for 12 finals in 2025 and are aged 20 or below.
       </p>
     ),
   },

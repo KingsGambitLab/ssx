@@ -52,7 +52,7 @@ const DegreeHero = () => {
               of technology moves fast.
             </div>
             <div className={styles.description}>
-              We&apos;ve rethought what a CS program should be—one that prepares students
+              We&apos;ve rethought what a CS programme should be—one that prepares students
               for cutting-edge jobs, entrepreneurship, and higher studies across the world
             </div>
           </div>

@@ -12,7 +12,6 @@ export default function SstVsTraditional() {
           <SstVsTraditionalCard 
             key={item.title} 
             variant={item.variant as "red" | "blue"}
-            icon={item.icon}
             altIcon={item.altIcon}
             title={item.title}
             points={item.points}

@@ -17,11 +17,6 @@ type HeaderProps = {
 const Header = ({ src, title, subtitle }: HeaderProps) => {
   return (
     <div className={styles.header}>
-      <Image
-        className={styles.headerImage}
-        src={src}
-        alt="graduation-hat-badge"
-      />
       <div className={styles.title}>{title}</div>
       <div className={styles.subtitle}>{subtitle}</div>
     </div>

@@ -33,13 +33,16 @@
 
   width: 100%;
   gap: 2.4rem;
-  padding: 3.2rem;
   background: white;
   border-radius: 0.8rem;
 
   &New {
     position: relative;
     top: -2rem;
+  }
+
+  @include mobile {
+    padding: 2rem;
   }
 }
 
@@ -99,6 +102,7 @@
   }
 
   & > ul {
+    margin: 0;
     padding-left: 2rem;
   }
 }

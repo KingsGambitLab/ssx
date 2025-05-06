@@ -1,6 +1,5 @@
 export type SstVsTraditionalCardProps = {
   variant: 'red' | 'blue';
-  icon: string;
   altIcon: string;
   title: string;
   points: Array<{

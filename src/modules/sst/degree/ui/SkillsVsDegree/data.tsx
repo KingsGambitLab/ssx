@@ -65,7 +65,11 @@ export const JOB_POSTINGS: JopPosting =
   ]
 }
 
-export const HEADER: HeaderData = {
+export const HEADER = {
   title: "Future-Proof Your Career: Skills > Degree for Tech Success",
-  subtitle: "See How Top Companies Like MAANG only require a Bachelor's degree. The tech industry values practical skills over degrees. Our Bachelor's program equips you with the in demand technical and soft skills.",
+  subtitle: (
+    <p>
+      See How Top Companies Like MAANG only require a Bachelor's degree.<br/> <br />The tech industry values practical skills over degrees. Our Bachelor's programme equips you with the in demand technical and soft skills.
+    </p>
+  )
 }
