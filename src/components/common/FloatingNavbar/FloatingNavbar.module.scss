@@ -104,6 +104,10 @@ $internal-link-hover-bg: #f2f8ff;
           background-color: $white-color !important;
         }
       }
+
+      @include mobile {
+        padding: 0 0.8rem;
+      }
     }
   }
 }
