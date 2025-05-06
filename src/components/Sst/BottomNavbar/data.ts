@@ -47,7 +47,7 @@ export const BOTTOM_NAVBAR_LINKS_REVAMP = [
   },
   {
     icon: darkOutlinedShootingStar,
-    text: 'Careers',
+    text: 'Placement++',
     redirectUrl: '/school-of-technology/career-outcomes',
     active: false,
   },
