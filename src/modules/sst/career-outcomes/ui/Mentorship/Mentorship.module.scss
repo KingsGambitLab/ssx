@@ -13,15 +13,16 @@ $mentorship-footer-text-color: #f0f0f0;
 $investor-separator-background-color: #787878;
 
 .mentorshipSection {
-  margin: 6rem 0;
+  margin: 5.4rem 0 4rem;
   padding: 0 !important;
+
+  @include mobile {
+    margin: 2.4rem 0;
+  }
 
   > :global(.sr-container) {
     @include mobile {
-      padding: 0 !important;
       background-color: $light-gray;
-      margin-left: 2rem;
-      margin-right: 2rem;
       border-radius: $border-radius-large;
     }
   }
@@ -41,7 +42,11 @@ $investor-separator-background-color: #787878;
   }
   
   .cardsContainer {
-    margin-bottom: 5rem;
+    & > div {
+      @include mobile {
+        padding: 0 !important;
+      }
+    }
 
     @include mobile {
       margin: 0 !important;
@@ -116,10 +121,6 @@ $investor-separator-background-color: #787878;
     position: relative;
     overflow: hidden;
     
-    @include mobile {
-      margin: 2.4rem 2rem;
-    }
-    
     .investorTitle {
       font-size: $desktop-font-header;
       font-weight: $semi-bold-font-weight;
@@ -152,6 +153,16 @@ $investor-separator-background-color: #787878;
   }
 }
 
+.content {
+  @include flex-col;
+
+  gap: 10.8rem;
+
+  @include mobile {
+    gap: 4.8rem;
+  }
+
+}
 .investorSeparator {
   height: 0.2rem;
   width: 32.7rem;
