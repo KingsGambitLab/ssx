@@ -11,16 +11,17 @@ import EducationTeam from "@modules/sst/career-outcomes/ui/EducationTeam";
 import OutcomeHero from "@modules/sst/career-outcomes/ui/OutcomeHero";
 import NowAtSST from "@modules/sst/career-outcomes/ui/NowAtSST";
 import SstRecruiters from "@modules/sst/career-outcomes/ui/SstRecruiters";
-import ProvenTrackRecord from "@modules/sst/career-outcomes/ui/ProvenTrackRecord";import Startups from "@modules/sst/career-outcomes/ui/Startups";
+import ProvenTrackRecord from "@modules/sst/career-outcomes/ui/ProvenTrackRecord";
+import Startups from "@modules/sst/career-outcomes/ui/Startups";
 import Entrepreneurship from "@modules/sst/career-outcomes/ui/Entrepreneurship";
 import Placement from "@modules/sst/career-outcomes/ui/Placement/Placement";
 import InnovationLabProjects from "@modules/sst/career-outcomes/ui/InnovationLabProjects";
 import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
-import StudentTestimonials from '@/modules/sst/career-outcomes/ui/StudentTestimonials/StudentTestimonials';
+import StudentTestimonials from "@/modules/sst/career-outcomes/ui/StudentTestimonials/StudentTestimonials";
 
 export default function Page() {
   const navItems = [
-    { label: "Job Prospectus", key: "career-stats", href: "#career-stats" },
+    { label: "Job Prospects", key: "career-stats", href: "#career-stats" },
     { label: "Entrepreneurship", key: "entrepreneurship", href: "#mentorship" },
     { label: "Higher Studies", key: "higher-studies", href: "#higher-studies" },
     { label: "FAQs", key: "faqs", href: "#faqs" },
