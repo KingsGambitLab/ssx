@@ -44,10 +44,8 @@ export default function Page() {
       <InnovationLabProjects />
       <EntrepreneurshipTeam />
       <HigherStudies />
-      <SuccessStories />
       <EducationTeam />
       <StudentTestimonials />
-      <GuestSpeakers />
       <SstVsTraditional />
       <ApplyCtaBanner />
       <Faq />

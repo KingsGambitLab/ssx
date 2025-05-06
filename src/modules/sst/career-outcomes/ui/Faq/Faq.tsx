@@ -6,55 +6,72 @@ import { FaqItem } from '@components/common/Faq';
 
 const faqItems: FaqItem[] = [
   {
-    question: "Is this a Fully-Residential Program?",
+    question: "Will I get the same job opportunities as a BTech graduate from a top college?",
     answer: (
       <p>
-        Yes. The Computer Science Programme at the Scaler School of Technology is a fully-residential,
-        on-campus programme in Bangalore.
+        Yes! Recruiters don’t just look at your degree course name — they care about your <b>skills, projects, and internship experience</b>. SST’s
+        curriculum is reverse-engineered from top tech job requirements and prepares students to stand out on all these fronts.
+        In fact, <b>93%</b> of SST’s founding batch has already secured at <b>least one internship</b> offer – just in their <b>2nd year</b> – at companies like
+        Zomato, Swiggy, Pazcare, Freecharge etc with <b>stipends</b> up to <b>INR 1.1 lakh / month</b>.
       </p>
     ),
   },
   {
-    question: "Who can apply for the Scaler School of Technology's UG Programme?",
+    question: "What companies hire SST students?",
     answer: (
       <p>
-        The program is open to students who have completed their class 12th or are appearing for 12 finals in 2025 and are aged 20 or below.
+        SST students have been hired at leading companies like <b>Zomato, Swiggy, Pazcare, Freecharge,</b> and many more. The placement team brings in a mix of<b>big tech, high-growth startups, and global firms,</b> and
+        leverages Scaler’s recruiter network of 1200+ hiring partners and 10 years of Scaler’s legacy. <a href="https://www.scaler.com/school-of-technology/career-outcomes/" target="_blank" rel="noopener noreferrer">Click here to know more</a>
       </p>
     ),
   },
   {
-    question: "What is the selection process for Scaler School of Technology?",
+    question: "WWhat support will I get for placements?",
     answer: (
       <p>
-        The candidates have to appear for the Scaler National Scholarship and Entrance Test. Those who qualify the test will be eligible for a personal interview round. For complete details click <a href="/school-of-technology/admission/" target="_blank" rel="noopener noreferrer">here</a>.
+        Students receive end-to-end support: <b>resume building, mock interviews, mentor guidance, and recruiter connects</b>. In addition, students complete real internships, build public portfolios, and are evaluated on industry-grade projects—making them job-ready inherently.
       </p>
     ),
   },
   {
-    question: "Will I be able to pursue a master's degree later, take competitive exams or apply for further education later?",
+    question: "Will I be eligible for MS/MBA/PhD programs in India and abroad?",
     answer: (
       <>
         <p>
-          Yes, students will be eligible to pursue a master’s degree. The 4-year UG Programme in CS and AI will ensure
-          our students get access to the latest curriculum, hands-on experience, and the opportunity to pursue a 1-year
-          cumulative industry immersion via internships, entrepreneurship and projects to achieve success in Computer
-          Science within India and abroad.
+          Yes. Since SST students graduate with a <b>UGC-recognized degree</b> (from IIT Madras / BITS Pilani, subject to students
+          meeting necessary requirements set by IIT Madras / BITS Pilani, respectively), they shall be eligible for <b>higher
+          education in India and abroad</b>, including exams like GATE, GRE, and CAT. <a href="https://www.scaler.com/school-of-technology/career-outcomes/" target="_blank" rel="noopener noreferrer">Click here to know more</a>
         </p>
-        <p>SST graduates will be eligible for:</p>
-        <ul>
-          <li>Masters outside India via exams like GRE</li>
-          <li>Getting a work visa for migrating abroad</li>
-          <li>MBA in India and abroad via exams like CAT & GMAT</li>
-          <li>Government Jobs like IAS, IPS via exams like UPSC</li>
-        </ul>
       </>
     ),
   },
   {
-    question: "What is the fee structure of the 4-year programme?",
+    question: "How does SST support students aiming for higher studies?",
     answer: (
       <p>
-        The complete details on the fee structure including hostel and mess details are available <a href="/school-of-technology/admission/" target="_blank" rel="noopener noreferrer">here</a>.
+        SST offers guidance on all aspects of the application process: <b>test prep resources, SOP reviews, letters of recommendation,
+        and interview prep</b>. Mentors include alumni from top universities like <b>Stanford,MIT, and IIMs.</b> <a href="https://www.scaler.com/school-of-technology/career-outcomes/" target="_blank" rel="noopener noreferrer">Click here to know more</a>
+      </p>
+    ),
+  },
+  {
+    question: "Can I start a startup while studying at SST?",
+    answer: (
+      <p>
+        Yes. SST actively supports student founders through its <b>Innovation Lab</b>.
+        In fact, SST has earmarked an <b>Innovation fund of INR 1 Crore</b>, dedicated to fostering a <b>culture of innovation
+        at our Innovation Lab, dedicated to student startups</b>. Additionally, with <b>access to early stage investors and
+        startup mentors</b>, students can pitch their ideas, build products, figure out the marketing strategies – all while
+        pursuing their bachelor’s.
+      </p>
+    ),
+  },
+  {
+    question: "Have any SST students already started companies?",
+    answer: (
+      <p>
+        Yes. SST has already seen startups emerge from its early batches – there are 7+ early-stage student startups so far - within
+        just 1.5 years of SST’s inception. <a href="https://www.scaler.com/school-of-technology/career-outcomes/" target="_blank" rel="noopener noreferrer">Click here to know more</a>
       </p>
     ),
   },

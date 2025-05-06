@@ -108,14 +108,14 @@ export const CareerStatsData = {
   stats: [
     {
       title: "1.13 Lakh / Month",
-      desc: "Final-year level offers in 2nd year",
+      desc: "Highest 2nd Year Internship Stipend",
       image: BurstBgImage.src,
       variant: "primary",
       fullWidth: true
     },
     {
       title: "93%",
-      desc: "of eligible students have got more than one internship offered – in just their 2nd year",
+      desc: "of eligible students have got atleast one internship offer – in just their 2nd year",
       variant: "tertiary"
     },
     {
@@ -131,7 +131,15 @@ export const CareerStatsData = {
     }
   ],
   video: {
-    thumbnail: NeoSapianThumbnail.src
+    title: "10+",
+    thumbnail: NeoSapianThumbnail.src,
+    desc: (
+      <>
+        Startups incubated at Innovation Lab,<span>one featured on Shark Tank.</span>
+      </>
+    ),
+    buttonText: "Click here to Watch",
+    videoId: "gJtS3b5gCuk"
   },
   brochureLink: "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123"
 }
@@ -185,8 +193,7 @@ export const CareerOfficersTeamData = {
     {
       image: AmardeepSaxena,
       name: "Amardeep Saxena",
-      prevOrganisation: "Ex ISB, Zomato",
-      currOrganisation: "HackerRank"
+      prevOrganisation: "Ex FMS Delhi, Twitter, HackerRank"
     }
   ]
 }

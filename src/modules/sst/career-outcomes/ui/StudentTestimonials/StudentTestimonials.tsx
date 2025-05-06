@@ -35,6 +35,7 @@ export default function StudentTestimonials() {
                   title=""
                   videoId={testimonial.youtubeUrl}
                   desc=""
+                  containerClass={styles.videoCardContainer}
                   trackEventSource={pageTrackingSources.studentTestimonials}
                 />
               </div>

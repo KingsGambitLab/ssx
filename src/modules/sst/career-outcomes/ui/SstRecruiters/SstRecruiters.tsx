@@ -14,6 +14,7 @@ import Tata from '@public/images/sst/png/tata1mg.png';
 import GrowthSchool from '@public/images/sst/svg/growthschool.svg';
 import Wealthy from '@public/images/sst/svg/wealthy.svg';
 import Pazcare from '@public/images/sst/png/pazcare.png';
+import Section from '@components/common/Section';
 
 const SstRecruiters = () => {
   const recruiters = [
@@ -32,33 +33,35 @@ const SstRecruiters = () => {
   ];
 
   return (
-    <div className={styles.sstRecruiters}>
-      <h2 className={styles.title}>Some of SST's Internship Recruiters</h2>
-      <div className={styles.recruitersGrid}>
-        {recruiters.map((recruiter, index) => (
-          <div key={index} className={styles.imageContainer}>
-            <Image
-              src={recruiter.src}
-              alt={recruiter.alt}
-              width={recruiter.width}
-              height={recruiter.height}
-            />
-          </div>
-        ))}
-      </div>
-      <div className={styles.otherCompanies}>
-        <div className={styles.pill}>
-          <div className={styles.desktopText}>
-            <span className={styles.count}>+100</span>
-            <span className={styles.text}> other companies</span>
-          </div>
-          <div className={styles.mobileText}>
-            <span className={styles.count}>100+</span>
-            <span className={styles.text}>other companies</span>
+    <Section section_class="sst-recruiters" id="sst-recruiters">
+       <div className={styles.sstRecruiters}>
+        <h2 className={styles.title}>Some of SST's Internship Recruiters</h2>
+        <div className={styles.recruitersGrid}>
+          {recruiters.map((recruiter, index) => (
+            <div key={index} className={styles.imageContainer}>
+              <Image
+                src={recruiter.src}
+                alt={recruiter.alt}
+                width={recruiter.width}
+                height={recruiter.height}
+              />
+            </div>
+          ))}
+        </div>
+        <div className={styles.otherCompanies}>
+          <div className={styles.pill}>
+            <div className={styles.desktopText}>
+              <span className={styles.count}>+140</span>
+              <span className={styles.text}> other companies</span>
+            </div>
+            <div className={styles.mobileText}>
+              <span className={styles.count}>140+</span>
+              <span className={styles.text}>other companies</span>
+            </div>
           </div>
         </div>
-      </div>
     </div>
+   </Section>
   );
 };
 
