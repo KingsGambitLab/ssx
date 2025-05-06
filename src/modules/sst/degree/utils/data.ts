@@ -130,10 +130,6 @@ export const keyFeaturesData = {
       desc: "Meets eligibility criteria to apply for further studies programmes abroad, including MS, MBA, and PhD.",
       featureList: [
         {
-          image: StandfordEngineeringArticleImage.src,
-          alt: "Stanford Education Article"
-        },
-        {
           image: GraduateEducationArticleImage.src,
           alt: "Graduate Education Article"
         },
