@@ -11,6 +11,8 @@ import {
   trackEvent
 } from '@modules/sst/career-outcomes/utils/tracking';
 
+import { OutcomeHeroData } from '@modules/sst/career-outcomes/utils/data';
+
 import DegreeHeroImage from '@public/images/sst/webp/career.webp';
 
 import styles from './OutcomeHero.module.scss';
@@ -47,8 +49,18 @@ const DegreeHero = () => {
             <h2 className={styles.title}>
               SST prepares you for<br/>3 outcomes
             </h2>
-            <div className={styles.description}>
-              Jobs, Higher Studies, and Entrepreneurship. Let's look at what's happened so far!
+            <div className={styles.descWrapper}>
+              <div className={styles.points}>
+                {OutcomeHeroData.points.map((point, index) => (
+                  <div key={index} className={styles.point}>
+                    <Image src={point.icon} alt={point.text} width={24} height={24} />
+                    <div className={styles.pointText}>{point.text}</div>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.description}>
+               Let’s look at what’s happened so far!
+              </div>
             </div>
           </div>
           <div id="video-container" className={styles.imageWrapper}>
