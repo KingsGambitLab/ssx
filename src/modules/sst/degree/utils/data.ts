@@ -73,7 +73,7 @@ export const sstVsTraditionalData = [
       },
       {
         heading: "<b>Students at SST have the option to explore independent degree programmes</b>",
-        subHeading: "that align with their academic and career goals while gaining hands-on, modern CS training at SST."
+        subHeading: "that align with their academic and career goals while gaining hands-on, modern CS Education at SST."
       }
     ],
     articles: [
