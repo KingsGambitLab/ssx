@@ -25,3 +25,13 @@
 .scrollView {
   width: 100%;
 }
+
+.videoCardTitle {
+  font-size: $desktop-font-title-3;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: $desktop-font-card-body;
+    font-weight: $bolder-font-weight;
+  }
+}

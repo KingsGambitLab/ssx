@@ -11,14 +11,16 @@ export default function Placement() {
   const { subtitle, title } = HEADER;
 
   return (
-    <Section section_class={styles.placement}>
+    <Section section_class={styles.placement} id="placement">
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.subtitle}>{subtitle}</div>
           <div className={styles.title}>{title}</div>
         </div>
         <div className={styles.tabLayoutContainer}>
-          <ScrollableTabLayout tabs={TABS_DATA} />
+            <ScrollableTabLayout tabs={TABS_DATA.map(tab => ({
+                ...tab
+            }))} />
         </div>
       </div>
     </Section>

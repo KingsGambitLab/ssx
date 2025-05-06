@@ -118,9 +118,9 @@ export const PROFILE_SECTION_DATA: PlacementTabData = {
     {
       id: 0,
       thumbnail: CharanjeetImage.src,
-      title: "Read Charanjeet's Story",
+      title: "Watch Charanjeet's Story",
       desc: "From 'Not So Good' at CS to Cracking an Internship at Swiggy",
-      ctaText: "Watch his Story",
+      ctaText: "Watch Now!",
       link: "https://www.youtube.com/watch?v=Sne5WQO6YgI",
     },
     {

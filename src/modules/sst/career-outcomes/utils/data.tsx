@@ -1,8 +1,6 @@
 import { BASE_URL } from '@utils/common/url';
 
 import BurstBgImage from '@public/images/common/webp/burst-bg.webp';
-import OpenBookIcon from '@public/images/sst/svg/career_outcomes/higher_studies/book-open.svg';
-import GlobeIcon from '@public/images/sst/svg/career_outcomes/higher_studies/globe.svg';
 import UpscEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/upsc-eligibility.webp';
 import CatEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/cat-eligibility.webp';
 import GateEligibilityArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/gate-eligibility.webp';
@@ -38,14 +36,12 @@ import KrishnaPatidar from '@public/images/sst/webp/success-stories/krishna-pati
 import Sourashish from '@public/images/sst/webp/success-stories/sourashish.webp';
 import BhashiniProject from '@public/images/sst/webp/success-stories/bhashini-project.webp';
 import StarFourBlue from '@public/images/sst/svg/star-four-blue.svg';
-import StandfordEngineeringArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/standford-engineering.webp';
+import StandfordEngineeringArticleImage from '@public/images/sst/webp/articles/sst-vs-traditional/standford.webp';
 
 import { HigherStudiesCardProps } from '../types';
 
 export const higherStudiesCardData: HigherStudiesCardProps[] = [
   {
-    icon: OpenBookIcon.src,
-    alt: "Open Book Icon",
     title: "Eligible Higher Studies Pathways",
     desc: (
         <>
@@ -75,8 +71,6 @@ export const higherStudiesCardData: HigherStudiesCardProps[] = [
       ]
     },
     {
-      icon: GlobeIcon.src,
-      alt: "Globe Icon",
       title: "Study–Abroad Guidance",
       desc: (
         <>
@@ -151,26 +145,22 @@ export const EntrepreneurshipTeamData = {
     {
       image: MartinReindl,
       name: "Martin Reindl",
-      prevOrganisation: "Ex Harvard, MIT Solan,",
-      currOrganisation: "Oliver Wyman",
+      prevOrganisation: "Ex Harvard, MIT Solan, Oliver Wyman",
     },
     {
       image: AdhirajArora,
       name: "Adhiraj Arora",
-      prevOrganisation: "Ex IIT Kanpur, ISB,",
-      currOrganisation: "BCG",
+      prevOrganisation: "Ex IIT Kanpur, ISB, BCG",
     },
     {
       image: KshitijMishra,
       name: "Kshitij Mishra",
-      prevOrganisation: "Ex IIIT Hyd,",
-      currOrganisation: "Snapdeal",
+      prevOrganisation: "Ex IIIT Hyd, Snapdeal",
     },
     {
       image: ManmeetSinghAkali,
       name: "Manmeet Singh Akali",
-      prevOrganisation: "Ex-Founder Klarity,",
-      currOrganisation: "(Acquired)",
+      prevOrganisation: "Ex-Founder Klarity, (Acquired)",
     }
   ]
 }
@@ -205,26 +195,22 @@ export const EducationTeamData = {
     {
       image: MartinReindl,
       name: "Martin Reindl",
-      currOrganisation: "Ex Harvard, MIT Solan,",
-      prevOrganisation: "Oliver Wyman",
+      prevOrganisation: "Ex Harvard, MIT Solan, Oliver Wyman",
     },
     {
       image: AdhirajArora,
       name: "Adhiraj Arora",
-      currOrganisation: "Ex IIT Kanpur, ISB,",
-      prevOrganisation: "BCG",
+      prevOrganisation: "Ex IIT Kanpur, ISB, BCG",
     },
     {
       image: KshitijMishra,
       name: "Kshitij Mishra",
-      currOrganisation: "Ex IIIT Hyd,",
-      prevOrganisation: "Snapdeal",
+      prevOrganisation: "Ex IIIT Hyd, Snapdeal",
     },
     {
       image: ShrutiSagar,
       name: "Shruti Sagar",
-      currOrganisation: "Ex-IIT Kharagpur",
-      prevOrganisation: "LEK Consulting",
+      prevOrganisation: "Ex-IIT Kharagpur, LEK Consulting",
     }
   ]
 }

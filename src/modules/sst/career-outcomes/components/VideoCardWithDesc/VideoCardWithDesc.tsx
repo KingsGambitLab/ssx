@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-
+import classnames from "classnames";
 import YoutubeModal from "@components/common/YouTubeModal";
 
 import { pageTrackingEvents, trackEvent } from "@modules/sst/career-outcomes/utils/tracking";
@@ -14,6 +14,8 @@ type VideoCardWithDescProps = {
   videoId: string;
   trackEventSource: string;
   containerClass?: string;
+  titleClass?: string;
+  descClass?: string;
 };
 
 export default function VideoCardWithDesc({
@@ -23,6 +25,8 @@ export default function VideoCardWithDesc({
   videoId,
   trackEventSource,
   containerClass,
+  titleClass = '',
+  descClass = '',
 }: VideoCardWithDescProps) {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
@@ -64,8 +68,8 @@ export default function VideoCardWithDesc({
         </button>
         {(title || desc) && (
           <div className={styles.content}>
-            {title && <div className={styles.title}>{title}</div>}
-            {desc && <div className={styles.desc}>{desc}</div>}
+            {title && <div className={classnames(styles.title, titleClass)}>{title}</div>}
+            {desc && <div className={classnames(styles.desc, descClass)}>{desc}</div>}
           </div>
         )}
     </div>

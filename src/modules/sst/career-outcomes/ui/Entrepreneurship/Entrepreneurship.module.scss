@@ -44,3 +44,10 @@
 
   width: 100%;
 }
+
+.statsCardTitle {
+  @include mobile {
+    min-width: 6.13rem;
+    text-align: center;
+  }
+}
