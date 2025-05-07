@@ -10,7 +10,7 @@ export const loggedOutNavItems = [
     href: "/school-of-technology/admission/"
   },
   {
-    label: "Campus Life",
+    label: "Student Life",
     href: "/school-of-technology/campus-life/"
   },
   {
@@ -48,7 +48,7 @@ export const revampedLoggedOutNavItems = [
     isNew: true,
   },
   {
-    label: "Campus Life",
+    label: "Student Life",
     href: "/school-of-technology/campus-life/"
   },
   {
@@ -79,7 +79,7 @@ export const loggedInNavItems = [
     href: "/school-of-technology/application/"
   },
   {
-    label: "Campus Life",
+    label: "Student Life",
     href: "/school-of-technology/campus-life/"
   },
   {
@@ -125,7 +125,7 @@ export const revampedLoggedInNavItems = [
     href: "/school-of-technology/application/"
   },
   {
-    label: "Campus Life",
+    label: "Student Life",
     href: "/school-of-technology/campus-life/"
   },
   {
