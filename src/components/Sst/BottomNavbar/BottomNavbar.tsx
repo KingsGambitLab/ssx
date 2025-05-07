@@ -39,6 +39,7 @@ export default function BottomNavbar() {
             <ApplyButton
               className={styles.actionButton}
               size="large"
+              shouldTrack={true}
               trackEventSource={pageTrackingSources.bottomNavbar}
               block
             />
