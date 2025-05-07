@@ -31,13 +31,13 @@ export default function CareerStats() {
 
   const handleOpen = () => {
     trackEventHandler(pageTrackingEvents.videoPlayed, pageTrackingSources.careerStats, {
-      title: CareerStatsData?.video?.title,
+      link: `https://www.youtube.com/watch?v=${CareerStatsData?.video?.videoId}`,
     });
     setIsVideoOpen(true);
   }
   const handleClose = () => {
     trackEventHandler(pageTrackingEvents.videoClosed, pageTrackingSources.careerStats, {
-      title: CareerStatsData?.video?.title,
+      link: `https://www.youtube.com/watch?v=${CareerStatsData?.video?.videoId}`,
     });
     setIsVideoOpen(false);
   }

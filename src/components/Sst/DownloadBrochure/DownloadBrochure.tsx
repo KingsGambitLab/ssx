@@ -51,7 +51,7 @@ export default function DownloadBrochure(
     if (isLoggedIn && window !== undefined) {
       window.open(brochureLink, "_blank");
     } else {
-      setIsLoginModalOpen(true, trackEventSource, "download_brochure");
+      setIsLoginModalOpen(true, `${trackEventSource}_download_brochure`);
     }
   };
   

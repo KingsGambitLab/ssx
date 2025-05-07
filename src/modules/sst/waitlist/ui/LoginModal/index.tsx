@@ -18,16 +18,14 @@ interface LoginModalProps {
   onClose: () => void;
   onLoginSuccess?: () => void;
   initialStep?: LoginStep;
-  trackEventClickSource?: string;
-  trackEventCtaText?: string;
+  formSource?: string;
 }
 
 export const LoginModal: React.FC<LoginModalProps> = ({ 
   isOpen, 
   onClose,
   onLoginSuccess,
-  trackEventClickSource,
-  trackEventCtaText,
+  formSource,
   initialStep = 'LOGIN',
 }) => {
   const { data: userData } = useUser();
@@ -77,10 +75,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       trackEvent.click({
         clickType: 'click',
         clickText: 'step_change',
-        clickSource: getFormType(currentStep),
+        clickSource: "waitlist_modal",
         custom: {
-          form_source: trackEventClickSource,
-          cta_text: trackEventCtaText,
+          form_source: formSource,
+          form_type: getFormType(currentStep)
         },
       })
     }
@@ -119,10 +117,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.wrongPhoneNumber,
-      clickSource: trackingSources.waitlistLoginOTPForm,
+      clickSource: "waitlist_modal",
       custom: {
-        form_source: trackEventClickSource,
-        cta_text: trackEventCtaText,
+        form_source: formSource,
+        form_type: getFormType(step),
       },
     })
   };
@@ -138,10 +136,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.waitlistModalClose,
-      clickSource: getFormType(step),
+      clickSource: "waitlist_modal",
       custom: {
-        form_source: trackEventClickSource,
-        cta_text: trackEventCtaText,
+        form_source: formSource,
+        form_type: getFormType(step),
       },
     })
     onClose();
@@ -172,8 +170,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               setError={setLoginError}
               clearErrors={clearLoginErrors}
               handleSubmit={handleSubmit}
-              trackEventClickSource={trackEventClickSource}
-              trackEventCtaText={trackEventCtaText}
+              formSource={formSource}
             />
           ) : step === 'OTP' ? (
             <OTPStep
@@ -186,14 +183,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               errors={otpErrors}
               handleSubmit={handleOTPSubmit}
               control={otpControl}
-              trackEventClickSource={trackEventClickSource}
-              trackEventCtaText={trackEventCtaText}
+              formSource={formSource}
             />
           ) : (
             <WaitlistForm
               onSubmitSuccess={handleWaitlistSuccess}
-              trackEventClickSource={trackEventClickSource}
-              trackEventCtaText={trackEventCtaText}
+              formSource={formSource}
             />
           )}
         </div>

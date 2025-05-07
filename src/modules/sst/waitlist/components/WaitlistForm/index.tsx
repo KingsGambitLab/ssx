@@ -16,14 +16,12 @@ import { trackingEvents, trackingSources, trackEvent } from '../../utils/trackin
 
 interface WaitlistFormProps {
   onSubmitSuccess: () => void;
-  trackEventClickSource?: string;
-  trackEventCtaText?: string;
+  formSource?: string;
 }
 
 export const WaitlistForm: React.FC<WaitlistFormProps> = ({ 
   onSubmitSuccess,
-  trackEventClickSource,
-  trackEventCtaText
+  formSource
 }) => {
   const { handleCategoryChange, formFields, setShowWaitlistModal } = useWaitlistCheck();
   const { submitWaitlistForm } = useWaitlistApi();
@@ -70,8 +68,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource, 
       custom: {
         ...custom,
-        form_source: trackEventClickSource,
-        cta_text: trackEventCtaText,
+        form_source: formSource,
+        form_type: trackingSources.waitlistForm
       } });
   }
 
@@ -92,8 +90,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource: trackingSources.waitlistForm,
       custom: {
         category: newCategory,
-        form_source: trackEventClickSource,
-        cta_text: trackEventCtaText,
+        form_source: formSource,
+        form_type: trackingSources.waitlistForm
       }
     })
   }, [categoryField, setValue, handleCategoryChange]);
@@ -129,12 +127,9 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     const categoryValue = watch(categoryField?.id || "");
 
     trackEvent.formSubmitStatus({
-      clickType: 'form_submit',
-      clickText: trackingEvents.waitlistFormSubmit,
-      clickSource: trackingSources.waitlistForm,
       extraInfo: {
-        form_source: trackEventClickSource,
-        cta_text: trackEventCtaText,
+        form_source: formSource,
+        form_type: trackingSources.waitlistForm
       },
       attributes: {
         status: formStatus,
@@ -174,8 +169,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource: trackingSources.waitlistForm,
       custom: {
         form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
-        form_source: trackEventClickSource,
-        cta_text: trackEventCtaText,
+        form_source: formSource,
+        form_type: trackingSources.waitlistForm
       }
     })
     form.submit(); // This will trigger the onFinish handler
