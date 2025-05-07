@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
 
+import { ABEX_FLAG_CONFIG } from '@utils/abex/constants';
+
 import {
   Analytics,
   AnalyticsFallback,
@@ -10,6 +12,7 @@ import {
   SUB_PRODUCTS,
 } from '@/components/common/Analytics/constants';
 
+import BottomNavbar from '@components/Sst/BottomNavbar';
 import { getAllExperiments } from '@utils/abex/experiment';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
@@ -26,6 +29,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
         <MicrosoftClarity />
       </Suspense>
       {children}
+      <BottomNavbar variant={ABEX_FLAG_CONFIG.SST_LP_REVAMP.NEW_VARIANT} />
     </>
   );
 }

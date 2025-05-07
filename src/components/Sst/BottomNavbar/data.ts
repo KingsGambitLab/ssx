@@ -58,8 +58,3 @@ export const BOTTOM_NAVBAR_LINKS_REVAMP = [
     active: true,
   },
 ]
-
-export const REVAMP_VARIANT_PAGES = [
-  '/school-of-technology/degree/',
-  '/school-of-technology/career-outcomes/'
-]
