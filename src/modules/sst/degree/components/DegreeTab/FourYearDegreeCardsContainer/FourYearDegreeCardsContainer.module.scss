@@ -16,18 +16,7 @@
   
   @include tablet {
     width: 100%;
-    & > div {
-      min-height: unset !important;
-    }
   }
-
-  @include desktop-only {
-    & > div {
-      height: 20rem;
-    }
-  }
-
-
 }
 
 .separatorContainer {

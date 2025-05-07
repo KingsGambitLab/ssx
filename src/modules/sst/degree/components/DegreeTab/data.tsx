@@ -1,6 +1,5 @@
 import { JSX } from "react";
 import ArrowRightUp from "@public/images/sst/svg/arrow-right-up-grey.svg";
-import CertificateBlack from "@public/images/sst/svg/certificate-black.svg";
 import FourYearDegreeCardsContainer from "./FourYearDegreeCardsContainer/FourYearDegreeCardsContainer";
 import ThreeYearDegreeCardsContainer from "./ThreeYearDegreeCardsContainer/ThreeYearDegreeCardsContainer";
 
@@ -33,7 +32,6 @@ export type ThreeYearsData = {
 
 const FourYearDegreeData: DegreeData[] = [
   {
-    src: CertificateBlack,
     degree: (
       <>
         Bachelor of Science (BS) in Data Science and Applications with{" "}
@@ -42,7 +40,6 @@ const FourYearDegreeData: DegreeData[] = [
     ),
   },
   {
-    src: CertificateBlack,
     degree: (
       <>
         Bachelor of Science (BSc Hons.) in Computer Science with{" "}
