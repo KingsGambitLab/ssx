@@ -48,6 +48,10 @@ export const revampedLoggedOutNavItems = [
     isNew: true,
   },
   {
+    label: "Campus Life",
+    href: "/school-of-technology/campus-life/"
+  },
+  {
     label: "Events",
     href: "/school-of-technology/events/"
   },
