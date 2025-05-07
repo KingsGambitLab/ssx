@@ -38,7 +38,7 @@ export const revampedLoggedOutNavItems = [
     href: "/school-of-technology/admission/"
   },
   {
-    label: "Careers",
+    label: "Placements++",
     href: "/school-of-technology/career-outcomes/",
     isNew: true,
   },
@@ -107,7 +107,7 @@ export const revampedLoggedInNavItems = [
     href: "/school-of-technology/admission/"
   },
   {
-    label: "Careers",
+    label: "Placements++",
     href: "/school-of-technology/career-outcomes/",
     isNew: true,
   },
