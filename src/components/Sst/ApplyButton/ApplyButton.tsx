@@ -51,7 +51,7 @@ const ApplyButton: React.FC<ApplyButtonProps> = ({
         custom: trackEventCustom,
       });
     }
-    setIsLoginModalOpen(true, trackEventSource, 'apply_now');
+    setIsLoginModalOpen(true, `${trackEventSource}_apply_now`);
   };
 
   const onResumeApplicationHandler = () => {

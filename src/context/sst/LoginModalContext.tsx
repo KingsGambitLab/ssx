@@ -15,8 +15,7 @@ interface LoginModalContextType {
   handleModalClose: () => void;
   showWaitlistModal: boolean;
   setShowWaitlistModal: (value: boolean) => void;
-  trackEventSource: string;
-  trackEventCtaText: string;
+  formSource: string;
   currentStep: string;
   setCurrentStep: (value: string) => void;
 }
@@ -30,11 +29,11 @@ export default function LoginModalProvider({
 }: {
   children: ReactNode;
 }) {
-  const [loginModal, setLoginModal] = useState<{
-    isOpen: boolean,
-    source: string,
-    ctaText: string
-  }>({ isOpen: false, source: 'waitlist_form', ctaText: '' });
+  const [loginModal, setLoginModal] = useState<
+    {
+      isOpen: boolean,
+      source: string,
+    }>({ isOpen: false, source: 'waitlist_modal' });
 
   const [currentStep, setCurrentStep] = useState<string>('');
 
@@ -57,10 +56,11 @@ export default function LoginModalProvider({
     if (isModalOpen) {
       trackEvent.click({
         clickType: 'click',
-        clickText: getFormType(currentStep),
-        clickSource: loginModal.source,
+        clickText: "modal_open",
+        clickSource: "waitlist_modal",
         custom: {
-          cta_text: loginModal.ctaText,
+          form_source: loginModal.source,
+          form_type: getFormType(currentStep)
         },
       });
     }
@@ -68,7 +68,7 @@ export default function LoginModalProvider({
   }, [isModalOpen])
 
   const handleModalClose = () => {
-    setLoginModal({ isOpen: false, source: loginModal.source, ctaText: loginModal.ctaText });
+    setLoginModal({ isOpen: false, source: loginModal.source });
     setShowWaitlistModal(false);
   };
 
@@ -77,10 +77,8 @@ export default function LoginModalProvider({
     setIsLoginModalOpen: (
       value: boolean,
       source: string = 'waitlist_form',
-      ctaText: string = ''
-    ) => setLoginModal({ isOpen: value, source, ctaText }),
-    trackEventSource: loginModal.source,
-    trackEventCtaText: loginModal.ctaText,
+    ) => setLoginModal({ isOpen: value, source }),
+    formSource: loginModal.source,
     isModalOpen,
     handleModalClose,
     showWaitlistModal,

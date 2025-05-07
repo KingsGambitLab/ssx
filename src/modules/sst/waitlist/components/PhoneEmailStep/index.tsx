@@ -22,8 +22,7 @@ interface PhoneEmailStepProps {
   clearErrors: UseFormClearErrors<LoginFormData>;
   handleSubmit: UseFormHandleSubmit<LoginFormData>;
   control: any;
-  trackEventClickSource?: string;
-  trackEventCtaText?: string;
+  formSource?: string;
 }
 
 export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
@@ -33,8 +32,7 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
   control,
   setError,
   clearErrors,
-  trackEventClickSource,
-  trackEventCtaText
+  formSource
 }) => {
   const [token, setToken] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -54,17 +52,13 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
 
   const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
     trackEvent.formSubmitStatus({
-      clickType: 'form_submit',
-      clickText: trackingEvents.waitlistLoginMobileFormSubmit,
-      clickSource: trackingSources.waitlistLoginMobileForm,
       attributes: {
         status: formStatus,
         message: formError? formattedErrors(formError) : 'success',
         form_id: trackingSources.waitlistLoginMobileForm
       },
       extraInfo: {
-        form_source: trackEventClickSource,
-        cta_text: trackEventCtaText,
+        form_source: formSource,
       }
     })
   }
@@ -123,11 +117,11 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
     trackEvent.click({
       clickType,
       clickText,
-      clickSource: trackingSources.waitlistLoginMobileForm,
+      clickSource: 'waitlist_modal',
       custom: {
         ...custom,
-        form_source: trackEventClickSource,
-        cta_text: trackEventCtaText,
+        form_source: formSource,
+        form_type: trackingSources.waitlistLoginMobileForm
       }
     })
   }
@@ -305,7 +299,6 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
             onClick={() => trackClickEventHandler({
               clickType: 'click',
               clickText: trackingEvents.waitlistLoginMobileFormSubmit,
-              clickSource: trackingSources.waitlistLoginMobileForm,
             })}
           >
             Get OTP

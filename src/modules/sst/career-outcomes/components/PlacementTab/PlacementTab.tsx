@@ -91,7 +91,7 @@ export default function PlacementTab({
       </div>
       {header && <div className={styles.header}>{header}</div>}
       <div className={styles.scrollView}>
-        <HorizontalScrollWrapper slidesToShow={isMobile ? 1.1 : 2.5} clickSource={pageTrackingSources.placementTab}>
+        <HorizontalScrollWrapper slidesToShow={isMobile ? 1.1 : 2.5} clickSource={`${pageTrackingSources.placementTab}_${badge}`}>
           {videoCards &&
             videoCards.map((video) => {
               return (
