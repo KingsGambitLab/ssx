@@ -1,0 +1,128 @@
+.placement {
+  padding-top: 5.4rem;
+}
+
+.container {
+  @include flex-col-c;
+
+  width: 100%;
+  gap: 5.4rem;
+
+  @include tablet {
+    gap: 2.4rem;
+  }
+}
+
+.header {
+  @include flex-col-c;
+
+  width: 100%;
+  gap: 0.8rem;
+}
+
+.title {
+  @include font-plus-jakarta-sans;
+
+  color: #171717;
+  text-align: center;
+  font-size: 4.8rem;
+  font-weight: $semi-bold-font-weight;
+
+  @include tablet {
+    font-size: 2.8rem;
+  }
+}
+
+.subtitle {
+  @include font-plus-jakarta-sans;
+
+  color: #616161;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: $bolder-font-weight;
+  letter-spacing: 0.26rem;
+  text-transform: uppercase;
+
+  @include tablet {
+    font-size: 1.4rem;
+  }
+}
+
+.tabLayoutContainer {
+  @include flex-row-c;
+
+  width: 100%;
+}
+
+.tabLayout {
+  @include flex-row;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row !important;
+
+  @include tablet {
+    gap: 1rem !important;
+    flex-direction: column !important;
+  }
+}
+
+.tabLayout :global(.ant-tabs-nav-list) {
+  @include flex-col-c;
+
+  gap: 2rem !important;
+
+  @include tablet {
+    @include flex-row-c;
+
+    width: 100% !important;
+    flex-direction: row !important;
+  }
+}
+.tabLayout :global(.ant-tabs-tab-btn) {
+  padding: 0 !important;
+}
+
+.tabLayout :global(.ant-tabs-tab) {
+  @include flex-row-c;
+
+  width: 100%;
+  background: white !important;
+  margin-left: 0 !important;
+  padding: 2 3.2rem !important;
+  border: 0.1rem solid #E4E4E4 !important;
+}
+
+.tabLayout :global(.ant-tabs-tab.ant-tabs-tab-active) {
+  @include flex-row-c;
+  
+  background: #0041CA !important;
+  width: 100%;
+}
+
+.tabLayout :global(.ant-tabs-nav) {
+  width: 20rem !important;
+  padding: 0 !important;
+  border: none !important;
+
+  @include tablet {
+    width: 100% !important;
+  }
+}
+
+.tabLayout :global(.ant-tabs-nav-wrap) {
+  width: 100% !important;
+}
+
+.tabLayout :global(.ant-tabs-nav-list) {
+  width: 100% !important;
+}
+
+.tabLayout :global(.ant-tabs-content-holder) {
+  width: 100% !important;
+
+  @include tablet {
+    border: 0.1rem solid #0041CA !important;
+    border-radius: 0.8rem !important;
+  }
+}

@@ -1,0 +1,94 @@
+$video-card-with-cta-button-background-color: #f5f5f5;
+$video-card-with-cta-button-font-color: #171717;
+$video-card-with-cta-button-font-size: 1.43rem;
+$video-card-with-cta-button-hover-border-color: #73b9ff;
+
+.container {
+  @include flex-col;
+
+  align-items: center;
+  justify-content: flex-start;
+  border: 0.1rem solid #E4E4E4;
+  border-radius: 0.8rem;
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.content {
+  @include flex-col;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.8rem;
+  width: 100%;
+  padding: 2rem 2rem 0 2rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  @include font-plus-jakarta-sans;
+
+  font-weight: $semi-bold-font-weight;
+  font-size: 2rem;
+  background: linear-gradient(90deg, #083CA0 0%, #0080FF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include tablet {
+    font-size: 1.6rem;
+  }
+}
+
+.desc {
+  @include font-plus-jakarta-sans;
+
+  color: #3A3A3A;
+  font-size: 1.6rem;
+  line-height: 140%;
+
+  @include tablet {
+    font-size: 1.2rem;
+  }
+}
+
+.ctaContainer {
+  @include flex-row;
+
+  align-items: flex-end;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.ctaButton {
+  @include flex-row-c;
+
+  gap: 0.71rem !important;
+  height: 4.5695rem !important;
+  padding: 1.25rem 2.15rem !important;
+  border-radius: 0.35rem !important;
+  background: $video-card-with-cta-button-background-color !important;
+
+  & > span {
+    color:  $video-card-with-cta-button-font-color !important;
+    font-size: $video-card-with-cta-button-font-size !important;
+    font-weight: $bold-font-weight !important;
+    line-height: 2.007rem !important;
+  }
+
+  &:hover {
+    border: 0.08rem solid $video-card-with-cta-button-hover-border-color !important;
+    background: $white-color !important;
+
+    & > span {
+      color: $primary-color !important;
+    }
+  }
+}

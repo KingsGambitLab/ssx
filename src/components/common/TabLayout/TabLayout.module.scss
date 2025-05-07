@@ -1,0 +1,60 @@
+.customTab {
+  width: 100%;
+  gap: 3.2rem;
+}
+
+.customTab :global(.ant-tabs-nav) {
+  width: fit-content;
+  padding: 1rem;
+  border: 0.1rem solid #e4e4e4;
+  border-radius: 0.8rem;
+  margin: 0 auto !important;
+}
+
+.customTab :global(.ant-tabs-tab) {
+  padding: 1rem 3.2rem !important;
+  border-radius: 0.5rem;
+  transition: background 0.3s, color 0.3s;
+  color: #3A3A3A;
+
+  @include mobile {
+    padding: 0.8rem 1rem !important;
+  }
+}
+
+.customTab :global(.ant-tabs-tab.ant-tabs-tab-active) {
+  background: #0041CA;
+
+  &:hover {
+    background: #0041CA;
+  }
+}
+
+.customTab :global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+  color: white !important;
+  padding: 1rem;
+}
+
+.customTab :global(.ant-tabs-tab.ant-tabs-tab .ant-tabs-tab-btn) {
+  font-size: $desktop-font-body !important;
+
+  @include mobile {
+    padding: 1.2rem 1rem !important;
+    font-size: $h6-size !important;
+  }
+}
+
+.customTab :global(.ant-tabs-tab:hover) {
+  background: transparent;
+  color: #3A3A3A;
+}
+
+.customTab :global(.ant-tabs-ink-bar) {
+  display: none !important;
+}
+
+.customTab :global(.ant-tabs-tab+.ant-tabs-tab) {
+  @include mobile {
+    margin-left: 0 !important;
+  }
+}

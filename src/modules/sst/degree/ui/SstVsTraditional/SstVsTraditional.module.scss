@@ -1,0 +1,19 @@
+.sstVsTraditional {
+  padding: 5.4rem 0;
+
+  @include mobile {
+    padding: 2.4rem 0;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+  gap: 3.2rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+}

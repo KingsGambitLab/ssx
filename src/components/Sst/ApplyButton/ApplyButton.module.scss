@@ -1,0 +1,23 @@
+.applyButton {
+  background-color: #e94057 !important;
+  border-color: #e94057 !important;
+  font-weight: 500;
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: #d63a4e !important;
+    border-color: #d63a4e !important;
+  }
+}
+
+.resumeButton {
+  background-color: #0245b9 !important;
+  border-color: #0245b9 !important;
+  font-weight: 500;
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: #0239a1 !important;
+    border-color: #0239a1 !important;
+  }
+} 

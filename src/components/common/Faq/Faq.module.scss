@@ -1,0 +1,104 @@
+$faq-header-font-color: #3a3a3a;
+.faqContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+}
+
+.title {
+  text-align: center;
+  color: #666;
+  margin-bottom: 0.8rem !important;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 3.6rem !important;
+  font-weight: 600 !important;
+  margin: 0 0 4rem !important;
+  color: #111 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  
+  @include mobile {
+    font-size: 2.4rem !important;
+    margin-bottom: 2.4rem !important;
+  }
+}
+
+.faqCollapse {
+  background: transparent !important;
+  
+  :global(.ant-collapse-item) {
+    border: 1px solid #e8e8e8 !important;
+    border-radius: 8px !important;
+    margin-bottom: 2rem !important;
+    overflow: hidden;
+    background-color: white;
+    
+    &:last-child {
+      margin-bottom: 3.2rem !important;
+    }
+  }
+  
+  :global(.ant-collapse-header) {
+    padding: 2.4rem 2.4rem 2.4rem 1.8rem !important;
+    font-size: $desktop-font-body !important;
+    font-weight: 400 !important;
+    color: $faq-header-font-color !important;
+    
+    @include mobile {
+      font-size: $mobile-font-subtitle !important;
+      padding: 1.6rem !important;
+    }
+  }
+  
+  :global(.ant-collapse-content) {
+    border-top: 1px solid #e8e8e8 !important;
+  }
+  
+  :global(.ant-collapse-content-box) {
+    padding: 2rem !important;
+    color: white !important;
+    
+    @include mobile {
+      padding: 1.6rem !important;
+    }
+  }
+}
+
+.collapseIcon {
+  font-size: 1.6rem;
+  color: #111;
+}
+
+.faqPanel {
+  @include font-plus-jakarta-sans;
+
+  margin-bottom: 1.6rem;
+}
+
+.answerContent {
+  font-size: $desktop-font-body !important;
+  line-height: 1.6;
+  color: white;
+  
+  ul {
+    padding-left: 2rem;
+    margin-top: 1.6rem;
+    
+    li {
+      margin-bottom: 0.8rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include mobile {
+    font-size: $mobile-font-card-title !important;
+  }
+} 

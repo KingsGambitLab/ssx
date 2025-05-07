@@ -25,6 +25,7 @@ interface OTPStepProps {
   errors: FieldErrors<OTPFormData>;
   handleSubmit: UseFormHandleSubmit<OTPFormData>;
   control: any;
+  formSource?: string;
 }
 
 export const OTPStep: React.FC<OTPStepProps> = ({
@@ -36,6 +37,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
   errors,
   handleSubmit,
   control,
+  formSource
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
@@ -57,7 +59,7 @@ export const OTPStep: React.FC<OTPStepProps> = ({
 
   const formattedErrors = (error: any) => {
     const formattedErrors: Record<string, string> = {};
-  
+
     Object.entries(error).forEach(([field, value]: [string, any]) => {
       if (value?.message) {
         formattedErrors[field] = value.message;
@@ -65,17 +67,17 @@ export const OTPStep: React.FC<OTPStepProps> = ({
     });
 
     return formattedErrors;
-  }
+  };
 
   const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
     trackEvent.formSubmitStatus({
-      clickType: 'form_submit',
-      clickText: trackingEvents.otpFormSubmit,
-      clickSource: trackingSources.waitlistLoginOTPForm,
       attributes: {
         status: formStatus,
         message: formError? formattedErrors(formError) : 'success',
         form_id: trackingSources.waitlistLoginOTPForm,
+      },
+      extraInfo: {
+        form_source: formSource
       }
     })
   }
@@ -158,7 +160,11 @@ export const OTPStep: React.FC<OTPStepProps> = ({
       clickType,
       clickText,
       clickSource,
-      custom,
+      custom: {
+        ...custom,
+        form_source: formSource,
+        form_type: trackingSources.waitlistLoginOTPForm
+      }
     })
   }
 
@@ -206,7 +212,6 @@ export const OTPStep: React.FC<OTPStepProps> = ({
                 onClick={() => trackClickEventHandler({
                   clickType: 'click',
                   clickText: trackingEvents.formInputFocus,
-                  clickSource: trackingSources.waitlistLoginOTPForm,
                   custom: {
                     field_type: 'otp',
                   }
@@ -215,7 +220,6 @@ export const OTPStep: React.FC<OTPStepProps> = ({
                   trackClickEventHandler({
                     clickType: 'click',
                     clickText: trackingEvents.formInputFilled,
-                    clickSource: trackingSources.waitlistLoginOTPForm,
                     custom: {
                       field_type: 'otp',
                       field_value: field.value,

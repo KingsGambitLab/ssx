@@ -1,6 +1,6 @@
 import tracker from '@lib/tracking';
 
-import { TrackingProps } from '@modules/sst/waitlist/components/types';
+import { TrackingProps } from '@modules/sst/waitlist/types';
 
 export const trackingSources = {
   waitlistLoginMobileForm: 'waitlist-login-mobile-form',
@@ -15,7 +15,7 @@ export const trackingEvents = {
   formInputFocus: 'form-input-focus',
   formInputFilled: 'form-input-filled',
   waitlistLoginMobileFormSubmit: 'waitlist-login-mobile-form-submit',
-  waitlistModalClose: 'waitlist-modal-close',
+  waitlistModalClose: 'modal_close',
   wrongPhoneNumber: 'wrong-phone-number',
   resendOTP: 'resend-otp',
   otpFormSubmit: 'otp-form-submit',
@@ -40,17 +40,13 @@ export const trackEvent = {
       section_name: sectionName,
     });
   },
-  formSubmitStatus: ({ clickType, clickText, clickSource, attributes }: {
-    clickType: string;
-    clickText: string;
-    clickSource: string;
+  formSubmitStatus: ({ attributes, extraInfo }: {
     attributes: object;
+    extraInfo: object;
   }) => {
     tracker.formSubmitStatus({
-      click_type: clickType,
-      click_text: clickText,
-      click_source: clickSource,
       ...attributes,
+      extra_info: extraInfo,
     });
   }
 }
