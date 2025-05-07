@@ -70,7 +70,7 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({ items, activeSection: i
     const href = items.find(item => item.key === key)?.href || '';
     const element = document.getElementById(href.replace('#', ''));
     if (element) {
-      const yOffset = - 20; // Additional offset for padding
+      const yOffset = - 50; // Additional offset for padding
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }

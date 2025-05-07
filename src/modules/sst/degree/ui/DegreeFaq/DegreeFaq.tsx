@@ -51,7 +51,7 @@ const faqItems: FaqItem[] = [
     answer: (
       <>
         <p>
-          Not at all. The off-campus degree programs from IIT Madras and BITS Pilani are self-paced and flexible. SST’s curriculum is thoughtfully designed to align with these programs Also,
+          Not at all. The off-campus degree programs from IIT Madras and BITS Pilani are self-paced and flexible. SST’s curriculum is thoughtfully designed to align with these programs. Also,
           SST’s academic team offers guidance and planning support to help students balance both. Past cohorts have handled both comfortably with our structure.
         </p>
       </>
