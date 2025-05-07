@@ -390,11 +390,11 @@ export const OutcomeHeroData = {
     },
     {
       icon: StarFourBlue.src,
-      text: "Higher Studies"
+      text: "Entrepreneurship"
     },
     {
       icon: StarFourBlue.src,
-      text: "Entrepreneurship"
+      text: "Higher Studies"
     }
   ]
 }
