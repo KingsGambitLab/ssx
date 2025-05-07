@@ -1,7 +1,16 @@
+$career-stats-title-font-size: 4rem;
+$career-stats-title-background-color: linear-gradient(90deg, #ffF7e0 23.99%, #73b9ff 75.76%);
+
 .container {
   @include flex-col;
 
   gap: 4rem;
+  padding: 5.6rem 0;
+
+  @include mobile {
+    gap: 2.4rem;
+    padding: 2.4rem 0;
+  }
 }
 
 .content {
@@ -23,9 +32,14 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 2.4rem;
   flex: 1 0 0;
+
+  @include mobile {
+    gap: 1.6rem;
+  }
 }
 
 .rightContent {
+  position: relative;
   & > img {
     height: 100%;
 
@@ -36,8 +50,82 @@
   }
 }
 
+.downloadBrochure {
+  @include flex-row-c;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.downloadBrochureButton {
+  width: 40.4rem !important;
+  height: 6.6rem !important;
+
+  @include mobile {
+    height: auto !important;
+    width: 100% !important;
+  }
+}
+
 .fullWidth {
   grid-column: 1 / -1;
+}
+
+.videoThumbnail {
+  border-radius: $border-radius-large;
+}
+
+.videoTitleWrapper {
+  @include flex-col;
+  
+  gap: 0.8rem;
+  align-items: flex-start;
+  position: absolute;
+  top: 0;
+  padding: 2rem 3.2rem;
+}
+
+.videoTitle {
+  text-align: center;
+  font-size: $career-stats-title-font-size;
+  font-weight: $semi-bold-font-weight;
+  background: $career-stats-title-background-color;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.videoDesc {
+  color: $white-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $normal-font-weight;
+  line-height: 2.24rem;
+
+  & > span {
+    background: linear-gradient(90deg, #E6F2FF 58.66%, #FFDF70 100%);;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: $bold-font-weight;
+  }
+}
+
+.videoButton {
+  color: $white-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $normal-font-weight;
+  line-height: 2.24rem;
+  text-decoration: underline;
+  font-weight: $medium-font-weight;
+  all: unset;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer !important;
+  text-decoration: underline;
 }
 
 

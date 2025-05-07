@@ -40,12 +40,12 @@ const DegreeHero = () => {
   }, []);
 
   return (
-    <Section section_class="degree-hero" id="degree-hero">
+    <Section section_class={styles.section} id="degree-hero">
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
             <h2 className={styles.title}>
-              A Degree Designed for the Future, Not the Past
+              A CS Program Designed for the Future, Not the Past
             </h2>
             <div className={styles.description}>
               Traditional engineering degrees were designed decades ago, but the
@@ -61,7 +61,16 @@ const DegreeHero = () => {
             {isInView ? (
               <div className={styles.videoContainer}>
                 {!isVideoLoaded && (
-                  <div className={styles.thumbnailContainer}>
+                  <div className={styles.thumbnailContainer} onClick={() => {
+                    trackEvent.click({
+                      clickType: pageTrackingEvents.videoPlayed,
+                      clickSource: pageTrackingSources.DegreeHero,
+                      custom: {
+                        videoLink: "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
+                      },
+                    });
+                    setIsVideoLoaded(true)
+                  }}>
                     <Image
                       src={DegreeHeroImage}
                       alt="Students using VR technology"

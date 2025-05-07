@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image';
 
 import Adobe from '@public/images/sst/svg/adobelogo.svg';
@@ -13,12 +14,15 @@ import Walmart from '@public/images/sst/svg/walmart.svg';
 import Flipkart from '@public/images/sst/png/flipkartlogo.png';
 import Target from '@public/images/sst/png/target.png';
 import ArrowUpRight from '@public/images/sst/svg/arrow-up-right.svg';
-import RightLine from '@public/images/sst/svg/right-vector-our-alumini.svg';
 import LeftLine from '@public/images/sst/svg/left-vetor-our-alumini.svg';
 
 import Section from '@components/common/Section';
 
+import { pageTrackingEvents, pageTrackingSources, trackEvent } from '@modules/sst/career-outcomes/utils/tracking';
+
 import styles from './ProvenTrackRecord.module.scss';
+import { useLoginModalContext } from '@context/sst';
+import { useUser } from '@hooks';
 
 export default function ProvenTrackRecord() {
   const companies = [
@@ -35,9 +39,37 @@ export default function ProvenTrackRecord() {
     { src: Google, alt: 'Google' },
     { src: Razorpay, alt: 'Razorpay' },
   ];
+  const { data: userData } = useUser();
+  const isLoggedIn = userData?.isloggedIn;
+  const { setIsLoginModalOpen } = useLoginModalContext();
+
+  const trackEventHandler = ({
+    clickType = 'click',
+    clickText,
+    clickSource,
+  }: {
+    clickType?: string;
+    clickText?: string;
+    clickSource?: string;
+  }) => {
+    trackEvent.click({
+      clickType,
+      clickText,
+      clickSource,
+    });
+  };  
+
+  const handleDownloadBrochureClick = () => {
+    trackEventHandler({ clickText: pageTrackingEvents.downloadReport, clickSource: pageTrackingSources.provenTrackRecord });
+    if (isLoggedIn && window !== undefined) {
+      window.open("https://content.interviewbit.com/scaler_career_transition_assesment_report-academy.pdf", "_blank");
+    } else {
+      setIsLoginModalOpen(true, pageTrackingSources.provenTrackRecord, pageTrackingEvents.downloadReport);
+    }
+  };
 
   return (
-    <Section section_class={styles.section}>
+    <Section section_class={styles.provenTrackRecord}>
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.header}>
@@ -64,32 +96,30 @@ export default function ProvenTrackRecord() {
             ))}
           </div>
 
-          <div className={styles.otherCompanies}>
-            <div className={styles.pill}>
-              <span>+1200</span>
-              <span>other companies</span>
+          <div className={styles.footer}>
+            <div className={styles.otherCompanies}>
+              <div className={styles.pill}>
+                <span>+1200</span>
+                <span>other companies</span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.outcomeText}>
-            *Outcomes through our Scaler's Academy & DSML Program
-          </div>
-
-          <div className={styles.reportSection}>
-            <button className={styles.downloadButton}>
-              <span>Download Report</span>
-              <Image 
-                src={ArrowUpRight} 
-                alt="Download"
-                width={24}
-                height={24}
-                className={styles.downloadIcon}
-              />
-            </button>
-            <div className={styles.reportText}>
-              Scaler's Online Program Placement Report*
+            <div className={styles.reportSection}>
+              <button className={styles.downloadButton} onClick={handleDownloadBrochureClick}>
+                <span>Download Report*</span>
+                <Image 
+                  src={ArrowUpRight} 
+                  alt="Download"
+                  width={24}
+                  height={24}
+                  className={styles.downloadIcon}
+                />
+              </button>
+              <div className={styles.reportText}>
+                Scaler's Online Program Placement Report*
+              </div>
             </div>
-          </div>
+         </div>
         </div>
       </div>
     </Section>

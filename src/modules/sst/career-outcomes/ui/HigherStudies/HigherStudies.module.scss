@@ -1,8 +1,12 @@
 $text-secondary: #3a3a3a;
+$higher-studies-title-color: #171717;
 
 .higherStudies {
-  padding-top: 5.4rem !important;
-  padding-bottom: 5.4rem !important;
+  padding: 5.4rem 0;
+
+  @include mobile {
+    padding: 2.4rem 0;
+  }
 }
 
 .container {
@@ -14,6 +18,23 @@ $text-secondary: #3a3a3a;
     gap: 1.4rem;
   }
 
+  .sectionTitle {
+    font-size: $desktop-font-header;
+    font-weight: $semi-bold-font-weight;
+    color: $higher-studies-title-color;
+    text-align: center;
+    line-height: 6.72rem;
+    letter-spacing: 0.01rem;
+    max-width: 70%;
+
+    @include mobile {
+      max-width: 100%;
+      text-align: center;
+      line-height: 3.36rem;
+      font-size: $mobile-font-header !important;
+    }
+  }
+
   .headerContainer {
     @include flex-row;
     justify-content: space-between;
@@ -23,18 +44,6 @@ $text-secondary: #3a3a3a;
     @include mobile {
       flex-direction: column;
       gap: 2rem;
-    }
-
-    .sectionTitle {
-      font-size: $desktop-font-header;
-      font-weight: $semi-bold-font-weight;
-      width: 50%;
-
-      @include mobile {
-        text-align: center;
-        width: 100%;
-        font-size: $mobile-font-header !important;
-      }
     }
     
     .sectionDescription {

@@ -13,6 +13,13 @@ export const pageTrackingSources = {
   DegreeHero: "degree_hero",
   degreePathways: "degree_pathways",
   skillsVsDegree: "skills_vs_degree",
+  placementTab: "placement_tab",
+  Entrepreneurship: "Entrepreneurship",
+  successStories: "success_stories",
+  educationTeam: "education_team",
+  entrepreneurshipTeam: "entrepreneurship_team",
+  guestSpeakers: "guest_speakers",
+  startups: "startups",
 }
 
 export const pageTrackingEvents = {
@@ -27,6 +34,7 @@ export const pageTrackingEvents = {
   ContactUs: "contact_us",
   ReadAllFaqs: "read_all_faqs",
   videoPlayed: "video_played",
+  videoClosed: "video_closed",
 }
 
 export const trackEvent = {

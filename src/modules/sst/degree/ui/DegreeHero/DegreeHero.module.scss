@@ -1,7 +1,7 @@
 $degree-hero-bg-color: #fafafa;
 $degree-hero-gradient-start: #083ca0;
 $degree-hero-gradient-end: #0080ff;
-$degree-hero-desc-font-color: #616161;
+$degree-hero-desc-font-color: #3A3A3A;
 
 .container {
   @include flex-col;
@@ -28,7 +28,6 @@ $degree-hero-desc-font-color: #616161;
       width: 32rem;
       height: 18.1rem;
       gap: 1.6rem;
-      margin: 2.4rem 0;
       padding: 0;
 
       .title {
@@ -38,7 +37,7 @@ $degree-hero-desc-font-color: #616161;
         width: 32rem;
         height: 6.8rem;
         font-weight: 700;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
         line-height: 140%;
         letter-spacing: 0.1rem;
         text-align: center;
@@ -64,13 +63,12 @@ $degree-hero-desc-font-color: #616161;
         text-align: center;
         vertical-align: middle;
         color: $degree-hero-desc-font-color;
-        margin: 0;
         padding: 0;
         white-space: pre-wrap;
         word-break: break-word;
 
         &:nth-of-type(1) {
-          height: 3.4rem;
+          height: 3.1rem;
         }
 
         &:nth-of-type(2) {
@@ -87,6 +85,11 @@ $degree-hero-desc-font-color: #616161;
       margin: 0;
       padding: 0;
       overflow: hidden;
+
+      @include mobile {
+        height: auto;
+        aspect-ratio: 16/9;
+      }
 
       .image {
         width: 100%;
@@ -111,36 +114,6 @@ $degree-hero-desc-font-color: #616161;
           }
         }
 
-        .playButton {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 6rem;
-          height: 6rem;
-          background: rgba(0, 0, 0, 0.7);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 2;
-          cursor: pointer;
-          transition: background 0.3s ease;
-
-          &:hover {
-            background: rgba(0, 0, 0, 0.9);
-          }
-
-          .playIcon {
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 1rem 0 1rem 1.8rem;
-            border-color: transparent transparent transparent #ffffff;
-            margin-left: 0.4rem;
-          }
-        }
-
         .iframe {
           position: absolute;
           top: 0;
@@ -160,10 +133,10 @@ $degree-hero-desc-font-color: #616161;
       @include flex-r;
 
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: stretch;
       gap: 7.9rem;
-      max-width: 144rem;
-      padding: 0;
+      max-width: 1232px;
+      padding: 0 104px;
 
       .textContent {
         width: 62.1rem;
@@ -171,21 +144,33 @@ $degree-hero-desc-font-color: #616161;
         text-align: left;
         margin: 0;
         align-items: flex-start;
+        gap: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .title {
-          font-size: 4.8rem;
+          font-size: 4.5rem;
           width: auto;
           height: auto;
           text-align: left;
           justify-content: flex-start;
+          line-height: 140%;
+          margin: 0 0 24px 0;
         }
 
         .description {
-          font-size: 1.6rem;
+          @include font-plus-jakarta-sans;
+          font-size: 20px;
           width: auto;
-          height: auto ;
+          height: auto;
           text-align: left;
           justify-content: flex-start;
+          font-weight: 500;
+          line-height: 28px;
+          color: $degree-hero-desc-font-color;
+          margin-bottom: 8px;
+          word-wrap: break-word;
         }
       }
 
@@ -196,6 +181,8 @@ $degree-hero-desc-font-color: #616161;
         flex-shrink: 0;
         border-radius: 0.8rem;
         overflow: hidden;
+        margin: 0;
+        align-self: center;
 
         .image {
           border-radius: 0.8rem;
@@ -213,6 +200,15 @@ $degree-hero-desc-font-color: #616161;
           }
         }
       }
+    }
+  }
+}
+
+.section {
+  & > div {
+    @include tablet{
+      padding: 0!important;
+      width: 100%!important;
     }
   }
 }

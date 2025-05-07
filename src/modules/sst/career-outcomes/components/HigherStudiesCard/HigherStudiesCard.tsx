@@ -7,24 +7,41 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 import { HigherStudiesCardProps } from '@modules/sst/career-outcomes/types';
+import { pageTrackingEvents, pageTrackingSources, trackEvent } from '@modules/sst/career-outcomes/utils/tracking';
 
 import HorizontalScrollWrapper from '@components/common/HorizontalScroll';
 
 import styles from './HigherStudiesCard.module.scss';
 
+
 export default function HigherStudiesCard({
   title,
   desc,
-  icon,
-  alt,
   featureList,
 }: HigherStudiesCardProps) {
-  const [isModalOpen, setIsModalOpen] = useState<{isOpen: boolean, imageUrl: string | null}>({isOpen: false, imageUrl: null});
+  const [isModalOpen, setIsModalOpen] = useState<{ isOpen: boolean, imageUrl: string | null }>({ isOpen: false, imageUrl: null });
+  
+  const trackEventHandler = (clickText: string, custom?: object) => {
+    trackEvent.click({
+      clickType: 'click',
+      clickText: clickText,
+      clickSource: pageTrackingSources.higherStudiesCard,
+      custom: custom,
+    });
+  }
 
   const openModal = (imageUrl: string) => {
+    trackEventHandler(pageTrackingEvents.modalOpened, {
+      text: title,
+      link: imageUrl
+    });
     setIsModalOpen({isOpen: true, imageUrl});
   };
   const afterCloseModal = () => {
+    trackEventHandler(pageTrackingEvents.modalClosed, {
+      text: title,
+      link: isModalOpen.imageUrl
+    });
     setIsModalOpen({isOpen: false, imageUrl: null});
   };
 
@@ -35,15 +52,6 @@ export default function HigherStudiesCard({
   return (
     <>
       <div className={styles.container}>
-      <div className={styles.iconContainer}>
-        <Image 
-          src={icon} 
-          alt={alt} 
-          width={60} 
-          height={60}
-        />
-      </div>
-
       <div className={styles.content}>
         <div className={styles.info}>
           <div className={styles.title}>{title}</div>
@@ -51,7 +59,11 @@ export default function HigherStudiesCard({
         </div>
 
         {featureList && featureList?.length > 0  && (
-            <HorizontalScrollWrapper slidesToScroll={1} slidesToShow={1.2}>
+            <HorizontalScrollWrapper
+              slidesToScroll={1}
+              slidesToShow={1.2}
+              clickSource={pageTrackingSources.higherStudiesCard}
+            >
             {featureList.map((item, index) => (
               <div key={index} className={styles.featureListItem}>
                 <Image
@@ -71,7 +83,7 @@ export default function HigherStudiesCard({
       </div>
     </div>
 
-    <Modal
+      <Modal
         centered
         open={isModalOpen.isOpen}
         onCancel={() => setIsModalOpen(prev => ({ ...prev, isOpen: false }))}
