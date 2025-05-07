@@ -2,18 +2,18 @@ import Image from 'next/image';
 
 import styles from './SstRecruiters.module.scss';
 
-import Dukaan from '@public/images/sst/png/dukaan.png';
-import Allen from '@public/images/sst/png/allen.png';
-import Clearfeed from '@public/images/sst/png/clearfeed.png';
-import Consuma from '@public/images/sst/png/consuma.png';
-import Eightfold from '@public/images/sst/png/eightfold.png';
-import Freecharge from '@public/images/sst/png/freecharge.png';
-import Rocketium from '@public/images/sst/png/rocketium.png';
-import Swiggy from '@public/images/sst/png/swiggy.png';
-import Tata from '@public/images/sst/png/tata1mg.png';
+import Dukaan from '@public/images/sst/svg/dukaan.svg';
+import Allen from '@public/images/sst/svg/allen.svg';
+import Clearfeed from '@public/images/sst/svg/clearfeed.svg';
+import Consuma from '@public/images/sst/svg/consuma.svg';
+import Eightfold from '@public/images/sst/svg/eightfold.svg';
+import Freecharge from '@public/images/sst/svg/freecharge.svg';
+import Rocketium from '@public/images/sst/svg/rocketium.svg';
+import Swiggy from '@public/images/sst/svg/swiggy.svg';
+import Tata from '@public/images/sst/svg/tata.svg';
 import GrowthSchool from '@public/images/sst/svg/growthschool.svg';
 import Wealthy from '@public/images/sst/svg/wealthy.svg';
-import Pazcare from '@public/images/sst/png/pazcare.png';
+import Pazcare from '@public/images/sst/svg/pazcare.svg';
 import Section from '@components/common/Section';
 
 const SstRecruiters = () => {
