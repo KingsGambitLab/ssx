@@ -39,6 +39,8 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
   const [formError, setFormError] = React.useState<string | null>(null);
 
   const formattedErrors = (error: any) => {
+    if (typeof error !== 'object') return error;
+    
     const formattedErrors: Record<string, string> = {};
 
     Object.entries(error).forEach(([field, value]: [string, any]) => {
