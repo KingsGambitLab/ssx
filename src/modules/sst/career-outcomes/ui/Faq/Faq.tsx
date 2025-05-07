@@ -76,7 +76,7 @@ const faqItems: FaqItem[] = [
     answer: (
       <p>
         Yes. SST has already seen startups emerge from its early batches – there are 7+ early-stage student startups so far - within just 1.5 years of SST’s inception.
-        <a href="#entrepreneurship-team">Click here to know more</a>
+        <a href="#entrepreneurship">Click here to know more</a>
       </p>
     ),
   },

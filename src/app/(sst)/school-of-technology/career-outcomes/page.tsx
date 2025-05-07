@@ -22,7 +22,7 @@ import StudentTestimonials from "@/modules/sst/career-outcomes/ui/StudentTestimo
 export default function Page() {
   const navItems = [
     { label: "Job Prospects", key: "career-stats", href: "#career-stats" },
-    { label: "Entrepreneurship", key: "entrepreneurship", href: "#mentorship" },
+    { label: "Entrepreneurship", key: "entrepreneurship", href: "#entrepreneurship" },
     { label: "Higher Studies", key: "higher-studies", href: "#higher-studies" },
     { label: "FAQs", key: "faqs", href: "#faqs" },
   ];
