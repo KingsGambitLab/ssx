@@ -4,15 +4,15 @@ import Image from 'next/image';
 import Adobe from '@public/images/sst/svg/adobelogo.svg';
 import Amazon from '@public/images/sst/svg/amazonlogo.svg';
 import Google from '@public/images/sst/svg/google.svg';
-import Meta from '@public/images/sst/png/meta.png';
+import Meta from '@public/images/sst/svg/metafb.svg';
 import Microsoft from '@public/images/sst/svg/microsoft.svg';
 import Paytm from '@public/images/sst/svg/paytm.svg';
 import Paypal from '@public/images/sst/svg/paypal.svg';
 import Razorpay from '@public/images/sst/svg/razorpay.svg';
 import Zomato from '@public/images/sst/svg/zomato.svg';
 import Walmart from '@public/images/sst/svg/walmart.svg';
-import Flipkart from '@public/images/sst/png/flipkartlogo.png';
-import Target from '@public/images/sst/png/target.png';
+import Flipkart from '@public/images/sst/svg/flipkart.svg';
+import Target from '@public/images/sst/svg/target.svg';
 import ArrowUpRight from '@public/images/sst/svg/arrow-up-right.svg';
 import LeftLine from '@public/images/sst/svg/left-vetor-our-alumini.svg';
 
