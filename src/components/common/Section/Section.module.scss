@@ -1,0 +1,15 @@
+.section {
+  width: 100%;
+  padding: 1.2rem 0;
+  
+  @include mobile {
+    padding: 0.8rem 0;
+  }
+
+  :global(.sr-container) {
+    max-width: 128rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
+  }
+}

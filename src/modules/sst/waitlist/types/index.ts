@@ -85,3 +85,10 @@ export interface WaitlistApiResponse {
   data: WaitlistFormGroup[];
   included: Array<WaitlistForm>;
 } 
+
+export type TrackingProps = {
+  clickType: string;
+  clickText?: string;
+  clickSource?: string;
+  custom?: object;
+};

@@ -24,6 +24,8 @@ export const API_BASE_URL = isProduction
   ? `${process.env.NEXT_PUBLIC_BASE_URL}`
   : `${process.env.NEXT_PUBLIC_BASE_URL}/api/base_api`;
 
+export const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+
 export const csrfTokenMemo = () => {
   let token: string | null = null;
 

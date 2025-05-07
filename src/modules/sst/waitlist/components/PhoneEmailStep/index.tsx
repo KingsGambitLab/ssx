@@ -11,7 +11,7 @@ import { LoginFormData } from '../../types';
 import styles from './index.module.scss';
 
 import { trackEvent, trackingSources, trackingEvents } from '../../utils/tracking';
-import { TrackingProps } from '../types';
+import { TrackingProps } from '@modules/sst/waitlist/types';
 
 
 interface PhoneEmailStepProps {
@@ -22,6 +22,7 @@ interface PhoneEmailStepProps {
   clearErrors: UseFormClearErrors<LoginFormData>;
   handleSubmit: UseFormHandleSubmit<LoginFormData>;
   control: any;
+  formSource?: string;
 }
 
 export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
@@ -30,7 +31,8 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
   handleSubmit,
   control,
   setError,
-  clearErrors
+  clearErrors,
+  formSource
 }) => {
   const [token, setToken] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -38,7 +40,7 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
 
   const formattedErrors = (error: any) => {
     const formattedErrors: Record<string, string> = {};
-  
+
     Object.entries(error).forEach(([field, value]: [string, any]) => {
       if (value?.message) {
         formattedErrors[field] = value.message;
@@ -46,17 +48,17 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
     });
 
     return formattedErrors;
-  }
+  };
 
   const trackFormSubmitStatus = ({formStatus, formError}: {formStatus: string, formError?: any}) => {
     trackEvent.formSubmitStatus({
-      clickType: 'form_submit',
-      clickText: trackingEvents.waitlistLoginMobileFormSubmit,
-      clickSource: trackingSources.waitlistLoginMobileForm,
       attributes: {
         status: formStatus,
         message: formError? formattedErrors(formError) : 'success',
-        form_id: trackingSources.waitlistLoginMobileForm,
+        form_id: trackingSources.waitlistLoginMobileForm
+      },
+      extraInfo: {
+        form_source: formSource,
       }
     })
   }
@@ -115,9 +117,11 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
     trackEvent.click({
       clickType,
       clickText,
-      clickSource: trackingSources.waitlistLoginMobileForm,
+      clickSource: 'waitlist_modal',
       custom: {
         ...custom,
+        form_source: formSource,
+        form_type: trackingSources.waitlistLoginMobileForm
       }
     })
   }
@@ -295,7 +299,6 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
             onClick={() => trackClickEventHandler({
               clickType: 'click',
               clickText: trackingEvents.waitlistLoginMobileFormSubmit,
-              clickSource: trackingSources.waitlistLoginMobileForm,
             })}
           >
             Get OTP

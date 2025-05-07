@@ -1,0 +1,121 @@
+$internal-link-active-bg: #003366;
+$internal-link-hover-bg: #f2f8ff;
+
+.floatingNav {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.6365) 100%);
+  backdrop-filter: blur(17px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.5rem;
+
+  @include tablet {
+    width: 100%;
+    box-shadow: none;
+    background-color: $white-color !important;
+  }
+  
+  // Add this menuWrapper class to your SCSS
+  .menuWrapper {
+    @include tablet {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      
+      &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+    }
+  }
+  
+  &.bottom {
+    border-radius: 3rem;
+  }
+  
+  &.top {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    @include tablet {
+      border-radius: 0;
+      top: 4rem;
+      position: absolute;
+      z-index: 100;
+    }
+  }
+  
+  &.fixed {
+    position: fixed;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .menu {
+    background: transparent;
+    border-bottom: none;
+    
+    @include tablet {
+      width: max-content; // This ensures the menu expands to fit all items
+      min-width: 100%; // Makes sure it takes at least full width of container
+    }
+    
+    :global(.ant-menu-horizontal) {
+      border-bottom: none;
+      line-height: 38px;
+      
+      @include tablet {
+        white-space: nowrap; // Prevents menu items from wrapping
+      }
+      
+      &::before {
+        display: none !important;
+      }
+    }
+    
+    :global(.ant-menu-item) {
+      padding: 0 16px;
+      margin: 0 4px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      color: #1a2C47;
+      font-weight: $normal-font-weight;
+      
+      &:hover {
+        color: $primary-color;
+        background-color: $internal-link-hover-bg !important;
+        border-radius: 3rem;
+      }
+      
+      &::after {
+        display: none !important;
+      }
+      
+      &:global(.ant-menu-item-selected) {
+        color: $white-color !important;
+        font-weight: $bold-font-weight;
+        background-color: $internal-link-active-bg !important;
+        border-radius: 3rem;
+
+        @include tablet {
+          color: #0245B9 !important;
+          background-color: $white-color !important;
+        }
+      }
+    }
+  }
+}
+
+.newBadge {
+  background-color: $primary-color;
+  color: $white-color;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+  position: relative;
+  top: -0.5rem;
+  font-weight: bold;
+}

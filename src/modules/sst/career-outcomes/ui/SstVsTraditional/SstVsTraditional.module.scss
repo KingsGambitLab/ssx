@@ -1,0 +1,311 @@
+// Color variables
+$light-black: #171717;
+$text-secondary: #3a3a3a;
+$text-tertiary: #616161;
+$light-gray: #e4e4e4;
+$hover-bg: rgba(0, 0, 0, 0.02);
+$blue-gradient-start: #0080ff;
+$blue-gradient-end: #083ca0;
+$light-blue: #e6f7ff;
+$border-color: #e4e4e4;
+$sst-vs-traditional-footer-text-title: #171717;
+$sst-vs-traditional-footer-font-size: 2.8rem;
+
+.sstVsTraditionalSection {
+  margin: 4rem 0;
+
+  @include mobile {
+    margin: 2rem 0;
+  }
+  
+  .headerContainer {
+    @include flex-row;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sectionTitle {
+      font-size: $desktop-font-header;
+      font-weight: $semi-bold-font-weight;
+      width: 50%;
+
+      @include mobile {
+        text-align: center;
+        width: 100%;
+        font-size: $mobile-font-header !important;
+        margin-bottom: 1rem;
+      }
+    }
+    
+    .sectionDescription {
+      font-size: $desktop-font-body;
+      color: $text-secondary;
+      width: 50%;
+
+      @include mobile {
+        display: none;
+      }
+    }
+    
+    .mobileOnlyDescription {
+      display: none;
+      
+      @include mobile {
+        display: block;
+        width: 100%;
+      }
+      
+      .mobileTextFirst, .mobileTextSecond {
+        text-align: center;
+        font-size: 12px !important;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 400;
+        line-height: 16.8px;
+        word-wrap: break-word;
+        color: $text-secondary;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .sectionDescriptionSecondary {
+      display: none;
+
+      @include mobile {
+        display: block;
+        text-align: center;
+        width: 100%;
+        font-size: 12px !important;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 400;
+        line-height: 16.8px;
+        word-wrap: break-word;
+        color: $text-secondary;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+  
+  .tableContainer {
+    margin: 0 auto;
+    
+    .comparisonTable {
+      border-radius: 8px;
+      overflow: hidden;
+      
+      // Target the ::before pseudo-element that's creating the white line
+      :global(.ant-table-thead > tr > th::before) {
+        display: none !important;
+      }
+    }
+
+    :global(.ant-table-thead > tr) {
+      > th {
+        padding: 2.2rem 1.2rem;
+        text-align: center;
+
+        @include mobile {
+          padding: 1.1rem 0.6rem;
+        }
+      }
+
+      .parameterColumn {
+        background-color: $light-gray;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: $text-tertiary;
+        word-wrap: break-word;
+
+        @include mobile {
+          font-size: $mobile-font-card-subtitle !important;
+        }
+      }
+    
+      .sstColumn {
+        background: linear-gradient(151deg, $blue-gradient-start 23%, $blue-gradient-end 100%);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: $white-color;
+        word-wrap: break-word;
+
+        @include mobile {
+          font-size: $mobile-font-body-secondary !important;
+        }
+      }
+      
+      .traditionalColumn {
+        background-color: $light-gray;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: $light-black;
+        word-wrap: break-word;
+
+        @include mobile {
+          font-size: $mobile-font-card-subtitle !important;
+          font-weight: $medium-font-weight;
+        }
+      }
+    }
+
+    :global(.ant-table-tbody > tr) {
+      > td {
+        padding: 1.6rem;
+        color: $light-black;
+        font-weight: $medium-font-weight;
+        font-size: $desktop-font-body;
+        border: 0.1rem solid $border-color;
+
+        @include mobile {
+          font-size: 1rem;
+          padding: 0.8rem;
+        }
+      }
+      
+      .parameterColumn {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: $text-secondary;
+        word-wrap: break-word;
+        
+        @include mobile {
+          font-size: 1rem;
+        }
+      }
+    
+      .sstColumn {
+        background-color: $light-blue;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: $light-black;
+        word-wrap: break-word;
+
+        @include mobile {
+          background-color: $white-color;
+          font-size: 1rem;
+        }
+      }
+
+      .traditionalColumn {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: $text-secondary;
+        word-wrap: break-word;
+
+        @include mobile {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  
+  .tableRow {
+    &:hover {
+      background-color: $hover-bg;
+    }
+  }
+}
+
+.container {
+  @include flex-col-c;
+
+  gap: 5.4rem;
+
+  @include mobile {
+    gap: 2.4rem;
+  }
+}
+
+.footer {
+  @include flex-row-y-c;
+
+  width: 100%;
+  justify-content: space-between;
+
+  @include mobile {
+    @include flex-col-x-c;
+
+    gap: 2rem;
+    align-items: flex-start;
+  }
+}
+
+.footerText {
+  @include flex-row-y-c;
+
+  gap: 2.4rem;
+
+  @include mobile {
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
+}
+
+.footerTextTitle {
+  color: $sst-vs-traditional-footer-text-title;
+  text-align: center;
+  font-size: $sst-vs-traditional-footer-font-size;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    text-align: left;
+    font-size: $desktop-font-body;
+    line-height: 2.8rem;
+  }
+}
+
+.footerButton {
+  @include flex-row-c;
+
+  height: auto !important;
+  padding: 1.2rem 5.4rem !important;
+  border-radius: $border-radius-default !important;
+  background: $primary-color !important;
+
+  color: $white-color !important;
+  font-size: $desktop-font-body !important;
+  font-weight: $medium-font-weight !important;
+  line-height: 2.8rem !important;
+
+  @include mobile {
+    width: 100%;
+    font-size: $mobile-font-body !important;
+  }
+}
+
+.certificateIcon {
+  height: 8rem;
+  width: 8rem;
+
+  @include mobile {
+    height: 5.6rem;
+    width: 5.6rem;
+  }
+}
+
+@include mobile {
+  .sstVsTraditionalSection {
+    .headerContainer {
+      padding: 0 1rem;
+      
+      .sectionTitle {
+        font-size: 2rem;
+      }
+    }
+    
+    .tableContainer {
+      overflow-x: auto;
+      padding: 0 1rem;
+    }
+  }
+} 

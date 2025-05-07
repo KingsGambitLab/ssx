@@ -1,4 +1,7 @@
+"use client";
+
 import { Grid, ThemeConfig } from 'antd';
+import { useMemo } from 'react';
 
 // Match the SCSS breakpoints exactly
 const BREAKPOINTS = {
@@ -37,33 +40,34 @@ export const customTheme: ThemeConfig = {
 
 export const useDeviceType = () => {
   const screens = useBreakpoint();
+  const isWindowInitialized = Object.keys(screens).length > 0;
 
-  return {
+  return useMemo(() => ({
     // Matches @mixin mobile
-    isMobile: !screens.md, // < 768px
+    isMobile: isWindowInitialized ? !screens.md : false,
 
     // Matches @mixin tablet
-    isTablet: screens.md && !screens.lg, // >= 768px and < 1280px
+    isTablet: isWindowInitialized ? (screens.md && !screens.lg) : false,
 
     // Matches @mixin tablet-or-mobile
-    isTabletOrMobile: !screens.md || (screens.md && !screens.lg), // >= 0px or < 1280px
+    isTabletOrMobile: isWindowInitialized ? (!screens.md || (screens.md && !screens.lg)) : false,
 
     // Matches @mixin desktop-only
-    isDesktop: screens.lg && !screens.xl, // >= 1280px and < 1560px
+    isDesktop: isWindowInitialized ? (screens.lg && !screens.xl) : true,
 
     // Matches @mixin large-desktop-only
-    isLargeDesktop: screens.xl, // >= 1560px
+    isLargeDesktop: isWindowInitialized ? screens.xl : false,
 
     // Matches @mixin mobile-only
-    isMobileOnly: screens.xs && !screens.md, // >= 360px and < 768px
+    isMobileOnly: isWindowInitialized ? (screens.xs && !screens.md) : false,
 
     // Matches @mixin tablet-only
-    isTabletOnly: screens.md && !screens.lg, // >= 768px and < 1280px
+    isTabletOnly: isWindowInitialized ? (screens.md && !screens.lg) : false,
 
     // Matches @mixin above-mobile
-    isAboveMobile: screens.sm, // > 480px
+    isAboveMobile: isWindowInitialized ? screens.sm : true,
 
     // Matches @mixin above-tablet
-    isAboveTablet: screens.md, // > 768px
-  };
+    isAboveTablet: isWindowInitialized ? screens.md : true,
+  }), [screens, isWindowInitialized]);
 };

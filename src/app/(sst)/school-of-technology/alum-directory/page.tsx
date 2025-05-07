@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from "react";
-
 import { useAlumniList } from "@modules/sst/alumni-directory/context/AlumniContext";
 import AlumniList from "@modules/sst/alumni-directory/ui/AlumniList";
 import Banner from "@modules/sst/alumni-directory/ui/Banner";

@@ -1,0 +1,106 @@
+.faqSection {
+  padding: 6rem 0;
+  background-color: #fafafa;
+  
+  @include mobile {
+    padding: 4rem 0;
+  }
+
+  :global(.ant-collapse-header) {
+    flex-direction: row-reverse;
+    gap: 2rem;
+  }
+}
+
+.sstFaq {
+  // SST-specific styling overrides can go here
+  background-color: transparent;
+  
+  :global(.ant-collapse-content-box) {
+    background-color: $neutral-scale-11 !important;
+  }
+}
+
+.faqFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.6rem;
+
+  @include mobile {
+    margin-top: 0;
+  }
+}
+
+.readAllButton {
+  font-family: 'Plus Jakarta Sans' !important;
+  background-color: transparent !important;
+  border: 1px solid $color-scale-50 !important;
+  color: $color-scale-50 !important;
+  padding: 1.7rem 3.3rem !important;
+  border-radius: $border-radius-default;
+  font-size: $desktop-font-body !important;
+  font-weight: $medium-font-weight !important;
+  cursor: pointer;
+  margin-bottom: 2.4rem;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  height: auto !important;
+  letter-spacing: 0.01em !important;
+  
+  &:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  @include mobile {
+    padding: 0.9rem 1.7rem !important;
+    font-size: $mobile-font-body !important;
+    margin-bottom: 0.8rem !important;
+  }
+}
+
+.contactContainer {
+  @include font-plus-jakarta-sans;
+  @include flex-row-c;
+
+  gap: 0.4rem;
+  color: $color-scale-50;
+  font-size: $desktop-font-body;
+  font-weight: $bold-font-weight;
+  line-height: 3rem;
+  letter-spacing: 0.01rem;
+}
+
+.contactText {
+  @include font-plus-jakarta-sans;
+
+  color: $color-scale-50 !important;
+  font-size: $desktop-font-body !important;
+  font-weight: $default-font-weight !important;
+  line-height: 3rem !important;
+  letter-spacing: 0.01rem !important;
+
+  @include mobile {
+    font-size: $mobile-font-card-body !important;
+    line-height: 2rem !important;
+  }
+}
+
+.contactLink {
+  font-size: 1.6rem;
+  color: $color-scale-50 !important;
+  font-weight: 500;
+
+  color: $color-scale-50 !important;
+  font-size: $desktop-font-body !important;
+  font-weight: $bold-font-weight !important;
+  line-height: 3rem !important;
+  letter-spacing: 0.01rem !important;
+  text-decoration: underline !important;
+
+  @include mobile {
+    font-size: $mobile-font-card-body !important;
+    line-height: 2rem !important;
+  }
+}

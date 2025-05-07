@@ -16,10 +16,12 @@ import { trackingEvents, trackingSources, trackEvent } from '../../utils/trackin
 
 interface WaitlistFormProps {
   onSubmitSuccess: () => void;
+  formSource?: string;
 }
 
 export const WaitlistForm: React.FC<WaitlistFormProps> = ({ 
   onSubmitSuccess,
+  formSource
 }) => {
   const { handleCategoryChange, formFields, setShowWaitlistModal } = useWaitlistCheck();
   const { submitWaitlistForm } = useWaitlistApi();
@@ -60,7 +62,15 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     clickSource: string;
     custom: any;
   }) => {
-    trackEvent.click({ clickType, clickText, clickSource, custom });
+    trackEvent.click({ 
+      clickType, 
+      clickText, 
+      clickSource, 
+      custom: {
+        ...custom,
+        form_source: formSource,
+        form_type: trackingSources.waitlistForm
+      } });
   }
 
   // Handle category change - make it immediate
@@ -80,6 +90,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource: trackingSources.waitlistForm,
       custom: {
         category: newCategory,
+        form_source: formSource,
+        form_type: trackingSources.waitlistForm
       }
     })
   }, [categoryField, setValue, handleCategoryChange]);
@@ -95,7 +107,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
 
   const formattedErrors = (error: any) => {
     const formattedErrors: Record<string, string> = {};
-  
+
     Object.entries(error).forEach(([field, value]: [string, any]) => {
       if (value?.message) {
         formattedErrors[field] = value.message;
@@ -103,15 +115,22 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     });
 
     return formattedErrors;
-  }
+  };
 
-  const trackFormSubmitStatus = ({ formStatus, formError }: { formStatus: string, formError?: any }) => {
-    const categoryValue = watch(categoryField?.id || '');
+  const trackFormSubmitStatus = ({
+    formStatus,
+    formError,
+  }: {
+    formStatus: string;
+    formError?: any;
+  }) => {
+    const categoryValue = watch(categoryField?.id || "");
 
     trackEvent.formSubmitStatus({
-      clickType: 'form_submit',
-      clickText: trackingEvents.waitlistFormSubmit,
-      clickSource: trackingSources.waitlistForm,
+      extraInfo: {
+        form_source: formSource,
+        form_type: trackingSources.waitlistForm
+      },
       attributes: {
         status: formStatus,
         message: formError? formattedErrors(formError) : 'success',
@@ -150,6 +169,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       clickSource: trackingSources.waitlistForm,
       custom: {
         form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
+        form_source: formSource,
+        form_type: trackingSources.waitlistForm
       }
     })
     form.submit(); // This will trigger the onFinish handler

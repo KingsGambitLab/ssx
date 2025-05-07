@@ -1,0 +1,88 @@
+$key-features-title-font-color: #3a3a3a;
+
+.container {
+  @include flex-col-c;
+
+  gap: 4rem;
+  padding: 5.4rem 0;
+
+  @include mobile {
+    gap: 1.4rem;
+    padding: 2.4rem 0;
+  }
+}
+
+.title {
+  color: $key-features-title-font-color;
+  text-align: center;
+  font-size: $desktop-font-title-3;
+  font-weight: $semi-bold-font-weight;
+  line-height: 3.36rem;
+  letter-spacing: 0.312rem;
+  text-transform: uppercase;
+
+  @include mobile {
+    font-size: $mobile-font-subtitle;
+    line-height: 1.96rem;
+    letter-spacing: 0.182rem;
+  }
+}
+
+.content {
+  @include flex-col-c;
+
+  gap: 5.4rem;
+  width: 100%;
+
+  @include mobile {
+    gap: 1.4rem;
+  }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  gap: 3.2rem;
+  align-self: stretch;
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.4rem;
+  }
+}
+
+.footer {
+  @include flex-row-c;
+  
+  width: 100%;
+}
+
+.placementButton {
+  @include flex-row-c;
+
+  height: auto !important;
+  padding: 1.2rem 5.4rem !important;
+  border-radius: $border-radius-default !important;
+  background: $primary-color !important;
+  box-sizing: content-box !important;
+
+  &:hover {
+    background: $primary-color-hover !important;
+  }
+
+  & > span {
+    @include font-plus-jakarta-sans;
+    @include flex-row-c;
+
+    color: $white-color !important;
+    font-size: $desktop-font-body !important;
+    font-weight: $medium-font-weight !important;
+    line-height: 2.8rem !important;
+
+    @include mobile {
+      font-size: $mobile-font-title !important;
+    }
+  }
+
+}
