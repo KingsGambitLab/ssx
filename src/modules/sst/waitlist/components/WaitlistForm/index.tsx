@@ -106,6 +106,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   );
 
   const formattedErrors = (error: any) => {
+    if (typeof error !== 'object') return error;
+    
     const formattedErrors: Record<string, string> = {};
 
     Object.entries(error).forEach(([field, value]: [string, any]) => {

@@ -12,6 +12,8 @@ import {
   SUB_PRODUCTS,
 } from '@/components/common/Analytics/constants';
 
+import BottomNavbar from "@components/Sst/BottomNavbar";
+
 import { getAllExperiments } from '@utils/abex/experiment';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
@@ -30,6 +32,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
       <AlumniProvider>
         {children}
       </AlumniProvider>
+      <BottomNavbar />
     </>
   );
 }
