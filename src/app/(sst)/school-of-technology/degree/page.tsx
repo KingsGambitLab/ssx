@@ -12,7 +12,7 @@ import FloatingNavbar from "@components/common/FloatingNavbar/FloatingNavbar";
 export default function Page() {
   const navItems = [
     { label: 'Scaler vs Traditional', key: 'sst-vs-traditional', href: '#sst-vs-traditional' },
-    { label: 'Degree Programme', key: 'degree-programme', href: '#degree-pathways' },
+    { label: 'Degree Tracks', key: 'degree-programme', href: '#degree-pathways' },
     { label: 'Key Features', key: 'key-features', href: '#key-features' },
     { label: 'FAQs', key: 'faqs', href: '#faqs' },
   ];
