@@ -13,14 +13,14 @@ import {
 
 import SstBottomNudge from '@components/Sst/BottomNudge';
 
-import { BOTTOM_NAVBAR_LINKS, BOTTOM_NAVBAR_LINKS_REVAMP, REVAMP_VARIANT_PAGES } from './data';
+import { BOTTOM_NAVBAR_LINKS, BOTTOM_NAVBAR_LINKS_REVAMP } from './data';
 
 import styles from './BottomNavbar.module.scss';
 import ApplyButton from '@components/Sst/ApplyButton';
 
-export default function BottomNavbar() {
+export default function BottomNavbar({ variant = ''}: { variant?: string }) {
   const { experiments } = useContext(ExperimentsContext);
-  const revampedVariant = experiments[ABEX_FLAG_CONFIG.SST_LP_REVAMP.KEY];
+  const revampedVariant = variant || experiments[ABEX_FLAG_CONFIG.SST_LP_REVAMP.KEY];
   const isRevampedVersion = revampedVariant === ABEX_FLAG_CONFIG.SST_LP_REVAMP.NEW_VARIANT;
 
   const trackEventHandler = (clickText: string) => {
@@ -31,7 +31,7 @@ export default function BottomNavbar() {
     });
   };
 
-  if (isRevampedVersion || REVAMP_VARIANT_PAGES.includes(window.location.pathname)) {
+  if (isRevampedVersion) {
     return (
       <>
         <div className={styles.wrapper}>
