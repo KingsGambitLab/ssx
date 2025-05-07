@@ -35,7 +35,7 @@ const faqItems: FaqItem[] = [
     question: "What support will I get for placements?",
     answer: (
       <p>
-        Students receive end-to-end support for placements: <b>resume building, mock interviews, career–related mentorship</b> etc. In addition, students get the opportunity for industry immersion and/or internships, build public portfolios, and are evaluated on industry-grade projects—making them job-ready inherently
+        Students receive end-to-end support for placements: <b>resume building, mock interviews, career–related mentorship</b> etc. In addition, students get the opportunity for industry immersion and/or internships, build public portfolios, and are evaluated on industry-grade projects—making them job-ready inherently.
       </p>
     ),
   },
@@ -76,7 +76,7 @@ const faqItems: FaqItem[] = [
     answer: (
       <p>
         Yes. SST has already seen startups emerge from its early batches – there are 7+ early-stage student startups so far - within just 1.5 years of SST’s inception.
-        <a href="#entrepreneurship">Click here to know more</a>
+        <a href="#entrepreneurship-team">Click here to know more</a>
       </p>
     ),
   },
