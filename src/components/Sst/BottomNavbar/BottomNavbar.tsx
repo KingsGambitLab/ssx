@@ -13,7 +13,7 @@ import {
 
 import SstBottomNudge from '@components/Sst/BottomNudge';
 
-import { BOTTOM_NAVBAR_LINKS, BOTTOM_NAVBAR_LINKS_REVAMP } from './data';
+import { BOTTOM_NAVBAR_LINKS, BOTTOM_NAVBAR_LINKS_REVAMP, REVAMP_VARIANT_PAGES } from './data';
 
 import styles from './BottomNavbar.module.scss';
 import ApplyButton from '@components/Sst/ApplyButton';
@@ -31,7 +31,7 @@ export default function BottomNavbar() {
     });
   };
 
-  if (isRevampedVersion) {
+  if (isRevampedVersion || REVAMP_VARIANT_PAGES.includes(window.location.pathname)) {
     return (
       <>
         <div className={styles.wrapper}>
