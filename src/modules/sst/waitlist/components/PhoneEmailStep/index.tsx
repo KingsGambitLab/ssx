@@ -117,11 +117,10 @@ export const PhoneEmailStep: React.FC<PhoneEmailStepProps> = ({
     trackEvent.click({
       clickType,
       clickText,
-      clickSource: 'waitlist_modal',
+      clickSource: formSource,
+      formType: trackingSources.waitlistLoginMobileForm,
       custom: {
         ...custom,
-        form_source: formSource,
-        form_type: trackingSources.waitlistLoginMobileForm
       }
     })
   }
