@@ -11,7 +11,7 @@
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
-  padding: 2rem ;
+  padding: 2.4rem ;
 }
 
 .statusText1{
@@ -45,14 +45,23 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 2.8rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #1A8254;
 }
 
 .subtitle {
   color: #666;
-  font-size: 0.875rem;
+  font-size: 1.4rem;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .form {
@@ -73,9 +82,10 @@
 .input {
   width: 100%;
   padding: 0.75rem 1rem;
+  height: 4.8rem;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.4rem;
   box-sizing: border-box;
 
   &:focus {
@@ -90,11 +100,18 @@
 }
 
 .countryCode {
-  width: 80px;
-  padding: 0.75rem;
+  width: 8rem;
+  padding: 1.4rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   background: white;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='24' viewBox='0 0 25 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.07515 9.57182C8.30946 9.33751 8.68936 9.33751 8.92368 9.57182L12.4994 13.1476L16.0752 9.57182C16.3095 9.33751 16.6894 9.33751 16.9237 9.57182C17.158 9.80614 17.158 10.186 16.9237 10.4204L12.9237 14.4204C12.6894 14.6547 12.3095 14.6547 12.0752 14.4204L8.07515 10.4204C7.84084 10.186 7.84084 9.80614 8.07515 9.57182Z' fill='%23616161'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.8rem center;
+  background-size: 1.6rem 1.6rem;
+  padding-right: 2.4rem;
+  cursor: pointer;
 }
 
 .checkbox {
@@ -103,6 +120,11 @@
   gap: 0.5rem;
   font-size: 0.875rem;
   color: #666;
+  font-family: "Plus Jakarta Sans";
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
 
   input[type="checkbox"] {
     width: 16px;
@@ -112,12 +134,13 @@
 
 .submitButton {
   width: 100%;
+  height: 4.8rem;
   padding: 1rem;
   background: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
@@ -129,26 +152,102 @@
 
 .deadline {
   text-align: center;
-  font-size: 0.875rem;
+  font-size: 1.4rem;
   color: #666;
+  font-weight: 600;
+
 
   .date {
-    color: #4CAF50;
+    color: #F1511B;
     font-weight: 600;
   }
 }
 
 .terms {
-  text-align: center;
-  font-size: 0.75rem;
-  color: #666;
+  color: #000;
+  font-family: "Plus Jakarta Sans";
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 
   a {
     color: #4CAF50;
-    text-decoration: none;
+    font-family: "Source Sans Pro";
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
 
     &:hover {
       text-decoration: underline;
     }
   }
 } 
+
+.wrongNumber {
+  color: #0066FF;
+  text-decoration: none;
+  font-size: 1.4rem;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.otpLabel {
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.otpInputGroup {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+}
+
+.otpInput {
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.6rem;
+  
+  &:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+}
+
+.resendOtp {
+  text-align: center;
+  color: #C6C6C6;
+  font-size: 1.4rem;
+  margin-bottom: 1.6rem;
+  font-family: "Source Sans Pro";
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.resendButton {
+  background: none;
+  border: none;
+  color: #4CAF50;
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: 0;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
