@@ -251,3 +251,13 @@
     text-decoration: underline;
   }
 }
+
+.selectInput {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='24' viewBox='0 0 25 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.07515 9.57182C8.30946 9.33751 8.68936 9.33751 8.92368 9.57182L12.4994 13.1476L16.0752 9.57182C16.3095 9.33751 16.6894 9.33751 16.9237 9.57182C17.158 9.80614 17.158 10.186 16.9237 10.4204L12.9237 14.4204C12.6894 14.6547 12.3095 14.6547 12.0752 14.4204L8.07515 10.4204C7.84084 10.186 7.84084 9.80614 8.07515 9.57182Z' fill='%23616161'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 1.6rem 1.6rem;
+  padding-right: 2.4rem;
+  cursor: pointer;
+}
