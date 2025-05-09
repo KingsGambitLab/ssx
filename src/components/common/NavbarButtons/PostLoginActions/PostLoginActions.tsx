@@ -157,9 +157,9 @@ export default function PostLoginActions({
               )
             }
             {isPopoverOpen ? (
-              <UpOutlined className={styles.icon} />
-            ) : (
               <DownOutlined className={styles.icon} />
+            ) : (
+              <UpOutlined className={styles.icon} />
             )}
           </Button>
         </Popover>
