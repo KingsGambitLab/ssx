@@ -1,5 +1,7 @@
 "use client"
 
+import Image from 'next/image';
+
 import { useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
@@ -19,6 +21,9 @@ import {
   trackEvent,
 } from '@modules/sst/alumni-directory/utils';
 
+import UserProfileIcon from '@public/images/common/svg/user-circle.svg';
+import UserProfileActiveIcon from '@public/images/common/svg/user-circle-active.svg';
+
 import styles from './PostLoginActions.module.scss';
 
 type PostLoginActionsProps = {
@@ -32,12 +37,14 @@ type PostLoginActionsProps = {
     href: string;
   }[];
   userName: string;
+  variant?: 'default' | 'userProfileIcon';
 };
 
 const popoverContent = (data: {
   label: string;
   href: string;
-}[]) => {
+}[], showUserProfileIcon: boolean, userName: string) => {
+  
   const trackEventHandler = (clickText: string) => {
     trackEvent.click({
       clickType: pageTrackingEvents.navButtonClicked,
@@ -56,6 +63,11 @@ const popoverContent = (data: {
 
   return (
     <div className={styles.popoverContent}>
+      {showUserProfileIcon && (
+        <div className={styles.userName}>
+          {`Hi ${userName}`}
+        </div>
+      )}
       {data.map((item) => (
         <Link
           key={item.label}
@@ -87,10 +99,12 @@ export default function PostLoginActions({
   rootClassName = '',
   data = [],
   userName = '',
+  variant = 'default',
 }: PostLoginActionsProps) {
 
   const { isTabletOrMobile } = useDeviceType();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const showUserProfileIcon = variant === 'userProfileIcon';
 
   const trackEventHandler = (clickText: string) => {
     trackEvent.click({
@@ -117,7 +131,7 @@ export default function PostLoginActions({
       </Button>
       {!isTabletOrMobile && (
         <Popover
-          content={popoverContent(data)}
+          content={popoverContent(data, showUserProfileIcon, userName)}
           trigger="click"
           placement="bottomLeft"
           autoAdjustOverflow={true}
@@ -129,7 +143,19 @@ export default function PostLoginActions({
             className={styles.userButton}
             type="text"
           >
-            {userName}
+            {
+              showUserProfileIcon ? (
+                <Image
+                  src={isPopoverOpen ? UserProfileActiveIcon : UserProfileIcon}
+                  alt="User Profile Icon"
+                  height={32}
+                  width={32}
+                  className={styles.userProfileIcon}
+                />
+              ) : (
+                userName
+              )
+            }
             {isPopoverOpen ? (
               <UpOutlined className={styles.icon} />
             ) : (
