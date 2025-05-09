@@ -25,8 +25,9 @@ export default function AuthActions({ onLogin, onApply, onResumeApplication }: A
         <PostLoginActions
           buttonLabel="Resume Application"
           buttonOnClick={onResumeApplication}
-          userName={userData.data.attributes.name}
+          userName="Neha"
           data={menuItems}
+          variant={isRevamped ? 'userProfileIcon' : 'default'}
         />
       ) : (
         <LoginActions
