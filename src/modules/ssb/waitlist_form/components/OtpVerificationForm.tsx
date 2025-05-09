@@ -42,9 +42,33 @@ export default function OTPVerificationForm({ onSubmit, phoneNumber }: OtpVerifi
       document.getElementById(`otp-${index - 1}`)?.focus();
     } else if (e.key === 'ArrowRight' && index < 5) {
       document.getElementById(`otp-${index + 1}`)?.focus();
-    } else if (e.key === 'Backspace' && !otp[index] && index > 0) {
-      // If current field is empty and backspace is pressed, move to previous field
-      document.getElementById(`otp-${index - 1}`)?.focus();
+    } else if (e.key === 'Backspace') {
+      if (otp[index]) {
+        // if the current input is not empty, clear it
+        const newOtp = [...otp];
+        newOtp[index] = '';
+        setOtp(newOtp);
+        // dont move focus to the previous input if the current input is not empty
+        e.preventDefault();
+      } else if (index > 0) {
+        // If current field is empty and backspace is pressed, move to previous field
+        document.getElementById(`otp-${index - 1}`)?.focus();
+      }
+    } else if (/^\d$/.test(e.key)) {
+      // If a digit is pressed, replace the current value
+      const newOtp = [...otp];
+      newOtp[index] = e.key;
+      setOtp(newOtp);
+
+      // Auto-focus next input if not the last one
+      if (index < 5) {
+        setTimeout(() => {
+          document.getElementById(`otp-${index + 1}`)?.focus();
+        }, 0);
+      }
+
+      // Prevent default to avoid double input
+      e.preventDefault();
     }
   };
 
