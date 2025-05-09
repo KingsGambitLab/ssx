@@ -1,13 +1,13 @@
 'use client';
 
-import RegistrationForm from './components/RegistrationForm';
+import RegistrationForm from '../../../../modules/ssb/waitlist_form/components/RegistrationForm';
 import styles from './styles.module.scss';
 
 export default function SchoolOfBusinessV2() {
   return (
     <div className={styles.root}>
-      <RegistrationForm/>
+      <RegistrationForm />
     </div>
   );
-} 
+}
 

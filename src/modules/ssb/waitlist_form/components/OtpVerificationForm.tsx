@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import styles from './RegistrationForm.module.scss';
 
-export default function OTPVerificationForm() {
+interface OtpVerificationFormProps {
+  onSubmit: (otp: string) => void;
+  phoneNumber: string;
+}
+
+export default function OTPVerificationForm({ onSubmit, phoneNumber }: OtpVerificationFormProps) {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [timer, setTimer] = useState(59);
-  const phoneNumber = '+91 0022233344'; // This should come from props or context
+  // const phoneNumber = '+91 0022233344'; // This should come from props or context
 
   useEffect(() => {
     if (timer > 0) {
@@ -18,18 +23,53 @@ export default function OTPVerificationForm() {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
-      
+
       // Auto-focus next input
       if (value && index < 5) {
         const nextInput = document.getElementById(`otp-${index + 1}`);
         nextInput?.focus();
       }
+      if (!value && index > 0) {
+        // Move focus to the previous input
+        const prevInput = document.getElementById(`otp-${index - 1}`);
+        prevInput?.focus();
+      }
+    }
+  };
+
+  const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft' && index > 0) {
+      document.getElementById(`otp-${index - 1}`)?.focus();
+    } else if (e.key === 'ArrowRight' && index < 5) {
+      document.getElementById(`otp-${index + 1}`)?.focus();
+    } else if (e.key === 'Backspace' && !otp[index] && index > 0) {
+      // If current field is empty and backspace is pressed, move to previous field
+      document.getElementById(`otp-${index - 1}`)?.focus();
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData('text/plain').trim();
+
+    // Check if pasted content is a 6-digit number
+    if (/^\d{6}$/.test(pastedData)) {
+      const newOtp = pastedData.split('');
+      setOtp(newOtp);
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle OTP verification
+    // log the OTP
+    const otpString = otp.join('');
+    if (otpString.length < 6) {
+      alert('Please enter a valid OTP');
+      return;
+    }
+    console.log('OTP submitted:', otpString);
+    onSubmit(otpString);
+    // Handle OTP submission logic here
   };
 
   const resendOTP = () => {
@@ -61,6 +101,8 @@ export default function OTPVerificationForm() {
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleOtpChange(index, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(index, e)}
+                onPaste={index === 0 ? handlePaste : undefined}
                 className={styles.otpInput}
               />
             ))}

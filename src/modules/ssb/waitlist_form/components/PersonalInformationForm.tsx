@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import styles from './RegistrationForm.module.scss';
 
-export default function PersonalInformationForm() {
+interface PersonalInformationFormProps {
+  onSubmit: (data: { name: string; graduationYear: string; employer: string }) => void;
+}
+
+export default function PersonalInformationForm({ onSubmit }: PersonalInformationFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     graduationYear: '',
@@ -10,6 +14,13 @@ export default function PersonalInformationForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Basic validation
+    if (!formData.name || !formData.graduationYear || !formData.employer) {
+      alert('Please fill in all fields');
+      return;
+    }
+    onSubmit(formData);
     // Handle form submission
   };
 
@@ -34,7 +45,7 @@ export default function PersonalInformationForm() {
         </div>
 
         <div className={styles.formGroup}>
-          <select 
+          <select
             className={`${styles.input} ${styles.selectInput}`}
             value={formData.graduationYear}
             onChange={(e) => setFormData({ ...formData, graduationYear: e.target.value })}
