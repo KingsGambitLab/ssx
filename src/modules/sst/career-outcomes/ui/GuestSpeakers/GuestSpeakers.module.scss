@@ -1,0 +1,69 @@
+$guest-speakers-title-font-color: #616161;
+$guest-speakers-subtitle-font-color: #171717;
+
+.container {
+  @include flex-col;
+
+  padding: 5.4rem 0;
+  gap: 5.4rem;
+  justify-content: space-between;
+  align-items: center;
+
+  @include mobile {
+    padding: 2.4rem 0;
+    gap: 2.4rem;
+  }
+}
+
+.header {
+  @include flex-col-c;
+  @include flex-fill;
+
+  gap: 0.8rem;
+
+  @include mobile {
+    flex-direction: column-reverse;
+  }
+}
+
+.title {
+  color: $guest-speakers-title-font-color;
+  text-align: center;
+  font-size: $desktop-font-body;
+  font-weight: $bolder-font-weight;
+  letter-spacing: 0.26rem;
+  text-transform: uppercase;
+
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 1.68rem;
+    letter-spacing: normal;
+    font-weight: $default-font-weight;
+    text-transform: none;
+  }
+}
+
+.subtitle {
+  color: $guest-speakers-subtitle-font-color;
+  text-align: center;
+  font-size: $desktop-font-header;
+  font-weight: $semi-bold-font-weight;
+  line-height: 5.92rem;
+
+  @include mobile {
+    font-size: $mobile-font-header;
+    line-height: 3.36rem;
+    letter-spacing: 0.01rem;
+  }
+}
+
+.scrollContainer {
+  @include mobile {
+    gap: 1.6rem;
+  }
+}
+
+.cards {
+  width: 100%;
+}

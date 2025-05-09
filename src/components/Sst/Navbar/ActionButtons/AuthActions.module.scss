@@ -1,0 +1,7 @@
+.revampedApplyButton {
+  background-color: $primary-color !important;
+
+  &:hover {
+    background-color: $primary-color-hover !important;
+  }
+}

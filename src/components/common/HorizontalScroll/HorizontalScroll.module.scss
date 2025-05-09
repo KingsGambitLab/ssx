@@ -1,0 +1,75 @@
+.container {
+  @include flex-col;
+
+  gap: 2rem;
+  width: 100%;
+
+  @include mobile {
+    gap: 1.7rem;
+  }
+}
+
+.scrollContainer {
+  @include flex-row;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 2.4rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & > div {
+    scroll-snap-align: start;
+  }
+
+  @include mobile {
+    gap: 1.28rem;
+  }
+}
+
+.scrollButtons {
+  @include flex-row-c;
+
+  gap: 2.4rem;
+  align-self: stretch;
+  width: 100%;
+
+  @include mobile {
+    gap: 1.28rem;
+  }
+}
+
+.scrollButton {
+  @include flex-row-c;
+
+  width: 6rem !important;
+  height: 6rem !important;
+  padding: 1.4rem !important;
+  cursor: pointer;
+
+  @include mobile {
+    height: 3.2rem !important;
+    width: 3.2rem !important;
+  }
+}
+
+.scrollButtonIcon {
+  height: 3.2rem;
+  width: 3.2rem;
+
+  @include mobile {
+    height: 1.7rem;
+    width: 1.7rem;
+  }
+}
+
+.scrollButtonsContainer {
+  @include flex-row;
+
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

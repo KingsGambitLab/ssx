@@ -8,22 +8,22 @@ interface AbexPayload {
   flagkey: string;
 }
 
-const bottomNavbarAbexPayload: AbexPayload = {
-  flagkey: ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.KEY,
+const sstLpRevampAbexPayload: AbexPayload = {
+  flagkey: ABEX_FLAG_CONFIG.SST_LP_REVAMP.KEY,
 };
 
 export const getAllExperiments = async () => {
   const cookieStore = await cookies();
   const experimentsCookieValue = cookieStore.get(EXPERIMENTS_COOKIE)?.value;
   const experiments = getCurrentExperiments(experimentsCookieValue as string);
-  const bottomNavbarVariant = experiments[bottomNavbarAbexPayload.flagkey];
+  const sstLpRevampVariant = experiments[sstLpRevampAbexPayload.flagkey];
 
 
   const fetchExperiments = [];
 
-  if (!bottomNavbarVariant) {
-    experiments[ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.KEY] = ABEX_FLAG_CONFIG.BOTTOM_NAVBAR.DEFAULT_VARIANT;
-    fetchExperiments.push(getAbExperimentVariant(bottomNavbarAbexPayload));
+  if (!sstLpRevampVariant) {
+    experiments[ABEX_FLAG_CONFIG.SST_LP_REVAMP.KEY] = ABEX_FLAG_CONFIG.SST_LP_REVAMP.DEFAULT_VARIANT;
+    fetchExperiments.push(getAbExperimentVariant(sstLpRevampAbexPayload));
   }
 
   if (fetchExperiments.length) {

@@ -14,6 +14,7 @@ $font-montserrat: 'Montserrat';
     gap: 1rem;
     position: fixed;
     width: 100%;
+    z-index: 10000;
     bottom: 0;
     left: 0;
     right: 0;
@@ -23,6 +24,10 @@ $font-montserrat: 'Montserrat';
     box-shadow: 0rem 0rem 0.4rem 0rem $shadow-color;
     font-size: $h5-size;
     border-radius: $border-radius-large $border-radius-large 0 0;
+  }
+
+  .applyButton {
+    width: 100%;
   }
 }
 

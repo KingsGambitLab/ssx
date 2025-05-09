@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -20,6 +20,7 @@ import {
 import NavItems from '../NavItems/NavItems';
 
 import styles from './Navbar.module.scss';
+import Section from '@components/common/Section';
 
 
 type NavbarProps = {
@@ -52,6 +53,11 @@ export default function Navbar({
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const { isTabletOrMobile } = useDeviceType();
   const { data: userData } = useUser();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const trackEventHandler = (clickType: string) => {
     trackEvent.click({
@@ -62,51 +68,55 @@ export default function Navbar({
   }
 
   return (
-    <div className={classNames(styles.container, className)} >
-      <Link href={homePageUrl} prefetch={false} onClick={() => trackEventHandler(pageTrackingEvents.navbarLogoClicked)}>
-        <Image
+    <Section section_class={styles.navbar} id='navbar'>
+      <div className={classNames(styles.container, className, mounted ? '' : styles.preHydration)} >
+        <Link href={homePageUrl} prefetch={false} onClick={() => trackEventHandler(pageTrackingEvents.navbarLogoClicked)}>
+          <Image
           src={logoSrc}
           alt={logoAlt}
           width={117}
           height={34}
           className={styles.logoImage}
         />
-      </Link>
-      <div className={styles.rightSection}>
-        {isTabletOrMobile ? (
-          <div className={styles.hamburgerWrapper}>
-            <Button
-              type="text"
-              icon={<MenuOutlined />}
-              className={styles.barsMenu}
-              onClick={() => {
-                trackEventHandler(pageTrackingEvents.userMenuOpened);
-                setHamburgerMenuOpen(true);
-              }}
-            />
-            <Drawer
-              title={false}
-              placement="right"
-              open={hamburgerMenuOpen}
-              rootClassName={styles.hamburgerDrawer}
-              onClose={() => {
-                trackEventHandler(pageTrackingEvents.userMenuClosed);
-                setHamburgerMenuOpen(false);
-              }}
-            >
-              <div className={styles.hamburgerMenu}>
-                <NavItems data={userData?.isloggedIn ? loggedInData : loggedOutData} />
-                {actionButtons}
-              </div>
-            </Drawer>
+        </Link>
+        {mounted && (
+          <div className={styles.rightSection}>
+          {isTabletOrMobile ? (
+            <div className={styles.hamburgerWrapper}>
+              <Button
+                type="text"
+                icon={<MenuOutlined />}
+                className={styles.barsMenu}
+                onClick={() => {
+                  trackEventHandler(pageTrackingEvents.userMenuOpened);
+                  setHamburgerMenuOpen(true);
+                }}
+              />
+              <Drawer
+                title={false}
+                placement="right"
+                open={hamburgerMenuOpen}
+                rootClassName={styles.hamburgerDrawer}
+                onClose={() => {
+                  trackEventHandler(pageTrackingEvents.userMenuClosed);
+                  setHamburgerMenuOpen(false);
+                }}
+              >
+                <div className={styles.hamburgerMenu}>
+                  <NavItems data={userData?.isloggedIn ? loggedInData : loggedOutData} />
+                  {actionButtons}
+                </div>
+              </Drawer>
+            </div>
+          ) : (
+            <>
+              <NavItems data={loggedOutData} />
+              {actionButtons}
+            </>
+            )}
           </div>
-        ) : (
-          <>
-            <NavItems data={loggedOutData} />
-            {actionButtons}
-          </>
         )}
       </div>
-    </div>
+    </Section>
   )
 }

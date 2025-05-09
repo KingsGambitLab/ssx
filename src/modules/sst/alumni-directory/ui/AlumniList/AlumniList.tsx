@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 
 import { ArrowUpOutlined, LinkedinFilled } from '@ant-design/icons';
 import { Button } from 'antd';
+import dynamic from 'next/dynamic';
 
 import { useAlumniList } from '@modules/sst/alumni-directory/context/AlumniContext';
 import AlumniCard from '@modules/sst/alumni-directory/components/AlumniCard';
@@ -13,12 +14,11 @@ import {
   pageTrackingSources,
   trackEvent,
 } from '@modules/sst/alumni-directory/utils';
+import Section from '@components/common/Section';
 
 import LoadingLayout from '@/layouts/LoadingLayout/LoadingLayout';
 
 import styles from './AlumniList.module.scss';
-
-import dynamic from 'next/dynamic';
 
 const AlumniDetailsModal = dynamic(
   () => import('@modules/sst/alumni-directory/components/AlumniDetailsModal'),
@@ -118,9 +118,9 @@ export default function AlumniList() {
     return <NoAlumniFound onFilterChange={onFilterChange} />;
 
   return (
-    <>
+    <Section section_class='alumni-list' id='alumni-list'>
       <div className={styles.mainContainer}>
-        {alumniList?.map((item, index) => {
+          {alumniList?.map((item, index) => {
           const isLast = index === alumniList.length - 1;
           return (
             <div
@@ -150,6 +150,6 @@ export default function AlumniList() {
           alumniId={modalState.alumniId}
         />
       )}
-    </>
+    </Section>
   );
 }

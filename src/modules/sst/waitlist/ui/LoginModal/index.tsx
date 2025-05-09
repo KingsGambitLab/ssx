@@ -8,24 +8,29 @@ import { LoginFormData, OTPFormData, LoginStep } from '../../types';
 import Banner from '@modules/sst/waitlist/components/Banner';
 import { ProgressBar } from '@modules/sst/waitlist/components/ProgressBar';
 import { WaitlistForm } from '@modules/sst/waitlist/components/WaitlistForm';
+import { useLoginModalContext } from '@context/sst/LoginModalContext';
 import { trackEvent, trackingEvents, trackingSources } from '@modules/sst/waitlist/utils/tracking';
 import useUser from '@/hooks/useUser';
+
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
   onLoginSuccess?: () => void;
   initialStep?: LoginStep;
+  formSource?: string;
 }
 
 export const LoginModal: React.FC<LoginModalProps> = ({ 
   isOpen, 
   onClose,
   onLoginSuccess,
+  formSource,
   initialStep = 'LOGIN',
 }) => {
   const { data: userData } = useUser();
   const [step, setStep] = useState<LoginStep>(initialStep);
+  const { setCurrentStep } = useLoginModalContext();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   
@@ -67,10 +72,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 
   const handleStepChange = (currentStep: LoginStep) => {
     if(isOpen) {
-      trackEvent.sectionView({
-        sectionName: getFormType(currentStep)
+      trackEvent.click({
+        clickType: 'click',
+        clickText: 'step_change',
+        clickSource: formSource,
+        formType: getFormType(currentStep),
       })
     }
+    setCurrentStep(currentStep);
     setStep(currentStep);
   }
 
@@ -105,7 +114,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.wrongPhoneNumber,
-      clickSource: trackingSources.waitlistLoginOTPForm,
+      clickSource: formSource,
+      formType: getFormType(step),
     })
   };
 
@@ -120,7 +130,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.waitlistModalClose,
-      clickSource: getFormType(step),
+      clickSource: formSource,
+      formType: getFormType(step),
     })
     onClose();
   }
@@ -150,6 +161,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               setError={setLoginError}
               clearErrors={clearLoginErrors}
               handleSubmit={handleSubmit}
+              formSource={formSource}
             />
           ) : step === 'OTP' ? (
             <OTPStep
@@ -162,10 +174,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               errors={otpErrors}
               handleSubmit={handleOTPSubmit}
               control={otpControl}
+              formSource={formSource}
             />
           ) : (
             <WaitlistForm
               onSubmitSuccess={handleWaitlistSuccess}
+              formSource={formSource}
             />
           )}
         </div>

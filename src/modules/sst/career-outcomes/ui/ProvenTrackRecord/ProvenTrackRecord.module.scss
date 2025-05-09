@@ -1,0 +1,364 @@
+$subtitle-color: $neutral-scale-10;
+$text-color: $neutral-scale-13;
+$secondary-text: $neutral-scale-12;
+$button-bg: $primary-color;
+
+.section {
+  background: $white-color;
+}
+
+.container {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.content {
+  @include flex-col;
+  @include align-c;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 32px;
+
+  @include mobile {
+    gap: 24px;
+  }
+}
+
+.header {
+  @include flex-col;
+  @include align-c;
+  gap: 8px;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+
+  @include mobile {
+    padding: 0 16px;
+  }
+}
+
+.subtitle {
+  color: $subtitle-color;
+  @include font-plus-jakarta-sans;
+  font-size: 20px;
+  font-weight: $bolder-font-weight;
+  text-transform: uppercase;
+  letter-spacing: 2.6px;
+  text-align: center;
+  width: 100%;
+
+  @include mobile {
+    font-size: 12px;
+    line-height: 16.8px;
+    letter-spacing: 1.56px;
+  }
+}
+
+.title {
+  color: $text-color;
+  @include font-plus-jakarta-sans;
+  font-size: $desktop-font-header;
+  font-weight: $semi-bold-font-weight;
+  margin: 0;
+  text-align: center;
+
+  @include mobile {
+    font-size: $mobile-font-header;
+    line-height: 33.6px;
+    letter-spacing: 0.1px;
+  }
+}
+
+.subheadingWrapper {
+  display: none;
+
+  @include mobile {
+    @include flex-row;
+    @include align-c;
+    gap: 6px;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    padding: 0 16px;
+  }
+}
+
+.leftVector,
+.rightVector {
+  @include mobile {
+    width: 100%;
+    height: 1px;
+    background: #C7C7C7;
+    flex: 1;
+  }
+}
+
+.rightVector {
+  transform: scaleX(-1);
+}
+
+.subheading {
+  color: $text-color;
+  font-size: $mobile-font-body;
+  font-weight: $bold-font-weight;
+  line-height: 22.4px;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0 6px;
+}
+
+.companiesGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 32px;
+  align-items: center;
+  justify-items: center;
+  margin: 0 auto;
+  width: 100%;
+
+  @include tablet {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: fit-content;
+  }
+
+  @include mobile {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 19px;
+    padding: 0;
+  }
+}
+
+.logoContainer {
+  width: 145px;
+  height: 70.41px;
+  position: relative;
+  overflow: hidden;
+
+  @include mobile {
+    width: 65.63px;
+    height: 31.87px;
+  }
+}
+
+.logo {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 145px;
+  height: auto;
+  object-fit: contain;
+
+  @include mobile {
+    width: 65.63px;
+    height: auto;
+  }
+}
+
+.otherCompanies {
+  margin-top: 16px;
+  text-align: center;
+  padding: 0 20px;
+
+  @include mobile {
+    padding: 0 16px;
+  }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 30px;
+  background: #F5F5F5;
+  border-radius: 101px;
+  border: 2px solid #E4E4E4;
+  font-size: 20px;
+  font-weight: 600;
+
+  @include mobile {
+    padding: 8px 20px;
+    font-size: 12px;
+  }
+
+  span:first-child {
+    color: #003087;
+    font-weight: 700;
+  }
+}
+
+.outcomeText {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $subtitle-color;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  text-align: center;
+  padding: 0 16px;
+  max-width: 100%;
+
+  @include mobile {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}
+
+.reportSection {
+  @include flex-col;
+  @include align-c;
+  gap: 8px;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 54px;
+
+  @include mobile {
+    padding: 0 16px;
+    gap: 4px;
+    margin-bottom: 0;
+  }
+}
+
+.downloadButton {
+  width: 100%;
+  max-width: 320px;
+  height: 52px;
+  @include flex-row;
+  justify-content: center;
+  @include align-c;
+  gap: 4px;
+  padding: 12px 54px;
+  background: $button-bg;
+  border-radius: $border-radius-default;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  span {
+    color: $white-color;
+    font-size: 20px;
+    font-weight: $medium-font-weight;
+    line-height: 28px;
+    @include font-plus-jakarta-sans;
+    text-align: center;
+  }
+
+  .downloadIcon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+  }
+
+  &:hover {
+    background: darken($button-bg, 5%);
+  }
+
+  @include mobile {
+    max-width: 100%;
+    padding: 12px 24px;
+
+    span {
+      font-size: 16px;
+    }
+
+    .downloadIcon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.reportText {
+  color: $secondary-text;
+  font-size: 14px;
+  font-weight: $normal-font-weight;
+  line-height: 20px;
+  text-align: center;
+  margin-top: 4px;
+
+  @include mobile {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+}
+
+.outcomes {
+  @include flex-col;
+  @include align-c;
+  gap: 40px;
+  width: 100%;
+  margin-bottom: 54px;
+  padding: 0 20px;
+
+  @include mobile {
+    gap: 24px;
+    margin-bottom: 0;
+    padding: 0 16px;
+  }
+}
+
+.outcomesText {
+  color: $secondary-text;
+  @include font-plus-jakarta-sans;
+  font-size: $desktop-font-body;
+  font-weight: $medium-font-weight;
+  text-align: center;
+  max-width: 1000px;
+  white-space: nowrap;
+
+  @include mobile {
+    font-size: $mobile-font-body;
+    line-height: 22.4px;
+    white-space: normal;
+  }
+}
+
+.downloadReport {
+  @include flex-row;
+  @include align-c;
+  gap: 8px;
+  padding: 16px 54px;
+  background: $button-bg;
+  border-radius: $border-radius-default;
+  cursor: pointer;
+  text-decoration: none;
+
+  @include mobile {
+    padding: 12px 24px;
+  }
+
+  .downloadIcon {
+    width: 24px;
+    height: 24px;
+
+    @include mobile {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .downloadText {
+    color: $white-color;
+    @include font-plus-jakarta-sans;
+    font-size: $desktop-font-card-title;
+    font-weight: $semi-bold-font-weight;
+    text-align: center;
+
+    @include mobile {
+      font-size: $mobile-font-body;
+    }
+  }
+}
+
+
+.footer {
+  @include flex-col-c;
+
+  gap: 2.4rem;
+  align-self: stretch;
+}

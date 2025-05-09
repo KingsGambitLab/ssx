@@ -4,7 +4,6 @@
 // $light-red-color, $red-color, $dark-red-color;
 
 $white-color: #ffffff;
-
 $light-black-color: #515151;
 $black-color: #000000;
 
@@ -31,51 +30,91 @@ $yellow-color: #ffae42;
 $dark-yellow-color: #7e6b0e;
 
 $light-purple-color: #ecefff;
-
 $pink-color: #e23f5b;
 
-
-
 // Derived Colors (Should be derived from base colors)
+$primary-color: #0041ca;
+$secondary-color: #e21032;
+$accent-color: #f8faff;
 
-// Common States
-$primary-color: $blue-color;
 $primary-color-hover: lighten($primary-color, 5);
 $primary-color-active: darken($primary-color, 5);
+$primary-color-dark: #006eee;
 
-$primary-color-dark: $dark-blue-color;
-
-$secondary-color: $pink-color;
 $secondary-color-hover: lighten($secondary-color, 5);
 $secondary-color-active: darken($secondary-color, 5);
 
-$success-color: $green-color;
+$success-color: #2fbd77;
 $success-color-hover: lighten($success-color, 5);
 $success-color-active: darken($success-color, 5);
-$success-bg-color: $light-green-color;
+$success-bg-color: #def4dc;
 
-$danger-color: $red-color;
+$danger-color: #ff2020;
 $danger-color-hover: darken($danger-color, 10);
 $danger-color-active: darken($danger-color, 15);
-$danger-bg-color: $light-red-color;
+$danger-bg-color: #ffd7d7;
 
-$warning-color: $yellow-color;
+$warning-color: #ffc834;
 $warning-color-hover: lighten($warning-color, 5);
 $warning-color-active: darken($warning-color, 5);
 
-// Other states
-$info-color: $primary-color-dark;
-$attention-color: $red-color;
+$info-color: #0b69bf;
+$attention-color: #ff001f;
 
-// btn
 $btn-danger-bg-color: #e23f5b;
 
-$link-color: lighten($primary-color, 5);
+$link-color: lighten($primary-color, 10);
 
-$border-color: $grey-color;
-
-$body-background-color: $white-color;
-$body-alt-background-color: $light-blue-color;
+$border-color: #e2e2e2;
+$body-background-color: #ffffff;
+$body-alt-background-color: #f9fcff;
 $body-background-blue-color: #f5f5fc;
 
-$card-background-color: $white-color;
+$card-background-color: #ffffff;
+
+// Additional Theme Colors
+$brand-color: #1d65ff;
+$highlighter-color: #0f8cff;
+$footer-color: #a2b8ee;
+$footer-background-color: #202738;
+$header-color: #111111;
+$header-background-color: #ffffff;
+$header-logo-size: 10rem;
+$us-heading-color: #1a2c47;
+$us-subheading-color: #4d607d;
+
+// Neutral Scale Colors
+$neutral-scale-14: #021028;
+$neutral-scale-13: #0e1e38;
+$neutral-scale-12: #1a2c47;
+$neutral-scale-11: #324766;
+$neutral-scale-10: #4d607d;
+$neutral-scale-9: #61738e;
+$neutral-scale-8: #7c8da5;
+$neutral-scale-7: #91a1b7;
+$neutral-scale-6: #a5b3c8;
+$neutral-scale-5: #bac6d8;
+$neutral-scale-4: #d6dee5;
+$neutral-scale-3: #eaeff4;
+$neutral-scale-2: #f4f6f9;
+$neutral-scale-1: #fafbfc;
+$neutral-scale-0: #ffffff;
+
+// Color Scale
+$color-scale-0: #f8faff;
+$color-scale-5: #e6efff;
+$color-scale-10: #cddffe;
+$color-scale-20: #9abffe;
+$color-scale-30: #689ffd;
+$color-scale-40: #357efd;
+$color-scale-50: #0245b9;
+$color-scale-60: #024bca;
+$color-scale-70: #023997;
+$color-scale-80: #012665;
+$color-scale-90: #011332;
+
+// Font Colors
+$default-font-color: #5b6f81;
+$dark-font-color: #021028;
+$hint-font-color: #a8a8a8;
+$light-font-color: #ffffff;

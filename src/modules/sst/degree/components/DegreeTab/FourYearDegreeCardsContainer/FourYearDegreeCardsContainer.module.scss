@@ -1,0 +1,61 @@
+.container {
+  @include flex-row;
+
+  width: 100%;
+  gap: 1.6rem;
+  align-items: center;
+  justify-content: space-between;
+
+  @include tablet {
+    @include flex-col-c;
+  }
+}
+
+.card {
+  width: 45%;
+  
+  @include tablet {
+    width: 100%;
+  }
+}
+
+.separatorContainer {
+  @include flex-col-c;
+
+  gap: 1.2rem;
+
+  @include tablet {
+    @include flex-row-c;
+
+    width: 100%;
+  }
+}
+
+.separator {
+  height: 6rem;
+  width: 0rem;
+  border: 0.1rem solid #e4e4e4;
+  
+  @include tablet {
+    height: 0rem;
+    width: 100%;
+  }
+}
+
+.separatorText {
+  @include font-plus-jakarta-sans;
+
+  color: #171717;
+  padding: 0.8rem 1.6rem;
+  border-radius: 9.9rem;
+  background: linear-gradient(90deg, #BBDFFF -10.38%, #E8E6FF 100.94%);
+  font-size: 1.6rem;
+  font-weight: $semi-bold-font-weight;
+  letter-spacing: 0.208rem;
+  text-transform: uppercase;
+
+  @include mobile {
+    font-size: 1.2rem;
+  }
+}
+
