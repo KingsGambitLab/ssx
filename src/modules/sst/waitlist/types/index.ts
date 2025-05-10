@@ -91,4 +91,5 @@ export type TrackingProps = {
   clickText?: string;
   clickSource?: string;
   custom?: object;
+  formType?: string;
 };

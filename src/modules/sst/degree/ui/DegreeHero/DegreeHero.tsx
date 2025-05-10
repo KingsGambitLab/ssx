@@ -61,16 +61,20 @@ const DegreeHero = () => {
             {isInView ? (
               <div className={styles.videoContainer}>
                 {!isVideoLoaded && (
-                  <div className={styles.thumbnailContainer} onClick={() => {
-                    trackEvent.click({
-                      clickType: pageTrackingEvents.videoPlayed,
-                      clickSource: pageTrackingSources.DegreeHero,
-                      custom: {
-                        videoLink: "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
-                      },
-                    });
-                    setIsVideoLoaded(true)
-                  }}>
+                  <div
+                    className={styles.thumbnailContainer}
+                    onClick={() => {
+                      trackEvent.click({
+                        clickType: pageTrackingEvents.videoPlayed,
+                        clickSource: pageTrackingSources.DegreeHero,
+                        custom: {
+                          videoLink:
+                            "https://www.youtube.com/embed/qh8VHFuoJcQ?autoplay=1",
+                        },
+                      });
+                      setIsVideoLoaded(true);
+                    }}
+                  >
                     <Image
                       src={DegreeHeroImage}
                       alt="Students using VR technology"

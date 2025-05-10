@@ -75,11 +75,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       trackEvent.click({
         clickType: 'click',
         clickText: 'step_change',
-        clickSource: "waitlist_modal",
-        custom: {
-          form_source: formSource,
-          form_type: getFormType(currentStep)
-        },
+        clickSource: formSource,
+        formType: getFormType(currentStep),
       })
     }
     setCurrentStep(currentStep);
@@ -117,11 +114,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.wrongPhoneNumber,
-      clickSource: "waitlist_modal",
-      custom: {
-        form_source: formSource,
-        form_type: getFormType(step),
-      },
+      clickSource: formSource,
+      formType: getFormType(step),
     })
   };
 
@@ -136,11 +130,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.waitlistModalClose,
-      clickSource: "waitlist_modal",
-      custom: {
-        form_source: formSource,
-        form_type: getFormType(step),
-      },
+      clickSource: formSource,
+      formType: getFormType(step),
     })
     onClose();
   }

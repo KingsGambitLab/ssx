@@ -16,7 +16,7 @@ export default function SstBottomNudge() {
           Admissions Open for <span>2025</span>
         </div>
       )}
-      <ApplyButton className={styles.applyButton} trackEventSource="bottom_sticky_navbar"/>
+      <ApplyButton className={styles.applyButton} shouldTrack={true} trackEventSource="bottom_sticky_navbar"/>
     </div>
   );
 }

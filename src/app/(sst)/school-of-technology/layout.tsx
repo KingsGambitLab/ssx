@@ -6,7 +6,6 @@ import { LoginModalWrapper } from "@components/Sst/LoginModalWrapper";
 import { METADATA } from "@utils/common/metadata";
 
 import LoginModalProvider from "@context/sst/LoginModalContext";
-import BottomNavbar from "@components/Sst/BottomNavbar";
 import Footer from "@components/common/Footer";
 
 import styles from "./layout.module.scss";
@@ -21,7 +20,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Navbar />
         </Header>
         <main>{children}</main>
-        <BottomNavbar />
         <Footer />  
         <LoginModalWrapper />
       </LoginModalProvider>

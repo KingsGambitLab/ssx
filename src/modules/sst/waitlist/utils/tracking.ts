@@ -27,11 +27,12 @@ export const trackingEvents = {
 }
 
 export const trackEvent = {
-  click: ({ clickType, clickText, clickSource, custom }: TrackingProps) => {
+  click: ({ clickType, clickText, clickSource, formType, custom }: TrackingProps) => {
     tracker.click({
       click_type: clickType,
       click_text: clickText,
       click_source: clickSource,
+      form_type: formType,
       custom: custom,
     });
   },
