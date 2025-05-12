@@ -6,7 +6,7 @@ import HeroContent from '../../../../modules/ssb/landing_v2/components/HeroConte
 import ssb_cover_image from '../../../../../public/images/ssb/SSB-460_1.webp';
 import styles from './styles.module.scss';
 import DisplayCard from '../../../../modules/ssb/landing_v2/components/DisplayCard/DisplayCard';
-import InstructorSection from '../../../../modules/ssb/landing_v2/components/InstructorSection/InstructorSection';
+import InstructorContainer from '../../../../modules/ssb/landing_v2/components/InstructorContainer/InstructorContainer';
 
 
 export default function SchoolOfBusinessV2() {
@@ -26,7 +26,7 @@ export default function SchoolOfBusinessV2() {
               <DisplayCard headText="Bangalore" sectionText="On-campus" />
               <DisplayCard headText="18 Months" sectionText="Includes 3-month internship" />
             </div>
-            <InstructorSection />
+            <InstructorContainer />
           </div>
           <div className={styles.right_section}>
             <RegistrationForm />
