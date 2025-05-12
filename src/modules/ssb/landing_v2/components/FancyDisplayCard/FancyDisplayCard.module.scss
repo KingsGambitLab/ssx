@@ -1,0 +1,58 @@
+.fancyDisplayCard {
+    @include flex-col;
+    width: 50%;
+    height: 100%;
+    padding: 2.4rem;
+    gap: 1.1rem;
+    box-sizing: border-box;
+    border-radius: 5.974px;
+    box-shadow: 0px 4px 24px 0px rgba(24, 102, 63, 0.2); /* shadow/neutral/elevate/high/subtler */
+    position: relative;
+    border-bottom: none;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: linear-gradient(90deg, #14663F 0%, #20A164 88.3%);
+        border-bottom-left-radius: 5.974px;
+        border-bottom-right-radius: 5.974px;
+    }
+}
+
+.headTextWrapper {
+    @include flex-col;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 0.5rem;
+}
+
+.headText {
+    font-size: 4rem;
+    font-family: 'Montserrat';
+    line-height: 3.8rem;
+    background: linear-gradient(90deg, #14663F 0%, #20A164 88.3%);
+    background-clip: text;
+    font-weight: 700;
+    color: transparent;
+}
+
+.headTextUnderline {
+
+    width: 35%;
+    height: 0.3rem;
+    background: radial-gradient(46.9% 46.9% at 50% 50%, #20A164 16.15%, rgba(255, 255, 255, 0.00) 100%);
+    border-radius: 0.8rem;
+}
+
+.sectionText {
+    color: #171717; 
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 145%; /* 34.8px */
+}
+

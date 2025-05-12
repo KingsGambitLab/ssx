@@ -1,0 +1,35 @@
+.companyContainer{
+    @include flex-col;
+    width: 100%;
+    gap: 5rem;
+    margin-top: 10rem;
+}
+.companyContainerTitle{
+    height: 10rem;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 4.8rem; 
+    color: #171717;
+
+}
+.companyContainerTitle2{
+    font-weight: 600;
+    color:#1A8452;
+}
+.companyContainerImage{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.6rem;
+    place-items: center;
+}
+.displayCardContainer{
+    @include flex-row;
+    width: 100%;
+    gap: 2.6rem;
+}
+
+
