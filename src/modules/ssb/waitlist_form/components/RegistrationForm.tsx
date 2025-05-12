@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from './RegistrationForm.module.scss';
-import AccountCreationForm from './AccountCreationForm';
-import OtpVerificationForm from './OtpVerificationForm';
-import PersonalInformationForm from './PersonalInformationForm';
+import OtpVerificationForm from './OtpForm/index';
+import PersonalInformationForm from './PersonalInformationForm/index';
+import AccountCreationForm from './PhoneEmailForm/index';
 
 // Types of form steps
 type FormStep = 'accountCreation' | 'otpVerification' | 'personalInformation';
@@ -10,7 +10,6 @@ export default function RegistrationForm() {
 
   //Track the current step of the form
   const [currentStep, setCurrentStep] = useState<FormStep>('accountCreation');
-
   // Track the form data
   const [formData, setFormData] = useState({
     // Account Creation

@@ -6,15 +6,8 @@
   overflow-x: hidden;
 }
 
-.formWrapper {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
-  padding: 2.4rem ;
-}
-
-.statusText1{
+.statusText1 {
   font-family: "Plus Jakarta Sans";
   font-size: 14px;
   font-style: normal;
@@ -23,7 +16,7 @@
   letter-spacing: 1.82px;
 }
 
-.statusText2{
+.statusText2 {
   font-family: "Plus Jakarta Sans";
   font-size: 20px;
   font-style: normal;
@@ -31,171 +24,23 @@
   line-height: normal;
 }
 
-.header {
-  margin-bottom: 1rem;
-  text-align: left;
-}
+
 
 .status {
   padding: 2.4rem 2.4rem 3.2rem 2.4rem;
   width: 100%;
-  height: 40px;
+  box-sizing: border-box;
+  // height: 40px;
   background: #F5F5F5;
   overflow: hidden;
 }
 
-.title {
-  font-size: 2.8rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  font-family: "Plus Jakarta Sans";
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  color: #1A8254;
-}
-
-.subtitle {
-  color: #666;
-  font-size: 1.4rem;
-  font-family: "Plus Jakarta Sans";
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.formGroup {
-  width: 100%;
-}
-
-.emailInput {
-  width: 100%;
-  display: flex;
-}
-
-.input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  height: 4.8rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1.4rem;
-  box-sizing: border-box;
-
-  &:focus {
-    outline: none;
-    border-color: #4CAF50;
-  }
-}
-
-.phoneInput {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.countryCode {
-  width: 8rem;
-  padding: 1.4rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: white;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='24' viewBox='0 0 25 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.07515 9.57182C8.30946 9.33751 8.68936 9.33751 8.92368 9.57182L12.4994 13.1476L16.0752 9.57182C16.3095 9.33751 16.6894 9.33751 16.9237 9.57182C17.158 9.80614 17.158 10.186 16.9237 10.4204L12.9237 14.4204C12.6894 14.6547 12.3095 14.6547 12.0752 14.4204L8.07515 10.4204C7.84084 10.186 7.84084 9.80614 8.07515 9.57182Z' fill='%23616161'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1.8rem center;
-  background-size: 1.6rem 1.6rem;
-  padding-right: 2.4rem;
-  cursor: pointer;
-}
-
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #666;
-  font-family: "Plus Jakarta Sans";
-  font-size: 1.6rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-
-  input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-.submitButton {
-  width: 100%;
-  height: 4.8rem;
-  padding: 1rem;
-  background: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.6rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-
-  &:hover {
-    background: darken(#4CAF50, 5%);
-  }
-}
-
-.deadline {
-  text-align: center;
-  font-size: 1.4rem;
-  color: #666;
-  font-weight: 600;
-
-
-  .date {
-    color: #F1511B;
-    font-weight: 600;
-  }
-}
-
-.terms {
-  color: #000;
-  font-family: "Plus Jakarta Sans";
-  font-size: 1.4rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  a {
-    color: #4CAF50;
-    font-family: "Source Sans Pro";
-    font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: none;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-} 
 
 .wrongNumber {
   color: #0066FF;
   text-decoration: none;
   font-size: 1.4rem;
-  
+
   &:hover {
     text-decoration: underline;
   }
@@ -220,7 +65,7 @@
   border-radius: 4px;
   text-align: center;
   font-size: 1.6rem;
-  
+
   &:focus {
     outline: none;
     border-color: #4CAF50;
@@ -246,7 +91,7 @@
   cursor: pointer;
   font-size: 1.4rem;
   padding: 0;
-  
+
   &:hover {
     text-decoration: underline;
   }
@@ -261,3 +106,8 @@
   padding-right: 2.4rem;
   cursor: pointer;
 }
+
+
+
+
+// Additional styles for Ant Design components
