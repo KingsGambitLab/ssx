@@ -17,10 +17,6 @@
     @include flex-col;
     height: 10rem;
     align-items: center;
-    
-}
-.instructorContainerTitle{
-    // @include font-montserrat;
     font-family: 'Montserrat';
     font-size: 4rem;
     font-style: normal;
@@ -28,6 +24,7 @@
     line-height: 4.8rem; 
     color: #171717;
 }
+
 .instructorContainerTitleText2{
     font-weight: 600;
     color:#1A8452;

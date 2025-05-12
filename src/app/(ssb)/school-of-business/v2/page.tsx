@@ -7,7 +7,7 @@ import ssb_cover_image from '../../../../../public/images/ssb/SSB-460_1.webp';
 import styles from './styles.module.scss';
 import DisplayCard from '../../../../modules/ssb/landing_v2/components/DisplayCard/DisplayCard';
 import InstructorContainer from '../../../../modules/ssb/landing_v2/components/InstructorContainer/InstructorContainer';
-
+// import CompanyContainer from '../../../../modules/ssb/landing_v2/components/CompanyContainer/CompanyContainer';
 
 export default function SchoolOfBusinessV2() {
   return (
@@ -27,6 +27,7 @@ export default function SchoolOfBusinessV2() {
               <DisplayCard headText="18 Months" sectionText="Includes 3-month internship" />
             </div>
             <InstructorContainer />
+            {/* <CompanyContainer /> */}
           </div>
           <div className={styles.right_section}>
             <RegistrationForm />
