@@ -2,26 +2,28 @@ import styles from './CompanyContainer.module.scss';
 import Image from 'next/image';
 import FancyDisplayCard from '../FancyDisplayCard/FancyDisplayCard';
 
-import bain_capital_logo from '../../../../../../public/images/ssb/baincapital.webp';
-import amazon_logo from '../../../../../../public/images/ssb/amazon.webp';
-import swiggy_logo from '../../../../../../public/images/ssb/swiggy.webp';
-import jp_morgan_logo from '../../../../../../public/images/ssb/jp_morgan.webp';
-import google_logo from '../../../../../../public/images/ssb/google.webp';
-import deloitte_logo from '../../../../../../public/images/ssb/deloitte.webp';
-import pwc_logo from '../../../../../../public/images/ssb/pwc.webp';
-import accenture_logo from '../../../../../../public/images/ssb/accenture.webp';
-import razorpay_logo from '../../../../../../public/images/ssb/razorpay.webp';
-import zomato_logo from '../../../../../../public/images/ssb/zomato_red.webp';
-import delhivery_logo from '../../../../../../public/images/ssb/delhivery.webp';
-import flipkart_logo from '../../../../../../public/images/ssb/flipkart_with_logo.webp';
-import morgan_stanley_logo from '../../../../../../public/images/ssb/morgan_stanley.webp';
-import paypal_logo from '../../../../../../public/images/ssb/paypal.webp';
-import ola_logo from '../../../../../../public/images/ssb/ola.webp';
-import dream11_logo from '../../../../../../public/images/ssb/dream_11.webp';
-import microsoft_logo from '../../../../../../public/images/ssb/microsoft.webp';
-import walmart_logo from '../../../../../../public/images/ssb/walmart.webp';
-import uber_logo from '../../../../../../public/images/ssb/uber.webp';
-import myntra_logo from '../../../../../../public/images/ssb/myntra.webp';
+import bain_capital_logo from '@public/images/ssb/baincapital.webp';
+import amazon_logo from '@public/images/ssb/amazon.webp';
+import swiggy_logo from '@public/images/ssb/swiggy.webp';
+import jp_morgan_logo from '@public/images/ssb/jp_morgan.webp';
+import google_logo from '@public/images/ssb/google.webp';
+import deloitte_logo from '@public/images/ssb/deloitte.webp';
+import pwc_logo from '@public/images/ssb/pwc.webp';
+import accenture_logo from '@public/images/ssb/accenture.webp';
+import razorpay_logo from '@public/images/ssb/razorpay.webp';
+import zomato_logo from '@public/images/ssb/zomato_red.webp';
+import delhivery_logo from '@public/images/ssb/delhivery.webp';
+import flipkart_logo from '@public/images/ssb/flipkart_with_logo.webp';
+import morgan_stanley_logo from '@public/images/ssb/morgan_stanley.webp';
+import paypal_logo from '@public/images/ssb/paypal.webp';
+import ola_logo from '@public/images/ssb/ola.webp';
+import dream11_logo from '@public/images/ssb/dream_11.webp';
+import microsoft_logo from '@public/images/ssb/microsoft.webp';
+import walmart_logo from '@public/images/ssb/walmart.webp';
+import uber_logo from '@public/images/ssb/uber.webp';
+import myntra_logo from '@public/images/ssb/myntra.webp';
+
+
 export default function CompanyContainer() {
     return (
         <div className={styles.companyContainer}>

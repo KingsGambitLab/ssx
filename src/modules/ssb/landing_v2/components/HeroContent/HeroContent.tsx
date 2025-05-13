@@ -1,8 +1,8 @@
 import styles from './HeroContent.module.scss';
-import uber_with_frame from '../../../../../../public/images/ssb/uber_with_frame.webp';
-import mckinsey_with_frame from '../../../../../../public/images/ssb/mckinsey_with_frame.webp';
-import colgate from '../../../../../../public/images/ssb/colgate.webp';
-import harvard from '../../../../../../public/images/ssb/harvard.webp';
+import uber_with_frame from '@public/images/ssb/uber_with_frame.webp';
+import mckinsey_with_frame from '@public/images/ssb/mckinsey_with_frame.webp';
+import colgate from '@public/images/ssb/colgate.webp';
+import harvard from '@public/images/ssb/harvard.webp';
 
 export default function HeroContent() {
   return (
