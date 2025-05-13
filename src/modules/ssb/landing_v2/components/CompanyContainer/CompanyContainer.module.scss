@@ -31,5 +31,25 @@
     width: 100%;
     gap: 2.6rem;
 }
-
+.highlightTextContainer{
+    width: 100%;
+    padding:2.5rem;
+    font-size: 2rem;
+    text-align: center;
+    border: 1px solid #1A8452;
+    border-radius: 0.6rem;
+    background: #F5FCF8;
+    line-height: 140%;
+    box-sizing: border-box;
+    margin-top: -2.5rem;
+}
+.highlightTextContainerSpan1{
+    font-weight: 600;
+}
+.highlightTextContainerSpan2{
+    font-weight: 600;
+    background: linear-gradient(90deg, #14663f 0%, #20a164 88.3%);
+    background-clip: text;
+    color: transparent;
+}
 
