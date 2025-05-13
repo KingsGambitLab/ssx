@@ -1,13 +1,17 @@
 'use client';
 
 import Image from 'next/image';
+import styles from './styles.module.scss';
+
 import RegistrationForm from '../../../../modules/ssb/waitlist_form/components/RegistrationForm';
 import HeroContent from '../../../../modules/ssb/landing_v2/components/HeroContent/HeroContent';
 import ssb_cover_image from '../../../../../public/images/ssb/SSB-460_1.webp';
-import styles from './styles.module.scss';
 import DisplayCard from '../../../../modules/ssb/landing_v2/components/DisplayCard/DisplayCard';
 import InstructorContainer from '../../../../modules/ssb/landing_v2/components/InstructorContainer/InstructorContainer';
 import CompanyContainer from '../../../../modules/ssb/landing_v2/components/CompanyContainer/CompanyContainer';
+import BusinessLeaderContainer from '../../../../modules/ssb/landing_v2/components/BusinessLeaderContainer/BusinessLeaderContainer';
+import StudentFeatureContainer from '../../../../modules/ssb/landing_v2/components/StudentFeatureContainer/StudentFeatureContainer';
+
 
 export default function SchoolOfBusinessV2() {
   return (
@@ -28,6 +32,8 @@ export default function SchoolOfBusinessV2() {
             </div>
             <InstructorContainer />
             <CompanyContainer />
+            <BusinessLeaderContainer />
+            <StudentFeatureContainer />
           </div>
           <div className={styles.right_section}>
             <RegistrationForm />

@@ -1,0 +1,16 @@
+.studentFeatureContainer{
+    @include flex-col;
+    gap: 2.4rem;
+    margin-top: 10rem;
+}
+.studentFeatureContainerTitle{
+    @include flex-col;
+    align-items: center;
+    font-family: 'Montserrat';
+}
+.studentFeatureContainerTitleText2{
+    @include flex-col;
+    align-items: center;
+    font-family: 'Montserrat';
+    
+}

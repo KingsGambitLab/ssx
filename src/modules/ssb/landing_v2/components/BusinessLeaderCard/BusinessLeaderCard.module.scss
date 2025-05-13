@@ -1,0 +1,46 @@
+.businessLeaderCard{
+    @include flex-col;
+    position: relative;
+    height: 30rem;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #E4E4E4;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.image{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index:1;
+}
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60%;
+    background: linear-gradient(0deg, #021028 29.7%, rgba(2, 16, 40, 0.00) 100%);
+    z-index: 2;
+    pointer-events: none; // So overlay doesn't block clicks
+}
+
+.content {
+    @include flex-col;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    color: #fff;
+    padding: 2rem;
+    gap: 2.4rem;
+    margin-bottom: 2rem;
+}
+
+.name {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
