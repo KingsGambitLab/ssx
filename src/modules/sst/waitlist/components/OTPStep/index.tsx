@@ -58,6 +58,8 @@ export const OTPStep: React.FC<OTPStepProps> = ({
   }, [timeLeft]);
 
   const formattedErrors = (error: any) => {
+    if (typeof error !== 'object') return error;
+    
     const formattedErrors: Record<string, string> = {};
 
     Object.entries(error).forEach(([field, value]: [string, any]) => {
@@ -148,22 +150,20 @@ export const OTPStep: React.FC<OTPStepProps> = ({
     trackClickEventHandler({
       clickType: 'click',
       clickText: `Resend OTP via ${channel}`,
-      clickSource: trackingSources.waitlistLoginOTPForm,
       custom: {
         modal_status: 'open',
       }
     })
   };
 
-  const trackClickEventHandler = ({clickType, clickText, clickSource, custom}: TrackingProps) => {
+  const trackClickEventHandler = ({clickType, clickText, custom}: TrackingProps) => {
     trackEvent.click({
       clickType,
       clickText,
-      clickSource,
+      clickSource: formSource,
+      formType: trackingSources.waitlistLoginOTPForm,
       custom: {
         ...custom,
-        form_source: formSource,
-        form_type: trackingSources.waitlistLoginOTPForm
       }
     })
   }

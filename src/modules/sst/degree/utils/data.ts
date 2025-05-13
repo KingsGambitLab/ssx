@@ -73,7 +73,7 @@ export const sstVsTraditionalData = [
       },
       {
         heading: "<b>Students at SST have the option to explore independent degree programmes</b>",
-        subHeading: "that align with their academic and career goals while gaining hands-on, modern CS Education at SST."
+        subHeading: "that align with their academic and career goals while gaining hands-on, modern CS training at SST."
       }
     ],
     articles: [
@@ -129,10 +129,6 @@ export const keyFeaturesData = {
       title: "Accepted by Global Universities",
       desc: "Meets eligibility criteria to apply for further studies programmes abroad, including MS, MBA, and PhD.",
       featureList: [
-        {
-          image: StandfordEngineeringArticleImage.src,
-          alt: "Stanford Education Article"
-        },
         {
           image: GraduateEducationArticleImage.src,
           alt: "Graduate Education Article"
