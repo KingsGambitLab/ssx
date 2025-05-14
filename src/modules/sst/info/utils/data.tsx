@@ -17,7 +17,7 @@ export const SuccessStoriesData = [
   {
     thumbnail: Kanan,
     title: "Kanan Arora",
-    desc: "From an average kind of student to internship in Singapore with a stipend of almost ₹2 Lakhs/month.",
+    desc: "SST student Kanan Arora lands a high-paying internship at Neurowyzr, Singapore—after starting with self-doubt and zero coding experience.",
     link: "https://www.linkedin.com/posts/scaler-school-of-technology_internshipjourney-studentsuccess-keepbuilding-activity-7326083604554358784-A2mi",
     ctaText: "Read full story on LinkedIn",
   },
@@ -39,7 +39,7 @@ export const SuccessStoriesData = [
   {
     thumbnail: Abhinav,
     title: "Abhinav",
-    desc: "Built an for KONE at a Finland hackathon, interned in a German company and co-created Triangles and Scaler Companion—AI now running 90% of SST interviews",
+    desc: "Built an app for KONE at a Finland hackathon, interned in a German company and co-created Triangles and Scaler Companion—AI now running 90% of SST interviews",
     videoLink:
       "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/122/021/original/abhinav-final_%281%29_%281%29.mp4?1745419215",
     link: "https://www.instagram.com/p/DFnMXLWyJjh/",
@@ -92,7 +92,6 @@ export const SuccessStoriesData = [
 export const CareerStatsHeader = {
   subtitle: "Stellar Career Prospects",
   title: "Launch Your Career with Proven Success",
-  titleMweb: "Start your Career to Success",
 };
 
 export const CareerStatsData = {
