@@ -62,7 +62,7 @@ export default function CompanyContainer() {
                 <FancyDisplayCard headText="25 LPA" sectionText="Median Salary" />
             </div>
             <div className={styles.highlightTextContainer}>
-                With an already <span className={styles.highlightTextContainerSpan1}>proven track </span> <span className={styles.highlightTextContainerSpan2}> record </span> of outcomes through our online programs
+                With an already <span className={styles.highlightTextContainerSpan1}>proven track record </span> of outcomes through our <span className={styles.highlightTextContainerSpan1}>online</span> programs
             </div>
         </div>
     )
