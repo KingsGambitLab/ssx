@@ -1,6 +1,7 @@
 import styles from './CompanyContainer.module.scss';
 import Image from 'next/image';
-import FancyDisplayCard from '../FancyDisplayCard/FancyDisplayCard';
+
+import FancyDisplayCard from '../../components/FancyDisplayCard/FancyDisplayCard';
 
 import bain_capital_logo from '@public/images/ssb/baincapital.webp';
 import amazon_logo from '@public/images/ssb/amazon.webp';

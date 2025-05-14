@@ -1,18 +1,22 @@
 
-import styles from './BusinessLeaderContainer.module.scss';
-import BusinessLeaderCard from '../BusinessLeaderCard/BusinessLeaderCard';
+import styles from '@modules/ssb/landing_v2/ui/BusinessLeaderContainer/BusinessLeaderContainer.module.scss';
+
+import BusinessLeaderCard from '@modules/ssb/landing_v2/components/BusinessLeaderCard/BusinessLeaderCard';
+
 import BinnyBansal from '@public/images/ssb/Binny.webp';
-import flipkart_logo from '@public/images/ssb/flipkart_without_logo.webp';
 import DeepinderGoyal from '@public/images/ssb/Deepinder.webp';
-import zomato_logo from '@public/images/ssb/zomato.webp';
 import KunalShah from '@public/images/ssb/Kunal.webp';
-import cred_logo from '@public/images/ssb/cred.webp';
 import Bhavik from '@public/images/ssb/Bhavik.webp';
-import uber_logo from '@public/images/ssb/uber_white.webp';
 import Rajan from '@public/images/ssb/Rajan.webp';
-import peak_logo from '@public/images/ssb/peak.webp';
 import Sucheta from '@public/images/ssb/Sucheta.webp';
+
+import uber_logo from '@public/images/ssb/uber_white.webp';
+import peak_logo from '@public/images/ssb/peak.webp';
 import airtel_logo from '@public/images/ssb/airtel.webp';
+import cred_logo from '@public/images/ssb/cred.webp';
+import zomato_logo from '@public/images/ssb/zomato.webp';
+import flipkart_logo from '@public/images/ssb/flipkart_without_logo.webp';
+
 
 
 export default function BusinessLeaderContainer() {

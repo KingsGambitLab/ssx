@@ -1,11 +1,14 @@
-import InstructorCard from "../InstructorCard/InstructorCard";
 import styles from './InstructorContainer.module.scss';
+
+import InstructorCard from "@modules/ssb/landing_v2/components/InstructorCard/InstructorCard";
+
 import vidit_profile from '@public/images/ssb/Vidit_2.webp';
 import narahari_profile from '@public/images/ssb/Narahari_2.webp';
 import sandeep_profile from '@public/images/ssb/Sandeep_2.webp';
 import anurag_profile from '@public/images/ssb/Anurag_2.webp';
 import akash_profile from '@public/images/ssb/Akash_2.webp';
 import kanishk_profile from '@public/images/ssb/Kanishk_2.webp';
+
 import mckinsey_logo from '@public/images/ssb/mckinsey.webp';
 import iim_mumbai_logo from '@public/images/ssb/iim_mumbai.webp';
 import mars_logo from '@public/images/ssb/mars.webp';

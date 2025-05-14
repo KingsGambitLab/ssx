@@ -1,30 +1,31 @@
 import styles from './NewsCardContainer.module.scss';
-import NewsCard from '../NewsCard/NewsCard';
-import hindudesktop from '@public/images/ssb/hindudesktop.webp';
-import brainfeeddesktop from '@public/images/ssb/brainfeeddesktop.webp';
-import outlookdesktop from '@public/images/ssb/outlookdesktop.webp';
-import timedesktop from '@public/images/ssb/timedesktop.webp';
+
+import NewsCard from '@modules/ssb/landing_v2/components/NewsCard/NewsCard';
+import HinduDesktop from '@public/images/ssb/hindudesktop.webp';
+import BrainfedDesktop from '@public/images/ssb/brainfeeddesktop.webp';
+import OutlookDesktop from '@public/images/ssb/outlookdesktop.webp';
+import TimeDesktop from '@public/images/ssb/timedesktop.webp';
 
 export default function NewsCardContainer() {
   return (
     <div className={styles.newsCardContainer}>
       <NewsCard 
-        imageSrc={hindudesktop}
+        imageSrc={HinduDesktop}
         boldText="Scaler has launched the Scaler School of Business"
         text=""
       />
       <NewsCard 
-        imageSrc={brainfeeddesktop}
+        imageSrc={BrainfedDesktop}
         boldText="India's first business school"
         text=" built by industry leaders for future leaders."
       />
       <NewsCard 
-        imageSrc={outlookdesktop}
+        imageSrc={OutlookDesktop}
         boldText="Scaler Diversifies Its Offering, "
         text=" by Launching Scaler School of Business"
       />
       <NewsCard 
-        imageSrc={timedesktop}
+        imageSrc={TimeDesktop}
         boldText="TIME World's Top EdTech Companies 2024-"
         text=" Scaler is at the top!"
       />
