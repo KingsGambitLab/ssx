@@ -1,13 +1,17 @@
 .businessLeaderCard{
     @include flex-col;
+
     position: relative;
-    height: 30rem;
     background: #fff;
     border-radius: 12px;
     border: 1px solid #E4E4E4;
     align-items: center;
     box-sizing: border-box;
     overflow: hidden;
+
+    @include tablet{
+        height: 17rem;
+    }
 }
 .image{
     width: 100%;
@@ -36,11 +40,29 @@
     color: #fff;
     padding: 2rem;
     gap: 2.4rem;
-    margin-bottom: 2rem;
+
+    @include tablet{
+        padding: 1.6rem 0.8rem;
+        justify-content: space-between;
+        gap: 1rem;
+    }
 }
 
 .name {
     font-size: 1.8rem;
-    font-weight: 500;
+    font-weight: 600;
+
+    @include tablet{
+        font-size: 1rem;
+    }
 }
 
+.companyLogo{
+    width: 10rem;
+    height: 3rem;
+
+    @include tablet{
+        width: 6rem;
+        height: 2rem;
+    }
+}

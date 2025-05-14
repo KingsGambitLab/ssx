@@ -1,27 +1,49 @@
 .newsCard{
+  @include flex-col;
+
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  border-radius:2%;
+  border-radius: 0.6rem;
+  @include tablet{
+    height: 100%;
+  }
 }
 .newsCardImage{
   width: 100%;
   height: 70%;
   object-fit: fill;
-  border-radius: 2%;
+  border-radius: 0.6rem 0.6rem 0 0;
+
+  @include tablet{
+    height: 60%;
+  }
 }
 
 .newsCardText{
   line-height: 100%;
   padding: 1rem;
+  border-radius: 0 0 0.6rem 0.6rem;
+
+  @include tablet{
+    padding: 0.8rem;
+  }
 }
 
 .newsCardTextBold{
   font-size: 2rem;
   font-weight: 600;
   line-height: 140%;
+
+  @include tablet{
+    font-size: 1.2rem;
+  }
 }
 
 .newsCardTextNormal{
   font-size: 2rem;
   font-weight: 100;
   line-height: 140%;
+
+  @include tablet{
+    font-size: 1.2rem;
+  }
 }

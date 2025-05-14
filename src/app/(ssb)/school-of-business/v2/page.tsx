@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import styles from './page.module.scss';
 
+import { useDeviceType } from '@hooks/useDeviceType';
+
 import RegistrationForm from '@modules/ssb/waitlist_form/components/RegistrationForm';
 
 import HeroContent from '@modules/ssb/landing_v2/components/HeroContent/HeroContent';
@@ -16,6 +18,7 @@ import NewsCardContainer from '@modules/ssb/landing_v2/ui/NewsContainer';
 import DisplayCardContainer from '@modules/ssb/landing_v2/ui/DisplayCardContainer';
 
 export default function SchoolOfBusinessV2() {
+  const { isTabletOrMobile } = useDeviceType();
   return (
     <div className={styles.root}>
 
@@ -27,6 +30,9 @@ export default function SchoolOfBusinessV2() {
           <div className={styles.left_section}>
             <HeroContent />
             <DisplayCardContainer />
+            {isTabletOrMobile && (
+              <RegistrationForm />
+            )}
             <InstructorContainer />
             <CompanyContainer />
             <BusinessLeaderContainer />
@@ -34,9 +40,13 @@ export default function SchoolOfBusinessV2() {
             <NewsCardContainer />
           </div>
 
-          <div className={styles.right_section}>
-            <RegistrationForm />
-          </div>
+          {
+            !isTabletOrMobile && (
+              <div className={styles.right_section}>
+                <RegistrationForm />
+              </div>
+            )
+          }
         </div>
       </div>
       

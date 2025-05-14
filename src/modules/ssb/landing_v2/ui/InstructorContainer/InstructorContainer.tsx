@@ -36,9 +36,7 @@ export default function InstructorContainer() {
                 <InstructorCard name="Dr. Anurag .D" designation="Marketing Strategy" profile_image={anurag_profile.src} company_image={iim_shillong_logo.src} />
                 <InstructorCard name="Dr. Akash .K" designation="Director of Research" profile_image={akash_profile.src} company_image={gartner_logo.src} />
                 <InstructorCard name="Kanishk .M" designation="Product Head" profile_image={kanishk_profile.src} company_image={coinbase_logo.src} />
-                
             </div>
-            
         </div>
     )
 }

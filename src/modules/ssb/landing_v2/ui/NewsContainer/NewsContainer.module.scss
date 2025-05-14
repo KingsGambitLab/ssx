@@ -1,19 +1,29 @@
 .newsContainer{
+  @include flex-col;
   margin-top: 10rem;
-
-}
-.newsCardContainer{
-  width:100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 2.4rem;
+  padding-bottom: 10rem;
+  
+  @include tablet{
+    margin-top: 2.4rem;
+  }
 }
 
 .headlineContainer {
   width: 100%;
   align-items: flex-start;
   overflow: hidden;
-  height: 16rem;
+}
+
+.newsCardContainer{
+  width:100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+
+  @include tablet{
+    gap: 1.6rem;
+  }
 }
 
 .featuredNewsTitleImg {

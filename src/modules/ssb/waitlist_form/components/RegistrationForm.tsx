@@ -3,6 +3,9 @@ import styles from './RegistrationForm.module.scss';
 import OtpVerificationForm from './OtpForm/index';
 import PersonalInformationForm from './PersonalInformationForm/index';
 import AccountCreationForm from './PhoneEmailForm/index';
+import { useDeviceType } from '@hooks/useDeviceType';
+
+import DisplayMobileCard from '@modules/ssb/landing_v2/components/DisplayMobileCard';
 
 // Types of form steps
 type FormStep = 'accountCreation' | 'otpVerification' | 'personalInformation';
@@ -10,6 +13,10 @@ export default function RegistrationForm() {
 
   //Track the current step of the form
   const [currentStep, setCurrentStep] = useState<FormStep>('accountCreation');
+
+  //Track the device type
+  const { isTabletOrMobile } = useDeviceType();
+
   // Track the form data
   const [formData, setFormData] = useState({
     // Account Creation
@@ -48,10 +55,21 @@ export default function RegistrationForm() {
     <div className={styles.formContainer}>
 
       {/* Status */}
-      <div className={styles.status}>
-        <div className={styles.statusText1}>SSB 2025</div>
-        <div className={styles.statusText2}>PGP Admission Open for Aug/Sep 2025</div>
-      </div>
+
+      
+      {!isTabletOrMobile && (
+        <div className={styles.status}>
+          <div className={styles.statusText1}>SSB 2025</div>
+          <div className={styles.statusText2}>PGP Admission Open for Aug/Sep 2025</div>
+        </div>
+      )}
+
+      {isTabletOrMobile && (
+        <div className={styles.status}>
+          <div className={styles.statusText1}>Admissions OPEN for AU/sep 2025</div>
+          <DisplayMobileCard />
+        </div>
+      )}
 
       {/* Form */}
       {currentStep === 'accountCreation' && (

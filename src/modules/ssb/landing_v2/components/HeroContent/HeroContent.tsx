@@ -10,8 +10,8 @@ export default function HeroContent() {
       <div className={styles.pgpTitle}>Full-Time PGP in Management & Tech</div>
       
       <div className={styles.businessTitle}>
-        <span className={styles.learnBusiness}>Learn business hands-on</span>
-        <span className={styles.industryLeaders}>from 100+ industry leaders & faculty from</span>
+        <div className={styles.learnBusiness}>Learn business hands-on</div>
+        <div className={styles.industryLeaders}>from 100+ industry leaders & faculty from</div>
       </div>
       
       <div className={styles.companyLogos}>

@@ -35,27 +35,26 @@ export default function CompanyContainer() {
                 <span className={styles.companyContainerTitle2}> 1200+ hiring partners</span>
             </div>
             <div className={styles.companyContainerImage}>
-                <Image src={bain_capital_logo.src} alt="bain_capital" width={120} height={60} />
-                <Image src={amazon_logo.src} alt="amazon" width={120} height={60} />
-                <Image src={swiggy_logo.src} alt="swiggy" width={120} height={60} />
-                <Image src={jp_morgan_logo.src} alt="jp_morgan" width={120} height={60} />
-                <Image src={google_logo.src} alt="google" width={120} height={60} />
-                <Image src={deloitte_logo.src} alt="deloitte" width={120} height={60} />
-                <Image src={pwc_logo.src} alt="pwc" width={120} height={60} />
-                <Image src={accenture_logo.src} alt="accenture" width={120} height={60} />
-                <Image src={razorpay_logo.src} alt="razorpay" width={120} height={60} />
-                <Image src={zomato_logo.src} alt="zomato" width={120} height={60} />
-                <Image src={delhivery_logo.src} alt="delhivery" width={120} height={60} />
-                <Image src={flipkart_logo.src} alt="flipkart" width={120} height={60} />
-                <Image src={morgan_stanley_logo.src} alt="morgan_stanley" width={120} height={60} />
-                <Image src={paypal_logo.src} alt="paypal" width={120} height={60} />
-                <Image src={ola_logo.src} alt="ola" width={120} height={60} />
-                <Image src={dream11_logo.src} alt="dream11" width={120} height={60} />
-                <Image src={microsoft_logo.src} alt="microsoft" width={135} height={60} />
-                <Image src={walmart_logo.src} alt="walmart" width={120} height={60} />
-                <Image src={uber_logo.src} alt="uber" width={120} height={50} />
-                <Image src={myntra_logo.src} alt="myntra" width={120} height={60} />
-
+                <Image src={bain_capital_logo} alt="bain_capital" className={styles.companyContainerImageLogo}/>
+                <Image src={amazon_logo} alt="amazon" className={styles.companyContainerImageLogo}/>
+                <Image src={swiggy_logo} alt="swiggy" className={styles.companyContainerImageLogo}/>
+                <Image src={jp_morgan_logo} alt="jp_morgan" className={styles.companyContainerImageLogo}/>
+                <Image src={google_logo} alt="google" className={styles.companyContainerImageLogo}/>
+                <Image src={deloitte_logo} alt="deloitte" className={styles.companyContainerImageLogo}/>
+                <Image src={pwc_logo} alt="pwc" className={styles.companyContainerImageLogo}/>
+                <Image src={accenture_logo} alt="accenture" className={styles.companyContainerImageLogo}/>
+                <Image src={razorpay_logo} alt="razorpay" className={styles.companyContainerImageLogo}/>
+                <Image src={zomato_logo} alt="zomato" className={styles.companyContainerImageLogo}/>
+                <Image src={delhivery_logo} alt="delhivery" className={styles.companyContainerImageLogo}/>
+                <Image src={flipkart_logo} alt="flipkart" className={styles.companyContainerImageLogo}/>
+                <Image src={morgan_stanley_logo} alt="morgan_stanley" className={styles.companyContainerImageLogo}/>
+                <Image src={paypal_logo} alt="paypal" className={styles.companyContainerImageLogo}/>
+                <Image src={ola_logo} alt="ola" className={styles.companyContainerImageLogo}/>
+                <Image src={dream11_logo} alt="dream11" className={styles.companyContainerImageLogo}/>
+                <Image src={microsoft_logo} alt="microsoft" className={styles.companyContainerImageLogo}/>
+                <Image src={walmart_logo} alt="walmart" className={styles.companyContainerImageLogo}/>
+                <Image src={uber_logo} alt="uber" className={styles.companyContainerImageLogo}/>
+                <Image src={myntra_logo} alt="myntra" className={styles.companyContainerImageLogo}/>
             </div>
             <div className={styles.displayCardContainer}>   
                 <FancyDisplayCard headText="5000+" sectionText="Learners Placed" />

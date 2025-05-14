@@ -21,6 +21,11 @@
         border-bottom-left-radius: 5.974px;
         border-bottom-right-radius: 5.974px;
     }
+
+    @include tablet{
+        padding: 1rem 1.4rem;
+        gap: 0.4rem;
+    }
 }
 
 .headTextWrapper {
@@ -38,6 +43,11 @@
     background-clip: text;
     font-weight: 700;
     color: transparent;
+
+    @include tablet{
+        font-size: 2.4rem;
+        line-height: 2.4rem;
+    }
 }
 
 .headTextUnderline {
@@ -53,6 +63,11 @@
     font-size: 2.4rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 145%; /* 34.8px */
+    line-height: 3.4rem;
+
+    @include tablet{
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+    }
 }
 

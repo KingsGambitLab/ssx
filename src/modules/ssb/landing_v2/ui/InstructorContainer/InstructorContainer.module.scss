@@ -4,6 +4,11 @@
     align-items: center ;
     margin-top: 10rem;
     gap: 5rem;
+
+    @include tablet{
+        margin-top: 5rem;
+        gap: 2.4rem;
+    }
 }
 .instructorCardContainer {
     width: 100%;
@@ -11,11 +16,12 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2.4rem;
 
-    
+    @include tablet{
+        gap: 1.6rem;
+    }
 }
 .instructorContainerTitle{
     @include flex-col;
-    height: 10rem;
     align-items: center;
     font-family: 'Montserrat';
     font-size: 4rem;
@@ -23,6 +29,11 @@
     font-weight: 400;
     line-height: 4.8rem; 
     color: #171717;
+
+    @include tablet{
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+    }
 }
 
 .instructorContainerTitleText2{

@@ -3,6 +3,10 @@
     gap: 2.4rem;
     margin-top: 10rem;
     background-color: white;
+
+    @include tablet{
+        margin-top: 2.4rem;
+    }
 }
 .studentFeatureContainerTitle{
     @include flex-col;
@@ -20,6 +24,10 @@
     border: 1px solid #83CCA9;
     background: #E6F7ED;
     padding: 0.8rem 3.2rem;
+
+    @include tablet{
+        display: none;
+    }
 }
 .studentFeatureContainerTitleText2{
     @include flex-col;
@@ -33,6 +41,11 @@
         font-weight: 400;
         line-height: 4.8rem; 
 
+        @include tablet{
+            font-size: 1.8rem;
+            line-height: 1.4rem;
+        }
+
         span{
             color: #1A8452;
             font-weight: 600;
@@ -44,6 +57,11 @@
         font-size: 2.4rem;
         font-weight: 400;
         line-height: 3.4rem; 
+
+        @include tablet{
+            font-size: 1.4rem;
+            line-height: 2rem;
+        }
     }
 }
 
@@ -106,6 +124,10 @@
     border-radius: 0.5rem;
     box-shadow: 0px 2px 4px 0px #00000014;
 
+    @include tablet{
+        padding: 1.4rem 1.6rem;
+    }
+
     .studentFeatureContainerFooterText1{
         color: #171717;
         font-family: 'Montserrat';
@@ -117,6 +139,10 @@
         span{
             color: #1A8452;
         }
+
+        @include tablet{
+            font-size: 1.6rem;
+        }
     }
     .studentFeatureContainerFoooterText2{
         color: #3A3A3A;
@@ -125,5 +151,10 @@
         font-style: normal;
         font-weight: 400;
         line-height: 130%; 
+
+        @include tablet{
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+        }
     }
 }

@@ -20,8 +20,10 @@ export default function InstructorCard({ name, designation, profile_image, compa
             />
             
             <div className={styles.instructorInfo}>
-                <div className={styles.instructorName}>{name}</div>
-                <div className={styles.instructorDesignation}>{designation}</div>
+                <div className={styles.instructorInfoContainer}>
+                    <div className={styles.instructorName}>{name}</div>
+                    <div className={styles.instructorDesignation}>{designation}</div>
+                </div>
 
                 <Image 
                 src={company_image} 
@@ -31,9 +33,6 @@ export default function InstructorCard({ name, designation, profile_image, compa
                 height={32}
             />
             </div>
-            
-            
-            
         </div>
     );
 }
