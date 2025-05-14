@@ -1,0 +1,43 @@
+.section {
+  padding-top: 0 !important; 
+  padding-bottom: 0 !important; 
+
+  @include mobile {
+    padding-top: 0 !important; 
+    padding-bottom: 0 !important; 
+  }
+}
+
+.container {
+  @include flex-col-c;
+
+  gap: 5.4rem;
+  width: 100%;
+  padding-bottom: 5.4rem;
+
+  @include mobile {
+    padding-bottom: 2.4rem;
+    gap: 1.6rem;
+  }
+}
+
+.title {
+  @include font-plus-jakarta-sans;
+
+  font-size: $desktop-font-title-3;
+  font-weight: $bolder-font-weight;
+  text-align: center;
+  line-height:  140%;
+  letter-spacing: 0.312rem;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #3A3A3A 0%, #0245B9 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+    line-height: 280%;
+    letter-spacing: 0.156rem;
+  }
+}
