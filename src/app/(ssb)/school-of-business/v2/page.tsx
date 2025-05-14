@@ -12,7 +12,7 @@ import InstructorContainer from '@modules/ssb/landing_v2/ui/InstructorContainer'
 import CompanyContainer from '@modules/ssb/landing_v2/ui/CompanyContainer';
 import BusinessLeaderContainer from '@modules/ssb/landing_v2/ui/BusinessLeaderContainer';
 import StudentFeatureContainer from '@modules/ssb/landing_v2/ui/StudentFeatureContainer';
-import NewsCardContainer from '@modules/ssb/landing_v2/ui/NewsCardContainer';
+import NewsCardContainer from '@modules/ssb/landing_v2/ui/NewsContainer';
 import DisplayCardContainer from '@modules/ssb/landing_v2/ui/DisplayCardContainer';
 
 export default function SchoolOfBusinessV2() {
@@ -33,7 +33,7 @@ export default function SchoolOfBusinessV2() {
             <StudentFeatureContainer />
             <NewsCardContainer />
           </div>
-          
+
           <div className={styles.right_section}>
             <RegistrationForm />
           </div>
