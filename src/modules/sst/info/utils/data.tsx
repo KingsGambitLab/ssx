@@ -113,7 +113,7 @@ export const CareerStatsData = {
       variant: "tertiary",
     },
     {
-      title: "140+",
+      title: "1200+",
       desc: "hiring partners, including MAANG companies",
       variant: "primary",
     },
