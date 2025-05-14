@@ -24,7 +24,7 @@ export default async function Layout({
       <Suspense key="gtm-script" fallback={<AnalyticsFallback />}>
         <Analytics
           product={PRODUCTS.SCHOOL_OF_TECHNOLOGY}
-          subProduct={SUB_PRODUCTS.SUMMARY}
+          subProduct={SUB_PRODUCTS.INFO}
           experiments={experiments}
         />
         <MicrosoftClarity />

@@ -1,0 +1,77 @@
+$stats-card-tertiary-card-background: #212121;
+$stats-card-primary-card-background: linear-gradient(90deg, #083ca0 -6.11%, #0080ff 100%);
+
+.container {
+  @include flex-col-y-c;
+  @include flex-fill;
+
+  padding: 2rem 3.2rem;
+  align-items: flex-start;
+  gap: 0.8rem;
+  min-height: 16.2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  align-self: stretch;
+  border-radius: $border-radius-large;
+
+  &[data-variant="primary"] {
+    background: $stats-card-primary-card-background
+  }
+
+  &[data-variant="tertiary"] {
+    background: $stats-card-tertiary-card-background;
+  }
+
+  &[data-full-width="true"] {
+    grid-column: 1 / -1;
+
+    @include mobile {
+      grid-column: auto;
+    }
+  }
+
+  @include mobile {
+    padding: 1.6rem;
+    min-height: auto;
+  }
+}
+
+.heading {
+  color: $white-color;
+  text-align: center;
+  font-size: $desktop-font-title-1;
+  font-weight: $semi-bold-font-weight;
+  line-height: 5.6rem;
+
+  @include mobile {
+    font-size: $mobile-font-title-1;
+    line-height: normal;
+    text-align: left;
+  }
+
+  &[data-variant="tertiary"] {
+    background: linear-gradient(90deg, #FFF7E0 23.99%, #73B9FF 75.76%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.desc {
+  color: $white-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $medium-font-weight;
+  line-height: 2.24rem;
+
+  @include mobile {
+    font-size: $mobile-font-card-subtitle;
+    line-height: 1.6rem;
+  }
+}
+
+.bgImage {
+  position: absolute;
+  right: -4.6rem;
+  bottom: -13.2rem;
+}

@@ -13,3 +13,15 @@ $degree-container-background-color: #fafafa;
     padding: 1.6rem 0 2.8rem;
   }
 }
+
+.leftContainer {
+  @include flex-col-c;
+
+  width: 50%;
+  padding: 0 8.4rem;
+
+  @include mobile {
+    width: 100%;
+    padding: 0;
+  }
+}
