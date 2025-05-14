@@ -1,3 +1,4 @@
+'use client';
 
 import styles from '@modules/ssb/landing_v2/ui/BusinessLeaderContainer/BusinessLeaderContainer.module.scss';
 

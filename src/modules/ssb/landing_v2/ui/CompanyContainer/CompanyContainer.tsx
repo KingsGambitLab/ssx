@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './CompanyContainer.module.scss';
 import Image from 'next/image';
 

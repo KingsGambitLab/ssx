@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './InstructorContainer.module.scss';
 
 import InstructorCard from "@modules/ssb/landing_v2/components/InstructorCard/InstructorCard";

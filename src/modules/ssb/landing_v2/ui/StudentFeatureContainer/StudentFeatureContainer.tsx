@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './StudentFeatureContainer.module.scss';
 import Image from 'next/image';
 import imgA from '@public/images/ssb/SSB-38.webp';

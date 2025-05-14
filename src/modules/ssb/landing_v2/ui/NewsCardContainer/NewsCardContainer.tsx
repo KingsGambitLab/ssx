@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './NewsCardContainer.module.scss';
 
 import NewsCard from '@modules/ssb/landing_v2/components/NewsCard/NewsCard';
