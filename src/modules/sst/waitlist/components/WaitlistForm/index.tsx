@@ -56,21 +56,20 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   const [formError, setFormError] = useState<string | null>(null);
 
 
-  const trackEventHandler = ({ clickType, clickText, clickSource, custom }: {
+  const trackEventHandler = ({ clickType, clickText, custom }: {
     clickType: string;
     clickText: string;
-    clickSource: string;
     custom: any;
   }) => {
     trackEvent.click({ 
       clickType, 
       clickText, 
-      clickSource, 
+      clickSource: formSource, 
+      formType: trackingSources.waitlistForm,
       custom: {
         ...custom,
-        form_source: formSource,
-        form_type: trackingSources.waitlistForm
-      } });
+      }
+    });
   }
 
   // Handle category change - make it immediate
@@ -87,11 +86,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     trackEventHandler({
       clickType: 'button_click',
       clickText: trackingEvents.waitlistCategoryChange,
-      clickSource: trackingSources.waitlistForm,
       custom: {
         category: newCategory,
-        form_source: formSource,
-        form_type: trackingSources.waitlistForm
       }
     })
   }, [categoryField, setValue, handleCategoryChange]);
@@ -106,6 +102,8 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   );
 
   const formattedErrors = (error: any) => {
+    if (typeof error !== 'object') return error;
+    
     const formattedErrors: Record<string, string> = {};
 
     Object.entries(error).forEach(([field, value]: [string, any]) => {
@@ -166,11 +164,10 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     trackEvent.click({
       clickType: 'click',
       clickText: trackingEvents.waitlistFormSubmit,
-      clickSource: trackingSources.waitlistForm,
+      clickSource: formSource,
+      formType: trackingSources.waitlistForm,
       custom: {
         form_id: `sst_waitlist_form_${toLower(categoryValue)}_IN`,
-        form_source: formSource,
-        form_type: trackingSources.waitlistForm
       }
     })
     form.submit(); // This will trigger the onFinish handler
@@ -291,7 +288,6 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                           trackEventHandler({
                             clickType: 'form_input_change',
                             clickText: trackingEvents.formInputFilled,
-                            clickSource: trackingSources.waitlistForm,
                             custom: {
                               field_type: field.label,
                               field_value: value,
@@ -328,7 +324,6 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                         trackEventHandler({
                           clickType: 'input_click',
                           clickText: trackingEvents.formInputFocus,
-                          clickSource: trackingSources.waitlistForm,
                           custom: {
                             field: field.label,
                           }
@@ -345,7 +340,6 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
                         trackEventHandler({
                           clickType: 'input_change',
                           clickText: trackingEvents.formInputFilled,
-                          clickSource: trackingSources.waitlistForm,
                           custom: {
                             field_type: field.label,
                             field_value: e.target.value,

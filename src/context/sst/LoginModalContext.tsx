@@ -57,11 +57,8 @@ export default function LoginModalProvider({
       trackEvent.click({
         clickType: 'click',
         clickText: "modal_open",
-        clickSource: "waitlist_modal",
-        custom: {
-          form_source: loginModal.source,
-          form_type: getFormType(currentStep)
-        },
+        clickSource: loginModal.source,
+        formType: getFormType(currentStep)
       });
     }
 
