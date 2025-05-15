@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, ReactNode, useMemo, useEffect } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 
 interface LoginContextType {
     formSource: string;
@@ -11,7 +11,8 @@ const LoginContext = createContext<LoginContextType | undefined>(undefined);
 
 export default function LoginProvider({ children }: { children: ReactNode }) {
     const [currentStep, setCurrentStep] = useState<string>('');
-    const [formSource, setFormSource] = useState<string>('waitlist_modal');
+    // const [formSource, setFormSource] = useState<string>('waitlist_modal');
+    const formSource = 'waitlist_modal'; // This is hardcoded for now, can be changed later
 
     const value = {
         formSource,

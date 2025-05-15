@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Button, Checkbox, Form, Input, Select } from 'antd';
 import { Controller, FieldErrors, UseFormSetError, UseFormClearErrors, UseFormHandleSubmit, Control } from 'react-hook-form';
@@ -23,24 +25,13 @@ export default function AccountCreationForm({
     setError,
     clearErrors
 }: AccountCreationFormProps) {
-    const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
-    const [token, setToken] = useState<string | null>("XXXX.DUMMY.TOKEN.XXXX");
+    const [token, setToken] = useState<string | null>(null);
+    // Dummy token for testing
+    useEffect(() => {
+        setToken("XXXX.DUMMY.TOKEN.XXXX");
+    }, []);
     const [formError, setFormError] = useState<string | null>(null);
-
-    const formattedErrors = (error: any) => {
-        if (typeof error !== 'object') return error;
-
-        const formattedErrors: Record<string, string> = {};
-
-        Object.entries(error).forEach(([field, value]: [string, any]) => {
-            if (value?.message) {
-                formattedErrors[field] = value.message;
-            }
-        });
-
-        return formattedErrors;
-    };
 
     const onSubmitForm = async (data: LoginFormData) => {
         if (!token) {
@@ -90,6 +81,7 @@ export default function AccountCreationForm({
             setFormError(errorMessage);
         } finally {
             setLoading(false);
+            clearErrors('email');
         }
     };
 

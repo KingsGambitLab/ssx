@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import LoginProvider from '@context/ssb/LoginContext'
 
 export default function Layout({ children }: { children: React.ReactNode }) {

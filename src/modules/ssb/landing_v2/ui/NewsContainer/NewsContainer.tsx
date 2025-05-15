@@ -1,7 +1,6 @@
 'use client';
 
 import styles from './NewsContainer.module.scss';
-import Image from 'next/image';
 
 import NewsCard from '@modules/ssb/landing_v2/components/NewsCard/NewsCard';
 
@@ -28,22 +27,22 @@ export default function NewsContainer() {
       </div>
 
       <div className={styles.newsCardContainer}>
-        <NewsCard 
+        <NewsCard
           imageSrc={HinduDesktop}
           boldText="Scaler has launched the Scaler School of Business"
           text=""
         />
-        <NewsCard 
+        <NewsCard
           imageSrc={BrainfedDesktop}
           boldText="India's first business school"
           text=" built by industry leaders for future leaders."
         />
-        <NewsCard 
+        <NewsCard
           imageSrc={OutlookDesktop}
           boldText="Scaler Diversifies Its Offering, "
           text=" by Launching Scaler School of Business"
         />
-        <NewsCard 
+        <NewsCard
           imageSrc={TimeDesktop}
           boldText="TIME World's Top EdTech Companies 2024-"
           text=" Scaler is at the top!"
