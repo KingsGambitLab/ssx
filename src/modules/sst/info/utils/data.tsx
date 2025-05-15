@@ -161,7 +161,7 @@ export const AdmissionStepTimelineData = {
       desc: <>Qualified NSET students will appear for online interview</>,
     },
     {
-      title: "Check Eligibility",
+      title: "Admission Decision",
       desc: (
         <>
           Receive admission decision within
