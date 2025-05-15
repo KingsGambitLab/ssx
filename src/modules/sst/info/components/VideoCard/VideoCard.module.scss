@@ -1,0 +1,41 @@
+.container {
+  @include flex-row-c;
+
+  width: 100%;
+  border-radius: 0.8rem;
+  border: 0.1rem solid #E4E4E4;
+  background: white;
+
+  @include mobile {
+    @include flex-col;
+  }
+}
+
+.thumbnail {
+  object-fit: cover;
+  border-radius: 0.8rem;
+  width: 100%;
+  height: auto;
+
+  @include mobile {
+    width: 100%;
+    border-radius: 0.8rem;
+  }
+}
+
+.videoWrapper {
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  width: 100%;
+
+  &> img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+} 

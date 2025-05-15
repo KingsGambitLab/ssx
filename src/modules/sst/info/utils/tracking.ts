@@ -4,6 +4,7 @@ import { TrackingProps } from '@modules/sst/info/types';
 
 export const pageTrackingSources = {
   successStories: "success_stories",
+  admissionStepTimeline: "admission_step_timeline",
 }
 
 export const pageTrackingEvents = {
