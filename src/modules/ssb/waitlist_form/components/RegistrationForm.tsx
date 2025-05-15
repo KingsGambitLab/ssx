@@ -68,11 +68,11 @@ export default function RegistrationForm() {
 
 
   // Handle OTP verification submission
-  const handleOtpFormSubmit = (data: { otp: string }) => {
-    setCurrentStep('PERSONAL_DETAILS');
-    setContextStep('PERSONAL_DETAILS');
-    console.log('OTP submitted:', data.otp);
-  };
+  // const handleOtpFormSubmit = (data: { otp: string }) => {
+  //   setCurrentStep('PERSONAL_DETAILS');
+  //   setContextStep('PERSONAL_DETAILS');
+  //   console.log('OTP submitted:', data.otp);
+  // };
 
   const handlePersonalInfoFormSubmit = (personalData: { name: string, graduationYear: string, employer: string }) => {
     console.log('Personal Information Form submitted:', personalData);

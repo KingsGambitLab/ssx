@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import CaseUtil from "@lib/caseUtil";
 import { ENDPOINTS } from "./endpoints";
 import { apiRequest, HttpMethods } from "@utils/common/apiHelper";

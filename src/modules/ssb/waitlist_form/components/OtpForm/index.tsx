@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState, useEffect } from 'react';
 import { Form, Button, message, Typography } from 'antd';
 import { Controller, Control, UseFormHandleSubmit, FieldErrors, UseFormSetError } from 'react-hook-form';
@@ -33,7 +35,7 @@ export default function OTPVerificationForm({
     // const [form] = Form.useForm();
     const [timer, setTimer] = useState(59);
     const [loading, setLoading] = useState(false);
-    const [formError, setFormError] = useState<string | null>(null);
+    // const [formError, setFormError] = useState<string | null>(null);
 
     useEffect(() => {
         if (timer > 0) {
@@ -45,7 +47,7 @@ export default function OTPVerificationForm({
     // Handle form submission
     const onSubmitForm = async (data: OtpFormData) => {
         setLoading(true);
-        setFormError(null);
+        // setFormError(null);
         try {
             // Here you would validate OTP with your API
             const response = await verifyOtp(email, phoneNumber, data.otp);
@@ -63,6 +65,8 @@ export default function OTPVerificationForm({
                 type: 'manual',
                 message: 'Invalid OTP. Please try again.'
             });
+            onVerificationError(error.message);
+            // setFormError(error.message);
         } finally {
             setLoading(false);
         }
