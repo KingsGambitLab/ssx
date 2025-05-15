@@ -1,11 +1,11 @@
-$degree-container-background-color: #fafafa;
+$info-container-background-color: #fafafa;
 
 .container {
   margin-top: 8rem;
   min-height: 100vh;
   font-family: 'Plus Jakarta Sans' !important;
   padding: 3.2rem 0;
-  background-color: $degree-container-background-color;
+  background-color: $info-container-background-color;
 
 
   @include mobile {
@@ -14,13 +14,27 @@ $degree-container-background-color: #fafafa;
   }
 }
 
+.mainContainer {
+  width: 100%;
+  max-width: 128rem;
+  margin: 0 auto;
+  background-color: $info-container-background-color;
+
+  @include bp(1440px) {
+    padding: 0 10.4rem; 
+  }
+
+  @include tablet {
+    padding: 0;
+  }
+}
+
 .leftContainer {
   @include flex-col-c;
 
-  width: 50%;
-  padding: 0 8.4rem;
+  width: 60%;
 
-  @include mobile {
+  @include tablet {
     width: 100%;
     padding: 0;
   }

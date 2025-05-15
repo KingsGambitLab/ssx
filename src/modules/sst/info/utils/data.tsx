@@ -8,6 +8,7 @@ import Om from "@public/images/sst/webp/success_stories/om.webp";
 import Shivansh from "@public/images/sst/webp/success_stories/shivansh.webp";
 import Shreshtha from "@public/images/sst/webp/success_stories/shreshtha.webp";
 import Vishesh from "@public/images/sst/webp/success_stories/vishesh.webp";
+import Thumbnail from "@public/images/sst/webp/admission-process.webp";
 
 export const SuccessStoriesHeader = {
   title: "Fast track your growth just like",
@@ -130,4 +131,43 @@ export const CareerStatsData = {
   },
   brochureLink:
     "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/109/378/original/SST_digital_brouchure_V3.pdf?1739770123",
+};
+
+export const AdmissionStepTimelineData = {
+  title: "Admission Process",
+  thumbnail: Thumbnail.src,
+  video: "vgbXEH2cKoQ",
+  steps: [
+    {
+      title: "Check Eligibility",
+      desc: (
+        <>
+          <strong>Age 20</strong> or below (as of July 1, 2025) and
+          <strong> Mathematics in Class XII</strong>
+        </>
+      ),
+    },
+    {
+      title: "Apply online for National Scaler and Eligibility Test",
+      desc: (
+        <>
+          A 120-minute online test
+          <strong> covering Mathematics and Logical Reasoning</strong>
+        </>
+      ),
+    },
+    {
+      title: "NSET & Online Interview",
+      desc: <>Qualified NSET students will appear for online interview</>,
+    },
+    {
+      title: "Check Eligibility",
+      desc: (
+        <>
+          Receive admission decision within
+          <strong> 7-10 days after interview</strong>
+        </>
+      ),
+    },
+  ],
 };
