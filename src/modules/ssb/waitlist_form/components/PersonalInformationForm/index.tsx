@@ -1,24 +1,49 @@
 import { useState } from 'react';
 import { Button, Form, Input, Select } from 'antd';
+import { Controller, useForm } from 'react-hook-form';
 import styles from './index.module.scss';
+import { PersonalFormData } from '../../types/index';
 
 interface PersonalInformationFormProps {
-    onSubmit: (data: { name: string; graduationYear: string; employer: string }) => void;
+    onSubmit: (data: PersonalFormData) => void;
 }
 
+interface GraduationYearOption {
+    value: string;
+    label: string;
+}
+
+
 export default function PersonalInformationForm({ onSubmit }: PersonalInformationFormProps) {
-    const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (values: { name: string; graduationYear: string; employer: string }) => {
-        console.log('Form submitted:', values);
-        onSubmit(values);
-    };
+    const {
+        control,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<PersonalFormData>({
+        mode: 'onChange',
+        defaultValues: {
+            name: '',
+            graduationYear: undefined,
+            employer: ''
+        }
+    });
 
-    // Generate graduation year options from 2015 to 2024
-    const graduationYears = [];
-    for (let year = 2024; year >= 2015; year--) {
+    const currentYear = new Date().getFullYear();
+    const graduationYears: GraduationYearOption[] = [];
+    for (let year = currentYear; year >= currentYear - 9; year--) {
         graduationYears.push({ value: year.toString(), label: year.toString() });
     }
+
+    const onSubmitForm = (data: PersonalFormData) => {
+        setLoading(true);
+        try {
+            onSubmit(data);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className={styles.formWrapper}>
@@ -29,7 +54,7 @@ export default function PersonalInformationForm({ onSubmit }: PersonalInformatio
             </div>
 
             {/* Form-Content */}
-            <Form
+            {/* <Form
                 form={form}
                 onFinish={handleSubmit}
                 layout="vertical"
@@ -79,7 +104,79 @@ export default function PersonalInformationForm({ onSubmit }: PersonalInformatio
                     By creating an account I have read and agree to Scaler's{' '}
                     <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
                 </div>
-            </Form>
+            </Form> */}
+            <form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
+                {/* Name Field */}
+                <Form.Item
+                    validateStatus={errors.name ? "error" : ""}
+                    help={errors.name?.message}
+                >
+                    <Controller
+                        name="name"
+                        control={control}
+                        rules={{ required: "Name is required" }}
+                        render={({ field }) => (
+                            <Input {...field} placeholder="Name" />
+                        )}
+                    />
+                </Form.Item>
+
+                {/* Graduation Year Field */}
+                <Form.Item
+                    validateStatus={errors.graduationYear ? "error" : ""}
+                    help={errors.graduationYear?.message}
+                >
+                    <Controller
+                        name="graduationYear"
+                        control={control}
+                        rules={{ required: "Graduation year is required" }}
+                        render={({ field }) => (
+                            <Select
+                                {...field}
+                                placeholder="Select Graduation Year"
+                                style={{ height: '40px' }}
+                                options={graduationYears}
+                            />
+                        )}
+                    />
+                </Form.Item>
+
+                {/* Employer Field */}
+                <Form.Item
+                    validateStatus={errors.employer ? "error" : ""}
+                    help={errors.employer?.message}
+                >
+                    <Controller
+                        name="employer"
+                        control={control}
+                        rules={{ required: "Employer is required" }}
+                        render={({ field }) => (
+                            <Input {...field} placeholder="Enter Your Most Recent Employer" />
+                        )}
+                    />
+                </Form.Item>
+
+                <div className={styles.deadline}>
+                    <span>Intake 3 Application Deadline - </span>
+                    <span className={styles.date}>11th May 2025</span>
+                </div>
+
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        loading={loading}
+                        block
+                    >
+                        Proceed
+                    </Button>
+                </Form.Item>
+
+                <div className={styles.terms}>
+                    By creating an account I have read and agree to Scaler's{' '}
+                    <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
+                </div>
+            </form>
         </div>
     );
 }

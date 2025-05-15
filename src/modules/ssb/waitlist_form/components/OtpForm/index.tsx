@@ -1,15 +1,39 @@
 import { useState, useEffect } from 'react';
-import { Form, Input, Button, Space, message } from 'antd';
+import { Form, Button, message, Typography } from 'antd';
+import { Controller, Control, UseFormHandleSubmit, FieldErrors, UseFormSetError } from 'react-hook-form';
 import styles from './index.module.scss';
+import Input from 'antd/lib/input';
+import { OtpFormData } from '../../types/index';
+import { verifyOtp } from '../../api';
+const { Link } = Typography;
 
 interface OtpVerificationFormProps {
-    onSubmit: (otp: string) => void;
+    onVerificationSuccess: () => void;
+    onVerificationError: (error: string) => void;
     phoneNumber: string;
+    email: string;
+    control: Control<OtpFormData>;
+    handleSubmit: UseFormHandleSubmit<OtpFormData>;
+    errors: FieldErrors<OtpFormData>;
+    setError: UseFormSetError<OtpFormData>;
+    onWrongNumber: () => void;
 }
 
-export default function OTPVerificationForm({ onSubmit, phoneNumber }: OtpVerificationFormProps) {
-    const [form] = Form.useForm();
+export default function OTPVerificationForm({
+    phoneNumber,
+    email,
+    control,
+    handleSubmit,
+    errors,
+    setError,
+    onWrongNumber,
+    onVerificationError,
+    onVerificationSuccess
+}: OtpVerificationFormProps) {
+    // const [form] = Form.useForm();
     const [timer, setTimer] = useState(59);
+    const [loading, setLoading] = useState(false);
+    const [formError, setFormError] = useState<string | null>(null);
 
     useEffect(() => {
         if (timer > 0) {
@@ -18,23 +42,36 @@ export default function OTPVerificationForm({ onSubmit, phoneNumber }: OtpVerifi
         }
     }, [timer]);
 
-    const handleSubmit = (values: { otp: string }) => {
-        console.log('OTP submitted:', values.otp);
-        onSubmit(values.otp);
+    // Handle form submission
+    const onSubmitForm = async (data: OtpFormData) => {
+        setLoading(true);
+        setFormError(null);
+        try {
+            // Here you would validate OTP with your API
+            const response = await verifyOtp(email, phoneNumber, data.otp);
+            if (!response.userId) {
+                throw new Error('Verification failed');
+            }
+            // For example:
+            console.log('Verifying OTP:', data.otp);
+
+            // If successful:
+            onVerificationSuccess();
+        } catch (error: any) {
+            // Handle error
+            setError('otp', {
+                type: 'manual',
+                message: 'Invalid OTP. Please try again.'
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     const resendOTP = () => {
         setTimer(59);
         message.success('OTP resent successfully');
-        // Handle resend OTP logic
-    };
-
-    // OTP input configuration
-    const otpInputProps = {
-        inputType: "number" as const,
-        length: 6,
-        autoFocus: true,
-        style: { width: '100%' }
+        // Implement your resend OTP logic here
     };
 
     return (
@@ -43,28 +80,40 @@ export default function OTPVerificationForm({ onSubmit, phoneNumber }: OtpVerifi
             <div className={styles.header}>
                 <div className={styles.title}>Verifying your number</div>
                 <div className={styles.subtitle}>OTP has been sent to {phoneNumber}</div>
-                <a href="#" className={styles.link}>Wrong Contact Details?</a>
+                <Link onClick={onWrongNumber} className={styles.link}>
+                    Wrong Contact Details ?
+                </Link>
             </div>
 
-            {/* Form Content */}
-            <Form
-                form={form}
-                onFinish={handleSubmit}
-                layout="vertical"
-                className={styles.form}
-                validateTrigger={['onBlur', 'onChange']}
-            >
-                <Form.Item
-                    label="OTP"
-                    name="otp"
-                    rules={[{ required: true, message: 'Please enter a valid OTP' }]}
-                >
-                    <Input.OTP
-                        formatter={(str) => str.replace(/[^0-9]/g, '')}
-                        {...otpInputProps}
-                    />
-                </Form.Item>
+            <form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
+                <div className={styles.otpFormItem}>
+                    <Form.Item
+                        validateStatus={errors.otp ? "error" : ""}
+                        help={errors.otp?.message}
+                    >
+                        <Controller
+                            name="otp"
+                            control={control}
+                            rules={{
+                                required: "Please enter the OTP",
+                                pattern: {
+                                    value: /^[0-9]{6}$/,
+                                    message: "Please enter a valid 6-digit OTP"
+                                }
+                            }}
+                            render={({ field }) => (
+                                <Input.OTP
+                                    {...field}
+                                    style={{ width: '100%' }}
+                                    length={6}
+                                    autoFocus
+                                />
+                            )}
+                        />
+                    </Form.Item>
+                </div>
 
+                {/* Timer for resend OTP */}
                 <Form.Item>
                     {timer > 0 ? (
                         <div className={styles.secondaryText}>Resend OTP in {timer} sec</div>
@@ -75,26 +124,30 @@ export default function OTPVerificationForm({ onSubmit, phoneNumber }: OtpVerifi
                     )}
                 </Form.Item>
 
+                {/* Deadline information */}
                 <div className={styles.deadline}>
                     <span>Intake 3 Application Deadline - </span>
                     <span className={styles.date}>11th May 2025</span>
                 </div>
 
+                {/* Submit button */}
                 <Form.Item>
                     <Button
                         type="primary"
                         htmlType="submit"
+                        loading={loading}
                         block
                     >
                         Verify OTP
                     </Button>
                 </Form.Item>
 
+                {/* Terms */}
                 <div className={styles.terms}>
                     By creating an account I have read and agree to Scaler's{' '}
                     <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
                 </div>
-            </Form>
+            </form>
         </div>
     );
 }
