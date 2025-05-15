@@ -3,6 +3,8 @@ import { Button, Form, Input, Select } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
 import styles from './index.module.scss';
 import { PersonalFormData } from '../../types/index';
+// import { useWaitlistApi } from '../../api';
+// import useUser from '@hooks/useUser';
 
 interface PersonalInformationFormProps {
     onSubmit: (data: PersonalFormData) => void;
@@ -16,6 +18,7 @@ interface GraduationYearOption {
 
 export default function PersonalInformationForm({ onSubmit }: PersonalInformationFormProps) {
     const [loading, setLoading] = useState(false);
+    // const { getWaitlistForms } = useWaitlistApi();
 
     const {
         control,
@@ -29,6 +32,8 @@ export default function PersonalInformationForm({ onSubmit }: PersonalInformatio
             employer: ''
         }
     });
+
+    // const { data: userData } = useUser();
 
     const currentYear = new Date().getFullYear();
     const graduationYears: GraduationYearOption[] = [];
@@ -44,6 +49,19 @@ export default function PersonalInformationForm({ onSubmit }: PersonalInformatio
             setLoading(false);
         }
     };
+
+    // useEffect(() => {
+    //     console.log("User Data:", userData);
+    //     try {
+    //         const fetchData = async () => {
+    //             const forms = await getWaitlistForms();
+
+    //         };
+    //         fetchData();
+    //     } catch (error) {
+    //         console.error("Error fetching waitlist forms:", error);
+    //     }
+    // }, []);
 
     return (
         <div className={styles.formWrapper}>

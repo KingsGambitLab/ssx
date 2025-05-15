@@ -7,6 +7,7 @@ import styles from './index.module.scss';
 import Input from 'antd/lib/input';
 import { OtpFormData } from '../../types/index';
 import { verifyOtp } from '../../api';
+import { retryOtp } from '@modules/common/apis';
 const { Link } = Typography;
 
 interface OtpVerificationFormProps {
@@ -72,10 +73,22 @@ export default function OTPVerificationForm({
         }
     };
 
-    const resendOTP = () => {
-        setTimer(59);
-        message.success('OTP resent successfully');
-        // Implement your resend OTP logic here
+    const resendOTP = async (token: string = 'XXXX.DUMMY.TOKEN.XXXX') => {
+        try {
+
+            const success = await retryOtp(`+91-${phoneNumber}`, 'sms', token);
+            if (success) {
+                setTimer(60);
+                message.success('OTP resent successfully');
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.error('Error retrying OTP:', error);
+            message.error('Failed to resend OTP. Please try again.');
+            return false;
+        }
+
     };
 
     return (
@@ -122,7 +135,7 @@ export default function OTPVerificationForm({
                     {timer > 0 ? (
                         <div className={styles.secondaryText}>Resend OTP in {timer} sec</div>
                     ) : (
-                        <Button type="link" onClick={resendOTP} style={{ paddingLeft: 0 }}>
+                        <Button type="link" onClick={() => resendOTP()} style={{ paddingLeft: 0 }}>
                             Resend OTP
                         </Button>
                     )}

@@ -55,7 +55,7 @@ export default function AccountCreationForm({
 
             onSubmit(data);
         } catch (error: any) {
-            let errorMessage = 'Something went wrong. Please try again later.';
+            let errorMessage = `Something went wrong. Please try again later.`;
 
             switch (error.response?.status) {
                 case 422:
@@ -79,6 +79,7 @@ export default function AccountCreationForm({
                 message: errorMessage
             });
             setFormError(errorMessage);
+            console.error("Error during form submission:", error);
         } finally {
             setLoading(false);
             clearErrors('email');
