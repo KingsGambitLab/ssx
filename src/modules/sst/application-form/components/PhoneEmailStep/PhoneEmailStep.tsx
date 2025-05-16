@@ -1,0 +1,237 @@
+import { Button, Checkbox, Form, Input, Select } from "antd";
+import { Controller } from "react-hook-form";
+
+import { PhoneEmailStepFormData, PhoneEmailStepProps } from "@modules/sst/application-form/types";
+
+import TurnstileWidget from "@/utils/turnstile/turnstile";
+
+import Header from "../Header";
+
+import styles from "./PhoneEmailStep.module.scss";
+import { useState } from "react";
+import { getOtp } from "@modules/sst/application-form/api";
+
+export default function PhoneEmailStep({
+  register,
+  onSubmit,
+  errors,
+  setError,
+  clearErrors,
+  control,
+  handleSubmit
+}: PhoneEmailStepProps) {
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const setFormErrors = (errorMessage: string, field?: keyof PhoneEmailStepFormData) => {
+    if (field) {
+      setError(field, { type: 'manual', message: errorMessage });
+    }
+    setFormError(errorMessage);
+  };
+
+
+  const onSubmitForm = async (data: PhoneEmailStepFormData) => {
+    if (!turnstileToken) return;
+
+    setIsLoading(true);
+
+    try {
+      const response = await getOtp({
+        email: data.email,
+        phoneNumber: data.phone_number,
+        countryCode: data.country_code,
+        consent: data.whatsapp_consent,
+        turnstileResponse: turnstileToken
+      });
+
+      if(response.flashError) {
+        throw { response: { status: response.status, data: response.flashError } };
+      }
+      onSubmit(data);
+    } catch (error: any) {
+      let errorMessage = 'Something went wrong. Please try again.';
+      
+      switch (error.response?.status) {
+        case 422:
+          errorMessage = 'Please fill the required fields';
+          break;
+        case 406:
+          errorMessage = 'Please wait for captcha verification, and try again';
+          break;
+        case 400:
+          errorMessage = error.response?.data?.message || errorMessage;
+          break;
+        case 429:
+          errorMessage = 'Requested too many OTPs, please try after sometime';
+          break;
+        default:
+          errorMessage = error.response?.data?.message || errorMessage;
+      }
+
+
+      setError('email', { 
+        type: 'manual', 
+        message: errorMessage
+      });
+      setFormErrors(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+
+  }
+  
+  return (
+    <div className={styles.container}>
+      <Header />
+      <div className={styles.content}>
+        <div className={styles.formWrapper}>
+          <div className={styles.form}>
+            <div className={styles.titleWrapper}>
+              <div className={styles.title}>
+                Begin your Application Now 
+              </div>
+              <div className={styles.subtitle}>
+                Unlock early scholarships and exclusive prep material!
+              </div>
+            </div>
+
+            <form
+              id="phone-email-form"
+              className={styles.formContent}
+              onSubmit={handleSubmit(onSubmitForm)}
+            >
+              {/* Email */}
+              <Form.Item
+                validateStatus={errors.email ? 'error' : ''}
+                help={errors.email?.message}
+              >
+                <Controller
+                  name="email"
+                  control={control}
+                  rules={{
+                    required: 'Email is required',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Invalid email address'
+                    }
+                  }}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      size="large"
+                      type="email"
+                      placeholder="Enter Email Address"
+                      className={styles.input}
+                    />
+                  )}
+                />
+              </Form.Item>
+
+              {/* Phone Number */}
+              <Form.Item
+                validateStatus={errors.phone_number ? 'error' : ''}
+                help={errors.phone_number?.message}
+              >
+                <Input.Group className={styles.phoneInputGroup}>
+                  <Controller
+                    name="country_code"
+                    control={control}
+                    defaultValue="+91"
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        getPopupContainer={(triggerNode) => triggerNode.parentNode as HTMLElement}
+                        rootClassName={styles.select}
+                      > 
+                        <Select.Option value="+91">
+                          <span role="img" aria-label="India">🇮🇳</span> +91
+                        </Select.Option>
+                        <Select.Option value="+977">
+                          <span role="img" aria-label="Nepal">🇳🇵</span> +977
+                        </Select.Option>
+                      </Select>
+                    )}
+                  />
+
+                  <Controller
+                    name="phone_number"
+                    control={control}
+                    rules={{
+                      required: 'Phone number is required',
+                      pattern: {
+                        value: /^[0-9]{10}$/,
+                        message: 'Please enter a valid 10-digit phone number'
+                      }
+                    }}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        size="large"
+                        placeholder="Enter Mobile Number"
+                        className={styles.input}
+                      />
+                    )}
+                  />
+                </Input.Group>
+              </Form.Item>
+
+              {/* Whatsapp Consent */}
+              <Form.Item>
+                <Controller
+                  name="whatsapp_consent"
+                  control={control}
+                  defaultValue={true}
+                  render={({ field }) => (
+                    <Checkbox
+                      className={styles.whatsappCheckbox}
+                      checked={field.value}
+                      onChange={(e) => {
+                        field.onChange(e.target.checked);
+                      }}
+                    >
+                      <div className={styles.whatsappConsentText}>
+                        Receive updates and confirmation from us on WhatsApp
+                      </div>
+                    </Checkbox>
+                  )}
+                />
+              </Form.Item>
+
+              {/* Turnstile Widget */}
+              <Form.Item>
+                <TurnstileWidget onTokenObtained={setTurnstileToken} />
+              </Form.Item>
+
+              {/* Submit Section */}
+              <div className={styles.submitSection}>
+                {formError && (
+                  <div className={styles.formError}>
+                    {formError}
+                  </div>
+                )}
+
+                <div className={styles.lastIntakeDate}>
+                  <div className={styles.lastIntakeDateText}>
+                    Jan Intake Closes On: <span>2nd January, 2025</span>
+                  </div>
+                </div>
+
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={isLoading}
+                  className={styles.submitButton}
+                  block
+                >
+                  Start your Application
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
