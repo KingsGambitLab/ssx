@@ -1,22 +1,21 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import styles from './RegistrationForm.module.scss';
-import OtpVerificationForm from './OtpForm/index';
-import PersonalInformationForm from './PersonalInformationForm/index';
-import AccountCreationForm from './AccountCreationForm/index';
-import { useLoginContext } from '@context/ssb/LoginContext';
-import { LoginFormData, OtpFormData, FormStep } from '../types/index';
-import { useDeviceType } from '@hooks/useDeviceType';
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import styles from "./RegistrationForm.module.scss";
+import OtpVerificationForm from "./OtpForm/index";
+import PersonalInformationForm from "./PersonalInformationForm/index";
+import AccountCreationForm from "./AccountCreationForm/index";
+import { useLoginContext } from "@context/ssb/LoginContext";
+import { LoginFormData, OtpFormData, FormStep } from "../types/index";
+import { useDeviceType } from "@hooks/useDeviceType";
+import useUser from "@/hooks/useUser";
 
-import DisplayMobileCard from '@modules/ssb/landing_v2/components/DisplayMobileCard';
-
+import DisplayMobileCard from "@modules/ssb/landing_v2/components/DisplayMobileCard";
+import { Spin } from "antd";
 // Types of form steps
 export default function RegistrationForm() {
-
+  const { data: userData } = useUser();
+  const [currentStep, setCurrentStep] = useState<FormStep>("LOADING");
   const { setCurrentStep: setContextStep } = useLoginContext();
-  //Track the current step of the form
-  const [currentStep, setCurrentStep] = useState<FormStep>('LOGIN');
-
   //Track the device type
   const { isTabletOrMobile } = useDeviceType();
 
@@ -27,11 +26,11 @@ export default function RegistrationForm() {
     setError: setLoginError,
     clearErrors: clearLoginErrors,
   } = useForm<LoginFormData>({
-    mode: 'onChange',
+    mode: "onChange",
     defaultValues: {
-      country_code: '+91',
+      country_code: "+91",
       whatsapp_consent: true,
-    }
+    },
   });
 
   // OTP step form management
@@ -41,107 +40,126 @@ export default function RegistrationForm() {
     formState: { errors: otpErrors },
     setError: setOtpError,
   } = useForm<OtpFormData>({
-    mode: 'onChange',
+    mode: "onChange",
     defaultValues: {
-      otp: ''
-    }
+      otp: "",
+    },
   });
 
-  const [userData, setUserData] = useState<LoginFormData>({
-    email: '',
-    phone_number: '',
-    country_code: '+91',
-    whatsapp_consent: true
+  const [formUserData, setFormUserData] = useState<LoginFormData>({
+    email: "",
+    phone_number: "",
+    country_code: "+91",
+    whatsapp_consent: true,
   });
 
   const handleAccountFormSubmit = (data: LoginFormData) => {
-    setUserData({
+    setFormUserData({
       email: data.email,
       phone_number: data.phone_number,
       country_code: data.country_code,
-      whatsapp_consent: data.whatsapp_consent
+      whatsapp_consent: data.whatsapp_consent,
     });
-    setCurrentStep('OTP');
-    setContextStep('OTP');
-    console.log('Account Creation Form submitted:', data);
+    setCurrentStep("OTP");
+    setContextStep("OTP");
+    console.log("Account Creation Form submitted:", data);
   };
-
 
   // Handle OTP verification submission
-  // const handleOtpFormSubmit = (data: { otp: string }) => {
-  //   setCurrentStep('PERSONAL_DETAILS');
-  //   setContextStep('PERSONAL_DETAILS');
-  //   console.log('OTP submitted:', data.otp);
-  // };
-
-  const handlePersonalInfoFormSubmit = (personalData: { name: string, graduationYear: string, employer: string }) => {
-    console.log('Personal Information Form submitted:', personalData);
-    console.log('Final Form Data:', {
-      ...userData,
-      ...personalData
-    });
-
-    // Here you would typically submit the complete form data to your API
-    // and handle navigation to a success page or show a success message
+  const handleOtpFormSubmit = () => {
+    setCurrentStep("PERSONAL_DETAILS");
+    setContextStep("PERSONAL_DETAILS");
+    window.location.reload();
   };
 
-  return (
-    <div className={styles.formContainer}>
+  const handleWaitlistSuccess = () => {
+    console.log("Waitlist Success");
+  };
 
-      {/* Status */}
+  useEffect(() => {
+    console.log("currentStep", currentStep);
+    console.log("userData", userData);
+    if (userData?.data?.id) {
+      if (userData.isloggedIn) {
+        setCurrentStep("PERSONAL_DETAILS");
+        setContextStep("PERSONAL_DETAILS");
+      } else {
+        setCurrentStep("LOGIN");
+        setContextStep("LOGIN");
+      }
+    } else {
+      setCurrentStep("LOGIN");
+      setContextStep("LOGIN");
+    }
+  }, [userData]);
 
+  const renderForm = () => {
+    switch (currentStep) {
+      case "LOGIN":
+        return (
+          <AccountCreationForm
+            control={loginControl}
+            errors={loginErrors}
+            handleSubmit={handleLoginSubmit}
+            onSubmit={handleAccountFormSubmit}
+            setError={setLoginError}
+            clearErrors={clearLoginErrors}
+          />
+        );
+      case "OTP":
+        return (
+          <OtpVerificationForm
+            control={otpControl}
+            errors={otpErrors}
+            handleSubmit={handleOtpSubmit}
+            phoneNumber={formUserData.phone_number}
+            email={formUserData.email}
+            onWrongNumber={() => {
+              setCurrentStep("LOGIN");
+              setContextStep("LOGIN");
+            }}
+            onVerificationError={() => {
+              setCurrentStep("LOGIN");
+              setContextStep("LOGIN");
+            }}
+            onVerificationSuccess={handleOtpFormSubmit}
+            setError={setOtpError}
+          />
+        );
+      case "PERSONAL_DETAILS":
+        return (
+          <PersonalInformationForm onSubmitSuccess={handleWaitlistSuccess} />
+        );
+      default:
+        return null;
+    }
+  };
 
-      {!isTabletOrMobile && (
-        <div className={styles.status}>
-          <div className={styles.statusText1}>SSB 2025</div>
-          <div className={styles.statusText2}>PGP Admission Open for Aug/Sep 2025</div>
-        </div>
-      )}
+  const renderContent = () => {
+    return (
+      <div className={styles.formContainer}>
+        {!isTabletOrMobile && (
+          <div className={styles.status}>
+            <div className={styles.statusText1}>SSB 2025</div>
+            <div className={styles.statusText2}>
+              PGP Admission Open for Aug/Sep 2025
+            </div>
+          </div>
+        )}
 
-      {isTabletOrMobile && (
-        <div className={styles.status}>
-          <div className={styles.statusText1}>Admissions OPEN for AU/sep 2025</div>
-          <DisplayMobileCard />
-        </div>
-      )}
+        {isTabletOrMobile && (
+          <div className={styles.status}>
+            <div className={styles.statusText1}>
+              Admissions OPEN for AU/sep 2025
+            </div>
+            <DisplayMobileCard />
+          </div>
+        )}
 
-      {/* Form */}
-      {currentStep === 'LOGIN' && (
-        <AccountCreationForm
-          control={loginControl}
-          errors={loginErrors}
-          handleSubmit={handleLoginSubmit}
-          onSubmit={handleAccountFormSubmit}
-          setError={setLoginError}
-          clearErrors={clearLoginErrors}
-        />
-      )}
-      {currentStep === 'OTP' && (
-        <OtpVerificationForm
-          control={otpControl}
-          errors={otpErrors}
-          handleSubmit={handleOtpSubmit}
-          phoneNumber={userData.phone_number}
-          email={userData.email}
-          onWrongNumber={() => {
-            setCurrentStep('LOGIN');
-            setContextStep('LOGIN');
-          }}
-          onVerificationError={() => {
-            setCurrentStep('LOGIN');
-            setContextStep('LOGIN');
-          }}
-          onVerificationSuccess={() => {
-            setCurrentStep('PERSONAL_DETAILS');
-            setContextStep('PERSONAL_DETAILS');
-          }}
-          setError={setOtpError}
-        />
-      )}
-      {currentStep === 'PERSONAL_DETAILS' && (
-        <PersonalInformationForm onSubmit={handlePersonalInfoFormSubmit} />
-      )}
-    </div>
+        {renderForm()}
+      </div>
+    );
+  };
 
-  );
-} 
+  return renderContent();
+}

@@ -7,12 +7,26 @@ export interface LoginFormData {
 export interface OtpFormData {
   otp: string;
 }
-export interface PersonalFormData {
-  name: string;
-  graduationYear: string;
-  employer: string;
+
+export interface WaitlistFormField {
+  id: string;
+  type: 'text' | 'select' | 'radio';
+  label: string;
+  placeholder?: string;
+  formGroup: string;
+  options?: Array<{
+    label: string;
+    value: string;
+  }>;
+  required: boolean;
 }
-export type FormStep = "LOGIN" | "OTP" | "PERSONAL_DETAILS";
+
+
+export interface WaitlistFormData {
+  [key: string]: string;
+}
+
+export type FormStep = "LOADING" | "LOGIN" | "OTP" | "PERSONAL_DETAILS";
 
 export interface WaitlistFormGroup {
   id: string;

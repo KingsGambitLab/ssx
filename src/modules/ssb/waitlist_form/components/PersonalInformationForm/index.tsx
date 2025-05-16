@@ -1,200 +1,178 @@
-import { useState } from 'react';
-import { Button, Form, Input, Select } from 'antd';
-import { Controller, useForm } from 'react-hook-form';
-import styles from './index.module.scss';
-import { PersonalFormData } from '../../types/index';
-// import { useWaitlistApi } from '../../api';
-// import useUser from '@hooks/useUser';
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Button, Form as AntForm, Input, Select, Radio } from "antd";
+import { toLower } from "lodash";
+import styles from "./index.module.scss";
+import { WaitlistFormData } from "../../types/index";
+import { useWaitlistApi } from "../../api";
+import { useSsbWaitlistCheck } from "@hooks/useSsbWaitlistCheck";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface PersonalInformationFormProps {
-    onSubmit: (data: PersonalFormData) => void;
+  onSubmitSuccess: () => void;
 }
 
-interface GraduationYearOption {
-    value: string;
-    label: string;
-}
+export default function PersonalInformationForm({
+  onSubmitSuccess,
+}: PersonalInformationFormProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const { formFields } = useSsbWaitlistCheck();
+  const { submitWaitlistForm } = useWaitlistApi();
+  const queryClient = useQueryClient();
+  const [form] = AntForm.useForm();
 
+  const {
+    control,
+    watch,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<WaitlistFormData>({
+    mode: "onChange",
+    reValidateMode: "onChange",
+  });
 
-export default function PersonalInformationForm({ onSubmit }: PersonalInformationFormProps) {
-    const [loading, setLoading] = useState(false);
-    // const { getWaitlistForms } = useWaitlistApi();
-
-    const {
-        control,
-        handleSubmit,
-        formState: { errors }
-    } = useForm<PersonalFormData>({
-        mode: 'onChange',
-        defaultValues: {
-            name: '',
-            graduationYear: undefined,
-            employer: ''
-        }
-    });
-
-    // const { data: userData } = useUser();
-
-    const currentYear = new Date().getFullYear();
-    const graduationYears: GraduationYearOption[] = [];
-    for (let year = currentYear; year >= currentYear - 9; year--) {
-        graduationYears.push({ value: year.toString(), label: year.toString() });
+  useEffect(() => {
+    if (formFields.length > 0) {
+      setValue(formFields[0].id, "");
     }
+  }, [formFields, setValue]);
 
-    const onSubmitForm = (data: PersonalFormData) => {
-        setLoading(true);
-        try {
-            onSubmit(data);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const onSubmit = useCallback(
+    async (data: WaitlistFormData) => {
+      setIsLoading(true);
+      setFormError(null); // Clear previous errors
 
-    // useEffect(() => {
-    //     console.log("User Data:", userData);
-    //     try {
-    //         const fetchData = async () => {
-    //             const forms = await getWaitlistForms();
+      try {
+        await submitWaitlistForm(data);
+        await queryClient.invalidateQueries({ queryKey: ["fetch_user_data"] });
+        onSubmitSuccess();
+        window.open("/school-of-technology/application", "_blank")?.focus();
+      } catch (error: any) {
+        const errorMessage =
+          error.response?.data?.message ||
+          "Something went wrong. Please try again.";
+        setFormError(errorMessage);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [submitWaitlistForm, queryClient, onSubmitSuccess]
+  );
 
-    //         };
-    //         fetchData();
-    //     } catch (error) {
-    //         console.error("Error fetching waitlist forms:", error);
-    //     }
-    // }, []);
+  const handleButtonClick = () => {
+    console.log("Button clicked");
+    form.submit();
+  };
 
-    return (
-        <div className={styles.formWrapper}>
-            {/* Header */}
-            <div className={styles.header}>
-                <div className={styles.title}>Personal Information</div>
-                <div className={styles.subtitle}>We need a bit more info to setup your account</div>
-            </div>
+  console.log("formFields", formFields);
 
-            {/* Form-Content */}
-            {/* <Form
-                form={form}
-                onFinish={handleSubmit}
-                layout="vertical"
-                className={styles.form}
-                validateTrigger={['onBlur', 'onChange']}
-            >
-                <Form.Item
-                    name="name"
-                    rules={[{ required: true, message: 'Please enter your name' }]}
-                >
-                    <Input placeholder="Name" />
-                </Form.Item>
+  if (formFields.length === 0) {
+    return null;
+  }
 
-                <Form.Item
-                    name="graduationYear"
-                    rules={[{ required: true, message: 'Please select your graduation year' }]}
-                >
-                    <Select
-                        placeholder="Select Graduation Year"
-                        options={graduationYears}
-                    />
-                </Form.Item>
-
-                <Form.Item
-                    name="employer"
-                    rules={[{ required: true, message: 'Please enter your most recent employer' }]}
-                >
-                    <Input placeholder="Enter Your Most Recent Employer" />
-                </Form.Item>
-
-                <div className={styles.deadline}>
-                    <span>Intake 3 Application Deadline - </span>
-                    <span className={styles.date}>11th May 2025</span>
-                </div>
-
-                <Form.Item>
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        block
-                    >
-                        Proceed
-                    </Button>
-                </Form.Item>
-
-                <div className={styles.terms}>
-                    By creating an account I have read and agree to Scaler's{' '}
-                    <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
-                </div>
-            </Form> */}
-            <form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
-                {/* Name Field */}
-                <Form.Item
-                    validateStatus={errors.name ? "error" : ""}
-                    help={errors.name?.message}
-                >
-                    <Controller
-                        name="name"
-                        control={control}
-                        rules={{ required: "Name is required" }}
-                        render={({ field }) => (
-                            <Input {...field} placeholder="Name" />
-                        )}
-                    />
-                </Form.Item>
-
-                {/* Graduation Year Field */}
-                <Form.Item
-                    validateStatus={errors.graduationYear ? "error" : ""}
-                    help={errors.graduationYear?.message}
-                >
-                    <Controller
-                        name="graduationYear"
-                        control={control}
-                        rules={{ required: "Graduation year is required" }}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                placeholder="Select Graduation Year"
-                                style={{ height: '40px' }}
-                                options={graduationYears}
-                            />
-                        )}
-                    />
-                </Form.Item>
-
-                {/* Employer Field */}
-                <Form.Item
-                    validateStatus={errors.employer ? "error" : ""}
-                    help={errors.employer?.message}
-                >
-                    <Controller
-                        name="employer"
-                        control={control}
-                        rules={{ required: "Employer is required" }}
-                        render={({ field }) => (
-                            <Input {...field} placeholder="Enter Your Most Recent Employer" />
-                        )}
-                    />
-                </Form.Item>
-
-                <div className={styles.deadline}>
-                    <span>Intake 3 Application Deadline - </span>
-                    <span className={styles.date}>11th May 2025</span>
-                </div>
-
-                <Form.Item>
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        loading={loading}
-                        block
-                    >
-                        Proceed
-                    </Button>
-                </Form.Item>
-
-                <div className={styles.terms}>
-                    By creating an account I have read and agree to Scaler's{' '}
-                    <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
-                </div>
-            </form>
+  return (
+    <div className={styles.formWrapper}>
+      {/* Header */}
+      <div className={styles.header}>
+        <div className={styles.title}>Personal Information</div>
+        <div className={styles.subtitle}>
+          We need a bit more info to setup your account
         </div>
-    );
+      </div>
+
+      <AntForm form={form} layout="vertical" onFinish={handleSubmit(onSubmit)}>
+        {formFields.map((field) => (
+          <AntForm.Item
+            key={field.id}
+            label={field.label}
+            required={field.required}
+            validateStatus={errors[field.id] ? "error" : ""}
+            help={errors[field.id]?.message}
+          >
+            <Controller
+              name={field.id}
+              control={control}
+              rules={{
+                required:
+                  field.required &&
+                  (field.label.toLowerCase().includes("email")
+                    ? "Please enter your email address"
+                    : "This field is required"),
+                validate: {
+                  fieldValidation: (value) => {
+                    if (
+                      field.type === "select" &&
+                      field.label.toLowerCase().includes("grad")
+                    ) {
+                      return value
+                        ? true
+                        : "Please select your graduation year";
+                    }
+                    return true;
+                  },
+                },
+              }}
+              render={({ field: controllerField, fieldState: { error } }) => {
+                if (field.type === "select") {
+                  return (
+                    <Select
+                      {...controllerField}
+                      status={error ? "error" : undefined}
+                      placeholder={field.placeholder}
+                      onChange={(value) => {
+                        controllerField.onChange(value);
+                      }}
+                      options={field.options?.map((opt) => ({
+                        label: opt.label,
+                        value: opt.value,
+                      }))}
+                    />
+                  );
+                }
+                if (field.type === "radio") {
+                  return (
+                    <Radio.Group
+                      {...controllerField}
+                      defaultValue="Student"
+                      buttonStyle="solid"
+                    >
+                      {field.options?.map((option) => (
+                        <Radio key={option.value} value={option.value}>
+                          {option.label}
+                        </Radio>
+                      ))}
+                    </Radio.Group>
+                  );
+                }
+                return (
+                  <Input
+                    {...controllerField}
+                    placeholder={field.placeholder}
+                    status={error ? "error" : undefined}
+                    onBlur={(e) => {
+                      controllerField.onChange(e);
+                    }}
+                  />
+                );
+              }}
+            />
+          </AntForm.Item>
+        ))}
+
+        <div className={styles.submitButtonWrapper}>
+          {formError && <div className={styles.formError}>{formError}</div>}
+          <Button
+            type="primary"
+            onClick={handleButtonClick}
+            loading={isLoading}
+            block
+          >
+            Proceed
+          </Button>
+        </div>
+      </AntForm>
+    </div>
+  );
 }
