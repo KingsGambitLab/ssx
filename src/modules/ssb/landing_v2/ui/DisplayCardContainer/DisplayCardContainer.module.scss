@@ -1,0 +1,8 @@
+.display_card_container{
+    @include flex-row;
+    gap: 1.6rem;
+    
+    @include tablet{
+        display: none;
+    }
+}
