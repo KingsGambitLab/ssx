@@ -32,17 +32,6 @@ export type GuestSpeakersCardProps = {
   title?: string;
 }
 
-export type SuccessStoryCardProps = {
-  isVideoCard: boolean;
-  thumbnail: string;
-  title: string;
-  desc: string;
-  videoId?: string;
-  videoLink?: string;
-  link?: string;
-  ctaText: string;
-}
-
 export type TrackingProps = {
   clickType?: string;
   clickText?: string;

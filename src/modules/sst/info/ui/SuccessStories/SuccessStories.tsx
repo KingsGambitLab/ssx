@@ -1,8 +1,13 @@
+"use client";
+
 import Section from "@components/common/Section";
 
-import { SuccessStoriesData } from "@modules/sst/career-outcomes/utils/data";
+import {
+  SuccessStoriesData,
+  SuccessStoriesHeader,
+} from "@modules/sst/info/utils/data";
 
-import { pageTrackingSources } from "@modules/sst/career-outcomes/utils/tracking";
+import { pageTrackingSources } from "@modules/sst/info/utils/tracking";
 
 import CarouselWrapper from "@components/common/CarouselWrapper";
 import SuccessStoryCard from "@components/common/SuccessStoryCard";
@@ -11,10 +16,11 @@ import styles from "./SuccessStories.module.scss";
 
 export default function SuccessStories() {
   return (
-    <Section section_class="success-stories" id="success-stories">
+    <Section section_class={styles.section} id="success-stories">
       <div className={styles.container}>
+        <div className={styles.title}>{SuccessStoriesHeader.title}</div>
         <CarouselWrapper
-          slidesToShowInDesktop={3.5}
+          slidesToShowInDesktop={2}
           slidesToShowInMobile={1.3}
           trackEventSource={pageTrackingSources.successStories}
         >
@@ -29,7 +35,7 @@ export default function SuccessStories() {
               videoLink={story?.videoLink}
               link={story?.link}
               ctaText={story?.ctaText}
-              page="careerOutcomes"
+              page="info"
             />
           ))}
         </CarouselWrapper>

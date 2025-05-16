@@ -6,4 +6,5 @@ export const SUB_PRODUCTS = {
   ALUMNI_DIRECTORY: "alumni_directory",
   DEGREE: "degree",
   CAREER_OUTCOMES: "career_outcomes",
+  INFO: "info",
 }
