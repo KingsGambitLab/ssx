@@ -1,6 +1,7 @@
-import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
-import { getOtpProps } from "@modules/sst/application-form/types";
 import { ENDPOINTS } from "@modules/sst/application-form/api/endpoints";
+import { getOtpProps, VerifyOtpResponse } from "@modules/sst/application-form/types";
+import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
+import CaseUtil from "@lib/caseUtil";
 
 export const getOtp = async ({email, phoneNumber, countryCode, consent, turnstileResponse}: getOtpProps) => {
   const response = await apiRequest<any>(
@@ -23,3 +24,30 @@ export const getOtp = async ({email, phoneNumber, countryCode, consent, turnstil
 
   return response;
 };
+
+export const verifyOtp = async (email: string, phoneNumber: string, otp: string) => { 
+  const response = await apiRequest<any>(
+    HttpMethods.POST,
+    `${ENDPOINTS.VERIFY_OTP}`,
+    {
+      user: {
+        email,
+        otp,
+        phone_number: phoneNumber,
+        skip_existing_user_check: true,
+      },
+      type: 'school_of_tech',
+      attributions: {
+        intent: 'otp_verified',
+        product: 'scaler',
+        sub_product: 'undergrad',
+        element: 'otp_modal',
+        program: 'school_of_tech',
+      },
+    }
+  )
+
+  const formatted = CaseUtil.toCase('camelCase', response) as VerifyOtpResponse;
+
+  return formatted;
+}

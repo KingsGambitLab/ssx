@@ -1,8 +1,6 @@
 import {
-  UseFormRegister,
   FieldErrors,
   UseFormSetError,
-  UseFormClearErrors,
   UseFormHandleSubmit
 } from "react-hook-form";
 
@@ -14,14 +12,29 @@ export type PhoneEmailStepFormData = {
   country_code: string;
 }
 
+export type OtpStepFormData = {
+  otp: string;
+  email: string;
+}
+
 export type PhoneEmailStepProps = {
-  register: UseFormRegister<PhoneEmailStepFormData>;
   onSubmit: (data: PhoneEmailStepFormData) => void;
   errors: FieldErrors<PhoneEmailStepFormData>;
   setError: UseFormSetError<PhoneEmailStepFormData>;
-  clearErrors: UseFormClearErrors<PhoneEmailStepFormData>;
   handleSubmit: UseFormHandleSubmit<PhoneEmailStepFormData>;
   control: any;
+}
+
+export type OtpStepProps = {
+  email: string;
+  onOtpVerificationSuccess: () => void;
+  onOtpVerificationError: (error: string) => void;
+  errors: FieldErrors<OtpStepFormData>;
+  setError: UseFormSetError<OtpStepFormData>;
+  handleSubmit: UseFormHandleSubmit<OtpStepFormData>;
+  control: any;
+  phoneNumber: string;
+  setStep: (step: ApplicationFormStep) => void;
 }
 
 export type getOtpProps = {
@@ -30,4 +43,15 @@ export type getOtpProps = {
   countryCode: string;
   consent: boolean;
   turnstileResponse: string;
+}
+
+export type ApplicationFormStep = 'PHONE_EMAIL' | 'OTP' | 'WAITLIST';
+
+export type VerifyOtpResponse = {
+  userId: number;
+  email: string;
+  newUser: boolean;
+  phoneNumber: string;
+  whatsappConsent: string;
+  analyticsIdentifier: string;
 }

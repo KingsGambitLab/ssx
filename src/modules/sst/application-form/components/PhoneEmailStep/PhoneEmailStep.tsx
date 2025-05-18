@@ -10,13 +10,13 @@ import Header from "../Header";
 import styles from "./PhoneEmailStep.module.scss";
 import { useState } from "react";
 import { getOtp } from "@modules/sst/application-form/api";
+import { trackFormSubmit } from "@modules/sst/application-form/utils/tracking";
+import Footer from "../Footer";
 
 export default function PhoneEmailStep({
-  register,
   onSubmit,
   errors,
   setError,
-  clearErrors,
   control,
   handleSubmit
 }: PhoneEmailStepProps) {
@@ -30,7 +30,6 @@ export default function PhoneEmailStep({
     }
     setFormError(errorMessage);
   };
-
 
   const onSubmitForm = async (data: PhoneEmailStepFormData) => {
     if (!turnstileToken) return;
@@ -46,10 +45,13 @@ export default function PhoneEmailStep({
         turnstileResponse: turnstileToken
       });
 
-      if(response.flashError) {
+      if (response.flashError) {
+        trackFormSubmit('phone-email-form', response.flashError);
         throw { response: { status: response.status, data: response.flashError } };
       }
+
       onSubmit(data);
+      trackFormSubmit('phone-email-form');
     } catch (error: any) {
       let errorMessage = 'Something went wrong. Please try again.';
       
@@ -70,16 +72,11 @@ export default function PhoneEmailStep({
           errorMessage = error.response?.data?.message || errorMessage;
       }
 
-
-      setError('email', { 
-        type: 'manual', 
-        message: errorMessage
-      });
+      trackFormSubmit('phone-email-form', errorMessage);
       setFormErrors(errorMessage);
     } finally {
       setIsLoading(false);
     }
-
   }
   
   return (
@@ -142,6 +139,7 @@ export default function PhoneEmailStep({
                     render={({ field }) => (
                       <Select
                         {...field}
+                        aria-label="country_code"
                         getPopupContainer={(triggerNode) => triggerNode.parentNode as HTMLElement}
                         rootClassName={styles.select}
                       > 
@@ -185,6 +183,7 @@ export default function PhoneEmailStep({
                   defaultValue={true}
                   render={({ field }) => (
                     <Checkbox
+                      name="whatsapp_consent"
                       className={styles.whatsappCheckbox}
                       checked={field.value}
                       onChange={(e) => {
@@ -222,6 +221,7 @@ export default function PhoneEmailStep({
                   type="primary"
                   htmlType="submit"
                   loading={isLoading}
+                  disabled={!!errors?.email || !!errors?.phone_number}
                   className={styles.submitButton}
                   block
                 >
@@ -231,6 +231,8 @@ export default function PhoneEmailStep({
             </form>
           </div>
         </div>
+
+        <Footer />
       </div>
     </div>
   );

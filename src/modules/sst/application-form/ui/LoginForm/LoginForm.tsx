@@ -1,24 +1,29 @@
 "use client";
 
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import PhoneEmailStep
-  from "@modules/sst/application-form/components/PhoneEmailStep";
-
-import { PhoneEmailStepFormData } from "@modules/sst/application-form/types";
-import { trackAllFormFields } from "@modules/sst/application-form/utils/tracking";
+import OtpStep from '@modules/sst/application-form/components/OtpStep';
+import PhoneEmailStep from '@modules/sst/application-form/components/PhoneEmailStep';
+import {
+  ApplicationFormStep,
+  OtpStepFormData,
+  PhoneEmailStepFormData
+} from '@modules/sst/application-form/types';
+import { trackAllFormFields } from '@modules/sst/application-form/utils/tracking';
 
 import styles from "./LoginForm.module.scss";
-import { useEffect } from 'react';
 
 export default function LoginForm() {
+  const [step, setStep] = useState<ApplicationFormStep>('PHONE_EMAIL');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  
   const {
-    register: phoneEmailRegister,
     handleSubmit: handlePhoneEmailSubmit,
     formState: { errors: phoneEmailErrors },
     setError: setPhoneEmailErrors,
-    clearErrors: clearPhoneEmailErrors,
-    control
+    control: phoneEmailControl
   } = useForm<PhoneEmailStepFormData>({
     mode: 'onChange',
     defaultValues: {
@@ -27,8 +32,41 @@ export default function LoginForm() {
     }
   })
 
+  const {
+    handleSubmit: handleOtpSubmit,
+    formState: { errors: otpErrors },
+    setError: setOtpErrors,
+    control: otpControl
+  } = useForm<OtpStepFormData>({
+    mode: 'onChange',
+    defaultValues: {
+      otp: '',
+    }
+  })
+
+  const handleStepChange = (step: ApplicationFormStep) => {
+    setStep(step);
+  }
+
   const onPhoneEmailSubmit = (data: PhoneEmailStepFormData) => {
-    console.log("data", data);
+    console.log("onPhoneEmailSubmit data", data);
+    setEmail(data.email);
+    setPhoneNumber(`${data.country_code} ${data.phone_number}`);
+    setStep('OTP');
+  }
+
+  const onOtpSubmit = (data: OtpStepFormData) => {
+    console.log("otpFormData", data);
+    // setStep('WAITLIST');
+  }
+
+  const handleOtpVerificationSuccess = () => { 
+    // Post verification actions
+    window.location.reload();
+  }
+
+  const handleOtpVerificationError = (error: string) => {
+    console.error('Verification failed:', error);
   }
 
   useEffect(() => {
@@ -37,15 +75,28 @@ export default function LoginForm() {
 
   return (
     <div className={styles.container}>
-      <PhoneEmailStep
-        register={phoneEmailRegister}
-        onSubmit={onPhoneEmailSubmit}
-        errors={phoneEmailErrors}
-        setError={setPhoneEmailErrors}
-        clearErrors={clearPhoneEmailErrors}
-        handleSubmit={handlePhoneEmailSubmit}
-        control={control}
-      />
+      {step === 'PHONE_EMAIL' && (
+        <PhoneEmailStep
+          onSubmit={onPhoneEmailSubmit}
+          errors={phoneEmailErrors}
+          setError={setPhoneEmailErrors}
+          handleSubmit={handlePhoneEmailSubmit}
+          control={phoneEmailControl}
+        />
+      )}
+      {step === 'OTP' && (
+        <OtpStep
+          email={email}
+          onOtpVerificationSuccess={handleOtpVerificationSuccess}
+          onOtpVerificationError={handleOtpVerificationError}
+          errors={otpErrors}
+          setError={setOtpErrors}
+          control={otpControl}
+          handleSubmit={handleOtpSubmit}
+          phoneNumber={phoneNumber}
+          setStep={setStep}
+        />
+      )}
     </div>
   );
 }
