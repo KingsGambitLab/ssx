@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { ENDPOINTS } from "@modules/sst/application-form/api/endpoints";
 import { getOtpProps, VerifyOtpResponse } from "@modules/sst/application-form/types";
 import { apiRequest, HttpMethods } from "@utils/common/apiHelper";

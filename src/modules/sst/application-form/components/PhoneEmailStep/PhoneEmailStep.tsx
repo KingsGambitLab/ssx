@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Button, Checkbox, Form, Input, Select } from "antd";
 import { Controller } from "react-hook-form";
 

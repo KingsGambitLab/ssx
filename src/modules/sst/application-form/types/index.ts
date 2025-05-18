@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
   FieldErrors,
   UseFormSetError,
@@ -30,7 +32,6 @@ export type OtpStepProps = {
   onOtpVerificationSuccess: () => void;
   onOtpVerificationError: (error: string) => void;
   errors: FieldErrors<OtpStepFormData>;
-  setError: UseFormSetError<OtpStepFormData>;
   handleSubmit: UseFormHandleSubmit<OtpStepFormData>;
   control: any;
   phoneNumber: string;

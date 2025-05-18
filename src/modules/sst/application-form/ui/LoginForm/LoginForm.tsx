@@ -35,7 +35,6 @@ export default function LoginForm() {
   const {
     handleSubmit: handleOtpSubmit,
     formState: { errors: otpErrors },
-    setError: setOtpErrors,
     control: otpControl
   } = useForm<OtpStepFormData>({
     mode: 'onChange',
@@ -44,20 +43,12 @@ export default function LoginForm() {
     }
   })
 
-  const handleStepChange = (step: ApplicationFormStep) => {
-    setStep(step);
-  }
 
   const onPhoneEmailSubmit = (data: PhoneEmailStepFormData) => {
     console.log("onPhoneEmailSubmit data", data);
     setEmail(data.email);
     setPhoneNumber(`${data.country_code} ${data.phone_number}`);
     setStep('OTP');
-  }
-
-  const onOtpSubmit = (data: OtpStepFormData) => {
-    console.log("otpFormData", data);
-    // setStep('WAITLIST');
   }
 
   const handleOtpVerificationSuccess = () => { 
@@ -90,7 +81,6 @@ export default function LoginForm() {
           onOtpVerificationSuccess={handleOtpVerificationSuccess}
           onOtpVerificationError={handleOtpVerificationError}
           errors={otpErrors}
-          setError={setOtpErrors}
           control={otpControl}
           handleSubmit={handleOtpSubmit}
           phoneNumber={phoneNumber}

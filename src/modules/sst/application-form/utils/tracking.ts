@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import tracker from '@lib/tracking';
 
 const formattedErrors = (error: any) => {

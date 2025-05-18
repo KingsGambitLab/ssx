@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Button, Form, Input, Typography } from 'antd';
 import { Controller } from 'react-hook-form';
 import { useEffect, useState } from 'react';
@@ -21,7 +23,6 @@ export default function OtpStep({
   onOtpVerificationSuccess,
   onOtpVerificationError,
   errors,
-  setError,
   handleSubmit,
   control,
   phoneNumber,
