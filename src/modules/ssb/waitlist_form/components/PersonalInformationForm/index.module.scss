@@ -1,0 +1,73 @@
+.formWrapper {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    padding: 2.4rem;
+}
+
+.header {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: #1A8254;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.4rem;
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.deadline {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #666;
+    font-weight: 600;
+
+
+    .date {
+        color: #F1511B;
+        font-weight: 600;
+    }
+}
+
+.terms {
+    color: #000;
+    font-family: "Plus Jakarta Sans";
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    a {
+        color: #4CAF50;
+        font-family: "Source Sans Pro";
+        font-size: 1.4rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+        text-decoration-skip-ink: none;
+        text-decoration-thickness: auto;
+        text-underline-offset: auto;
+        text-underline-position: from-font;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
