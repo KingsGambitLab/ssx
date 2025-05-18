@@ -1,0 +1,16 @@
+.container {
+  @include flex-col;
+
+  align-items: flex-start;
+  position: fixed;
+  right: 10.2rem;
+  top: 11.4rem;
+
+  @include mobile {
+    position: relative;
+    padding: 0 2rem 1.2rem 2rem;
+    width: 100%;
+    right: 0;
+    top: 0;
+  }
+}

@@ -1,0 +1,18 @@
+$engagement-strip-description-font-color: #171717;
+$engagement-strip-background-color: linear-gradient(90deg, #fff7e0 -29.27%, #e6f2ff 100%);
+
+.container {
+  @include flex-row-c;
+
+  width: 100%;
+  padding: 0.8rem 0;
+  gap: 0.6rem;
+  border-radius: $border-radius-large;
+  background: $engagement-strip-background-color;
+}
+
+.description {
+  color: $engagement-strip-description-font-color;
+  font-size: $desktop-font-card-subtitle;
+  letter-spacing: 0.01rem;
+}

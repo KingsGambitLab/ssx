@@ -32,7 +32,7 @@ export default function StudentTestimonials() {
               <div key={index} className={styles.slideWrapper}>
                 <VideoCardWithDesc
                   thumbnail={testimonial.thumbnailUrl.src}
-                  title=""
+                  title={testimonial?.alt}
                   videoId={testimonial.youtubeUrl}
                   desc=""
                   containerClass={styles.videoCardContainer}
