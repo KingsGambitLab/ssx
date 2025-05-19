@@ -19,7 +19,7 @@ export interface WaitlistFormField {
     value: string;
   }>;
   required: boolean;
-  value: string;
+  value: string | undefined;
 }
 
 
