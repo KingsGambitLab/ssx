@@ -14,6 +14,10 @@ $phone-email-step-form-error-font-color: #ff4d4f;
   box-shadow: 0 0.8rem 1.6rem 0 $phone-email-step-box-shadow;
   border: 0.1rem solid $phone-email-step-border-color;
   background: $white-color;
+
+  @include mobile {
+    max-width: 100%;
+  }
 }
 
 .content {
@@ -148,6 +152,10 @@ $phone-email-step-form-error-font-color: #ff4d4f;
 
   :global(.ant-checkbox-label) {
     line-height: 1.96rem !important;
+  }
+
+  @include mobile {
+    margin-top: 1.6rem !important;
   }
 }
 

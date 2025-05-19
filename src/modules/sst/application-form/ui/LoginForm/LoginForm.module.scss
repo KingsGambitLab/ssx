@@ -8,8 +8,10 @@
 
   @include mobile {
     position: relative;
-    padding: 0 2rem 1.2rem 2rem;
-    width: 100%;
+    max-width: 128rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
     right: 0;
     top: 0;
   }

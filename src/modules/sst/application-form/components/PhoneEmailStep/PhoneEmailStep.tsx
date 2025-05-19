@@ -1,19 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Button, Checkbox, Form, Input, Select } from "antd";
+import { useState } from "react";
 import { Controller } from "react-hook-form";
 
+import Image from "next/image";
+
+import CalendarCheck from "@public/images/common/svg/calendar-check.svg";
+
+import { getOtp } from "@modules/sst/application-form/api";
 import { PhoneEmailStepFormData, PhoneEmailStepProps } from "@modules/sst/application-form/types";
+import { trackFormSubmit } from "@modules/sst/application-form/utils/tracking";
 
 import TurnstileWidget from "@/utils/turnstile/turnstile";
 
+import Footer from "../Footer";
 import Header from "../Header";
 
 import styles from "./PhoneEmailStep.module.scss";
-import { useState } from "react";
-import { getOtp } from "@modules/sst/application-form/api";
-import { trackFormSubmit } from "@modules/sst/application-form/utils/tracking";
-import Footer from "../Footer";
 
 export default function PhoneEmailStep({
   onSubmit,
@@ -97,7 +101,7 @@ export default function PhoneEmailStep({
             </div>
 
             <form
-              id="phone-email-form"
+              id="phone-email"
               className={styles.formContent}
               onSubmit={handleSubmit(onSubmitForm)}
             >
@@ -119,7 +123,6 @@ export default function PhoneEmailStep({
                   render={({ field }) => (
                     <Input
                       {...field}
-                      size="large"
                       type="email"
                       placeholder="Enter Email Address"
                       className={styles.input}
@@ -168,7 +171,6 @@ export default function PhoneEmailStep({
                     render={({ field }) => (
                       <Input
                         {...field}
-                        size="large"
                         placeholder="Enter Mobile Number"
                         className={styles.input}
                       />
@@ -214,6 +216,7 @@ export default function PhoneEmailStep({
                 )}
 
                 <div className={styles.lastIntakeDate}>
+                  <Image src={CalendarCheck} alt="calendar-check" height={24} width={24} />
                   <div className={styles.lastIntakeDateText}>
                     Jan Intake Closes On: <span>2nd January, 2025</span>
                   </div>

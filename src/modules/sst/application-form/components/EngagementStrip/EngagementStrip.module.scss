@@ -1,4 +1,5 @@
 $engagement-strip-description-font-color: #171717;
+$engagement-strip-description-mobile-font-size: 1rem;
 $engagement-strip-background-color: linear-gradient(90deg, #fff7e0 -29.27%, #e6f2ff 100%);
 
 .container {
@@ -15,4 +16,8 @@ $engagement-strip-background-color: linear-gradient(90deg, #fff7e0 -29.27%, #e6f
   color: $engagement-strip-description-font-color;
   font-size: $desktop-font-card-subtitle;
   letter-spacing: 0.01rem;
+
+  @include mobile {
+    font-size: $engagement-strip-description-mobile-font-size;
+  }
 }
