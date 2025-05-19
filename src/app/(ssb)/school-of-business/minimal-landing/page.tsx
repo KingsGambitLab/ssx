@@ -30,9 +30,11 @@ export default function SchoolOfBusinessV2() {
 
       <div className={styles.content_container}>
         <div className={styles.left_section}>
-          <HeroContent />
-          <DisplayCardContainer />
-          {isTabletOrMobile && <RegistrationForm />}
+          <div>
+            <HeroContent />
+            <DisplayCardContainer />
+            {isTabletOrMobile && <RegistrationForm />}
+          </div>
           <InstructorContainer />
           <CompanyContainer />
           <BusinessLeaderContainer />

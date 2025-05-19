@@ -1,15 +1,14 @@
 .instructorContainer{
     @include flex-col;
     width: 100%;
-    align-items: center ;
-    margin-top: 10rem;
+    align-items: center;
     gap: 5rem;
 
     @include tablet{
-        margin-top: 5rem;
         gap: 2.4rem;
     }
 }
+
 .instructorCardContainer {
     width: 100%;
     display: grid;
@@ -20,6 +19,7 @@
         gap: 1.6rem;
     }
 }
+
 .instructorContainerTitle{
     @include flex-col;
     align-items: center;

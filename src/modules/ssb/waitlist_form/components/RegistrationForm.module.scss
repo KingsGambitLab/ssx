@@ -20,6 +20,11 @@
   }
 }
 
+.allForms {
+  @include tablet {
+    margin-top: -2rem;
+  }
+}
 
 .statusText1 {
   font-family: "Plus Jakarta Sans";

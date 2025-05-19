@@ -49,7 +49,7 @@ import imgC from '@public/images/ssb/SSB-2108 1.webp';
 import imgD from '@public/images/ssb/SSB-2223.webp';
 import imgE from '@public/images/ssb/SSB-2242.webp';
 import imgF from '@public/images/ssb/SSB-2251.webp';
-import imgVideo from '@public/images/ssb/P7uEQ9jjqsY-HD 1.webp';
+import imgVideo from '@public/images/ssb/ssb_students_video_thumbnail.webp';
 import HinduDesktop from '@public/images/ssb/hindudesktop.webp';
 import BrainfedDesktop from '@public/images/ssb/brainfeeddesktop.webp';
 import OutlookDesktop from '@public/images/ssb/outlookdesktop.webp';
