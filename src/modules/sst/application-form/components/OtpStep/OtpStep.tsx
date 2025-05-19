@@ -123,7 +123,7 @@ export default function OtpStep({
     <div className={styles.container}>
       <Header />
       <div className={styles.content}>
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <form id="otp" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formContent}>
             {/* Title */}
             <div className={styles.titleWrapper}>
@@ -136,7 +136,7 @@ export default function OtpStep({
                   <div className={styles.phoneNumber}>{phoneNumber}</div>
                   <div className={styles.divider}>|</div>
                   <Link
-                    onClick={() => setStep('PHONE_EMAIL')}
+                    onClick={() => setStep('phone-email')}
                     className={styles.wrongContactDetails}
                   >
                     Wrong Contact Details?

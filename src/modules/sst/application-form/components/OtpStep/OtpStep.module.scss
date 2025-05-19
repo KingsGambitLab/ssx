@@ -18,6 +18,10 @@ $otp-step-form-error-font-color: #ff4d4f;
   box-shadow: 0 0.8rem 1.6rem 0 $otp-step-box-shadow;
   border: 0.1rem solid $otp-step-border-color;
   background: $white-color;
+
+  @include mobile {
+    max-width: 100%;
+  }
 }
 
 .content {
@@ -29,6 +33,10 @@ $otp-step-form-error-font-color: #ff4d4f;
   align-self: stretch;
   border-radius: 1.4rem;
   background: $white-color;
+
+  @include mobile {
+    padding: 1.6rem 2rem 2rem 2rem;
+  }
 }
 
 .form {
@@ -37,6 +45,10 @@ $otp-step-form-error-font-color: #ff4d4f;
   align-items: flex-start;
   gap: 4.9rem;
   align-self: stretch;
+
+  @include mobile {
+    gap: 4rem;
+  }
 }
 
 .formContent {
@@ -60,6 +72,10 @@ $otp-step-form-error-font-color: #ff4d4f;
   font-size: $otp-step-title-font-size;
   font-weight: $semi-bold-font-weight;
   align-self: stretch;
+
+  @include mobile {
+    font-size: $desktop-font-body;
+  }
 }
 
 .subtitle {
@@ -68,6 +84,12 @@ $otp-step-form-error-font-color: #ff4d4f;
   color: $otp-step-subtitle-font-color;
   font-size: $desktop-font-card-title;
   line-height: 2.24rem;
+
+  @include mobile {
+    font-size: $mobile-font-subtitle;
+    line-height: normal;
+    gap: 0.4rem;
+  }
 }
 
 .contactInfo {
@@ -76,18 +98,31 @@ $otp-step-form-error-font-color: #ff4d4f;
   align-items: center;
   gap: 0.4rem;
   align-self: stretch;
+  flex-wrap: wrap;
+
+  @include mobile {
+    gap: 0 0.4rem;
+  }
 }
 
 .phoneNumber {
   color: $otp-step-phone-number-font-color;
   font-weight: $bold-font-weight;
   font-size: $desktop-font-card-title;
+
+  @include mobile {
+    font-size: $mobile-font-card-title;
+  }
 }
 
 .wrongContactDetails {
   color: $otp-step-wrong-contact-details-font-color !important;
   font-weight: $bold-font-weight;
   font-size: $desktop-font-card-title !important;
+
+  @include mobile {
+    font-size: $mobile-font-card-title !important;
+  }
 }
 
 .otpInputWrapper {
@@ -106,10 +141,22 @@ $otp-step-form-error-font-color: #ff4d4f;
 .otpInputWrapper :global(.ant-otp-input) {
   width: 6rem !important;
   height: 4.8rem !important;
+
+  @include mobile {
+    width: auto !important;
+    height: 4.8rem !important;
+    flex: 1;
+  }
 }
 
-.otpInputWrapper :global(.ant-form-item) {
-  margin-bottom: 0 !important;
+.otpInputWrapper {
+  :global(.ant-form-item), :global(.ant-otp) {
+    margin-bottom: 0 !important;
+
+    @include mobile {
+      width: 100%;
+    }
+  }
 }
 
 .resendOtpWrapper {
@@ -126,6 +173,10 @@ $otp-step-form-error-font-color: #ff4d4f;
   text-align: center;
   font-size: $desktop-font-card-title;
   font-weight: $bold-font-weight;
+
+  @include mobile {
+    font-size: $mobile-font-card-title;
+  }
 }
 
 .submitButtonWrapper {
@@ -157,6 +208,10 @@ $otp-step-form-error-font-color: #ff4d4f;
   & > span {
     color: $white-color !important;
     font-size: $desktop-font-card-body !important;
+
+    @include mobile {
+      font-size: $mobile-font-card-subtitle !important;
+    }
   }
 
   &:hover {
@@ -172,6 +227,14 @@ $otp-step-form-error-font-color: #ff4d4f;
 
   a {
     color: $otp-step-title-font-color !important;
+
+    @include mobile {
+      font-size: $mobile-font-card-subtitle !important;
+    }
+  }
+
+  @include mobile {
+    gap: 0.6rem;
   }
 }
 

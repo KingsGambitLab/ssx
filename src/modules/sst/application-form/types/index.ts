@@ -46,7 +46,7 @@ export type getOtpProps = {
   turnstileResponse: string;
 }
 
-export type ApplicationFormStep = 'PHONE_EMAIL' | 'OTP' | 'WAITLIST';
+export type ApplicationFormStep = 'phone-email' | 'otp' | 'waitlist';
 
 export type VerifyOtpResponse = {
   userId: number;

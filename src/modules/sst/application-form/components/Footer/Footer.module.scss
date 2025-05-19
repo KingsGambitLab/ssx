@@ -8,4 +8,8 @@ $footer-anchor-tag-color: #0080ff;
     color: $footer-anchor-tag-color;
     text-decoration-line: underline;
   }
+
+  @include mobile {
+    font-size: $mobile-font-card-body;
+  }
 }

@@ -15,7 +15,7 @@ import { trackAllFormFields } from '@modules/sst/application-form/utils/tracking
 import styles from "./LoginForm.module.scss";
 
 export default function LoginForm() {
-  const [step, setStep] = useState<ApplicationFormStep>('PHONE_EMAIL');
+  const [step, setStep] = useState<ApplicationFormStep>('phone-email');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   
@@ -47,8 +47,8 @@ export default function LoginForm() {
   const onPhoneEmailSubmit = (data: PhoneEmailStepFormData) => {
     console.log("onPhoneEmailSubmit data", data);
     setEmail(data.email);
-    setPhoneNumber(`${data.country_code} ${data.phone_number}`);
-    setStep('OTP');
+    setPhoneNumber(`${data.country_code}-${data.phone_number}`);
+    setStep('otp');
   }
 
   const handleOtpVerificationSuccess = () => { 
@@ -66,7 +66,7 @@ export default function LoginForm() {
 
   return (
     <div className={styles.container}>
-      {step === 'PHONE_EMAIL' && (
+      {step === 'phone-email' && (
         <PhoneEmailStep
           onSubmit={onPhoneEmailSubmit}
           errors={phoneEmailErrors}
@@ -75,7 +75,7 @@ export default function LoginForm() {
           control={phoneEmailControl}
         />
       )}
-      {step === 'OTP' && (
+      {step === 'otp' && (
         <OtpStep
           email={email}
           onOtpVerificationSuccess={handleOtpVerificationSuccess}
