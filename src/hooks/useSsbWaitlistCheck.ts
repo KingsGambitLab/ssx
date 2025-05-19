@@ -31,17 +31,17 @@ export const useSsbWaitlistCheck = () => {
       .sort((a, b) => a.attributes.order - b.attributes.order) as WaitlistForm[];
   };
 
-  const checkFormGroupCompletion = (response: WaitlistApiResponse) => {
-    const studentGroup = response.data.find((g: WaitlistFormGroup) => g.attributes.label.includes('student'));
+  // const checkFormGroupCompletion = (response: WaitlistApiResponse) => {
+  //   const studentGroup = response.data.find((g: WaitlistFormGroup) => g.attributes.label.includes('student'));
 
-    if (!studentGroup) return false;
+  //   if (!studentGroup) return false;
 
-    const studentForms = processFormGroup(studentGroup, response)
+  //   const studentForms = processFormGroup(studentGroup, response)
     
-    const isStudentComplete = studentForms.every((form: WaitlistForm) => form.attributes.response !== null);
+  //   const isStudentComplete = studentForms.every((form: WaitlistForm) => form.attributes.response !== null);
 
-    return isStudentComplete;
-  }
+  //   return isStudentComplete;
+  // }
 
   // Create program applicant first when user is logged in
   useEffect(() => {
@@ -67,9 +67,9 @@ export const useSsbWaitlistCheck = () => {
         try {
           const response = await getWaitlistForms();
 
-          if (checkFormGroupCompletion(response)) {
-            return;
-          }
+          // if (checkFormGroupCompletion(response)) {
+          //   return;
+          // }
 
           const studentGroup = response.data.find((g: WaitlistFormGroup) => g.attributes.label.includes('student'));
 
@@ -108,6 +108,7 @@ const transformForm = (form: WaitlistForm, formGroup: string): WaitlistFormField
     placeholder: form.attributes.title,
     formGroup,
     required: form.attributes.required,
+    value: form.attributes.response || '',
     options: form.attributes.meta?.options?.map(opt => ({
       label: opt.title,
       value: form.attributes.form_type === 'dropdown' ? opt.title : opt.value.toString()

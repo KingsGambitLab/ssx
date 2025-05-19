@@ -10,7 +10,8 @@
     overflow: hidden;
 
     @include tablet{
-        height: 17rem;
+        height: 18rem;
+        width: 16rem;
     }
 }
 .image{
@@ -58,7 +59,7 @@
 }
 
 .companyLogo{
-    width: 10rem;
+    width: 11rem;
     height: 3rem;
 
     @include tablet{

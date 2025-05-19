@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./RegistrationForm.module.scss";
 import OtpVerificationForm from "./OtpForm/index";
@@ -7,14 +7,21 @@ import AccountCreationForm from "./AccountCreationForm/index";
 import { useLoginContext } from "@context/ssb/LoginContext";
 import { LoginFormData, OtpFormData, FormStep } from "../types/index";
 import { useDeviceType } from "@hooks/useDeviceType";
+import {
+  trackEvent,
+  trackingSources,
+  trackingEvents,
+} from "@modules/ssb/waitlist_form/utils/tracking";
 import useUser from "@/hooks/useUser";
 
 import DisplayMobileCard from "@modules/ssb/landing_v2/components/DisplayMobileCard";
-import { Spin } from "antd";
 // Types of form steps
 export default function RegistrationForm() {
   const { data: userData } = useUser();
   const [currentStep, setCurrentStep] = useState<FormStep>("LOADING");
+  const [isFixed, setIsFixed] = useState(true);
+  const formRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
   const { setCurrentStep: setContextStep } = useLoginContext();
   //Track the device type
   const { isTabletOrMobile } = useDeviceType();
@@ -53,6 +60,30 @@ export default function RegistrationForm() {
     whatsapp_consent: true,
   });
 
+  const getFormType = (currentStep: FormStep) => {
+    let formType = "";
+
+    if (currentStep === "LOGIN") {
+      formType = trackingSources.waitlistLoginMobileForm;
+    } else if (currentStep === "OTP") {
+      formType = trackingSources.waitlistOTPModal;
+    } else {
+      formType = trackingSources.waitlistForm;
+    }
+    return formType;
+  };
+
+  const handleStepChange = (currentStep: FormStep) => {
+    trackEvent.click({
+      clickType: "click",
+      clickText: "step_change",
+      clickSource: trackingSources.waitlistForm,
+      formType: getFormType(currentStep),
+    });
+    setCurrentStep(currentStep);
+    setContextStep(currentStep);
+  };
+
   const handleAccountFormSubmit = (data: LoginFormData) => {
     setFormUserData({
       email: data.email,
@@ -60,15 +91,12 @@ export default function RegistrationForm() {
       country_code: data.country_code,
       whatsapp_consent: data.whatsapp_consent,
     });
-    setCurrentStep("OTP");
-    setContextStep("OTP");
+    handleStepChange("OTP");
     console.log("Account Creation Form submitted:", data);
   };
 
   // Handle OTP verification submission
   const handleOtpFormSubmit = () => {
-    setCurrentStep("PERSONAL_DETAILS");
-    setContextStep("PERSONAL_DETAILS");
     window.location.reload();
   };
 
@@ -76,22 +104,59 @@ export default function RegistrationForm() {
     console.log("Waitlist Success");
   };
 
+  const handleWrongNumber = () => {
+    handleStepChange("LOGIN");
+    trackEvent.click({
+      clickType: "click",
+      clickText: trackingEvents.wrongPhoneNumber,
+      clickSource: trackingSources.waitlistForm,
+      formType: getFormType(currentStep),
+    });
+  };
+
+  const handleVerificationError = (error: string) => {
+    console.error("Verification failed:", error);
+  };
+
   useEffect(() => {
     console.log("currentStep", currentStep);
     console.log("userData", userData);
-    if (userData?.data?.id) {
-      if (userData.isloggedIn) {
-        setCurrentStep("PERSONAL_DETAILS");
-        setContextStep("PERSONAL_DETAILS");
-      } else {
-        setCurrentStep("LOGIN");
-        setContextStep("LOGIN");
-      }
+    if (!userData) {
+      handleStepChange("LOGIN");
     } else {
-      setCurrentStep("LOGIN");
-      setContextStep("LOGIN");
+      if (userData?.data?.id) {
+        if (userData.isloggedIn) {
+          handleStepChange("PERSONAL_DETAILS");
+        } else {
+          handleStepChange("LOGIN");
+        }
+      }
     }
   }, [userData]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isTabletOrMobile) return;
+
+      const newsSection = document.querySelector(".news-section"); // Add this class to your news section
+      if (!newsSection || !formRef.current) return;
+
+      const newsSectionBottom = newsSection.getBoundingClientRect().bottom;
+      const currentScrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      if (newsSectionBottom <= viewportHeight) {
+        setIsFixed(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        setIsFixed(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isTabletOrMobile]);
 
   const renderForm = () => {
     switch (currentStep) {
@@ -114,14 +179,8 @@ export default function RegistrationForm() {
             handleSubmit={handleOtpSubmit}
             phoneNumber={formUserData.phone_number}
             email={formUserData.email}
-            onWrongNumber={() => {
-              setCurrentStep("LOGIN");
-              setContextStep("LOGIN");
-            }}
-            onVerificationError={() => {
-              setCurrentStep("LOGIN");
-              setContextStep("LOGIN");
-            }}
+            onWrongNumber={handleWrongNumber}
+            onVerificationError={handleVerificationError}
             onVerificationSuccess={handleOtpFormSubmit}
             setError={setOtpError}
           />
@@ -137,7 +196,10 @@ export default function RegistrationForm() {
 
   const renderContent = () => {
     return (
-      <div className={styles.formContainer}>
+      <div
+        className={`${styles.formContainer} ${!isFixed ? styles.nonFixed : ""}`}
+        ref={formRef}
+      >
         {!isTabletOrMobile && (
           <div className={styles.status}>
             <div className={styles.statusText1}>SSB 2025</div>
@@ -150,7 +212,7 @@ export default function RegistrationForm() {
         {isTabletOrMobile && (
           <div className={styles.status}>
             <div className={styles.statusText1}>
-              Admissions OPEN for AU/sep 2025
+              Admission Open for Aug/Sep 2025
             </div>
             <DisplayMobileCard />
           </div>

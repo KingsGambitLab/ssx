@@ -16,7 +16,7 @@ import { NEWS_CONTAINER } from "@modules/ssb/landing_v2/constants";
 export default function NewsContainer() {
   return (
     <Section section_class="news-container" id="news-container">
-      <div className={styles.newsContainer}>
+      <div className={`${styles.newsContainer} news-section`}>
         <div className={styles.headlineContainer}>
           <div className={styles.featuredNewsTitleImg}>
             <img

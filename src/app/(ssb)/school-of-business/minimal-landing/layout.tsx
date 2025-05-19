@@ -1,21 +1,27 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
 import {
   Analytics,
   AnalyticsFallback,
   MicrosoftClarity,
-} from '@/components/common/Analytics';
+} from "@/components/common/Analytics";
 
 import {
   PRODUCTS,
   SUB_PRODUCTS,
-} from '@/components/common/Analytics/constants';
+} from "@/components/common/Analytics/constants";
 
-import { getAllExperiments } from '@utils/abex/experiment';
+import { getAllExperiments } from "@utils/abex/experiment";
 
-export default async function Layout({ children }: { children: React.ReactNode }) {
+import Footer from "@components/Ssb/Footer";
+import Navbar from "@components/Ssb/Navbar";
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const experiments = await getAllExperiments();
-  
+
   return (
     <>
       <Suspense key="gtm-script" fallback={<AnalyticsFallback />}>
@@ -26,7 +32,9 @@ export default async function Layout({ children }: { children: React.ReactNode }
         />
         <MicrosoftClarity />
       </Suspense>
-        {children}
+      <Navbar />
+      <div>{children}</div>
+      <Footer />
     </>
   );
 }

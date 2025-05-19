@@ -43,11 +43,46 @@ import mars_logo from '@public/images/ssb/mars.webp';
 import iim_shillong_logo from '@public/images/ssb/iim_shillong.webp';
 import gartner_logo from '@public/images/ssb/gartner.webp';
 import coinbase_logo from '@public/images/ssb/coinbase.webp';
+import imgA from '@public/images/ssb/SSB-38.webp';
+import imgB from '@public/images/ssb/SSB-18.webp';
+import imgC from '@public/images/ssb/SSB-2108 1.webp';
+import imgD from '@public/images/ssb/SSB-2223.webp';
+import imgE from '@public/images/ssb/SSB-2242.webp';
+import imgF from '@public/images/ssb/SSB-2251.webp';
+import imgVideo from '@public/images/ssb/P7uEQ9jjqsY-HD 1.webp';
 import HinduDesktop from '@public/images/ssb/hindudesktop.webp';
 import BrainfedDesktop from '@public/images/ssb/brainfeeddesktop.webp';
 import OutlookDesktop from '@public/images/ssb/outlookdesktop.webp';
 import TimeDesktop from '@public/images/ssb/timedesktop.webp';
 import TitleHeadline from '@public/images/ssb/title-top-b10603a026d0d8febd6797db047f49c8418a52f9f2cce2bdf5218b7e9533271a.webp';
+import uber_with_frame from '@public/images/ssb/uber_with_frame.webp';
+import mckinsey_with_frame from '@public/images/ssb/mckinsey_with_frame.webp';
+import colgate from '@public/images/ssb/colgate.webp';
+import harvard from '@public/images/ssb/harvard.webp';
+
+export const HERO_CONTENT_CONTAINER = {
+  title: "Full-Time PGP in Management & Tech",
+  subtitle: "Learn business hands-on",
+  subtitle2: "from 100+ industry leaders & faculty from",
+  topLogos: [
+    {
+      image: uber_with_frame.src,
+      alt: "Uber",
+    },
+    {
+      image: mckinsey_with_frame.src,
+      alt: "McKinsey",
+    },
+    {
+      image: colgate.src,
+      alt: "Colgate",
+    },
+    {
+      image: harvard.src,
+      alt: "Harvard",
+    },
+  ],
+}
 
 export const DISPLAY_CARD_CONTAINER = {
   displayCards: [
@@ -243,6 +278,53 @@ export const BUSINESS_LEADERS = {
     },
   ]
 };
+
+export const STUDENT_FEATURE_CONTAINER = {
+  title: "Student Features",
+  topBusinessLeaders: "Life Beyond the ",
+  topBusinessLeaders2: "Classroom",
+  subText: "Engage in a lively campus featuring an Innovation Lab, Turf arena, and collaborative co-working spaces",
+  imageGrid: [
+    {
+      image: imgA,
+      alt: "A",
+      className: "imgA",
+    },
+    {
+      image: imgB,
+      alt: "B",
+      className: "imgB",
+    },
+    {
+      image: imgC,
+      alt: "C",
+      className: "imgC",
+    },
+    {
+      image: imgD,
+      alt: "D",
+      className: "imgD",
+    },
+    {
+      image: imgE,
+      alt: "E",
+      className: "imgE",
+    },
+    {
+      image: imgF,
+      alt: "F",
+      className: "imgF",
+    },
+  ],
+  videoImage: {
+    image: imgVideo,
+    alt: "Video",
+    className: "imgVideo",
+  },
+  videoTitle: "Future Leaders in ",
+  videoTitleSpan: "Action",
+  videoSubtitle: "Practical learning meets entrepreneurial spirit at Scaler School of Business",
+}
 
 export const NEWS_CONTAINER = {
   titleHeadline: TitleHeadline.src,

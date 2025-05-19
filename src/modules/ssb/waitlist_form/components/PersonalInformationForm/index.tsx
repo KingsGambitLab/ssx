@@ -1,13 +1,19 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { useState, useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Form as AntForm, Input, Select, Radio } from "antd";
-import { toLower } from "lodash";
+import { Button, Form as AntForm, Input, Select } from "antd";
 import styles from "./index.module.scss";
 import { WaitlistFormData } from "../../types/index";
 import { useWaitlistApi } from "../../api";
 import { useSsbWaitlistCheck } from "@hooks/useSsbWaitlistCheck";
 import { useQueryClient } from "@tanstack/react-query";
 
+import {
+  trackingEvents,
+  trackingSources,
+  trackEvent,
+} from "../../utils/tracking";
 interface PersonalInformationFormProps {
   onSubmitSuccess: () => void;
 }
@@ -24,20 +30,66 @@ export default function PersonalInformationForm({
 
   const {
     control,
-    watch,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<WaitlistFormData>({
     mode: "onChange",
     reValidateMode: "onChange",
   });
 
-  useEffect(() => {
-    if (formFields.length > 0) {
-      setValue(formFields[0].id, "");
-    }
-  }, [formFields, setValue]);
+  const trackEventHandler = ({
+    clickType,
+    clickText,
+    custom,
+  }: {
+    clickType: string;
+    clickText: string;
+    custom: any;
+  }) => {
+    trackEvent.click({
+      clickType,
+      clickText,
+      clickSource: trackingSources.waitlistForm,
+      formType: trackingSources.waitlistForm,
+      custom: {
+        ...custom,
+      },
+    });
+  };
+
+  const formattedErrors = (error: any) => {
+    if (typeof error !== "object") return error;
+
+    const formattedErrors: Record<string, string> = {};
+
+    Object.entries(error).forEach(([field, value]: [string, any]) => {
+      if (value?.message) {
+        formattedErrors[field] = value.message;
+      }
+    });
+
+    return formattedErrors;
+  };
+
+  const trackFormSubmitStatus = ({
+    formStatus,
+    formError,
+  }: {
+    formStatus: string;
+    formError?: any;
+  }) => {
+    trackEvent.formSubmitStatus({
+      extraInfo: {
+        form_source: trackingSources.waitlistForm,
+        form_type: trackingSources.waitlistForm,
+      },
+      attributes: {
+        status: formStatus,
+        message: formError ? formattedErrors(formError) : "success",
+        form_id: `ssb_waitlist_form_student_IN`,
+      },
+    });
+  };
 
   const onSubmit = useCallback(
     async (data: WaitlistFormData) => {
@@ -47,6 +99,7 @@ export default function PersonalInformationForm({
       try {
         await submitWaitlistForm(data);
         await queryClient.invalidateQueries({ queryKey: ["fetch_user_data"] });
+        trackFormSubmitStatus({ formStatus: "success" });
         onSubmitSuccess();
         window.open("/school-of-technology/application", "_blank")?.focus();
       } catch (error: any) {
@@ -54,6 +107,7 @@ export default function PersonalInformationForm({
           error.response?.data?.message ||
           "Something went wrong. Please try again.";
         setFormError(errorMessage);
+        trackFormSubmitStatus({ formStatus: "error", formError: errorMessage });
       } finally {
         setIsLoading(false);
       }
@@ -62,7 +116,15 @@ export default function PersonalInformationForm({
   );
 
   const handleButtonClick = () => {
-    console.log("Button clicked");
+    trackEvent.click({
+      clickType: "click",
+      clickText: trackingEvents.waitlistFormSubmit,
+      clickSource: trackingSources.waitlistForm,
+      formType: trackingSources.waitlistForm,
+      custom: {
+        form_id: `ssb_waitlist_form_student_IN`,
+      },
+    });
     form.submit();
   };
 
@@ -82,11 +144,15 @@ export default function PersonalInformationForm({
         </div>
       </div>
 
-      <AntForm form={form} layout="vertical" onFinish={handleSubmit(onSubmit)}>
+      <AntForm
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit(onSubmit)}
+        className={styles.form}
+      >
         {formFields.map((field) => (
           <AntForm.Item
             key={field.id}
-            label={field.label}
             required={field.required}
             validateStatus={errors[field.id] ? "error" : ""}
             help={errors[field.id]?.message}
@@ -121,9 +187,24 @@ export default function PersonalInformationForm({
                       {...controllerField}
                       status={error ? "error" : undefined}
                       placeholder={field.placeholder}
+                      disabled={!!field.value}
+                      size="large"
                       onChange={(value) => {
                         controllerField.onChange(value);
+                        trackEventHandler({
+                          clickType: "form_input_change",
+                          clickText: trackingEvents.formInputFilled,
+                          custom: {
+                            field_type: field.label,
+                            field_value: value,
+                          },
+                        });
                       }}
+                      value={
+                        controllerField.value === ""
+                          ? undefined
+                          : controllerField.value
+                      }
                       options={field.options?.map((opt) => ({
                         label: opt.label,
                         value: opt.value,
@@ -131,29 +212,32 @@ export default function PersonalInformationForm({
                     />
                   );
                 }
-                if (field.type === "radio") {
-                  return (
-                    <Radio.Group
-                      {...controllerField}
-                      defaultValue="Student"
-                      buttonStyle="solid"
-                    >
-                      {field.options?.map((option) => (
-                        <Radio key={option.value} value={option.value}>
-                          {option.label}
-                        </Radio>
-                      ))}
-                    </Radio.Group>
-                  );
-                }
                 return (
                   <Input
                     {...controllerField}
                     placeholder={field.placeholder}
                     status={error ? "error" : undefined}
+                    disabled={!!field.value}
+                    size="large"
+                    onClick={() => {
+                      trackEventHandler({
+                        clickType: "input_click",
+                        clickText: trackingEvents.formInputFocus,
+                        custom: { field: field.label },
+                      });
+                    }}
                     onBlur={(e) => {
                       controllerField.onChange(e);
+                      trackEventHandler({
+                        clickType: "input_change",
+                        clickText: trackingEvents.formInputFilled,
+                        custom: {
+                          field_type: field.label,
+                          field_value: e.target.value,
+                        },
+                      });
                     }}
+                    defaultValue={field.value}
                   />
                 );
               }}
@@ -162,15 +246,34 @@ export default function PersonalInformationForm({
         ))}
 
         <div className={styles.submitButtonWrapper}>
+          <div className={styles.deadline}>
+            <span>Intake 3 Application Deadline - </span>
+            <span className={styles.date}>11th May 2025</span>
+          </div>
           {formError && <div className={styles.formError}>{formError}</div>}
-          <Button
-            type="primary"
-            onClick={handleButtonClick}
-            loading={isLoading}
-            block
-          >
-            Proceed
-          </Button>
+          {formFields.every((field) => field.value) ? (
+            <Button
+              type="primary"
+              onClick={handleButtonClick}
+              loading={isLoading}
+              block
+            >
+              Resume Application
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              onClick={handleButtonClick}
+              loading={isLoading}
+              block
+            >
+              Proceed
+            </Button>
+          )}
+          <div className={styles.terms}>
+            By creating an account I have read and agree to Scaler's{" "}
+            <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
+          </div>
         </div>
       </AntForm>
     </div>
