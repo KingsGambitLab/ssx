@@ -1,24 +1,29 @@
+import { API_BASE_URL } from "@utils/common/url";
+import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
 import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./RegistrationForm.module.scss";
 import OtpVerificationForm from "./OtpForm/index";
 import PersonalInformationForm from "./PersonalInformationForm/index";
 import AccountCreationForm from "./AccountCreationForm/index";
+import FormSkeleton from "./FormSkeleton/index";
 import { useLoginContext } from "@context/ssb/LoginContext";
 import { LoginFormData, OtpFormData, FormStep } from "../types/index";
 import { useDeviceType } from "@hooks/useDeviceType";
+import { useUserApi, generateJwt } from "@modules/common/apis";
 import {
   trackEvent,
   trackingSources,
   trackingEvents,
 } from "@modules/ssb/waitlist_form/utils/tracking";
-import useUser from "@/hooks/useUser";
+// import useUser from "@/hooks/useUser";
 import Section from "@components/common/Section";
 
 import DisplayMobileCard from "@modules/ssb/landing_v2/components/DisplayMobileCard";
 // Types of form steps
 export default function RegistrationForm() {
-  const { data: userData } = useUser();
+  const [user, setUser] = useState<any>({});
+  // const { data: userData } = useUser();
   const [currentStep, setCurrentStep] = useState<FormStep>("LOADING");
   const [isFixed, setIsFixed] = useState(true);
   const formRef = useRef<HTMLDivElement>(null);
@@ -26,6 +31,7 @@ export default function RegistrationForm() {
   const { setCurrentStep: setContextStep } = useLoginContext();
   //Track the device type
   const { isTabletOrMobile } = useDeviceType();
+  const USER_DETAILS = `${API_BASE_URL}/api/v3/users`;
 
   const {
     control: loginControl,
@@ -119,21 +125,54 @@ export default function RegistrationForm() {
     console.error("Verification failed:", error);
   };
 
+  console.log("user", user);
+
   useEffect(() => {
-    console.log("currentStep", currentStep);
-    console.log("userData", userData);
-    if (!userData) {
+    console.log("Inside useEffect");
+    if (!user) {
       handleStepChange("LOGIN");
     } else {
-      if (userData?.data?.id) {
-        if (userData.isloggedIn) {
+      if (user?.data?.id) {
+        if (user.isloggedIn) {
           handleStepChange("PERSONAL_DETAILS");
         } else {
           handleStepChange("LOGIN");
         }
       }
     }
-  }, [userData]);
+  }, [user]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const jwt = await generateJwt();
+        console.log("jwt", jwt);
+        if (jwt) {
+          const userDataResponse = await apiRequest<any>(
+            HttpMethods.GET,
+            USER_DETAILS,
+            {},
+            { headers: { "X-User-Token": jwt } }
+          );
+          console.log("userDataResponse", userDataResponse);
+          setUser({
+            ...userDataResponse,
+            isloggedIn: true,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+        setUser(undefined);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  // useEffect(() => {
+  //   if (userData?.data?.id) {
+  //     setUser(userData);
+  //   }
+  // }, [userData]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -191,7 +230,7 @@ export default function RegistrationForm() {
           <PersonalInformationForm onSubmitSuccess={handleWaitlistSuccess} />
         );
       default:
-        return null;
+        return <FormSkeleton />;
     }
   };
 

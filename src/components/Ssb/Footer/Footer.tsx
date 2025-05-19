@@ -13,7 +13,7 @@ import TwitterIcon from "@public/images/sst/svg//twitterlogo.svg";
 import FacebookIcon from "@public/images/sst/svg//meta.svg";
 import QuoraIcon from "@public/images/sst/svg//quora.svg";
 import GooglePlayIcon from "@public/images/sst/svg/downloadongoogleplay.svg";
-import SSTLogoLight from "@public/images/sst/svg/sst-logo-light.svg";
+import SSBLogoLight from "@public/images/ssb/ssb-logo-footer.svg";
 
 import {
   trackEvent,
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
         <div className={styles.footer__branding}>
           <div className={styles.footer__logo}>
             <Image
-              src={SSTLogoLight}
+              src={SSBLogoLight}
               alt="Scaler School of Business"
               width={300}
               height={150}

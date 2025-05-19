@@ -42,9 +42,6 @@ export default function StudentFeatureContainer() {
     <Section id="student-feature-container">
       <div className={styles.studentFeatureContainer}>
         <div className={styles.studentFeatureContainerTitle}>
-          <div className={styles.studentFeatureContainerTitleText1}>
-            {STUDENT_FEATURE_CONTAINER.title}
-          </div>
           <div className={styles.studentFeatureContainerTitleText2}>
             <div className={styles.studentFeatureContainerTitleText2Text1}>
               {STUDENT_FEATURE_CONTAINER.topBusinessLeaders}{" "}

@@ -10,6 +10,7 @@ import { WaitlistFormData } from "../../types/index";
 import { useWaitlistApi } from "../../api";
 import { useSsbWaitlistCheck } from "@hooks/useSsbWaitlistCheck";
 import { useQueryClient } from "@tanstack/react-query";
+import FormSkeleton from "@modules/ssb/waitlist_form/components/FormSkeleton";
 
 import {
   trackingEvents,
@@ -133,7 +134,7 @@ export default function PersonalInformationForm({
   console.log("formFields", formFields);
 
   if (formFields.length === 0) {
-    return null;
+    return <FormSkeleton />;
   }
 
   return (
