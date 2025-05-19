@@ -1,9 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 
-import { ENDPOINTS } from "@modules/sst/application-form/api/endpoints";
-import { getOtpProps, VerifyOtpResponse } from "@modules/sst/application-form/types";
-import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
 import CaseUtil from "@lib/caseUtil";
+import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
+import { ENDPOINTS } from "@modules/sst/application-form/api/endpoints";
+import { useApi } from "@hooks/useApi";
+import {
+  getOtpProps,
+  VerifyOtpResponse,
+  ApplicationFormDataResponse,
+  StudentPersonalDetailsFormResponse,
+} from "@modules/sst/application-form/types";
 
 export const getOtp = async ({email, phoneNumber, countryCode, consent, turnstileResponse}: getOtpProps) => {
   const response = await apiRequest<any>(
@@ -53,3 +60,60 @@ export const verifyOtp = async (email: string, phoneNumber: string, otp: string)
 
   return formatted;
 }
+
+export const applicationFormData = async () => {
+  const response = await apiRequest<any>(
+    HttpMethods.GET,
+    `${ENDPOINTS.APPLICATION_FORM_DATA}`,
+    {
+      slug: 'school_of_tech',
+    }
+  )
+  
+  const formatted = CaseUtil.toCase('camelCase', response) as ApplicationFormDataResponse;
+
+  return formatted;
+}
+
+export const useApplicationFormApi = () => {
+  const { request } = useApi();
+
+  const getApplicationFormData = async () => {
+    const response = await request<any>(
+      HttpMethods.GET,
+      `${ENDPOINTS.APPLICATION_FORM_DATA}`,
+      {
+        slug: 'school_of_tech',
+      }
+    );
+    
+    const formatted = CaseUtil.toCase('camelCase', response) as ApplicationFormDataResponse;
+    return formatted;
+  };
+
+  const getStudentPersonalDetailsForm = async () => {
+    const response = await request<any>(
+      HttpMethods.GET,
+      `${ENDPOINTS.STUDENT_DETAILS_FORM}`,
+    );
+    
+    const formatted = CaseUtil.toCase('camelCase', response) as StudentPersonalDetailsFormResponse;
+    return formatted;
+  };
+
+  const submitFormResponse = async (data: any) => {
+    const response = await request<any>(
+      HttpMethods.POST,
+      `${ENDPOINTS.SUBMIT_FORM_RESPONSE}`,
+      data
+    );
+
+    return response;
+  };
+
+  return {
+    getApplicationFormData,
+    getStudentPersonalDetailsForm,
+    submitFormResponse
+  };
+};

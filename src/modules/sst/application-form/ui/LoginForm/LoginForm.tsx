@@ -3,21 +3,26 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useApplicationForm } from '@hooks/useApplicationForm';
+
 import OtpStep from '@modules/sst/application-form/components/OtpStep';
 import PhoneEmailStep from '@modules/sst/application-form/components/PhoneEmailStep';
+import WaitlistForm from '@modules/sst/application-form/components/WaitlistForm';
 import {
   ApplicationFormStep,
   OtpStepFormData,
-  PhoneEmailStepFormData
+  PhoneEmailStepFormData,
+  WaitlistStepFormData
 } from '@modules/sst/application-form/types';
 import { trackAllFormFields } from '@modules/sst/application-form/utils/tracking';
 
 import styles from "./LoginForm.module.scss";
 
 export default function LoginForm() {
-  const [step, setStep] = useState<ApplicationFormStep>('phone-email');
+  const [step, setStep] = useState<ApplicationFormStep>('waitlist-form');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const { showWaitlistForm } = useApplicationForm();
   
   const {
     handleSubmit: handlePhoneEmailSubmit,
@@ -43,6 +48,14 @@ export default function LoginForm() {
     }
   })
 
+  const {
+    handleSubmit: handleWaitlistSubmit,
+    formState: { errors: waitlistErrors },
+    setError: setWaitlistErrors,
+    control: waitlistControl
+  } = useForm<WaitlistStepFormData>({
+    mode: 'onChange',
+  })
 
   const onPhoneEmailSubmit = (data: PhoneEmailStepFormData) => {
     console.log("onPhoneEmailSubmit data", data);
@@ -87,6 +100,18 @@ export default function LoginForm() {
           setStep={setStep}
         />
       )}
+      {(step === 'waitlist-form' || showWaitlistForm) && (
+        <WaitlistForm
+          onSubmitSuccess={() => {
+            console.log("onSubmitSuccess");
+          }}
+          errors={waitlistErrors}
+          setError={setWaitlistErrors}
+          handleSubmit={handleWaitlistSubmit}
+          control={waitlistControl}
+        />
+      )
+      }
     </div>
   );
 }
