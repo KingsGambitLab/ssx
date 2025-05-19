@@ -202,11 +202,6 @@ export default function PersonalInformationForm({
                           },
                         });
                       }}
-                      value={
-                        controllerField.value === ""
-                          ? undefined
-                          : controllerField.value
-                      }
                       defaultValue={field.value}
                       options={field.options?.map((opt) => ({
                         label: opt.label,

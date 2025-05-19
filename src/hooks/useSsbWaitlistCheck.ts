@@ -108,7 +108,7 @@ const transformForm = (form: WaitlistForm, formGroup: string): WaitlistFormField
     placeholder: form.attributes.title,
     formGroup,
     required: form.attributes.required,
-    value: form.attributes.response || '',
+    value: form.attributes.response || undefined,
     options: form.attributes.meta?.options?.map(opt => ({
       label: opt.title,
       value: form.attributes.form_type === 'dropdown' ? opt.title : opt.value.toString()
