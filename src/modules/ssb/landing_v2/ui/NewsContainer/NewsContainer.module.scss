@@ -1,11 +1,10 @@
 .newsContainer{
   @include flex-col;
-  margin-top: 10rem;
   gap: 2.4rem;
-  padding-bottom: 10rem;
   
-  @include tablet{
+  @include tablet {
     margin-top: 2.4rem;
+    padding-bottom: 0;
   }
 }
 
@@ -15,13 +14,13 @@
   overflow: hidden;
 }
 
-.newsCardContainer{
-  width:100%;
+.newsCardContainer {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.4rem;
 
-  @include tablet{
+  @include tablet {
     gap: 1.6rem;
   }
 }

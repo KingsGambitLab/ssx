@@ -1,18 +1,19 @@
 .studentFeatureContainer{
     @include flex-col;
     gap: 2.4rem;
-    margin-top: 10rem;
     background-color: white;
 
-    @include tablet{
+    @include tablet {
         margin-top: 2.4rem;
     }
 }
+
 .studentFeatureContainerTitle{
     @include flex-col;
     align-items: center;
     gap: 2.4rem;
 }
+
 .studentFeatureContainerTitleText1{
     color: #0A2661;
     font-family: 'Montserrat';
@@ -29,6 +30,7 @@
         display: none;
     }
 }
+
 .studentFeatureContainerTitleText2{
     @include flex-col;
     align-items: center;
@@ -129,6 +131,7 @@
         z-index: 2;
     }
 }
+
 .studentFeatureContainerFooterText{
     @include flex-col;
     // margin-top: -3rem;

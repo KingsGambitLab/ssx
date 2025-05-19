@@ -24,6 +24,7 @@
   height: auto;
 
   @include tablet {
+    width: 8rem;
     margin-left: 2.4rem;
   }
 }

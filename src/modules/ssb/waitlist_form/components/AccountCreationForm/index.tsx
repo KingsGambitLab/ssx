@@ -157,49 +157,123 @@ export default function AccountCreationForm({
   };
 
   return (
-    <Section
-      section_class="account-creation-form"
-      id={`${trackingSources.waitlistLoginMobileForm}`}
-    >
-      <div className={styles.formWrapper}>
-        {/* Header */}
-        <div className={styles.header}>
-          <div className={styles.title}>Create your account</div>
-          <div className={styles.subtitle}>Enter your details to proceed</div>
-        </div>
+    <div className={styles.formWrapper}>
+      {/* Header */}
+      <div className={styles.header}>
+        <div className={styles.title}>Create your account</div>
+        <div className={styles.subtitle}>Enter your details to proceed</div>
+      </div>
 
-        {/* Form */}
-        <form
-          onSubmit={handleSubmit(onSubmitForm, onSubmitError)}
-          className={styles.form}
+      {/* Form */}
+      <form
+        onSubmit={handleSubmit(onSubmitForm, onSubmitError)}
+        className={styles.form}
+      >
+        {/* Email Field */}
+        <Form.Item
+          validateStatus={errors.email ? "error" : ""}
+          help={errors.email?.message}
         >
-          {/* Email Field */}
-          <Form.Item
-            validateStatus={errors.email ? "error" : ""}
-            help={errors.email?.message}
-          >
+          <Controller
+            name="email"
+            control={control}
+            rules={{
+              required: "Email is required",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Invalid email address",
+              },
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter Email Address"
+                type="email"
+                onClick={() =>
+                  trackClickEventHandler({
+                    clickType: "click",
+                    clickText: trackingEvents.formInputFocus,
+                    custom: {
+                      field_type: "email",
+                    },
+                  })
+                }
+                onBlur={(e) => {
+                  field.onChange(e);
+                  trackClickEventHandler({
+                    clickType: "click",
+                    clickText: trackingEvents.formInputFilled,
+                    custom: {
+                      field_type: "email",
+                      field_value: e.target.value,
+                    },
+                  });
+                  if (errors.email) clearErrors("email");
+                }}
+              />
+            )}
+          />
+        </Form.Item>
+
+        {/* Phone Number Field */}
+        <Form.Item
+          validateStatus={errors.phone_number ? "error" : ""}
+          help={errors.phone_number?.message}
+        >
+          <Input.Group>
             <Controller
-              name="email"
+              name="country_code"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  onChange={(value: string) => {
+                    field.onChange(value);
+                    trackClickEventHandler({
+                      clickType: "click",
+                      clickText: trackingEvents.formInputFilled,
+                      custom: {
+                        field_type: "country_code",
+                        field_value: value,
+                      },
+                    });
+                  }}
+                >
+                  <Select.Option value="+91">
+                    <span role="img" aria-label="India">
+                      🇮🇳
+                    </span>{" "}
+                    +91
+                  </Select.Option>
+                  <Select.Option value="+977">
+                    <span role="img" aria-label="Nepal">
+                      🇳🇵
+                    </span>{" "}
+                    +977
+                  </Select.Option>
+                </Select>
+              )}
+            />
+            <Controller
+              name="phone_number"
               control={control}
               rules={{
-                required: "Email is required",
+                required: "Phone number is required",
                 pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Invalid email address",
+                  value: /^[0-9]{10}$/,
+                  message: "Please enter a valid 10-digit phone number",
                 },
               }}
               render={({ field }) => (
                 <Input
                   {...field}
-                  placeholder="Enter Email Address"
-                  type="email"
+                  placeholder="Enter Mobile Number"
+                  style={{ width: "80%" }}
                   onClick={() =>
                     trackClickEventHandler({
                       clickType: "click",
                       clickText: trackingEvents.formInputFocus,
-                      custom: {
-                        field_type: "email",
-                      },
+                      custom: { field_type: "phone_number" },
                     })
                   }
                   onBlur={(e) => {
@@ -208,160 +282,81 @@ export default function AccountCreationForm({
                       clickType: "click",
                       clickText: trackingEvents.formInputFilled,
                       custom: {
-                        field_type: "email",
+                        field_type: "phone_number",
                         field_value: e.target.value,
                       },
                     });
-                    if (errors.email) clearErrors("email");
+                    if (errors.phone_number) clearErrors("phone_number");
                   }}
                 />
               )}
             />
-          </Form.Item>
+          </Input.Group>
+        </Form.Item>
 
-          {/* Phone Number Field */}
-          <Form.Item
-            validateStatus={errors.phone_number ? "error" : ""}
-            help={errors.phone_number?.message}
+        <Form.Item style={{ width: "0px", height: "0px" }}>
+          <TurnstileWidget onTokenObtained={setToken} />
+        </Form.Item>
+
+        <div className={styles.deadline}>
+          <span>Intake 3 Application Deadline - </span>
+          <span className={styles.date}>11th May 2025</span>
+        </div>
+
+        {formError && <div className={styles.formError}>{formError}</div>}
+
+        {/* Submit Button */}
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+            disabled={loading}
+            block
+            onClick={() =>
+              trackClickEventHandler({
+                clickType: "click",
+                clickText: trackingEvents.waitlistLoginMobileFormSubmit,
+              })
+            }
           >
-            <Input.Group>
-              <Controller
-                name="country_code"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    onChange={(value: string) => {
-                      field.onChange(value);
-                      trackClickEventHandler({
-                        clickType: "click",
-                        clickText: trackingEvents.formInputFilled,
-                        custom: {
-                          field_type: "country_code",
-                          field_value: value,
-                        },
-                      });
-                    }}
-                  >
-                    <Select.Option value="+91">
-                      <span role="img" aria-label="India">
-                        🇮🇳
-                      </span>{" "}
-                      +91
-                    </Select.Option>
-                    <Select.Option value="+977">
-                      <span role="img" aria-label="Nepal">
-                        🇳🇵
-                      </span>{" "}
-                      +977
-                    </Select.Option>
-                  </Select>
-                )}
-              />
-              <Controller
-                name="phone_number"
-                control={control}
-                rules={{
-                  required: "Phone number is required",
-                  pattern: {
-                    value: /^[0-9]{10}$/,
-                    message: "Please enter a valid 10-digit phone number",
-                  },
+            Start your Application
+          </Button>
+        </Form.Item>
+
+        {/* WhatsApp Consent */}
+        <Form.Item>
+          <Controller
+            name="whatsapp_consent"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <Checkbox
+                checked={value}
+                onChange={(e) => {
+                  onChange(e.target.checked);
+                  trackClickEventHandler({
+                    clickType: "click",
+                    clickText: trackingEvents.formInputFilled,
+                    custom: {
+                      field_type: "whatsapp_consent",
+                      field_value: e.target.checked,
+                    },
+                  });
                 }}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder="Enter Mobile Number"
-                    style={{ width: "80%" }}
-                    onClick={() =>
-                      trackClickEventHandler({
-                        clickType: "click",
-                        clickText: trackingEvents.formInputFocus,
-                        custom: { field_type: "phone_number" },
-                      })
-                    }
-                    onBlur={(e) => {
-                      field.onChange(e);
-                      trackClickEventHandler({
-                        clickType: "click",
-                        clickText: trackingEvents.formInputFilled,
-                        custom: {
-                          field_type: "phone_number",
-                          field_value: e.target.value,
-                        },
-                      });
-                      if (errors.phone_number) clearErrors("phone_number");
-                    }}
-                  />
-                )}
-              />
-            </Input.Group>
-          </Form.Item>
+              >
+                <span>
+                  Receive updates and confirmation from us on WhatsApp
+                </span>
+              </Checkbox>
+            )}
+          />
+        </Form.Item>
 
-          {/* WhatsApp Consent */}
-          <Form.Item>
-            <Controller
-              name="whatsapp_consent"
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <Checkbox
-                  checked={value}
-                  onChange={(e) => {
-                    onChange(e.target.checked);
-                    trackClickEventHandler({
-                      clickType: "click",
-                      clickText: trackingEvents.formInputFilled,
-                      custom: {
-                        field_type: "whatsapp_consent",
-                        field_value: e.target.checked,
-                      },
-                    });
-                  }}
-                >
-                  <span>
-                    Receive updates and confirmation from us on WhatsApp
-                  </span>
-                </Checkbox>
-              )}
-            />
-          </Form.Item>
-
-          <Form.Item style={{ width: "0px", height: "0px" }}>
-            <TurnstileWidget onTokenObtained={setToken} />
-          </Form.Item>
-
-          <div className={styles.deadline}>
-            <span>Intake 3 Application Deadline - </span>
-            <span className={styles.date}>11th May 2025</span>
-          </div>
-
-          {formError && <div className={styles.formError}>{formError}</div>}
-
-          {/* Submit Button */}
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              loading={loading}
-              disabled={loading}
-              block
-              onClick={() =>
-                trackClickEventHandler({
-                  clickType: "click",
-                  clickText: trackingEvents.waitlistLoginMobileFormSubmit,
-                })
-              }
-            >
-              Start your Application
-            </Button>
-          </Form.Item>
-
-          <div className={styles.terms}>
-            By creating an account I have read and agree to Scaler's{" "}
-            <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
-          </div>
-        </form>
-      </div>
-    </Section>
+        <div className={styles.terms}>
+          By creating an account I have read and agree to Scaler's{" "}
+          <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
+        </div>
+      </form>
+    </div>
   );
 }

@@ -2,13 +2,12 @@
     @include flex-col;
     width: 100%;
     gap: 5rem;
-    margin-top: 10rem;
 
     @include tablet{
-        margin-top: 5rem;
         gap: 2.4rem;
     }
 }
+
 .companyContainerTitle{
     text-align: center;
     font-family: 'Montserrat';
@@ -25,6 +24,7 @@
     }
 
 }
+
 .companyContainerTitle2{
     font-weight: 600;
     color:#1A8452;
@@ -34,6 +34,7 @@
         line-height: 2.4rem;
     }
 }
+
 .companyContainerImage{
     width: 100%;
     display: grid;
@@ -54,6 +55,7 @@
         }
     }
 }
+
 .displayCardContainer{
     @include flex-row;
     width: 100%;
@@ -63,6 +65,7 @@
         gap: 1.6rem;
     }
 }
+
 .highlightTextContainer{
     width: 100%;
     padding:2.4rem;

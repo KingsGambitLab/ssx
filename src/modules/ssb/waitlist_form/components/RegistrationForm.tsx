@@ -13,6 +13,7 @@ import {
   trackingEvents,
 } from "@modules/ssb/waitlist_form/utils/tracking";
 import useUser from "@/hooks/useUser";
+import Section from "@components/common/Section";
 
 import DisplayMobileCard from "@modules/ssb/landing_v2/components/DisplayMobileCard";
 // Types of form steps
@@ -196,30 +197,34 @@ export default function RegistrationForm() {
 
   const renderContent = () => {
     return (
-      <div
-        className={`${styles.formContainer} ${!isFixed ? styles.nonFixed : ""}`}
-        ref={formRef}
-      >
-        {!isTabletOrMobile && (
-          <div className={styles.status}>
-            <div className={styles.statusText1}>SSB 2025</div>
-            <div className={styles.statusText2}>
-              PGP Admission Open for Aug/Sep 2025
+      <Section id="form-container">
+        <div
+          className={`${styles.formContainer} ${
+            !isFixed ? styles.nonFixed : ""
+          }`}
+          ref={formRef}
+        >
+          {!isTabletOrMobile && (
+            <div className={styles.status}>
+              <div className={styles.statusText1}>SSB 2025</div>
+              <div className={styles.statusText2}>
+                PGP Admission Open for Aug/Sep 2025
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {isTabletOrMobile && (
-          <div className={styles.status}>
-            <div className={styles.statusText1}>
-              Admission Open for Aug/Sep 2025
+          {isTabletOrMobile && (
+            <div className={styles.status}>
+              <div className={styles.statusText1}>
+                Admission Open for Aug/Sep 2025
+              </div>
+              <DisplayMobileCard />
             </div>
-            <DisplayMobileCard />
-          </div>
-        )}
+          )}
 
-        {renderForm()}
-      </div>
+          <div className={styles.allForms}>{renderForm()}</div>
+        </div>
+      </Section>
     );
   };
 

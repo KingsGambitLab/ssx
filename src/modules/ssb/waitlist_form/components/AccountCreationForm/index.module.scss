@@ -17,18 +17,17 @@
     margin-bottom: 0.5rem;
     font-family: "Plus Jakarta Sans";
     font-style: normal;
-    font-weight: 700;
     line-height: normal;
     color: #1a8452;
 
     @include tablet {
-        font-size: 2.4rem;
+        font-size: 2rem;
     }
 }
 
 .subtitle {
     color: #666;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-family: "Plus Jakarta Sans";
     font-style: normal;
     font-weight: 500;
@@ -45,6 +44,10 @@
     .date {
         color: #F1511B;
         font-weight: 600;
+    }
+
+    @include tablet {
+        font-size: 1.2rem;
     }
 }
 
@@ -73,6 +76,10 @@
         &:hover {
             text-decoration: underline;
         }
+    }
+
+    @include tablet {
+        font-size: 1.2rem;
     }
 }
 
