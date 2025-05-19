@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { API_BASE_URL } from "@utils/common/url";
 import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
 import { useState, useEffect, useRef } from "react";
@@ -10,7 +12,7 @@ import FormSkeleton from "./FormSkeleton/index";
 import { useLoginContext } from "@context/ssb/LoginContext";
 import { LoginFormData, OtpFormData, FormStep } from "../types/index";
 import { useDeviceType } from "@hooks/useDeviceType";
-import { useUserApi, generateJwt } from "@modules/common/apis";
+import { generateJwt } from "@modules/common/apis";
 import {
   trackEvent,
   trackingSources,
