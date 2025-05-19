@@ -14,23 +14,6 @@
     gap: 2.4rem;
 }
 
-.studentFeatureContainerTitleText1{
-    color: #0A2661;
-    font-family: 'Montserrat';
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 2.8rem;
-    border-radius: 4px;
-    border: 1px solid #83CCA9;
-    background: #E6F7ED;
-    padding: 0.8rem 3.2rem;
-
-    @include tablet{
-        display: none;
-    }
-}
-
 .studentFeatureContainerTitleText2{
     @include flex-col;
     align-items: center;
