@@ -269,12 +269,12 @@ export const BUSINESS_LEADERS = {
     {
       name: "Rajan Anandan",
       image: Rajan.src,
-      company_logo: airtel_logo.src,
+      company_logo: peak_logo.src,
     },
     {
       name: "Sucheta Dalal",
       image: Sucheta.src,
-      company_logo: peak_logo.src,
+      company_logo: airtel_logo.src,
     },
   ]
 };
