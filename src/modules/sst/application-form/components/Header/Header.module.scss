@@ -50,6 +50,10 @@ $header-year-gradient-color: linear-gradient(88deg, #0245b9 4%, #0080ff 102.58%)
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @include mobile {
+    font-size: 2rem;
+  }
 }
 
 .divider {
