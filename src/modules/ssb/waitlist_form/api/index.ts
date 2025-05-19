@@ -3,6 +3,8 @@
 import CaseUtil from "@lib/caseUtil";
 import { ENDPOINTS } from "./endpoints";
 import { apiRequest, HttpMethods } from "@utils/common/apiHelper";
+import { useApi } from "@hooks/useApi";
+import { WaitlistApiResponse, WaitlistFormData } from "@modules/ssb/waitlist_form/types";
 
 export const getOtp = async (
   email: string,
@@ -76,4 +78,48 @@ export const verifyOtp = async (
   const formatted = CaseUtil.toCase("camelCase", response) as VerifyOtpResponse;
 
   return formatted;
+};
+
+export const useWaitlistApi = () => {
+  const { request } = useApi();
+
+  const getWaitlistForms = async () => {
+    const response = await request<WaitlistApiResponse>(
+      HttpMethods.GET,
+      ENDPOINTS.GET_WAITLIST_FORMS
+    );
+    return response;
+  };
+
+  const createProgramApplicant = async () => {
+    const response = await request<any>(
+      HttpMethods.POST,
+      ENDPOINTS.CREATE_PROGRAM_APPLICANT
+    );
+    return response;
+  };
+
+  const submitWaitlistForm = async (data: WaitlistFormData) => {
+
+    const formGroupLabel = 'ssb_waitlist_form_student_IN';
+
+    const payload = {
+      slug: 'school_of_business',
+      form_group_label: formGroupLabel,
+      form_responses: data
+    };
+
+    const response = await request<any>(
+      HttpMethods.PUT,
+      ENDPOINTS.SUBMIT_WAITLIST,
+      payload
+    );
+    return response;
+  };
+
+  return {
+    getWaitlistForms,
+    submitWaitlistForm,
+    createProgramApplicant
+  };
 };
