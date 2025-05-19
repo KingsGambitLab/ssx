@@ -3,7 +3,9 @@
 import { useState, useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Form as AntForm, Input, Select } from "antd";
+import Link from "next/link";
 import styles from "./index.module.scss";
+
 import { WaitlistFormData } from "../../types/index";
 import { useWaitlistApi } from "../../api";
 import { useSsbWaitlistCheck } from "@hooks/useSsbWaitlistCheck";
@@ -101,7 +103,7 @@ export default function PersonalInformationForm({
         await queryClient.invalidateQueries({ queryKey: ["fetch_user_data"] });
         trackFormSubmitStatus({ formStatus: "success" });
         onSubmitSuccess();
-        window.open("/school-of-technology/application", "_blank")?.focus();
+        window.open("/school-of-business/application", "_blank")?.focus();
       } catch (error: any) {
         const errorMessage =
           error.response?.data?.message ||
@@ -205,6 +207,7 @@ export default function PersonalInformationForm({
                           ? undefined
                           : controllerField.value
                       }
+                      defaultValue={field.value}
                       options={field.options?.map((opt) => ({
                         label: opt.label,
                         value: opt.value,
@@ -252,14 +255,22 @@ export default function PersonalInformationForm({
           </div>
           {formError && <div className={styles.formError}>{formError}</div>}
           {formFields.every((field) => field.value) ? (
-            <Button
-              type="primary"
-              onClick={handleButtonClick}
-              loading={isLoading}
-              block
+            <Link
+              href="/school-of-business/application"
+              target="_blank"
+              onClick={() => {
+                trackEvent.click({
+                  clickType: "click",
+                  clickText: trackingEvents.waitlistFormSubmit,
+                  clickSource: trackingSources.waitlistForm,
+                  formType: trackingSources.waitlistForm,
+                  custom: { form_id: `ssb_waitlist_form_student_IN` },
+                });
+              }}
+              className={styles.button}
             >
               Resume Application
-            </Button>
+            </Link>
           ) : (
             <Button
               type="primary"
