@@ -67,7 +67,12 @@
 
 .companyImage {
     margin-top: 1rem;
-    max-width: 9rem;
-    max-height: 3.2rem;
+    width: 12rem;
+    height: 3rem;
     object-fit: contain;
+
+    @include tablet{
+        width: 8rem;
+        height: 2rem;
+    }
 }

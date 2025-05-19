@@ -1,7 +1,6 @@
 .content{
     @include flex-col;
 
-    height:31.822rem;
     width: 85%;
     justify-content: space-between;
     gap: 2.4rem;
@@ -65,7 +64,7 @@
 
     .logo{
         height: 100%;
-        width: auto;
+        width: 20%;
         max-width: 25%;
         object-fit: contain;
 
