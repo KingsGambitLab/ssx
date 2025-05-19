@@ -15,8 +15,6 @@ import styles from "./index.module.scss";
 
 import TurnstileWidget from "@/utils/turnstile/turnstile";
 
-import Section from "@components/common/Section";
-
 import { getOtp } from "@modules/ssb/waitlist_form/api";
 import { LoginFormData } from "@modules/ssb/waitlist_form/types";
 import {
