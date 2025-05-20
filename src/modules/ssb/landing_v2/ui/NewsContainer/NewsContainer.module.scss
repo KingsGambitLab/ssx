@@ -19,6 +19,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.4rem;
+  grid-auto-rows: 1fr; /* Ensure equal height rows */
 
   @include tablet {
     gap: 1.6rem;
@@ -33,6 +34,7 @@
   align-items: flex-start;
   gap: 1rem;
   animation: horizontal-scroll 60s linear infinite;
+  -webkit-animation: horizontal-scroll 60s linear infinite; /* Safari & Chrome */
 
   img {
     width: 100%;
@@ -42,15 +44,27 @@
 
   &--reverse {
     animation-direction: reverse;
+    -webkit-animation-direction: reverse;
   }
 }
 
 @keyframes horizontal-scroll {
   0% {
     transform: translateX(0%);
+    -webkit-transform: translateX(0%);
   }
   100% {
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+  }
+}
+
+@-webkit-keyframes horizontal-scroll {
+  0% {
+    -webkit-transform: translateX(0%);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
   }
 }
 
