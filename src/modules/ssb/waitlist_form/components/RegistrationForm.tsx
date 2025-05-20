@@ -101,7 +101,6 @@ export default function RegistrationForm() {
       whatsapp_consent: data.whatsapp_consent,
     });
     handleStepChange("OTP");
-    console.log("Account Creation Form submitted:", data);
   };
 
   // Handle OTP verification submission
@@ -127,10 +126,7 @@ export default function RegistrationForm() {
     console.error("Verification failed:", error);
   };
 
-  console.log("user", user);
-
   useEffect(() => {
-    console.log("Inside useEffect");
     if (!user) {
       handleStepChange("LOGIN");
     } else {
@@ -148,7 +144,6 @@ export default function RegistrationForm() {
     const fetchUserData = async () => {
       try {
         const jwt = await generateJwt();
-        console.log("jwt", jwt);
         if (jwt) {
           const userDataResponse = await apiRequest<any>(
             HttpMethods.GET,
@@ -156,7 +151,6 @@ export default function RegistrationForm() {
             {},
             { headers: { "X-User-Token": jwt } }
           );
-          console.log("userDataResponse", userDataResponse);
           setUser({
             ...userDataResponse,
             isloggedIn: true,
