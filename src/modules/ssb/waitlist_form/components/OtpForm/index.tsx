@@ -73,8 +73,6 @@ export default function OTPVerificationForm({
       if (!response.userId) {
         throw new Error("Verification failed");
       }
-      // For example:
-      console.log("Verifying OTP:", data.otp);
 
       // If successful:
       onVerificationSuccess();

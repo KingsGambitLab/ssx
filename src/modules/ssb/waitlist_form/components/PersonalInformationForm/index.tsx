@@ -131,8 +131,6 @@ export default function PersonalInformationForm({
     form.submit();
   };
 
-  console.log("formFields", formFields);
-
   if (formFields.length === 0) {
     return <FormSkeleton />;
   }
