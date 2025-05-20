@@ -54,7 +54,7 @@ import HinduDesktop from '@public/images/ssb/hindudesktop.webp';
 import BrainfedDesktop from '@public/images/ssb/brainfeeddesktop.webp';
 import OutlookDesktop from '@public/images/ssb/outlookdesktop.webp';
 import TimeDesktop from '@public/images/ssb/timedesktop.webp';
-import TitleHeadline from '@public/images/ssb/title-top-b10603a026d0d8febd6797db047f49c8418a52f9f2cce2bdf5218b7e9533271a.webp';
+import TitleHeadline from '@public/images/ssb/news_title.webp';
 import uber_with_frame from '@public/images/ssb/uber_with_frame.webp';
 import mckinsey_with_frame from '@public/images/ssb/mckinsey_with_frame.webp';
 import colgate from '@public/images/ssb/colgate.webp';

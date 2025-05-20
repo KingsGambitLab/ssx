@@ -1,28 +1,25 @@
 "use client";
 
+import BusinessLeaderContainer from "@modules/ssb/landing_v2/ui/BusinessLeaderContainer";
+import CompanyContainer from "@modules/ssb/landing_v2/ui/CompanyContainer";
+import DisplayCardContainer from "@modules/ssb/landing_v2/ui/DisplayCardContainer";
+import HeroContent from "@modules/ssb/landing_v2/components/HeroContent/HeroContent";
 import Image from "next/image";
+import InstructorContainer from "@modules/ssb/landing_v2/ui/InstructorContainer";
+import NewsCardContainer from "@modules/ssb/landing_v2/ui/NewsContainer";
+import RegistrationForm from "@modules/ssb/waitlist_form/components/RegistrationForm";
+import SsbCoverImage from "@public/images/ssb/SSB-460_1.webp";
+import StudentFeatureContainer from "@modules/ssb/landing_v2/ui/StudentFeatureContainer";
 import styles from "./page.module.scss";
 
 import { useDeviceType } from "@hooks/useDeviceType";
-
-import RegistrationForm from "@modules/ssb/waitlist_form/components/RegistrationForm";
-
-import HeroContent from "@modules/ssb/landing_v2/components/HeroContent/HeroContent";
-import ssb_cover_image from "@public/images/ssb/SSB-460_1.webp";
-
-import InstructorContainer from "@modules/ssb/landing_v2/ui/InstructorContainer";
-import CompanyContainer from "@modules/ssb/landing_v2/ui/CompanyContainer";
-import BusinessLeaderContainer from "@modules/ssb/landing_v2/ui/BusinessLeaderContainer";
-import StudentFeatureContainer from "@modules/ssb/landing_v2/ui/StudentFeatureContainer";
-import NewsCardContainer from "@modules/ssb/landing_v2/ui/NewsContainer";
-import DisplayCardContainer from "@modules/ssb/landing_v2/ui/DisplayCardContainer";
 
 export default function SchoolOfBusinessV2() {
   const { isTabletOrMobile } = useDeviceType();
   return (
     <>
       <Image
-        src={ssb_cover_image}
+        src={SsbCoverImage}
         alt="School of Business"
         className={styles.bg_image}
         priority
