@@ -1,0 +1,19 @@
+.navbar{
+    @include flex-row;
+    box-sizing: border-box;
+    height:6.4rem;
+    padding: 0.8rem 10.4rem;
+    gap:2.4rem;
+    align-items: center;
+}
+.links{
+    @include flex-row;
+    align-items: flex-start;
+    gap:0.4rem;
+    width:78rem;
+    
+    .link{
+        text-decoration: none;
+        font-size: 1.6rem;
+    }
+}
