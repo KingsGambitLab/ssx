@@ -24,21 +24,11 @@ export default function NewsContainer() {
               alt="Title Headline"
               className={styles.titleHeadline}
             />
-            <img
-              src={NEWS_CONTAINER.titleHeadline}
-              alt="Title Headline"
-              className={styles.titleHeadline}
-            />
           </div>
 
           <div
             className={`${styles.featuredNewsTitleImg} ${styles["featuredNewsTitleImg--reverse"]}`}
           >
-            <img
-              src={NEWS_CONTAINER.titleHeadline}
-              alt="Title Headline"
-              className={styles.titleHeadline}
-            />
             <img
               src={NEWS_CONTAINER.titleHeadline}
               alt="Title Headline"
