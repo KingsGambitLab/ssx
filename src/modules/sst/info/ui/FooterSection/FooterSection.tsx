@@ -35,8 +35,14 @@ const FooterSection: React.FC = () => {
           <span>Take the First Step </span>towards becoming a part of{" "}
           <span>the Top 1% of Software Engineers in the country!</span>
         </div>
-        <Link href={"/school-of-technology"} className={styles.link}>
-          Know More
+        <Link
+          onClick={() =>
+            trackEventHandler("/school-of-technology", "Know more about SST")
+          }
+          href={"/school-of-technology"}
+          className={styles.link}
+        >
+          Know more about SST
           <Image
             className={styles.linkIcon}
             src={ArrowRightUp}
