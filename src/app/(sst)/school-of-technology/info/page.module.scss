@@ -19,9 +19,10 @@ $info-container-background-color: #fafafa;
   max-width: 128rem;
   margin: 0 auto;
   background-color: $info-container-background-color;
-
+  
   @include bp(1440px) {
-    padding: 0 10.4rem; 
+    width: 100%;
+    margin: 0 auto;
   }
 
   @include tablet {

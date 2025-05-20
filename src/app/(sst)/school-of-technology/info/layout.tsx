@@ -11,6 +11,7 @@ import {
 } from "@/components/common/Analytics/constants";
 
 import { getAllExperiments } from "@utils/abex/experiment";
+import FooterSection from "@modules/sst/info/ui/FooterSection";
 
 export default async function Layout({
   children,
@@ -30,6 +31,7 @@ export default async function Layout({
         <MicrosoftClarity />
       </Suspense>
       {children}
+      <FooterSection />
     </>
   );
 }
