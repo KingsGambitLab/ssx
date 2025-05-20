@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useApplicationForm } from '@hooks/useApplicationForm';
+import { useWorkflowContext } from '@context/sst/WorkflowContext';
+
 import useUser from '@hooks/useUser';
+import { useApplicationForm } from '@hooks/useApplicationForm';
 
 import OtpStep from '@modules/sst/application-form/components/OtpStep';
 import PhoneEmailStep from '@modules/sst/application-form/components/PhoneEmailStep';
@@ -20,14 +22,19 @@ import {
 
 import styles from "./LoginForm.module.scss";
 
-
 export default function LoginForm() {
   const [step, setStep] = useState<ApplicationFormStep>('application-fees');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const { showWaitlistForm } = useApplicationForm();
   const { data: userData } = useUser();
-  
+
+  const {
+    fetchAllWorkflowSteps,
+    fetchCurrentWorkflowStep,
+    currentStep
+  } = useWorkflowContext();
+
   const {
     handleSubmit: handlePhoneEmailSubmit,
     formState: { errors: phoneEmailErrors },
@@ -86,13 +93,25 @@ export default function LoginForm() {
     console.error('Verification failed:', error);
   }
 
-  const handleWaitlistSubmitSuccess = () => {
-    setStep('waitlist-form');
+  const handleWaitlistSubmitSuccess = async () => {
+    setStep('application-fees');
   }
 
   useEffect(() => {
     setInitialStep();
   }, [userData?.isloggedIn, showWaitlistForm]);
+
+  useEffect(() => {
+    if(userData?.isloggedIn) {
+      fetchAllWorkflowSteps();
+    }
+  }, [step, userData?.isloggedIn])
+
+  useEffect(() => {
+    if(currentStep?.id) {
+      fetchCurrentWorkflowStep(currentStep.id);
+    }
+  }, [currentStep?.id])
 
   return (
     <div className={styles.container}>

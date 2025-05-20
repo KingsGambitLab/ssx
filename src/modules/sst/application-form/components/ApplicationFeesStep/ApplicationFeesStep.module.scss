@@ -14,6 +14,7 @@ $application-fees-step-application-fee-value-color: #616161;
   border-radius: 1.4rem;
   border: 0.1rem solid $application-fees-step-border-color;
   background: $white-color;
+  box-shadow: 0 0.8rem 1.6rem 0 $application-fees-step-box-shadow;
 
   @include mobile {
     max-width: 100%;
