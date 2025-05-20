@@ -5,12 +5,7 @@ import React, { useEffect, useState } from "react";
 import { UpcomingIntakeDetailsData } from "@modules/sst/info/types";
 import { getUpcomingIntakeDetailsData } from "@modules/sst/info/api";
 import { Table } from "antd";
-import {
-  comparisonData,
-  DataItem,
-  dateOfInterview,
-  tableColumns,
-} from "./data";
+import { DataItem, dateOfInterview, tableColumns } from "./data";
 import Section from "@components/common/Section";
 
 import styles from "./KeyDates.module.scss";
