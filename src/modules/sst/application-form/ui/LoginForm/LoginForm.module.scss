@@ -5,6 +5,14 @@
   position: fixed;
   right: 10.2rem;
   top: 11.4rem;
+  max-height: 80vh;
+  overflow-x: scroll;
+  border-radius: 1.4rem;
+  box-shadow: 0 .8rem 1.6rem 0 rgba(18,18,18,.16);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @include mobile {
     position: relative;
@@ -14,5 +22,6 @@
     padding: 0 2rem;
     right: 0;
     top: 0;
+    max-height: 100vh;
   }
 }

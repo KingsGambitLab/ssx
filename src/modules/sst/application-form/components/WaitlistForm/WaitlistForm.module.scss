@@ -11,9 +11,10 @@ $waitlist-form-error-font-color: #ff4d4f;
 .container {
   max-width: 45rem;
   border-radius: 1.4rem;
+  background: $white-color;
+  overflow-x: hidden;
   box-shadow: 0 0.8rem 1.6rem 0 $waitlist-form-box-shadow;
   border: 0.1rem solid $waitlist-form-border-color;
-  background: $white-color;
 
   @include mobile {
     max-width: 100%;
@@ -203,3 +204,11 @@ $waitlist-form-error-font-color: #ff4d4f;
   text-align: center;
   font-size: 1.4rem;
 }  
+
+.formSkeleton {
+  width: 40rem !important;
+
+  @include mobile {
+    width: 100% !important;
+  }
+}

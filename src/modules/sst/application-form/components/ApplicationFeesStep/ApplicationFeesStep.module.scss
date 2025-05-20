@@ -1,0 +1,215 @@
+$application-fees-step-box-shadow: rgba(18, 18, 18, 0.16);
+$application-fees-step-border-color: #e4e4e4;
+$application-fees-step-title-color: #083ca0;
+$application-fees-step-title-font-size: 2.8rem;
+$application-fees-step-secure-payment-background: linear-gradient(263deg, #25af6e 19.21%, #1d925b 89.08%);
+$application-fees-step-user-info-background: #f2f8ff;
+$application-fees-step-user-detail-label-color: #3a3a3a;
+$application-fees-step-user-detail-value-color: #171717;
+$application-fees-step-user-details-separator-background: #eaeff4;
+$application-fees-step-application-fee-value-color: #616161;
+
+.container {
+  max-width: 45rem;
+  border-radius: 1.4rem;
+  border: 0.1rem solid $application-fees-step-border-color;
+  background: $white-color;
+
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+.content {
+  @include flex-col;
+  
+  padding: 2rem 2.4rem 2.4rem 2.4rem;
+  align-items: flex-start;
+  gap: 3.2rem;
+  align-self: stretch;
+
+  @include mobile {
+    padding: 1.6rem 2rem 2rem 2rem;
+  }
+}
+
+.formWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+}
+
+.header {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 2rem;
+  align-self: stretch;
+}
+
+.titleWrapper {
+  @include flex-row;
+
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  width: 100%;
+}
+
+.title {
+  color: $application-fees-step-title-color;
+  font-size: $application-fees-step-title-font-size;
+  font-weight: $semi-bold-font-weight;
+}
+
+.securePayment {
+  @include flex-row;
+
+  padding: 0.6rem 0.8rem;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.4rem;
+  background: $application-fees-step-secure-payment-background;
+}
+
+.securePaymentText {
+  color: $white-color;
+  font-size: $desktop-font-card-subtitle;
+  font-weight: $bold-font-weight;
+  line-height: 1.57rem;
+}
+
+.userDetailsSection {
+  @include flex-col;
+
+  padding: 0.8rem 1.6rem;
+  align-items: flex-start;
+  gap: 1.2rem;
+  align-self: stretch;
+  border-radius: $border-radius-large;
+  background: $application-fees-step-user-info-background;
+}
+
+.userDetailsWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 0.6rem;
+  align-self: stretch;
+}
+
+.userDetail {
+  @include flex-row;
+
+  align-items: flex-start;
+  gap: 0.8rem;
+  align-self: stretch;
+}
+
+.userDetailLabel {
+  color: $application-fees-step-user-detail-label-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $default-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.userDetailValue {
+  color: $application-fees-step-user-detail-value-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $bold-font-weight;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+}
+
+.userDetailSeparator {
+  color: $application-fees-step-user-detail-value-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $default-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.userDetailsSectionSeparator {
+  height: 0.2rem;
+  align-self: stretch;
+  background: $application-fees-step-user-details-separator-background;
+  width: 100%;
+}
+
+.invoiceInfo {
+  color: $application-fees-step-user-detail-label-color;
+  font-size: $desktop-font-card-body;
+  font-style: italic;
+  font-weight: $default-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.feesBreakdownSection {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+}
+
+.feesBreakdownHeading {
+  @include flex-row;
+
+  align-items: center;
+  gap: 1.2rem;
+  align-self: stretch;
+}
+
+.feesBreakdownHeadingText {
+  color: $application-fees-step-user-detail-value-color;
+  font-size: $desktop-font-body-tertiary;
+  font-weight: $bold-font-weight;
+  line-height: 2.3rem;
+  letter-spacing: 0.01rem;
+  flex: 1;
+}
+
+.feesBreakdownLine {
+  height: 0.1rem;
+  background: $application-fees-step-user-details-separator-background;
+  width: 100%;
+  flex: 1;
+}
+
+.applicationFees {
+  @include flex-row;
+
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  width: 100%;
+}
+
+.applicationFeesTitle,
+.discountSectionTitle {
+  color: $application-fees-step-user-detail-label-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $default-font-weight;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+}
+
+.applicationFeesValue {
+  color: $application-fees-step-application-fee-value-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $bold-font-weight;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+}
+
+.discountSection {
+  @include flex-row;
+
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}

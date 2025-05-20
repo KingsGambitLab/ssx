@@ -30,3 +30,5 @@ export const EngagementStripData = [
     desc: "93% of students received internship in just 1.5 year"
   }
 ]
+
+export const APPLICATION_FORM_STUDENT_DETAIL_LABEL = 'application_form_student_details';

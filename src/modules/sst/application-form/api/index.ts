@@ -12,6 +12,8 @@ import {
   StudentPersonalDetailsFormResponse,
 } from "@modules/sst/application-form/types";
 
+import { APPLICATION_FORM_STUDENT_DETAIL_LABEL } from '../utils/constants';
+
 export const getOtp = async ({email, phoneNumber, countryCode, consent, turnstileResponse}: getOtpProps) => {
   const response = await apiRequest<any>(
     HttpMethods.POST,
@@ -101,11 +103,23 @@ export const useApplicationFormApi = () => {
     return formatted;
   };
 
-  const submitFormResponse = async (data: any) => {
+  const submitPersonalDetailsFormResponse = async (data: any) => {
+    const { force_update, ...rest } = data;
+    
     const response = await request<any>(
-      HttpMethods.POST,
-      `${ENDPOINTS.SUBMIT_FORM_RESPONSE}`,
-      data
+      HttpMethods.PUT,
+      `${ENDPOINTS.SUBMIT_STUDENT_DETAILS_FORM_RESPONSE}`,
+      {
+        slug: 'school_of_tech',
+        form_group_label: APPLICATION_FORM_STUDENT_DETAIL_LABEL,
+        form_responses: {
+          ...rest
+        },
+        options: {
+          force_update: force_update,
+        },
+        auto_save: false,
+      }
     );
 
     return response;
@@ -114,6 +128,6 @@ export const useApplicationFormApi = () => {
   return {
     getApplicationFormData,
     getStudentPersonalDetailsForm,
-    submitFormResponse
+    submitPersonalDetailsFormResponse
   };
 };

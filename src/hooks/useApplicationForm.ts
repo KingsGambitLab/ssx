@@ -96,7 +96,7 @@ export const useApplicationForm = () => {
   // If the user has not submitted waitlist form,
   // then student personal details form will be fetched
   useEffect(() => {
-    // if (!showWaitlistForm || !userData?.isloggedIn) return;
+    if (!showWaitlistForm || !userData?.isloggedIn) return;
 
     const fetchStudentPersonalDetailsForm = async () => {
       const response = await getStudentPersonalDetailsForm();

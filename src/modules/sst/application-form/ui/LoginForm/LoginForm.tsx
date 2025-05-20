@@ -4,25 +4,29 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useApplicationForm } from '@hooks/useApplicationForm';
+import useUser from '@hooks/useUser';
 
 import OtpStep from '@modules/sst/application-form/components/OtpStep';
 import PhoneEmailStep from '@modules/sst/application-form/components/PhoneEmailStep';
 import WaitlistForm from '@modules/sst/application-form/components/WaitlistForm';
+import ApplicationFeesStep from '@modules/sst/application-form/components/ApplicationFeesStep';
+
 import {
   ApplicationFormStep,
   OtpStepFormData,
   PhoneEmailStepFormData,
   WaitlistStepFormData
 } from '@modules/sst/application-form/types';
-import { trackAllFormFields } from '@modules/sst/application-form/utils/tracking';
 
 import styles from "./LoginForm.module.scss";
 
+
 export default function LoginForm() {
-  const [step, setStep] = useState<ApplicationFormStep>('waitlist-form');
+  const [step, setStep] = useState<ApplicationFormStep>('application-fees');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const { showWaitlistForm } = useApplicationForm();
+  const { data: userData } = useUser();
   
   const {
     handleSubmit: handlePhoneEmailSubmit,
@@ -51,11 +55,20 @@ export default function LoginForm() {
   const {
     handleSubmit: handleWaitlistSubmit,
     formState: { errors: waitlistErrors },
-    setError: setWaitlistErrors,
     control: waitlistControl
   } = useForm<WaitlistStepFormData>({
     mode: 'onChange',
   })
+
+  const setInitialStep = () => {
+    if(userData?.isloggedIn && !showWaitlistForm) {
+      setStep('application-fees');
+    } else if(userData?.isloggedIn && showWaitlistForm) {
+      setStep('waitlist-form');
+    } else {
+      setStep('phone-email');
+    }
+  }
 
   const onPhoneEmailSubmit = (data: PhoneEmailStepFormData) => {
     console.log("onPhoneEmailSubmit data", data);
@@ -73,9 +86,13 @@ export default function LoginForm() {
     console.error('Verification failed:', error);
   }
 
+  const handleWaitlistSubmitSuccess = () => {
+    setStep('waitlist-form');
+  }
+
   useEffect(() => {
-    trackAllFormFields('phone-email-form');
-  }, []);
+    setInitialStep();
+  }, [userData?.isloggedIn, showWaitlistForm]);
 
   return (
     <div className={styles.container}>
@@ -102,16 +119,30 @@ export default function LoginForm() {
       )}
       {(step === 'waitlist-form' || showWaitlistForm) && (
         <WaitlistForm
-          onSubmitSuccess={() => {
-            console.log("onSubmitSuccess");
-          }}
+          onSubmitSuccess={handleWaitlistSubmitSuccess}
           errors={waitlistErrors}
-          setError={setWaitlistErrors}
           handleSubmit={handleWaitlistSubmit}
           control={waitlistControl}
         />
-      )
-      }
+      )}
+      {step === 'application-fees' && (
+        <ApplicationFeesStep
+          userDetails={[
+            {
+              label: "Name",
+              value: "Aayush"
+            },
+            {
+              label: "Contact Number",
+              value: "+91-xxxxxxx017"
+            },
+            {
+              label: "Email",
+              value: "Aayush@gmail.com"
+            } 
+          ]}
+        />
+      )}
     </div>
   );
 }

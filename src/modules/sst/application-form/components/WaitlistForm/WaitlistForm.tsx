@@ -1,6 +1,16 @@
 import { useState } from "react";
-import { Button, Checkbox, DatePicker, Form, Input, Select } from "antd";
+import {
+  Button,
+  Checkbox,
+  DatePicker,
+  Form,
+  Input,
+  Select,
+  Skeleton,
+} from "antd";
+import dayjs from 'dayjs';
 import { Controller } from "react-hook-form";
+import { useQueryClient } from '@tanstack/react-query';
 
 import { useApplicationForm } from "@hooks/useApplicationForm";
 import { useApplicationFormApi } from "@modules/sst/application-form/api";
@@ -19,65 +29,95 @@ import styles from "./WaitlistForm.module.scss";
 export default function WaitlistForm({
   onSubmitSuccess,
   errors,
-  setError,
   handleSubmit,
-  control
+  control,
 }: WaitlistStepProps) {
   const { studentPersonalDetailsForm } = useApplicationForm();
-  const { submitFormResponse } = useApplicationFormApi();
+  const { submitPersonalDetailsFormResponse } = useApplicationFormApi();
   const [formError, setFormError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const queryClient = useQueryClient();
+
+  const formatDOB = (value: string) => {
+    const date = dayjs(value);
+    return date.format('YYYY-MM-DD');
+  };
+
+  const formatWaitlistFormData = (data: WaitlistStepFormData) => {
+    const dobFormField = studentPersonalDetailsForm.find(field => field.title === "DOB");
+
+    return {
+      ...data,
+      [dobFormField?.id as string]: formatDOB(data[dobFormField?.id as string] as string),
+    };
+  };
 
   const handleFormSubmit = async (data: WaitlistStepFormData) => {
     setIsLoading(true);
     setFormError(null);
 
+    const formattedData = formatWaitlistFormData(data);
+
+    console.log("formattedData", formattedData);
     try {
-      await submitFormResponse(data);
+      await submitPersonalDetailsFormResponse(formattedData);
+      await queryClient.invalidateQueries({ queryKey: ['fetch_user_data'] });
       onSubmitSuccess();
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Something went wrong. Please try again.';
+      const errorMessage =
+        error.response?.data?.message ||
+        "Something went wrong. Please try again.";
       setFormError(errorMessage);
     } finally {
       setIsLoading(false);
     }
+  };
 
-  }
-
-  const renderField = (field: FormattedFormFields, controllerField: any, error: any) => {
-    if (field.type === 'select') {
+  const renderField = (
+    field: FormattedFormFields,
+    controllerField: any,
+    error: any
+  ) => {
+    if (field.type === "select") {
       return (
         <Select
           {...controllerField}
           className={styles.select}
           placeholder={field.placeholder}
-          status={error ? 'error' : undefined}
+          status={error ? "error" : undefined}
+          getPopupContainer={(triggerNode) =>
+            triggerNode.parentNode as HTMLElement
+          }
           options={field.options?.map((opt: { label: string; value: string }) => ({
             label: opt.label,
-            value: opt.value
+            value: opt.value,
           }))}
         />
       );
-    } else if (field.type === 'date') {
+    } else if (field.type === "date") {
       return (
         <DatePicker
           {...controllerField}
           className={styles.datePicker}
           placeholder={`${field.placeholder}*`}
-          status={error ? 'error' : undefined}
-          format="DD/MM/YYYY"
+          status={error ? "error" : undefined}
+          format="YYYY-MM-DD"
+          getPopupContainer={(triggerNode) =>
+            triggerNode.parentNode as HTMLElement
+          }
         />
-      )
+      );
     } else {
       return (
         <Input
           {...controllerField}
           type={field.type}
           placeholder={field.placeholder}
-          status={error ? 'error' : undefined}
+          status={error ? "error" : undefined}
           className={styles.input}
         />
-        );
+      );
     }
   };
 
@@ -88,49 +128,67 @@ export default function WaitlistForm({
       <Header />
       <div className={styles.content}>
         <div className={styles.formWrapper}>
-            <div className={styles.titleWrapper}>
-              <div className={styles.title}>
-                Student Details
-              </div>
-              <div className={styles.subtitle}>
-                Enter your details to proceed
-              </div>
+          <div className={styles.titleWrapper}>
+            <div className={styles.title}>Student Details</div>
+            <div className={styles.subtitle}>
+              Enter your details to proceed
             </div>
+          </div>
 
-            <form id="waitlist-form" onSubmit={handleSubmit(handleFormSubmit)} className={styles.form}>
+          {/* Form Skeleton */}
+          <Skeleton
+            loading={!studentPersonalDetailsForm || studentPersonalDetailsForm.length === 0}
+            active
+            paragraph={{ rows: 9 }}
+            className={styles.formSkeleton}
+          >
+            <form
+              id="waitlist-form"
+              onSubmit={handleSubmit(handleFormSubmit)}
+              className={styles.form}
+            >
               <div className={styles.formFields}>
                 {studentPersonalDetailsForm.map((field) => (
                   <Form.Item
-                    className={field.width === 'long' ? styles.inputFullWidth : ''}
+                    key={field.id}
+                    className={field.width === "long" ? styles.inputFullWidth : ""}
                     required={field.required}
-                    validateStatus={errors[field.title] ? 'error' : ''}
-                    help={errors[field.title]?.message}
+                    validateStatus={errors[field.id] ? "error" : ""}
+                    help={errors[field.id]?.message}
                   >
                     <Controller
-                      name={field.title}
+                      name={field.id}
                       control={control}
                       rules={{
                         required: field.required ? `${field.title} is required` : false,
                         validate: {
                           fieldValidation: (value) => {
-                            if (field.type === 'select' && field.title.toLowerCase().includes('grad')) {
-                              return value ? true : 'Please select your graduation year';
-                            } else if (field.type === 'text') {
-                              
+                            if (
+                              field.type === "select" &&
+                              field.title.toLowerCase().includes("grad")
+                            ) {
+                              return value ? true : "Please select your graduation year";
+                            } else if (field.type === "text") {
+                              if (typeof value !== "string" || value.trim() === "") {
+                                return "This field must be a valid string";
+                              }
                             }
                             return true;
-                          }
+                          },
                         },
-                        pattern: field.title.toLowerCase().includes('email') 
+                        pattern: field.title.toLowerCase().includes("email")
                           ? {
                               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                              message: 'Please enter a valid email address'
+                              message: "Please enter a valid email address",
                             }
-                          : undefined
+                          : field.type === "text" ? {
+                            value: /^[A-Za-z\s]+$/,
+                            message: "Only alphabets are allowed",
+                          } : undefined,
                       }}
-                      render={({ field: controllerField, fieldState: { error } }) => (
+                      render={({ field: controllerField, fieldState: { error } }) =>
                         renderField(field, controllerField, error)
-                      )}
+                      }
                     />
                   </Form.Item>
                 ))}
@@ -138,29 +196,25 @@ export default function WaitlistForm({
 
               {/* student consent checkbox */}
               <Form.Item
-                validateStatus={errors.user_eligibility_consent ? "error" : ""}
-                help={errors.user_eligibility_consent?.message}
+                validateStatus={errors.force_update ? "error" : ""}
+                help={errors.force_update?.message}
               >
                 <Controller
-                  name="user_eligibility_consent"
+                  name="force_update"
                   control={control}
-                  defaultValue={true}
-                  rules={{ 
-                    validate: (value) => value === true || "You must confirm eligibility to proceed." 
-                  }}
+                  defaultValue={false}
                   render={({ field }) => (
                     <Checkbox
-                      name="user_eligibility_consent"
+                      name="force_update"
                       className={styles.eligibilityCheckbox}
                       checked={field.value}
                       onChange={(e) => {
                         field.onChange(e.target.checked);
                       }}
                     >
-                      I confirm the candidate is ≤20 years old,
-                      meets eligibility (Maths ≥60% in 12th or relevant
-                      projects/achievement), and has not violated any NSET
-                      attempts limits.
+                      I confirm the candidate is ≤20 years old, meets eligibility
+                      (Maths ≥60% in 12th or relevant projects/achievement), and has not
+                      violated any NSET attempts limits.
                     </Checkbox>
                   )}
                 />
@@ -181,9 +235,10 @@ export default function WaitlistForm({
                   Submit
                 </Button>
               </div>
-          </form>
-          
-          <Footer />
+            </form>
+
+            <Footer />
+          </Skeleton>
         </div>
       </div>
     </div>

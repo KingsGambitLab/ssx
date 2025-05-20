@@ -118,12 +118,18 @@ export type getOtpProps = {
 export type WaitlistStepProps = {
   onSubmitSuccess: () => void;
   errors: FieldErrors<WaitlistStepFormData>;
-  setError: UseFormSetError<WaitlistStepFormData>;
   handleSubmit: UseFormHandleSubmit<WaitlistStepFormData>;
   control: any;
 }
 
-export type ApplicationFormStep = 'phone-email' | 'otp' | 'waitlist-form';
+export type ApplicationFeesStepProps = {
+  userDetails: Array<{
+    label: string;
+    value: string;
+  }>;
+}
+
+export type ApplicationFormStep = 'phone-email' | 'otp' | 'waitlist-form' | 'application-fees';
 
 export type VerifyOtpResponse = {
   userId: number;
@@ -144,10 +150,11 @@ export type ApplicationFormDataResponse = {
 // todo: have to replace this with student details form data
 export type WaitlistStepFormData = {
   [key: string]: string | boolean;
-  user_eligibility_consent: boolean;
+  force_update: boolean;
 }
 
 export type StudentPersonalDetailsFormResponse = {
   data: FormGroup[];
   included: FormFields[];
 }
+
