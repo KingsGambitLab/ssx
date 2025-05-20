@@ -31,18 +31,6 @@ export const useSsbWaitlistCheck = () => {
       .sort((a, b) => a.attributes.order - b.attributes.order) as WaitlistForm[];
   };
 
-  // const checkFormGroupCompletion = (response: WaitlistApiResponse) => {
-  //   const studentGroup = response.data.find((g: WaitlistFormGroup) => g.attributes.label.includes('student'));
-
-  //   if (!studentGroup) return false;
-
-  //   const studentForms = processFormGroup(studentGroup, response)
-    
-  //   const isStudentComplete = studentForms.every((form: WaitlistForm) => form.attributes.response !== null);
-
-  //   return isStudentComplete;
-  // }
-
   // Create program applicant first when user is logged in
   useEffect(() => {
     const initProgramApplicant = async () => {

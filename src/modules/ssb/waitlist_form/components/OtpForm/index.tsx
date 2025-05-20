@@ -90,7 +90,7 @@ export default function OTPVerificationForm({
     }
   };
 
-  const handleRetryOTP = async (token: string = "XXXX.DUMMY.TOKEN.XXXX") => {
+  const handleRetryOTP = async (token: string) => {
     if (!selectedChannel) return false;
     try {
       const success = await retryOtp(

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --port 7070",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "build-stats": "cross-env ANALYZE=true npm run build",
     "start": "next start",
