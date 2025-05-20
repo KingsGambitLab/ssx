@@ -1,0 +1,43 @@
+.businessLeaderContainer{
+    @include flex-col;
+    gap: 2.4rem;
+
+    @include tablet{
+        gap: 1.6rem;
+    }
+}
+
+.businessLeaderCardContainer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
+
+    @include tablet{
+        gap: 0.8rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.businessLeaderContainerTitle{
+    @include flex-col;
+    font-size: 4rem;
+    align-items: center;
+    line-height: 4.8rem;
+    font-family: 'Montserrat';
+
+    @include tablet{
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+    }
+}
+
+.businessLeaderContainerTitleText1{
+    color:#171717;
+    font-weight: 400;
+}
+
+.businessLeaderContainerTitleText2{
+    color: #1A8452;
+    font-weight: 600;
+}
