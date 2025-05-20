@@ -13,3 +13,17 @@ export type TrackingProps = {
   clickSource?: string;
   custom?: object;
 };
+
+export interface UpcomingIntakeDetailsData {
+  header: string;
+  deadline: string;
+  testDate: string;
+  resultDate: string;
+  offerReleaseDate: string;
+  testId: string;
+  status: string;
+}
+
+export interface UpcomingIntakeDetailsResponse {
+  data: UpcomingIntakeDetailsData;
+}
