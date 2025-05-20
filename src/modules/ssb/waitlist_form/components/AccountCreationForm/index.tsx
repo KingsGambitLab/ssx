@@ -292,7 +292,7 @@ export default function AccountCreationForm({
           </Input.Group>
         </Form.Item>
 
-        <Form.Item style={{ width: "0px", height: "0px" }}>
+        <Form.Item>
           <TurnstileWidget onTokenObtained={setToken} />
         </Form.Item>
 
