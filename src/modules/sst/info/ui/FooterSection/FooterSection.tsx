@@ -11,10 +11,10 @@ import {
   pageTrackingSources,
 } from "@modules/sst/info/utils/tracking";
 
-import ArrowRightUp from "@public/images/sst/svg/arrow-right-up-white.svg";
 import FooterBg from "@public/images/sst/webp/footer-bg.webp";
 
 import styles from "./FooterSection.module.scss";
+import { FOOTER_DATA } from "./data";
 
 const FooterSection: React.FC = () => {
   const trackEventHandler = (text: string, link: string) => {
@@ -31,21 +31,20 @@ const FooterSection: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.text}>
-          <span>Take the First Step </span>towards becoming a part of{" "}
-          <span>the Top 1% of Software Engineers in the country!</span>
-        </div>
+        <div className={styles.text}>{FOOTER_DATA.text}</div>
         <Link
           onClick={() =>
-            trackEventHandler("/school-of-technology", "Know more about SST")
+            trackEventHandler("/school-of-technology", FOOTER_DATA.ctaText)
           }
           href={"/school-of-technology"}
           className={styles.link}
         >
-          Know more about SST
+          {FOOTER_DATA.ctaText}
           <Image
+            width={40}
+            height={40}
             className={styles.linkIcon}
-            src={ArrowRightUp}
+            src={FOOTER_DATA.ctaIcon}
             alt="arrow-right-up"
           />
         </Link>
