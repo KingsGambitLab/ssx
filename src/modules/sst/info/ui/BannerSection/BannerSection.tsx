@@ -1,10 +1,12 @@
 import React from "react";
+import Image from "next/image";
+
+import { BANNER_CARDS, HEADER, LOGOS } from "./data";
+
+import BannerCard from "@modules/sst/info/components/BannerCard";
+import Section from "@components/common/Section";
 
 import styles from "./BannerSection.module.scss";
-import Section from "@components/common/Section";
-import { BANNER_CARDS, LOGOS } from "./data";
-import BannerCard from "@modules/sst/info/components/BannerCard";
-import Image from "next/image";
 
 export default function BannerSection() {
   return (
@@ -12,13 +14,8 @@ export default function BannerSection() {
       <div className={styles.bgImage}></div>
       <div className={styles.container}>
         <div className={styles.content}>
-          <div className={styles.title}>
-            <span>India's Ivy League</span> <br /> for Computer Science
-            Engineering
-          </div>
-          <div className={styles.subtitle}>
-            Industry-integrated Undergraduate Programme Built by Leaders from
-          </div>
+          <div className={styles.title}>{HEADER.title}</div>
+          <div className={styles.subtitle}>{HEADER.subtitle}</div>
           <div className={styles.logos}>
             {LOGOS.map(({ src, alt }) => {
               return (

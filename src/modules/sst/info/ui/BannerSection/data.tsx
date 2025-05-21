@@ -70,3 +70,12 @@ export const LOGOS = [
     alt: "adobe-logo",
   },
 ];
+
+export const HEADER = {
+  title: (
+    <>
+      <span>India's Ivy League</span> <br /> for Computer Science Engineering
+    </>
+  ),
+  subtitle: "Industry-integrated Undergraduate Programme Built by Leaders from",
+};
