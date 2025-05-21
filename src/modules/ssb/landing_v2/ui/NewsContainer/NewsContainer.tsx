@@ -18,23 +18,13 @@ export default function NewsContainer() {
     <Section section_class="news-container" id="news-container">
       <div className={`${styles.newsContainer} news-section`}>
         <div className={styles.headlineContainer}>
-          <div className={styles.featuredNewsTitleImg}>
-            <img
-              src={NEWS_CONTAINER.titleHeadline}
-              alt="Title Headline"
-              className={styles.titleHeadline}
-            />
+          <div className={styles.titleHeadline}>
+            {NEWS_CONTAINER.titleHeadline}
+            <span className={styles.titleHightlight}>
+              {NEWS_CONTAINER.titleHightlight}
+            </span>
           </div>
-
-          <div
-            className={`${styles.featuredNewsTitleImg} ${styles["featuredNewsTitleImg--reverse"]}`}
-          >
-            <img
-              src={NEWS_CONTAINER.titleHeadline}
-              alt="Title Headline"
-              className={styles.titleHeadline}
-            />
-          </div>
+          <div className={styles.subtitle}>{NEWS_CONTAINER.subtitle}</div>
         </div>
 
         <div className={styles.newsCardContainer}>
