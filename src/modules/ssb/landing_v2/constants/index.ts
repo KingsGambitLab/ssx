@@ -327,7 +327,9 @@ export const STUDENT_FEATURE_CONTAINER = {
 }
 
 export const NEWS_CONTAINER = {
-  titleHeadline: TitleHeadline.src,
+  titleHeadline: 'Featured in the ',
+  titleHightlight: 'News',
+  subtitle: "See what Scaler has been up to and it’s presence in articles published in the news",
   newsCards: [
     {
       image: HinduDesktop,
