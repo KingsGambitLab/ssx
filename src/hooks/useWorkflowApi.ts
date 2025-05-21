@@ -14,7 +14,16 @@ const ENDPOINTS = {
   CURRENT_WORKFLOW_STEP: (stepId: number) => `${API_BASE_URL}/api/v3/programs/${UG_PROGRAM_SLUG}/workflow_steps/${stepId}/?workflow_group_slug=school-of-tech-v3`,
   PAYMENT_PLAN_DETAILS: (paymentPlanId: number) => `${API_BASE_URL}/api/v3/payments/plans/${paymentPlanId}`,
   APPLY_COUPON: `${API_BASE_URL}/programs/referrals`,
-  PAYMENT_PLAN_ORDER: `${API_BASE_URL}/payments/order`
+  REMOVE_COUPON: (paymentPlanId: number) => `${API_BASE_URL}/programs/referrals/${paymentPlanId}`,
+  PAYMENT_PLAN_ORDER: `${API_BASE_URL}/payments/order`,
+  USER_CURRENT_COUPON_CODE: `${API_BASE_URL}/programs/referrals/fetch_coupon`,
+  STEP_DETAILS: (stepIds: number[]) => {
+    let url = `${API_BASE_URL}/api/v3/interviewbit_form_groups?search_by=id`;
+    stepIds.forEach(id => {
+      url += `&id[]=${id}`;
+    });
+    return url;
+  }
 }
 
 export const useWorkflowApi = () => {
@@ -123,8 +132,8 @@ export const useWorkflowApi = () => {
 
     try {
       const response = await request<any>(
-        HttpMethods.GET,
-        ENDPOINTS.PAYMENT_PLAN_ORDER,
+        HttpMethods.POST,
+        ENDPOINTS.PAYMENT_PLAN_ORDER, 
         params
       );
 
@@ -139,11 +148,63 @@ export const useWorkflowApi = () => {
     }
   }
 
+  const removeCouponApi = async (paymentPlanId: number) => {
+    try {
+      const response = await request<any>(
+        HttpMethods.DELETE,
+        ENDPOINTS.REMOVE_COUPON(paymentPlanId),
+        {
+          program_slug: UG_PROGRAM_SLUG,
+        },
+      );
+      return response;
+    } catch (error) {
+      console.error('Error removing coupon:', error);
+      throw error;
+    }
+  }
+
+  const fetchUserCurrentCouponCodeApi = async (paymentPlanId: number, couponCode?: string) => {
+    if (couponCode) { 
+      return;
+    }
+    try {
+      const response = await request<any>(
+        HttpMethods.GET,
+        ENDPOINTS.USER_CURRENT_COUPON_CODE,
+        {
+          plan_id: paymentPlanId,
+          program_slug: UG_PROGRAM_SLUG,
+        }
+      );
+      return response;
+    } catch (error) {
+      console.error('Error fetching user current coupon code:', error);
+      throw error;
+    }
+  }
+
+  const fetchStepDetailsApi = async (stepIds: number[]) => {
+    try {
+      const response = await request<any>(
+        HttpMethods.GET,
+        ENDPOINTS.STEP_DETAILS(stepIds),
+      );
+      return response;
+    } catch (error) {
+      console.error('Error fetching step details:', error);
+      throw error;
+    }
+  }
+
   return {
     fetchAllWorkflowStepsApi,
     fetchCurrentWorkflowStepApi,
     fetchPaymentPlanApi,
     applyCouponApi,
-    paymentPlanCouponApi
+    paymentPlanCouponApi,
+    removeCouponApi,
+    fetchUserCurrentCouponCodeApi,
+    fetchStepDetailsApi
   }
 }

@@ -1,4 +1,9 @@
-import { useState } from "react";
+import dayjs from 'dayjs';
+
+import { useCallback, useEffect, useState } from "react";
+import { Controller } from "react-hook-form";
+import { useQueryClient } from '@tanstack/react-query';
+
 import {
   Button,
   Checkbox,
@@ -8,23 +13,32 @@ import {
   Select,
   Skeleton,
 } from "antd";
-import dayjs from 'dayjs';
-import { Controller } from "react-hook-form";
-import { useQueryClient } from '@tanstack/react-query';
 
 import { useApplicationForm } from "@hooks/useApplicationForm";
-import { useApplicationFormApi } from "@modules/sst/application-form/api";
+import { useWorkflowApi } from "@hooks/useWorkflowApi";
 
+import { useApplicationFormApi } from "@modules/sst/application-form/api";
 import {
   WaitlistStepFormData,
   WaitlistStepProps,
   FormattedFormFields,
 } from "@modules/sst/application-form/types";
+import { ROLE_SECTION_MAPPING } from "@modules/sst/application-form/utils/constants";
 
-import Header from "../Header";
+import { useWorkflowContext } from "@context/sst/WorkflowContext";
+import { getValidationRules } from '../../utils/helper';
+
+import {
+  fetchWorkflowStepResponse,
+} from "@/types/sst/workflow";
+
+import CaseUtil from "@lib/caseUtil";
+
 import Footer from "../Footer";
+import Header from "../Header";
 
 import styles from "./WaitlistForm.module.scss";
+
 
 export default function WaitlistForm({
   onSubmitSuccess,
@@ -32,47 +46,57 @@ export default function WaitlistForm({
   handleSubmit,
   control,
 }: WaitlistStepProps) {
-  const { studentPersonalDetailsForm } = useApplicationForm();
-  const { submitPersonalDetailsFormResponse } = useApplicationFormApi();
   const [formError, setFormError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const queryClient = useQueryClient();
+  const [studentDetailsWorkflowStepId, setStudentDetailsWorkflowStepId] = useState<number | null>(null);
+  const [workflowDefinitionStepIds, setWorkflowDefinitionStepIds] = useState<{
+    workflowDefinitionId: number,
+    formStepId: number
+  }[]>([]);
+  
+  const { currentStep, fetchStepDetails } = useWorkflowContext();
+  const { fetchCurrentWorkflowStepApi } = useWorkflowApi();
+  const { studentPersonalDetailsForm } = useApplicationForm();
+  const { submitPersonalDetailsFormResponse } = useApplicationFormApi();
+  
+  const queryClient = useQueryClient();  
 
   const formatDOB = (value: string) => {
     const date = dayjs(value);
     return date.format('YYYY-MM-DD');
   };
 
-  const formatWaitlistFormData = (data: WaitlistStepFormData) => {
-    const dobFormField = studentPersonalDetailsForm.find(field => field.title === "DOB");
+  const formatWaitlistFormData = useCallback((data: WaitlistStepFormData) => {
+    const dobFormField = studentPersonalDetailsForm.find(
+      field => field.title === "DOB"
+    );
 
     return {
       ...data,
       [dobFormField?.id as string]: formatDOB(data[dobFormField?.id as string] as string),
     };
-  };
+  }, [studentPersonalDetailsForm]);
 
-  const handleFormSubmit = async (data: WaitlistStepFormData) => {
+  const handleFormSubmit = useCallback(async (data: WaitlistStepFormData) => {
     setIsLoading(true);
     setFormError(null);
 
-    const formattedData = formatWaitlistFormData(data);
-
-    console.log("formattedData", formattedData);
     try {
-      await submitPersonalDetailsFormResponse(formattedData);
+      const formattedData = formatWaitlistFormData(data);
+
+      await submitPersonalDetailsFormResponse(formattedData, studentDetailsWorkflowStepId as number);
       await queryClient.invalidateQueries({ queryKey: ['fetch_user_data'] });
       onSubmitSuccess();
     } catch (error: any) {
-      const errorMessage =
-        error.response?.data?.message ||
-        "Something went wrong. Please try again.";
+      const errorMessage = error.response?.data?.message || "Something went wrong. Please try again.";
       setFormError(errorMessage);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [
+    formatWaitlistFormData, studentDetailsWorkflowStepId,
+    submitPersonalDetailsFormResponse, queryClient, onSubmitSuccess
+  ]);
 
   const renderField = (
     field: FormattedFormFields,
@@ -121,7 +145,55 @@ export default function WaitlistForm({
     }
   };
 
-  console.log("studentPersonalDetailsForm", studentPersonalDetailsForm);
+  useEffect(() => {
+    if (!currentStep?.id) return;
+
+    const fetchWorkflowStep = async () => {
+      try {
+        const response = await fetchCurrentWorkflowStepApi(currentStep?.id);
+  
+        const formattedResponse = CaseUtil.toCase('camelCase', response) as fetchWorkflowStepResponse;
+        const workflowSteps = formattedResponse?.included
+          .filter((step) => step.type === 'workflow_step_definition')
+          .map((step) => ({
+            workflowDefinitionId: step.id,
+            formStepId: step.attributes?.ownerId
+          }));
+        setWorkflowDefinitionStepIds(workflowSteps);
+      } catch (error) {
+        setFormError("Something went wrong. Please try reloading the page.");
+        console.error(error);
+      }
+    }
+  
+    fetchWorkflowStep();
+  }, [currentStep?.id]); 
+
+
+  useEffect(() => {
+    const updateStepLabels = async () => {
+      const stepIds = workflowDefinitionStepIds.map(step => step.formStepId);
+
+      const response = await fetchStepDetails(stepIds);
+      const studentFormGroupLabel = ROLE_SECTION_MAPPING.student[0].formGroupLabel;
+
+      response.data.forEach((step: any) => {
+        const stepId = step.id;
+        const stepLabel = step.attributes?.label;
+
+        if (stepLabel === studentFormGroupLabel) {
+          const workflowDefinitionId = workflowDefinitionStepIds.find(
+            step => Number(step.formStepId) == Number(stepId)
+          )?.workflowDefinitionId;
+
+          setStudentDetailsWorkflowStepId(workflowDefinitionId as number);
+        }
+      });
+    };
+
+    updateStepLabels();
+
+  }, [workflowDefinitionStepIds]);
 
   return (
     <div className={styles.container}>
@@ -150,6 +222,7 @@ export default function WaitlistForm({
               <div className={styles.formFields}>
                 {studentPersonalDetailsForm.map((field) => (
                   <Form.Item
+                    htmlFor={field.id}
                     key={field.id}
                     className={field.width === "long" ? styles.inputFullWidth : ""}
                     required={field.required}
@@ -159,33 +232,7 @@ export default function WaitlistForm({
                     <Controller
                       name={field.id}
                       control={control}
-                      rules={{
-                        required: field.required ? `${field.title} is required` : false,
-                        validate: {
-                          fieldValidation: (value) => {
-                            if (
-                              field.type === "select" &&
-                              field.title.toLowerCase().includes("grad")
-                            ) {
-                              return value ? true : "Please select your graduation year";
-                            } else if (field.type === "text") {
-                              if (typeof value !== "string" || value.trim() === "") {
-                                return "This field must be a valid string";
-                              }
-                            }
-                            return true;
-                          },
-                        },
-                        pattern: field.title.toLowerCase().includes("email")
-                          ? {
-                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                              message: "Please enter a valid email address",
-                            }
-                          : field.type === "text" ? {
-                            value: /^[A-Za-z\s]+$/,
-                            message: "Only alphabets are allowed",
-                          } : undefined,
-                      }}
+                      rules={getValidationRules(field)}
                       render={({ field: controllerField, fieldState: { error } }) =>
                         renderField(field, controllerField, error)
                       }
@@ -196,6 +243,7 @@ export default function WaitlistForm({
 
               {/* student consent checkbox */}
               <Form.Item
+                htmlFor="force_update"
                 validateStatus={errors.force_update ? "error" : ""}
                 help={errors.force_update?.message}
               >
@@ -203,6 +251,9 @@ export default function WaitlistForm({
                   name="force_update"
                   control={control}
                   defaultValue={false}
+                  rules={{
+                    validate: (value) => value === true || "You must confirm eligibility to proceed",
+                  }}
                   render={({ field }) => (
                     <Checkbox
                       name="force_update"

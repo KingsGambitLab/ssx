@@ -111,3 +111,7 @@ export type fetchWorkflowStepResponse = {
   data: workflowStepAndDefinitionRelationship;
   included: workflowStepDefinition[];
 }
+
+export type RazorpayResponse = {
+  success: boolean;
+}

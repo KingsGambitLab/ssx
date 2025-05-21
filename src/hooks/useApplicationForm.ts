@@ -18,14 +18,12 @@ import {
 export const useApplicationForm = () => { 
   const { data: userData } = useUser();
   const { getApplicationFormData, getStudentPersonalDetailsForm } = useApplicationFormApi();
-  const [showWaitlistForm, setShowWaitlistForm] = useState(false);
+  const [showWaitlistForm, setShowWaitlistForm] = useState<boolean | null>(null);
   const [studentPersonalDetailsForm, setStudentPersonalDetailsForm] = useState<FormattedFormFields[]>([]);
 
-  const processApplicationFormData = (response: ApplicationFormDataResponse) => {
-    if (!response.waitlistFormSubmitted) {
-      setShowWaitlistForm(true);
-    }
-  }
+  // const processApplicationFormData = (response: ApplicationFormDataResponse) => {
+  //     setShowWaitlistForm(!response.waitlistFormSubmitted);
+  // }
 
   const processFormGroup = (response: StudentPersonalDetailsFormResponse) => { 
     const sectionIds = response.data.flatMap(s => s.relationships.interviewbitFormSections.data.map(s => s.id));
@@ -81,7 +79,7 @@ export const useApplicationForm = () => {
           const response = await getApplicationFormData();
           console.log("response", response);
           if (response !== undefined && response !== null) {
-            processApplicationFormData(response);
+            setShowWaitlistForm(!response.waitlistFormSubmitted);
           }
         } catch (error) {
           console.error('Error creating program applicant:', error);

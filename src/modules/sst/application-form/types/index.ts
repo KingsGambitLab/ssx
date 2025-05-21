@@ -129,6 +129,21 @@ export type ApplicationFeesStepProps = {
   }>;
 }
 
+export type PaymentInitialProps = {
+  userDetails: Array<{
+    label: string;
+    value: string;
+  }>;
+}
+
+export type PaymentFailureProps = {
+  userDetails: Array<{
+    label: string;
+    value: string;
+  }>;
+  tryAgainHandler: () => void;
+}
+
 export type ApplicationFormStep = 'phone-email' | 'otp' | 'waitlist-form' | 'application-fees';
 
 export type VerifyOtpResponse = {

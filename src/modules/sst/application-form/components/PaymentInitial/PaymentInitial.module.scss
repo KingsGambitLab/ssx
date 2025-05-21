@@ -1,0 +1,301 @@
+$payment-initial-box-shadow: rgba(18, 18, 18, 0.16);
+$payment-initial-border-color: #e4e4e4;
+$payment-initial-title-color: #083ca0;
+$payment-initial-title-font-size: 2.8rem;
+$payment-initial-secure-payment-background: linear-gradient(263deg, #25af6e 19.21%, #1d925b 89.08%);
+$payment-initial-user-info-background: #f2f8ff;
+$payment-initial-user-detail-label-color: #3a3a3a;
+$payment-initial-user-detail-value-color: #171717;
+$payment-initial-user-details-separator-background: #eaeff4;
+$payment-initial-application-fee-value-color: #616161;
+$payment-initial-discounted-price-font-color: #009a2a;
+$payment-initial-button-hover-color: #3e6dc9;
+
+.container {
+  max-width: 45rem;
+  border-radius: 1.4rem;
+  border: 0.1rem solid $payment-initial-border-color;
+  background: $white-color;
+  box-shadow: 0 0.8rem 1.6rem 0 $payment-initial-box-shadow;
+
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+.content {
+  @include flex-col;
+  
+  padding: 2rem 2.4rem 2.4rem 2.4rem;
+  align-items: flex-start;
+  gap: 3.2rem;
+  align-self: stretch;
+
+  @include mobile {
+    padding: 1.6rem 2rem 2rem 2rem;
+  }
+}
+
+.formWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+}
+
+.header {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 2rem;
+  align-self: stretch;
+}
+
+.titleWrapper {
+  @include flex-row;
+
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  width: 100%;
+}
+
+.title {
+  color: $payment-initial-title-color;
+  font-size: $payment-initial-title-font-size;
+  font-weight: $semi-bold-font-weight;
+}
+
+.securePayment {
+  @include flex-row;
+
+  padding: 0.6rem 0.8rem;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.4rem;
+  background: $payment-initial-secure-payment-background;
+}
+
+.securePaymentText {
+  color: $white-color;
+  font-size: $desktop-font-card-subtitle;
+  font-weight: $bold-font-weight;
+  line-height: 1.57rem;
+}
+
+.userDetailsSection {
+  @include flex-col;
+
+  padding: 0.8rem 1.6rem;
+  align-items: flex-start;
+  gap: 1.2rem;
+  align-self: stretch;
+  border-radius: $border-radius-large;
+  background: $payment-initial-user-info-background;
+}
+
+.userDetailsWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 0.6rem;
+  align-self: stretch;
+}
+
+.userDetail {
+  @include flex-row;
+
+  align-items: flex-start;
+  gap: 0.8rem;
+  align-self: stretch;
+}
+
+.userDetailLabel {
+  color: $payment-initial-user-detail-label-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $default-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.userDetailValue {
+  color: $payment-initial-user-detail-value-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $bold-font-weight;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+}
+
+.userDetailSeparator {
+  color: $payment-initial-user-detail-value-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $default-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.userDetailsSectionSeparator {
+  height: 0.2rem;
+  align-self: stretch;
+  background: $payment-initial-user-details-separator-background;
+  width: 100%;
+}
+
+.invoiceInfo {
+  color: $payment-initial-user-detail-label-color;
+  font-size: $desktop-font-card-body;
+  font-style: italic;
+  font-weight: $default-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.feesBreakdownSection {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+}
+
+.feesBreakdownHeading {
+  @include flex-row;
+
+  align-items: center;
+  gap: 1.2rem;
+  align-self: stretch;
+}
+
+.feesBreakdownHeadingText {
+  color: $payment-initial-user-detail-value-color;
+  font-size: $desktop-font-body-tertiary;
+  font-weight: $bold-font-weight;
+  line-height: 2.3rem;
+  letter-spacing: 0.01rem;
+  flex: 1;
+}
+
+.feesBreakdownLine {
+  height: 0.1rem;
+  background: $payment-initial-user-details-separator-background;
+  width: 100%;
+  flex: 1;
+}
+
+.applicationFees {
+  @include flex-row;
+
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  width: 100%;
+}
+
+.applicationFeesTitle,
+.discountedPriceTitle {
+  color: $payment-initial-user-detail-label-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $default-font-weight;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+}
+
+.applicationFeesValue {
+  color: $payment-initial-application-fee-value-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $bold-font-weight;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+}
+
+.discountSection {
+  @include flex-col;
+
+  gap: 1.6rem;
+  width: 100%;
+  padding: 1.6rem 0;
+  border-top: 0.1rem dashed  $payment-initial-border-color;
+  border-bottom: 0.1rem dashed  $payment-initial-border-color;
+}
+
+.applyCouponWrapper {
+  @include flex-row;
+
+  gap: 1.2rem;
+  align-items: center;
+  align-self: stretch;
+  justify-content: flex-end;
+  width: 100%;
+
+  & > input {
+    width: fit-content !important;
+  }
+}
+
+.applyCouponButton {
+  border-color: $payment-initial-title-color !important;
+  color: $payment-initial-title-color !important;
+}
+
+.discountedPriceWrapper {
+  @include flex-row;
+
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.discountedPriceValue {
+  color: $payment-initial-discounted-price-font-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $semi-bold-font-weight;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+}
+
+.note {
+  color: $payment-initial-user-detail-label-color;
+  font-size: $desktop-font-card-body;
+  font-style: italic;
+  font-weight: $default-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.totalAmountSection {
+  @include flex-row;
+
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.totalAmountLabel,
+.totalAmountValue {
+  color: $us-heading-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $semi-bold-font-weight;
+  line-height: 2.3rem;
+  letter-spacing: 0.01rem;
+}
+
+.paymentButton {
+  @include flex-row-c;
+
+  height: 4.8rem !important;
+  padding: 1.2rem 0 !important;
+  gap: 0.8rem;
+  align-self: stretch;
+  border-radius: $border-radius-default;
+  background: $payment-initial-title-color !important;
+  color: $white-color !important;
+  font-size: $desktop-font-card-title !important;
+  font-weight: $bold-font-weight;
+  line-height: 2.4rem;
+  letter-spacing: 0.01rem;
+
+  &:hover {
+    background: $payment-initial-button-hover-color !important;
+  }
+}
