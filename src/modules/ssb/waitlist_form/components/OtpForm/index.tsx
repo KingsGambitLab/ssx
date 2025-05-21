@@ -270,7 +270,7 @@ export default function OTPVerificationForm({
         {/* Deadline information */}
         <div className={styles.deadline}>
           <span>Intake 3 Application Deadline - </span>
-          <span className={styles.date}>11th May 2025</span>
+          <span className={styles.date}>25th May 2025</span>
         </div>
 
         {/* Submit button */}
