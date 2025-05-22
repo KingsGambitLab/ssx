@@ -77,22 +77,16 @@ export default function LoginForm() {
   });
 
   const setInitialStep = () => {
-    if (!userData?.isloggedIn) {
+    if (!userData?.isloggedIn || showWaitlistForm === null) {
       return;
     }
-
-    if (userData?.isloggedIn && (showWaitlistForm === null || !currentStep?.label)) { 
-      return;
-    }
-
-    if(userData?.isloggedIn && (showWaitlistForm || currentStep?.label === 'PERSONAL_DETAILS')) {
+  
+    if (showWaitlistForm) {
       setStep('waitlist-form');
-    } else if(userData?.isloggedIn && currentStep?.label === 'APPLICATION_FEE') {
-      setStep('application-fees');
     } else {
-      window.open(APPLICATION_PAGE_URL, '_self');
+      setStep('application-fees');
     }
-  }
+  };
 
   const onPhoneEmailSubmit = useCallback((data: PhoneEmailStepFormData) => {
     setEmail(data.email);
@@ -107,7 +101,7 @@ export default function LoginForm() {
   const handleOtpVerificationError = useCallback((error: string) => {
     setOtpErrors('otp', { message: error });
   }, [setOtpErrors]);
-  
+
   const handleWaitlistSubmitSuccess = useCallback(() => {
     setStep('application-fees');
   }, []);
@@ -115,17 +109,14 @@ export default function LoginForm() {
 
   useEffect(() => {
     setInitialStep();
-  }, [userData?.isloggedIn, showWaitlistForm, currentStep?.label]);
+  }, [userData?.isloggedIn, showWaitlistForm]);
 
   useEffect(() => {
-    if (!currentStep?.id && userData?.isloggedIn) {
+    if (userData?.isloggedIn) {
       fetchAllWorkflowSteps();
-    } else if (currentStep?.id && !paymentPlanId) {
-      fetchCurrentWorkflowStep(currentStep?.id);
-    } else if (paymentPlanId && programId) {
-      fetchUserCurrentCouponCode();
     }
-  }, [currentStep?.id, userData?.isloggedIn, paymentPlanId, programId, step]);
+  }, [userData?.isloggedIn]);
+
 
   const userDetails = useMemo(() => [
     {
@@ -170,10 +161,10 @@ export default function LoginForm() {
       case 'waitlist-form':
         return (
           <WaitlistForm
-            onSubmitSuccess={handleWaitlistSubmitSuccess}
             errors={waitlistErrors}
             handleSubmit={handleWaitlistSubmit}
             control={waitlistControl}
+            onSubmitSuccess={handleWaitlistSubmitSuccess}
           />
         );
       case 'application-fees':
@@ -183,5 +174,9 @@ export default function LoginForm() {
     }
   };
   
-  return <div className={styles.container}>{renderStep()}</div>;  
+  return (
+      <div className={styles.container} id="application-form">
+        {renderStep()}
+    </div>
+  );
 }

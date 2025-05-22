@@ -20,10 +20,6 @@ export const useApplicationForm = () => {
   const [showWaitlistForm, setShowWaitlistForm] = useState<boolean | null>(null);
   const [studentPersonalDetailsForm, setStudentPersonalDetailsForm] = useState<FormattedFormFields[]>([]);
 
-  // const processApplicationFormData = (response: ApplicationFormDataResponse) => {
-  //     setShowWaitlistForm(!response.waitlistFormSubmitted);
-  // }
-
   const processFormGroup = (response: StudentPersonalDetailsFormResponse) => { 
     const sectionIds = response.data.flatMap(s => s.relationships.interviewbitFormSections.data.map(s => s.id));
 

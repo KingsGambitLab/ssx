@@ -1,11 +1,14 @@
-import { useWorkflowContext } from '@context/sst/WorkflowContext';
+"use client";
 
-import PaymentInitial from '../PaymentInitial';
-import PaymentFailure from '../PaymentFailure';
+import { useEffect } from 'react';
+
+import { useWorkflowContext } from '@context/sst/WorkflowContext';
 
 import { APPLICATION_PAGE_URL } from '../../utils/constants';
 import { ApplicationFeesStepProps } from '../../types';
-import { useEffect } from 'react';
+
+import PaymentInitial from '../PaymentInitial';
+import PaymentFailure from '../PaymentFailure';
 
 export default function ApplicationFeesStep({ userDetails }: ApplicationFeesStepProps) {
   const {
@@ -15,16 +18,35 @@ export default function ApplicationFeesStep({ userDetails }: ApplicationFeesStep
     paymentStatus,
     setPaymentStatus,
     fetchCurrentWorkflowStep,
-    fetchUserCurrentCouponCode
+    fetchUserCurrentCouponCode,
+    fetchAllWorkflowSteps,
+    isFetchCurrentWorkflowStepLoading
   } = useWorkflowContext();
 
   useEffect(() => {
+    // if user has completed appplication fees step, then redirect to application page
+    if (
+      currentStep?.label
+      && currentStep?.label !== 'APPLICATION_FEE'
+      && currentStep?.label !== 'PERSONAL_DETAILS'
+    ) {
+      window.open(APPLICATION_PAGE_URL, '_self');
+      return;
+    }
+
+    // Fetch Payment amount if not already fetched
     if (!paymentPlanId) {
       fetchCurrentWorkflowStep(currentStep?.id as number);
     } else if (paymentPlanId && programId) {
       fetchUserCurrentCouponCode();
     }
-  }, [currentStep?.id, paymentPlanId, programId]);
+  }, [currentStep, paymentPlanId, programId]);
+
+  useEffect(() => {
+    if(!isFetchCurrentWorkflowStepLoading) {
+      fetchAllWorkflowSteps();
+    }
+  }, [isFetchCurrentWorkflowStepLoading]);
 
   const tryAgainHandler = () => {
    setPaymentStatus('initial');

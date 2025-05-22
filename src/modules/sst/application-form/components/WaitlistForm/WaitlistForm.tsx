@@ -97,7 +97,7 @@ export default function WaitlistForm({
     }
   }, [
     formatWaitlistFormData, studentDetailsWorkflowStepId,
-    submitPersonalDetailsFormResponse, queryClient, onSubmitSuccess
+    submitPersonalDetailsFormResponse, queryClient
   ]);
 
   const renderField = (
@@ -179,7 +179,7 @@ export default function WaitlistForm({
       const response = await fetchStepDetails(stepIds);
       const studentFormGroupLabel = ROLE_SECTION_MAPPING.student[0].formGroupLabel;
 
-      response.data.forEach((step: any) => {
+      response?.data?.forEach((step: any) => {
         const stepId = step.id;
         const stepLabel = step.attributes?.label;
 

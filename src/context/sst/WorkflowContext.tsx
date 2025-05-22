@@ -7,6 +7,7 @@ import React, {
   useCallback,
   useContext,
   useState,
+  useEffect
 } from "react";
 
 import { toast } from 'react-toastify';
@@ -22,6 +23,7 @@ import {
 
 import { PAYMENT_MODAL_CONFIG } from "@utils/razorpay/constants";
 import { razorpayPaymentWindow } from "@utils/razorpay";
+import { CaseUtil } from "@lib";
 
 type WorkflowContextType = {
   currentStep: { id: number, label: string } | undefined;
@@ -31,6 +33,7 @@ type WorkflowContextType = {
   couponCode: string | undefined;
   applicationFeesAmount: number | undefined;
   applicationFeesCurrency: string;
+  isFetchCurrentWorkflowStepLoading: boolean;
   programId: number | undefined;
   fetchUserCurrentCouponCode: () => Promise<void>;
   applyingCoupon: boolean;
@@ -124,7 +127,8 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
         let message = 'We are unable to process your request right now.'
           + ' Please try again in sometime.';
         if (error?.status === 422) {
-          message = 'Invalid coupon code';
+          message = CaseUtil.titleCase(error?.response?.data?.result)
+            || "Invalid Coupon Code";
         }
         toast.error(message);
       } finally {
@@ -297,7 +301,8 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
     startPaymentProcess,
     paymentStatus,
     setPaymentStatus,
-    fetchStepDetails
+    fetchStepDetails,
+    isFetchCurrentWorkflowStepLoading
   }), [
     currentStep,
     paymentPlanId,
@@ -315,7 +320,8 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
     startPaymentProcess,
     paymentStatus,
     setPaymentStatus,
-    fetchStepDetails
+    fetchStepDetails,
+    isFetchCurrentWorkflowStepLoading
   ]);
 
   return (
