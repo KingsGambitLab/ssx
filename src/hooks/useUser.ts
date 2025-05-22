@@ -9,6 +9,7 @@ interface UserResponse {
       id: number;
       name: string;
       email: string;
+      phoneNumber: string;
       // ... other attributes
     };
   };
@@ -39,6 +40,7 @@ function useUser() {
           id: 0,
           name: '',
           email: '',
+          phoneNumber: '',
         }
       }
     },

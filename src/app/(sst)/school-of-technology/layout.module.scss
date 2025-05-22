@@ -1,4 +1,6 @@
 .sstContainer {
+  margin-top: 8rem;
+  
   @include mobile {
     padding-bottom: 12rem;
   }

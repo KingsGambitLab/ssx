@@ -12,6 +12,8 @@ import {
 
 import { getAllExperiments } from "@utils/abex/experiment";
 
+import { WorkflowContextProvider } from "@context/sst/WorkflowContext";
+
 export default async function Layout({
   children,
 }: {
@@ -21,6 +23,7 @@ export default async function Layout({
 
   return (
     <>
+      <WorkflowContextProvider>
       <Suspense key="gtm-script" fallback={<AnalyticsFallback />}>
         <Analytics
           product={PRODUCTS.SCHOOL_OF_TECHNOLOGY}
@@ -29,7 +32,8 @@ export default async function Layout({
         />
         <MicrosoftClarity />
       </Suspense>
-      {children}
+        {children}
+      </WorkflowContextProvider>
     </>
   );
 }

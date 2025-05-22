@@ -30,3 +30,26 @@ export const EngagementStripData = [
     desc: "93% of students received internship in just 1.5 year"
   }
 ]
+
+export const APPLICATION_FORM_STUDENT_DETAIL_LABEL = 'application_form_student_details';
+
+export const APPLICATION_PAGE_URL = `${BASE_URL}/school-of-technology/application`;
+
+export const ROLE_SECTION_MAPPING = {
+  student: [
+    {
+      formGroupLabel: 'sst_application_form_student_personal_details',
+      formSection: 'Student Details',
+    },
+  ],
+  parent: [
+    {
+      formGroupLabel: 'sst_application_form_parent_personal_details',
+      formSection: 'Parent/Guardian Details',
+    },
+    {
+      formGroupLabel: 'sst_application_form_student_personal_details',
+      formSection: 'Student Details',
+    },
+  ],
+};
