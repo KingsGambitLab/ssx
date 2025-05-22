@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { API_BASE_URL } from "@utils/common/url";
 import { HttpMethods, apiRequest } from "@utils/common/apiHelper";
 
@@ -33,6 +35,7 @@ const loadScript = () => {
         reject(loadError);
       };
       document.body.appendChild(script);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       const loadError = new Error(
         'Unable to initiate razorpay client. Please try again in sometime!',

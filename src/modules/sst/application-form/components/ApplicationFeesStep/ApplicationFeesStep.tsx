@@ -33,7 +33,7 @@ export default function ApplicationFeesStep({ userDetails }: ApplicationFeesStep
   if (paymentStatus === 'failed') {
     return <PaymentFailure userDetails={userDetails} tryAgainHandler={tryAgainHandler} />;
   } else if (paymentStatus === 'success') { 
-    window.open('https://8.staging.sclr.ac/school-of-technology/application/', '_self');
+    window.open(APPLICATION_PAGE_URL, '_self');
   } else {
     return <PaymentInitial userDetails={userDetails} />;
   }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { CaseUtil } from "@lib";
 import { HttpMethods } from "@utils/common/apiHelper";
 import { UG_PROGRAM_SLUG } from "@utils/sst/constants";

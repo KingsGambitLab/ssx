@@ -9,7 +9,6 @@ import {
 } from "@modules/sst/application-form/api"
 
 import {
-  ApplicationFormDataResponse,
   FormFields,
   FormattedFormFields,
   StudentPersonalDetailsFormResponse

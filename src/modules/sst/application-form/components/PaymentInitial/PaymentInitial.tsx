@@ -1,9 +1,8 @@
 import Image from 'next/image';
 
 import { Button, Input } from 'antd';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
-import { useWorkflowApi } from '@hooks/useWorkflowApi';
 import { useWorkflowContext } from '@context/sst/WorkflowContext';
 
 import Header from '../Header';
@@ -22,7 +21,6 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
     couponCode,
     isCouponDisabled,
     applicationFeesAmount,
-    applicationFeesCurrency,
     applyCoupon,
     removeCoupon,
     discountedAmount,

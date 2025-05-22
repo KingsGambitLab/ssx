@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import dayjs from 'dayjs';
 
 import { useCallback, useEffect, useState } from "react";

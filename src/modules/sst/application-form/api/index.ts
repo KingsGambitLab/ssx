@@ -103,7 +103,7 @@ export const useApplicationFormApi = () => {
     return formatted;
   };
 
-  const submitPersonalDetailsFormResponse = async (data: any) => {
+  const submitPersonalDetailsFormResponse = async (data: any, workflowStepDefinitionId: number) => {
     const { force_update, ...rest } = data;
     
     const response = await request<any>(
@@ -120,7 +120,7 @@ export const useApplicationFormApi = () => {
         },
         api_context: {
           type: "workflowStepDefinition",
-          id: "198"
+          id: workflowStepDefinitionId.toString()
         },
         auto_save: false,
       }

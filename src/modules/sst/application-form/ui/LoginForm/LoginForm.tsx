@@ -89,7 +89,9 @@ export default function LoginForm() {
       setStep('waitlist-form');
     } else if(userData?.isloggedIn && currentStep?.label === 'APPLICATION_FEE') {
       setStep('application-fees');
-    } 
+    } else {
+      window.open(APPLICATION_PAGE_URL, '_self');
+    }
   }
 
   const onPhoneEmailSubmit = useCallback((data: PhoneEmailStepFormData) => {
