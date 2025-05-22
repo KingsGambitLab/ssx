@@ -6,8 +6,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
-  useState,
-  useEffect
+  useState
 } from "react";
 
 import { toast } from 'react-toastify';

@@ -22,8 +22,6 @@ import {
   WaitlistStepFormData,
 } from '@modules/sst/application-form/types';
 
-import { APPLICATION_PAGE_URL } from '@modules/sst/application-form/utils/constants';
-
 import styles from "./LoginForm.module.scss";
 
 export default function LoginForm() {
@@ -34,14 +32,7 @@ export default function LoginForm() {
   const { showWaitlistForm } = useApplicationForm();
   const { data: userData } = useUser();
 
-  const {
-    currentStep,
-    fetchAllWorkflowSteps,
-    fetchCurrentWorkflowStep,
-    fetchUserCurrentCouponCode,
-    paymentPlanId,
-    programId,
-  } = useWorkflowContext();
+  const { fetchAllWorkflowSteps } = useWorkflowContext();
 
   const {
     control: phoneEmailControl,
