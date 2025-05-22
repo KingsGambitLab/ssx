@@ -1,0 +1,5 @@
+.container {
+  @include mobile {
+    padding-bottom: 7rem;
+  }
+}

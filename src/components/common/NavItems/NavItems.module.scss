@@ -17,6 +17,20 @@ $nav-item-new-tag-background-color: linear-gradient(92deg, #0245B9 14.64%, rgba(
   }
 }
 
+.containerScrollTabs {
+  @include flex-row;
+
+  justify-content: space-between;
+  width: auto;
+
+  @include tablet {
+    @include flex-col;
+
+    gap: 3.2rem;
+    align-items: flex-start;
+  }
+}
+
 .navItemsContainer {
   @include flex-row;
   
@@ -38,7 +52,8 @@ $nav-item-new-tag-background-color: linear-gradient(92deg, #0245B9 14.64%, rgba(
   gap: 0.5rem;
 }
 
-.navItemText {
+.navItemText,
+.scrollNavItemText{
   color: $nav-item-font-color;
   font-size: $h4-size;
   font-weight: $default-font-weight;
@@ -49,6 +64,12 @@ $nav-item-new-tag-background-color: linear-gradient(92deg, #0245B9 14.64%, rgba(
 
   &:hover {
     color: $nav-item-font-color;
+  }
+}
+
+.scrollNavItemText {
+  &:hover {
+    color: $nav-item-selected-font-color;
   }
 }
 

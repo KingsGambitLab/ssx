@@ -1,16 +1,18 @@
 import { Button } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+
 import ReloadIcon from '@public/images/common/svg/arrow-counter-clockwise.svg';
 
 import Header from '../Header';
 
 import { PaymentFailureProps } from '../../types';
+import FloatingCtaWrapper from '@/components/common/FloatingCtaWrapper/FloatingCtaWrapper';
 
 import styles from './PaymentFailure.module.scss';
 
 export default function PaymentFailure({ userDetails, tryAgainHandler }: PaymentFailureProps) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="payment-failure">
       <Header />
       <div className={styles.content}> 
         <div className={styles.failureMessageWrapper}>
@@ -50,14 +52,16 @@ export default function PaymentFailure({ userDetails, tryAgainHandler }: Payment
           </div>
         </div>
 
-        <Button
-          icon={<img src={ReloadIcon.src} alt="reload" />}
-          className={styles.tryAgainButton}
-          onClick={tryAgainHandler}
-          block
-        >
-          Try Again
-        </Button>
+        <FloatingCtaWrapper targetId="payment-failure">
+          <Button
+            icon={<img src={ReloadIcon.src} alt="reload" />}
+            className={styles.tryAgainButton}
+            onClick={tryAgainHandler}
+            block
+          >
+            Try Again
+          </Button>
+        </FloatingCtaWrapper>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import { Button, Input, Skeleton } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
 import { useMemo, useState } from 'react';
 
 import { useWorkflowContext } from '@context/sst/WorkflowContext';
@@ -9,7 +10,8 @@ import Header from '../Header';
 import { PaymentInitialProps } from '../../types';
 
 import LockIcon from '@public/images/common/svg/lock.svg';
-import { ArrowRightOutlined } from '@ant-design/icons';
+
+import FloatingCtaWrapper from '@/components/common/FloatingCtaWrapper/FloatingCtaWrapper';
 
 import styles from './PaymentInitial.module.scss';
 
@@ -54,7 +56,7 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="payment-initial">
       <Header />
         <div className={styles.content}>
           <div className={styles.formWrapper}>
@@ -173,17 +175,19 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
           </div>
         </div>
 
-        <Button
-          type="primary"
-          icon={<ArrowRightOutlined />}
-          iconPosition="end"
-          className={styles.paymentButton}
-          onClick={handlePaymentProcess}
-          block
-        >
-          Continue to pay
-        </Button>
-        </div>
+        <FloatingCtaWrapper targetId="payment-initial">
+          <Button
+            type="primary"
+            icon={<ArrowRightOutlined />}
+            iconPosition="end"
+            className={styles.paymentButton}
+            onClick={handlePaymentProcess}
+            block
+          >
+            Continue to pay
+          </Button>
+        </FloatingCtaWrapper>
+      </div>
     </div>
   );
 }

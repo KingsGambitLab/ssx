@@ -18,6 +18,7 @@ $phone-email-step-form-error-font-color: #ff4d4f;
 
   @include mobile {
     max-width: 100%;
+    box-shadow: none;
   }
 }
 
@@ -167,6 +168,16 @@ $phone-email-step-form-error-font-color: #ff4d4f;
   @include mobile {
     font-size: $mobile-font-subtitle;
     font-weight: $default-font-weight;
+  }
+}
+
+.calendarCheckIcon {
+  height: 2.4rem;
+  width: 2.4rem;
+
+  @include mobile {
+    height: 2rem;
+    width: 2rem;
   }
 }
 

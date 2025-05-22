@@ -38,6 +38,8 @@ const FooterSection: React.FC = () => {
           }
           href={"/school-of-technology"}
           className={styles.link}
+          prefetch={false}
+          target="_blank"
         >
           {FOOTER_DATA.ctaText}
           <Image

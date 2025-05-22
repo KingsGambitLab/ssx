@@ -1,25 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
-import { UpcomingIntakeDetailsData } from "@modules/sst/info/types";
-import { getUpcomingIntakeDetailsData } from "@modules/sst/info/api";
+import React from "react";
 import { Table } from "antd";
 import { DataItem, dateOfInterview, tableColumns } from "./data";
 import Section from "@components/common/Section";
-
+import { useKeyDates } from "@context/sst/KeyDatesContext";
 import styles from "./KeyDates.module.scss";
 
 export default function KeyDates() {
-  const [upcomingIntakeDetails, setUpcomingIntakeDetails] =
-    useState<UpcomingIntakeDetailsData | null>(null);
-  const [tableDataSource, setTableDataSource] = useState<DataItem[] | []>([]);
-
-  const fetchUpcomingIntakeDetails = async () => {
-    const response = await getUpcomingIntakeDetailsData();
-    console.log("GG", response);
-    setUpcomingIntakeDetails(response);
-  };
+  const { upcomingIntakeDetails, isLoading } = useKeyDates();
 
   const columns = tableColumns({
     labelColumn: styles.labelColumn,
@@ -27,31 +16,22 @@ export default function KeyDates() {
     ...styles,
   });
 
-  const createTabularData = (
-    data: UpcomingIntakeDetailsData | null
-  ): DataItem[] => {
+  const createTabularData = (data: typeof upcomingIntakeDetails): DataItem[] => {
     if (!data) return [];
 
     return [
-      { label: "NSET Date", data: data.testDate },
-      { label: "Last date to apply", data: data.deadline },
-      { label: "Date of Interview", data: dateOfInterview },
-      { label: "NSET Result", data: data.resultDate },
-      { label: "Final Offer", data: data.offerReleaseDate },
+      { label: "NSET Date", data: data.testDate || 'Next Intake' },
+      { label: "Last date to apply", data: data.deadline || 'Coming soon!' },
+      { label: "Date of Interview", data: dateOfInterview || 'Few days after NSET Result' },
+      { label: "NSET Result", data: data.resultDate || 'Coming soon!' },
+      { label: "Final Offer", data: data.offerReleaseDate || 'Coming soon!' },
     ];
   };
 
-  useEffect(() => {
-    fetchUpcomingIntakeDetails();
-  }, []);
-
-  useEffect(() => {
-    const tabularData = createTabularData(upcomingIntakeDetails);
-    setTableDataSource(tabularData);
-  }, [upcomingIntakeDetails]);
+  const tableDataSource = createTabularData(upcomingIntakeDetails);
 
   return (
-    <Section>
+    <Section id="key-dates">
       <div className={styles.container}>
         <div className={styles.title}>Key Dates</div>
         <div className={styles.tableContainer}>
@@ -62,6 +42,7 @@ export default function KeyDates() {
             rowKey="label"
             rowClassName={styles.tableRow}
             className={styles.comparisonTable}
+            loading={isLoading}
             title={() => (
               <div className={styles.tableTitle}>
                 {upcomingIntakeDetails?.header} Dates

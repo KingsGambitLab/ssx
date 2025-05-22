@@ -21,6 +21,7 @@ $payment-initial-button-hover-color: #3e6dc9;
 
   @include mobile {
     max-width: 100%;
+    box-shadow: none;
   }
 }
 
@@ -34,6 +35,7 @@ $payment-initial-button-hover-color: #3e6dc9;
 
   @include mobile {
     padding: 1.6rem 2rem 2rem 2rem;
+    gap: 4rem;
   }
 }
 
@@ -51,6 +53,10 @@ $payment-initial-button-hover-color: #3e6dc9;
   align-items: flex-start;
   gap: 2rem;
   align-self: stretch;
+
+  @include mobile {
+    gap: 1.6rem;
+  }
 }
 
 .titleWrapper {
@@ -66,6 +72,10 @@ $payment-initial-button-hover-color: #3e6dc9;
   color: $payment-initial-title-color;
   font-size: $payment-initial-title-font-size;
   font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: $tablet-font-title-3;
+  }
 }
 
 .securePayment {
@@ -83,6 +93,10 @@ $payment-initial-button-hover-color: #3e6dc9;
   font-size: $desktop-font-card-subtitle;
   font-weight: $bold-font-weight;
   line-height: 1.57rem;
+
+  @include mobile {
+    font-size: 1rem;
+  }
 }
 
 .userDetailsSection {
@@ -94,6 +108,10 @@ $payment-initial-button-hover-color: #3e6dc9;
   align-self: stretch;
   border-radius: $border-radius-large;
   background: $payment-initial-user-info-background;
+
+  @include mobile {
+    gap: 0.4rem;
+  }
 }
 
 .userDetailsWrapper {
@@ -105,11 +123,14 @@ $payment-initial-button-hover-color: #3e6dc9;
 }
 
 .userDetail {
-  @include flex-row;
+  @include flex-row-y-c;
 
-  align-items: flex-start;
   gap: 0.8rem;
   align-self: stretch;
+
+  @include mobile {
+    gap: 0.4rem;
+  }
 }
 
 .userDetailLabel {
@@ -150,6 +171,11 @@ $payment-initial-button-hover-color: #3e6dc9;
   font-weight: $default-font-weight;
   line-height: 2.2rem;
   letter-spacing: 0.01rem;
+
+  @include mobile {
+    line-height: 2.2rem;
+    font-size: $tablet-font-card-subtitle;
+  }
 }
 
 .feesBreakdownSection {
@@ -158,6 +184,10 @@ $payment-initial-button-hover-color: #3e6dc9;
   align-items: flex-start;
   gap: 1.6rem;
   align-self: stretch;
+
+  @include mobile {
+    gap: 0.8rem;
+  }
 }
 
 .feesBreakdownHeading {
@@ -200,6 +230,11 @@ $payment-initial-button-hover-color: #3e6dc9;
   font-weight: $default-font-weight;
   line-height: 2rem;
   letter-spacing: 0.01rem;
+
+  @include mobile {
+    font-size:$desktop-font-card-subtitle;
+    line-height: normal;
+  }
 }
 
 .applicationFeesValue {
@@ -208,6 +243,11 @@ $payment-initial-button-hover-color: #3e6dc9;
   font-weight: $bold-font-weight;
   line-height: 2rem;
   letter-spacing: 0.01rem;
+
+  @include mobile {
+    font-size:$desktop-font-card-subtitle;
+    line-height: normal;
+  }
 }
 
 .discountSection {
@@ -262,6 +302,11 @@ $payment-initial-button-hover-color: #3e6dc9;
   font-weight: $default-font-weight;
   line-height: 2.2rem;
   letter-spacing: 0.01rem;
+
+  @include mobile {
+    font-size:$desktop-font-card-subtitle;
+    line-height: normal;
+  }
 }
 
 .totalAmountSection {
