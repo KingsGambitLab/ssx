@@ -3,6 +3,8 @@ import styles from "./page.module.scss";
 import { CareerStats } from "@modules/sst/info/ui/CareerStats";
 import AdmissionStepTimeline from "@modules/sst/info/ui/AdmissionStepTimeline";
 import LoginForm from "@modules/sst/application-form/ui/LoginForm";
+import KeyDates from "@modules/sst/info/ui/KeyDates";
+import BannerSection from "@modules/sst/info/ui/BannerSection";
 
 export default function Page() {
   return (
@@ -10,6 +12,8 @@ export default function Page() {
       <LoginForm />
       <div className={styles.mainContainer}>
         <div className={styles.leftContainer}>
+          <BannerSection />
+          <KeyDates />
           <AdmissionStepTimeline />
           <CareerStats />
           <SuccessStories />

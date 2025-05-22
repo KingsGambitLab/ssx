@@ -1,0 +1,49 @@
+$card-box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.08);
+
+.card {
+  @include flex-col;
+
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: stretch;
+  gap: 1.6rem;
+  padding: 2rem;
+  background: $white-color;
+  flex: 1;
+  border-radius: 0.8rem;
+  box-shadow: $card-box-shadow;
+  box-sizing: border-box;
+
+  @include mobile {
+    border: 0.1rem solid #e4e4e4;
+    flex: 0 0 45%;
+  }
+}
+
+.icon {
+  height: 4rem;
+  width: 4rem;
+}
+
+.title {
+  @include font-plus-jakarta-sans;
+
+  color: #083CA0;
+  font-size: 2.4rem;
+  font-weight: $semi-bold-font-weight;
+  line-height: 125%;
+  letter-spacing: 0.01rem;
+}
+
+.desc {
+  @include font-plus-jakarta-sans;
+
+  color: #3A3A3A;
+  font-size: 1.4rem;
+  line-height: 2.3rem;
+  letter-spacing: 0.01rem;
+
+  & > span {
+    font-weight: $bold-font-weight;
+  }
+}

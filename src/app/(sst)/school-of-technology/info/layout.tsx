@@ -11,6 +11,7 @@ import {
 } from "@/components/common/Analytics/constants";
 
 import { getAllExperiments } from "@utils/abex/experiment";
+import FooterSection from "@modules/sst/info/ui/FooterSection";
 
 import { WorkflowContextProvider } from "@context/sst/WorkflowContext";
 
@@ -31,8 +32,9 @@ export default async function Layout({
           experiments={experiments}
         />
         <MicrosoftClarity />
-      </Suspense>
+        </Suspense>
         {children}
+        <FooterSection />
       </WorkflowContextProvider>
     </>
   );

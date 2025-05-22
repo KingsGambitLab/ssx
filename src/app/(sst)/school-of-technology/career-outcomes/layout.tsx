@@ -1,21 +1,26 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import { ABEX_FLAG_CONFIG } from '@utils/abex/constants';
+import { ABEX_FLAG_CONFIG } from "@utils/abex/constants";
 
 import {
   Analytics,
   AnalyticsFallback,
   MicrosoftClarity,
-} from '@/components/common/Analytics';
+} from "@/components/common/Analytics";
 import {
   PRODUCTS,
   SUB_PRODUCTS,
-} from '@/components/common/Analytics/constants';
+} from "@/components/common/Analytics/constants";
 
-import BottomNavbar from '@components/Sst/BottomNavbar';
-import { getAllExperiments } from '@utils/abex/experiment';
+import BottomNavbar from "@components/Sst/BottomNavbar";
+import { getAllExperiments } from "@utils/abex/experiment";
+import Footer from "@components/common/Footer";
 
-export default async function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const experiments = await getAllExperiments();
 
   return (
@@ -29,6 +34,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
         <MicrosoftClarity />
       </Suspense>
       {children}
+      <Footer />
       <BottomNavbar variant={ABEX_FLAG_CONFIG.SST_LP_REVAMP.NEW_VARIANT} />
     </>
   );
