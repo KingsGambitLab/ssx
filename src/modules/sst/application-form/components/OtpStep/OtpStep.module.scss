@@ -14,6 +14,7 @@ $otp-step-form-error-font-color: #ff4d4f;
 
 .container {
   max-width: 45rem;
+  width: 100%;
   border-radius: 1.4rem;
   box-shadow: 0 0.8rem 1.6rem 0 $otp-step-box-shadow;
   border: 0.1rem solid $otp-step-border-color;
@@ -21,6 +22,7 @@ $otp-step-form-error-font-color: #ff4d4f;
 
   @include mobile {
     max-width: 100%;
+    box-shadow: none;
   }
 }
 
@@ -190,6 +192,7 @@ $otp-step-form-error-font-color: #ff4d4f;
   height: auto !important;
   padding: 1.2rem 4rem !important;
   background: $otp-step-title-font-color !important;
+  width: 100% !important;
 
   & > span {
     color: $white-color;

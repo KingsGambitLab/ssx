@@ -39,6 +39,7 @@ type NavbarProps = {
   actionButtons: React.ReactNode;
   logoAlt?: string;
   className?: string;
+  variant?: 'default' | 'scroll-tabs';
 }
 
 export default function Navbar({
@@ -46,9 +47,10 @@ export default function Navbar({
   homePageUrl,
   loggedOutData,
   loggedInData,
+  actionButtons,
   logoAlt = 'Logo',
   className = '',
-  actionButtons,
+  variant = 'default',
 }: NavbarProps) {
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const { isTabletOrMobile } = useDeviceType();
@@ -79,7 +81,7 @@ export default function Navbar({
           className={styles.logoImage}
         />
         </Link>
-        {mounted && (
+        {mounted && variant === 'default' && (
           <div className={styles.rightSection}>
           {isTabletOrMobile ? (
             <div className={styles.hamburgerWrapper}>
@@ -115,6 +117,44 @@ export default function Navbar({
             </>
             )}
           </div>
+        )}
+
+        {mounted && variant === 'scroll-tabs' && (
+           <div className={styles.rightSectionScrollTabs}>
+           {isTabletOrMobile ? (
+             <div className={styles.hamburgerWrapper}>
+               <Button
+                 type="text"
+                 icon={<MenuOutlined />}
+                 className={styles.barsMenu}
+                 onClick={() => {
+                   trackEventHandler(pageTrackingEvents.userMenuOpened);
+                   setHamburgerMenuOpen(true);
+                 }}
+               />
+               <Drawer
+                 title={false}
+                 placement="right"
+                 open={hamburgerMenuOpen}
+                 rootClassName={styles.hamburgerDrawer}
+                 onClose={() => {
+                   trackEventHandler(pageTrackingEvents.userMenuClosed);
+                   setHamburgerMenuOpen(false);
+                 }}
+               >
+                 <div className={styles.hamburgerMenu}>
+                   <NavItems data={userData?.isloggedIn ? loggedInData : loggedOutData} />
+                   {actionButtons}
+                 </div>
+               </Drawer>
+             </div>
+           ) : (
+             <>
+                <NavItems data={loggedOutData} variant="scroll-tabs" />
+                {userData?.isloggedIn && actionButtons}
+             </>
+             )}
+           </div>
         )}
       </div>
     </Section>

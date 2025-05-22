@@ -1,9 +1,12 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 import { useWaitlistApi } from '@modules/sst/waitlist/api';
 import useUser from '@hooks/useUser';
 import { WaitlistApiResponse, WaitlistForm, WaitlistFormField, WaitlistFormGroup } from '@modules/sst/waitlist/types';
+
+import { WAITLIST_FORM_EXCLUDED_PATHS } from '@utils/sst/constants';
 
 export const useWaitlistCheck = () => {
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
@@ -12,6 +15,8 @@ export const useWaitlistCheck = () => {
     student: WaitlistFormField[];
     parent: WaitlistFormField[];
   }>({ student: [], parent: [] });
+
+  const pathname = usePathname();
   
   const { data: userData } = useUser();
   const { getWaitlistForms, createProgramApplicant } = useWaitlistApi();
@@ -100,7 +105,9 @@ export const useWaitlistCheck = () => {
             parent: parentForms
           });
           setFormFields(studentForms);
-          setShowWaitlistModal(true);
+          if (pathname && !WAITLIST_FORM_EXCLUDED_PATHS.includes(pathname)) {
+            setShowWaitlistModal(true);
+          }
         } catch (error) {
           console.error('Error fetching waitlist forms:', error);
         }

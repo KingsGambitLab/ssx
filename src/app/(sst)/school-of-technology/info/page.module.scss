@@ -15,9 +15,12 @@ $info-container-background-color: #fafafa;
 }
 
 .mainContainer {
+  @include flex-row;
+
   width: 100%;
   max-width: 128rem;
   margin: 0 auto;
+  gap: 1.6rem;
   background-color: $info-container-background-color;
   
   @include bp(1440px) {
@@ -38,5 +41,11 @@ $info-container-background-color: #fafafa;
   @include tablet {
     width: 100%;
     padding: 0;
+  }
+}
+
+.rightContainer {
+  @include tablet {
+    display: none;
   }
 }

@@ -1,9 +1,10 @@
-$header-bg: #0b2a66;
+$key-dates-table-header-bg: #0b2a66;
 $light-black: #171717;
-$text-secondary: #3a3a3a;
+$key-dates-table-value-font-color: #3a3a3a;
 $light-gray: #e4e4e4;
 $light-blue: #ECF8FF;
 $border-color: #e4e4e4;
+$key-dates-border-color: #0a2661;
 $sst-vs-traditional-footer-text-title: #171717;
 $sst-vs-traditional-footer-font-size: 2.8rem;
 
@@ -14,7 +15,7 @@ $sst-vs-traditional-footer-font-size: 2.8rem;
   gap: 3.2rem;
   
   @include mobile {
-    padding: 3.2rem 0 1.4rem 0;
+    padding: 2.4rem 0;
     gap: 2rem;
   }
 }
@@ -37,6 +38,7 @@ $sst-vs-traditional-footer-font-size: 2.8rem;
     
     .comparisonTable {
       border-radius: 8px;
+      border: 0.1rem solid $key-dates-border-color;
       overflow: hidden;
       
       :global(.ant-table-thead > tr > th::before) {
@@ -69,26 +71,29 @@ $sst-vs-traditional-footer-font-size: 2.8rem;
       }
       
       .labelColumn {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 2rem;
+        font-size: $desktop-font-body;
         font-weight: $bold-font-weight;
-        color: $text-secondary;
+        color: $key-dates-table-value-font-color;
         word-wrap: break-word;
         background: $light-blue;
         
         @include mobile {
-          font-size: 1.4rem;
+          font-size: $mobile-font-card-title;
+          padding: 1rem 1.2rem !important;
+          line-height: normal !important;
         }
       }
 
       .dataColumn {
-        font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 2rem;
-        color: $text-secondary;
+        color: $key-dates-table-value-font-color !important;
         word-wrap: break-word;
+        font-weight: $default-font-weight;
         
         @include mobile {
           font-size: 1.4rem;
+          padding: 1rem 1.2rem !important;
+          line-height: 1.96rem !important;
         }
       }
     }
@@ -98,7 +103,7 @@ $sst-vs-traditional-footer-font-size: 2.8rem;
   text-align: center;
   font-weight: bold;
   font-size: 1.6rem;
-  background-color: $header-bg;
+  background-color: $key-dates-table-header-bg;
   color: $white-color;
   padding: 1rem;
 }

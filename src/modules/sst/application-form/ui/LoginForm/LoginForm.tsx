@@ -1,92 +1,173 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import CaseUtil from '@lib/caseUtil';
+
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useWorkflowContext } from '@context/sst/WorkflowContext';
+
+import useUser from '@hooks/useUser';
+import { useApplicationForm } from '@hooks/useApplicationForm';
+
+import ApplicationFeesStep from '@modules/sst/application-form/components/ApplicationFeesStep';
 import OtpStep from '@modules/sst/application-form/components/OtpStep';
 import PhoneEmailStep from '@modules/sst/application-form/components/PhoneEmailStep';
+import WaitlistForm from '@modules/sst/application-form/components/WaitlistForm';
+
 import {
   ApplicationFormStep,
   OtpStepFormData,
-  PhoneEmailStepFormData
+  PhoneEmailStepFormData,
+  WaitlistStepFormData,
 } from '@modules/sst/application-form/types';
-import { trackAllFormFields } from '@modules/sst/application-form/utils/tracking';
 
 import styles from "./LoginForm.module.scss";
 
 export default function LoginForm() {
-  const [step, setStep] = useState<ApplicationFormStep>('phone-email');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [email, setEmail] = useState<string>('');
-  
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [step, setStep] = useState<ApplicationFormStep>('phone-email');
+
+  const { showWaitlistForm } = useApplicationForm();
+  const { data: userData } = useUser();
+
+  const { fetchAllWorkflowSteps } = useWorkflowContext();
+
   const {
-    handleSubmit: handlePhoneEmailSubmit,
+    control: phoneEmailControl,
     formState: { errors: phoneEmailErrors },
+    handleSubmit: handlePhoneEmailSubmit,
     setError: setPhoneEmailErrors,
-    control: phoneEmailControl
   } = useForm<PhoneEmailStepFormData>({
     mode: 'onChange',
     defaultValues: {
       country_code: '+91',
       whatsapp_consent: true,
-    }
-  })
+    },
+  });
 
   const {
-    handleSubmit: handleOtpSubmit,
+    control: otpControl,
     formState: { errors: otpErrors },
-    control: otpControl
+    handleSubmit: handleOtpSubmit,
+    setError: setOtpErrors,
   } = useForm<OtpStepFormData>({
     mode: 'onChange',
     defaultValues: {
       otp: '',
+    },
+  });
+
+  const {
+    control: waitlistControl,
+    formState: { errors: waitlistErrors },
+    handleSubmit: handleWaitlistSubmit,
+  } = useForm<WaitlistStepFormData>({
+    mode: 'onChange',
+  });
+
+  const setInitialStep = () => {
+    if (!userData?.isloggedIn || showWaitlistForm === null) {
+      return;
     }
-  })
+  
+    if (showWaitlistForm) {
+      setStep('waitlist-form');
+    } else {
+      setStep('application-fees');
+    }
+  };
 
-
-  const onPhoneEmailSubmit = (data: PhoneEmailStepFormData) => {
-    console.log("onPhoneEmailSubmit data", data);
+  const onPhoneEmailSubmit = useCallback((data: PhoneEmailStepFormData) => {
     setEmail(data.email);
     setPhoneNumber(`${data.country_code}-${data.phone_number}`);
     setStep('otp');
-  }
-
-  const handleOtpVerificationSuccess = () => { 
-    // Post verification actions
+  }, []);
+  
+  const handleOtpVerificationSuccess = useCallback(() => { 
     window.location.reload();
-  }
+  }, []);
+  
+  const handleOtpVerificationError = useCallback((error: string) => {
+    setOtpErrors('otp', { message: error });
+  }, [setOtpErrors]);
 
-  const handleOtpVerificationError = (error: string) => {
-    console.error('Verification failed:', error);
-  }
-
-  useEffect(() => {
-    trackAllFormFields('phone-email-form');
+  const handleWaitlistSubmitSuccess = useCallback(() => {
+    setStep('application-fees');
   }, []);
 
+
+  useEffect(() => {
+    setInitialStep();
+  }, [userData?.isloggedIn, showWaitlistForm]);
+
+  useEffect(() => {
+    if (userData?.isloggedIn) {
+      fetchAllWorkflowSteps();
+    }
+  }, [userData?.isloggedIn]);
+
+
+  const userDetails = useMemo(() => [
+    {
+      label: "Name",
+      value: CaseUtil.titleCase(userData?.data?.attributes?.name || '')
+    },
+    {
+      label: "Contact Number",
+      value: userData?.data?.attributes?.phoneNumber || '',
+    },
+    {
+      label: "Email",
+      value: userData?.data?.attributes?.email || '',
+    }
+  ], [userData]);  
+
+  const renderStep = () => {
+    switch(step) {
+      case 'phone-email':
+        return (
+          <PhoneEmailStep
+            onSubmit={onPhoneEmailSubmit}
+            errors={phoneEmailErrors}
+            setError={setPhoneEmailErrors}
+            handleSubmit={handlePhoneEmailSubmit}
+            control={phoneEmailControl}
+          />
+        );
+      case 'otp':
+        return (
+          <OtpStep
+            email={email}
+            onOtpVerificationSuccess={handleOtpVerificationSuccess}
+            onOtpVerificationError={handleOtpVerificationError}
+            errors={otpErrors}
+            control={otpControl}
+            handleSubmit={handleOtpSubmit}
+            phoneNumber={phoneNumber}
+            setStep={setStep}
+          />
+        );
+      case 'waitlist-form':
+        return (
+          <WaitlistForm
+            errors={waitlistErrors}
+            handleSubmit={handleWaitlistSubmit}
+            control={waitlistControl}
+            onSubmitSuccess={handleWaitlistSubmitSuccess}
+          />
+        );
+      case 'application-fees':
+        return <ApplicationFeesStep userDetails={userDetails} />;
+      default:
+        return null;
+    }
+  };
+  
   return (
-    <div className={styles.container}>
-      {step === 'phone-email' && (
-        <PhoneEmailStep
-          onSubmit={onPhoneEmailSubmit}
-          errors={phoneEmailErrors}
-          setError={setPhoneEmailErrors}
-          handleSubmit={handlePhoneEmailSubmit}
-          control={phoneEmailControl}
-        />
-      )}
-      {step === 'otp' && (
-        <OtpStep
-          email={email}
-          onOtpVerificationSuccess={handleOtpVerificationSuccess}
-          onOtpVerificationError={handleOtpVerificationError}
-          errors={otpErrors}
-          control={otpControl}
-          handleSubmit={handleOtpSubmit}
-          phoneNumber={phoneNumber}
-          setStep={setStep}
-        />
-      )}
+      <div className={styles.container} id="application-form">
+        {renderStep()}
     </div>
   );
 }

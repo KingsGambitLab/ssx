@@ -1,0 +1,7 @@
+.navbar {
+  padding: 1.4rem 8rem;
+
+  @include tablet {
+    padding: 1.4rem 0;
+  }
+}

@@ -17,7 +17,7 @@ export default function AdmissionStepTimeline() {
     className: "admission",
   });
   return (
-    <Section>
+    <Section id="admission-step-timeline">
       <div className={styles.container}>
         <div className={styles.title}>{AdmissionStepTimelineData.title}</div>
         <VideoCard

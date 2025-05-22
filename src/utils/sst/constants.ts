@@ -6,3 +6,9 @@ export const ANNOUNCEMENT_STRIP_CONTENT = {
   highlightText: 'Know More',
   redirectUrl: '/school-of-technology/admission/#scholarship',
 }
+
+export const UG_PROGRAM_SLUG = 'school_of_tech';
+
+export const WAITLIST_FORM_EXCLUDED_PATHS = [
+  '/school-of-technology/summary/',
+]

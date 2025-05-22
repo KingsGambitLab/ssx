@@ -41,7 +41,7 @@ $footer-heading-color: #add5ff;
   gap: 2.4rem;
   max-width: 128rem;
   position: relative;
-  z-index: 1;
+  z-index: 3;
 
   @include mobile {
     padding: 2.4rem 2rem;
@@ -68,7 +68,6 @@ $footer-heading-color: #add5ff;
 
 .link {
   @include flex-row-c;
-  @include font-plus-jakarta-sans;
 
   gap: 0.4rem;
   padding: 1rem;
@@ -77,6 +76,7 @@ $footer-heading-color: #add5ff;
   font-weight: $bold-font-weight;
   line-height: 2.8rem;
   text-decoration: underline;
+  cursor: pointer;
 
   @include mobile {
     font-size: 1.6rem;
