@@ -29,7 +29,7 @@ const FooterSection: React.FC = () => {
   };
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id="footer">
       <div className={styles.container}>
         <div className={styles.text}>{FOOTER_DATA.text}</div>
         <Link

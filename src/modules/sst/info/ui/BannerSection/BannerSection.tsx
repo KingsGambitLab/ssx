@@ -1,14 +1,19 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 
 import { BANNER_CARDS, HEADER, LOGOS } from "./data";
+import { useDeviceType } from "@hooks/useDeviceType";
 
 import BannerCard from "@modules/sst/info/components/BannerCard";
 import Section from "@components/common/Section";
+import LoginForm from "@modules/sst/application-form/ui/LoginForm";
 
 import styles from "./BannerSection.module.scss";
 
 export default function BannerSection() {
+  const { isMobile } = useDeviceType();
+
   return (
     <Section>
       <div className={styles.bgImage}></div>
@@ -30,6 +35,7 @@ export default function BannerSection() {
             })}
           </div>
         </div>
+        {isMobile && (<LoginForm />)}
         <div className={styles.bannerCards}>
           {BANNER_CARDS.map((card, index) => {
             return (
