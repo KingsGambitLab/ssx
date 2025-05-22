@@ -9,6 +9,7 @@ $payment-failure-try-again-button-hover-color: #3e6dc9;
 
 .container {
   max-width: 45rem;
+  width: 100%;
   border-radius: 1.4rem;
   border: 0.1rem solid $payment-failure-border-color;
   background: $white-color;

@@ -10,6 +10,8 @@ $waitlist-form-error-font-color: #ff4d4f;
 
 .container {
   max-width: 45rem;
+
+  width: 100%;
   border-radius: 1.4rem;
   background: $white-color;
   overflow-x: hidden;
@@ -87,6 +89,7 @@ $waitlist-form-error-font-color: #ff4d4f;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.6rem;
+  width: 100%;
 
   :global(.ant-form-item) {
     margin-bottom: 0 !important;
@@ -113,7 +116,6 @@ $waitlist-form-error-font-color: #ff4d4f;
 
 .select {
   height: 4.8rem !important;
-  padding: 0 1.2rem;
   border-radius: $border-radius-default !important;
 
   &::placeholder {

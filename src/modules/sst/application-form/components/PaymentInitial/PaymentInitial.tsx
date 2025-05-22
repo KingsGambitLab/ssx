@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { Button, Input } from 'antd';
+import { Button, Input, Skeleton } from 'antd';
 import { useMemo, useState } from 'react';
 
 import { useWorkflowContext } from '@context/sst/WorkflowContext';
@@ -53,13 +53,12 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
     await startPaymentProcess();
   }
 
-
   return (
     <div className={styles.container}>
       <Header />
-      <div className={styles.content}>
-        <div className={styles.formWrapper}>
-          <div className={styles.header}>
+        <div className={styles.content}>
+          <div className={styles.formWrapper}>
+            <div className={styles.header}>
             {/* Title Section */}
             <div className={styles.titleWrapper}>
               <div className={styles.title}>Application Fee</div>
@@ -96,7 +95,15 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
               <div className={styles.applicationFees}>
                 <div className={styles.applicationFeesTitle}>Application Fee</div>
                 <div className={styles.applicationFeesValue}>
-                  {applicationFeesAmount ? `₹ ${applicationFeesAmount.toFixed(2)}` : ''}
+                  <Skeleton
+                    loading={!applicationFeesAmount}
+                    active
+                    paragraph={false}
+                    title={{ width: 80 }}
+                    className={styles.formSkeleton}
+                  >
+                    {applicationFeesAmount ? `₹ ${applicationFeesAmount.toFixed(2)}` : ''}
+                  </Skeleton>
                 </div>
               </div>
 
@@ -106,9 +113,17 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
                 {discountedAmount > 0 && (
                   <div className={styles.discountedPriceWrapper}>
                     <div className={styles.discountedPriceTitle}>Discount</div>
-                    <div className={styles.discountedPriceValue}>
-                      {discountedAmount ? `- ${convertToIndianNumeration(discountedAmount)}` : ''}
-                    </div>
+                      <div className={styles.discountedPriceValue}>
+                      <Skeleton
+                          loading={!discountedAmount}
+                          active
+                          paragraph={false}
+                          title={{ width: 80 }}
+                          className={styles.formSkeleton}
+                        >
+                          {discountedAmount ? `- ${convertToIndianNumeration(discountedAmount)}` : ''}
+                        </Skeleton>
+                      </div>
                   </div>
                 )}
                   {!isCouponDisabled && (
@@ -125,6 +140,7 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
                         className={styles.applyCouponButton}
                         onClick={handleCouponApply}
                         loading={applyingCoupon}
+                        style={{ margin: '0' }}
                       >
                         {couponCode ? 'Remove' : 'Apply'}
                       </Button>
@@ -142,7 +158,15 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
             <div className={styles.totalAmountSection}>
               <div className={styles.totalAmountLabel}>Total</div>
               <div className={styles.totalAmountValue}>
-                {totalAmount ? `${convertToIndianNumeration(totalAmount)}` : ''}
+                <Skeleton
+                  loading={!totalAmount}
+                  active
+                  paragraph={false}
+                  title={{ width: 80 }}
+                  className={styles.formSkeleton}
+                >
+                  {totalAmount ? `${convertToIndianNumeration(totalAmount)}` : ''}
+                </Skeleton>
               </div>
             </div>
             
@@ -159,7 +183,7 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
         >
           Continue to pay
         </Button>
-      </div>
+        </div>
     </div>
   );
 }

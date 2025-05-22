@@ -1,13 +1,10 @@
 .container {
   @include flex-col;
 
-  align-items: flex-start;
-  position: fixed;
-  right: 10.2rem;
-  top: 11.4rem;
-  max-height: 90vh;
-  overflow-x: scroll;
-  border-radius: 1.4rem;
+  align-items: flex-end;
+  position: sticky;
+  top: 10rem;
+  z-index: 10;
 
   &::-webkit-scrollbar {
     display: none;
@@ -15,12 +12,10 @@
 
   @include mobile {
     position: relative;
-    max-width: 128rem;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 2rem;
     right: 0;
     top: 0;
-    max-height: 100vh;
   }
 }
