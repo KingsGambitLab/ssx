@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCallback } from "react";
 
 import classNames from "classnames";
 
@@ -18,12 +19,15 @@ type NavItemsProps = {
     href: string;
     isNew?: boolean;
   }[];
+  variant?: 'default' | 'scroll-tabs';
 }
+
 export default function NavItems({
   data,
   rootClassName = '',
   newTagClassName = '',
   navItemClassName = '',
+  variant = 'default',
 }: NavItemsProps) {
   const pathname = usePathname();
 
@@ -35,21 +39,50 @@ export default function NavItems({
     });
   }
 
+  const handleScrollTabClick = useCallback((href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const section = document.querySelector(href);
+    if (section) {
+      const yOffset = -80;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    trackEvent(href);
+  }, []);
+
   return (
-    <div className={classNames(styles.container, rootClassName)}>
+    <div className={classNames(
+      [styles.container, rootClassName],
+      {
+        [styles.containerScrollTabs]: variant === 'scroll-tabs',
+      }
+    )}>
       <div className={styles.navItemsContainer}>
         {data.map((item, index) => {
           const isSelected = pathname === item?.href;
+
           return (
             <div
               className={styles.navItem}
               key={index}
             >
-              <Link
-                prefetch={false}
-                href={item?.href}
-                target="_blank"
-                className={classNames(
+              {variant === 'scroll-tabs' ? (
+                <a
+                  href={item?.href}
+                  className={classNames(
+                  styles.scrollNavItemText,
+                  navItemClassName
+                )}
+                onClick={(e) => handleScrollTabClick(item?.href, e)}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  prefetch={false}
+                  href={item?.href}
+                  target="_blank"
+                  className={classNames(
                   styles.navItemText,
                   navItemClassName,
                   {
@@ -57,9 +90,10 @@ export default function NavItems({
                   }
                 )}
                 onClick={() => trackEvent(item?.label)}
-              >
-                {item.label}
-              </Link>
+                >
+                  {item.label}
+                </Link>
+              )}
               {
                 item.isNew && (
                   <div className={classNames(styles.newTag, newTagClassName)}>

@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
-import { AlumniProvider } from '@modules/sst/alumni-directory/context/AlumniContext';
-
+import { Header } from "@components/common";
+import Footer from "@components/common/Footer";
 import {
   Analytics,
   AnalyticsFallback,
@@ -12,15 +12,21 @@ import {
   SUB_PRODUCTS,
 } from '@/components/common/Analytics/constants';
 
+import Navbar from "@components/Sst/Navbar";
 import BottomNavbar from "@components/Sst/BottomNavbar";
 
-import { getAllExperiments } from '@utils/abex/experiment';
+import { AlumniProvider } from "@modules/sst/alumni-directory/context/AlumniContext";
+
+import { getAllExperiments } from "@utils/abex/experiment";
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const experiments = await getAllExperiments();
   
   return (
     <>
+      <Header>
+          <Navbar />
+      </Header> 
       <Suspense key="gtm-script" fallback={<AnalyticsFallback />}>
         <Analytics
           product={PRODUCTS.SCHOOL_OF_TECHNOLOGY}

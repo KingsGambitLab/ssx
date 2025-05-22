@@ -3,15 +3,15 @@
 import { Button, Checkbox, Form, Input, Select } from "antd";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
-
 import Image from "next/image";
-
 import CalendarCheck from "@public/images/common/svg/calendar-check.svg";
 
 import { getOtp } from "@modules/sst/application-form/api";
 import { PhoneEmailStepFormData, PhoneEmailStepProps } from "@modules/sst/application-form/types";
 import { trackFormSubmit } from "@modules/sst/application-form/utils/tracking";
+import { useKeyDates } from "@context/sst/KeyDatesContext";
 
+import FloatingCtaWrapper from "@/components/common/FloatingCtaWrapper/FloatingCtaWrapper";
 import TurnstileWidget from "@/utils/turnstile/turnstile";
 
 import Footer from "../Footer";
@@ -29,6 +29,7 @@ export default function PhoneEmailStep({
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { upcomingIntakeDetails, isLoading: isKeyDatesLoading } = useKeyDates();
 
   const setFormErrors = (errorMessage: string, field?: keyof PhoneEmailStepFormData) => {
     if (field) {
@@ -84,6 +85,14 @@ export default function PhoneEmailStep({
       setIsLoading(false);
     }
   }
+
+  const formatIntakeDeadlineDate = (date: string) => {
+    return date.split(",")[0].trim();
+  };
+
+  const intakeDeadlineDate = upcomingIntakeDetails?.deadline 
+    ? formatIntakeDeadlineDate(upcomingIntakeDetails.deadline)
+    : 'Coming soon!';
   
   return (
     <div className={styles.container}>
@@ -208,7 +217,8 @@ export default function PhoneEmailStep({
               </Form.Item>
 
               {/* Submit Section */}
-              <div className={styles.submitSection}>
+              <FloatingCtaWrapper targetId="phone-email" isLoading={isKeyDatesLoading}>
+                <div className={styles.submitSection}>
                 {formError && (
                   <div className={styles.formError}>
                     {formError}
@@ -216,9 +226,15 @@ export default function PhoneEmailStep({
                 )}
 
                 <div className={styles.lastIntakeDate}>
-                  <Image src={CalendarCheck} alt="calendar-check" height={24} width={24} />
+                    <Image
+                      src={CalendarCheck}
+                      alt="calendar-check"
+                      className={styles.calendarCheckIcon}
+                      height={24}
+                      width={24}
+                    />
                   <div className={styles.lastIntakeDateText}>
-                    Jan Intake Closes On: <span>2nd January, 2025</span>
+                    Jan Intake Closes On: <span>{intakeDeadlineDate}</span>
                   </div>
                 </div>
 
@@ -231,8 +247,9 @@ export default function PhoneEmailStep({
                   block
                 >
                   Start your Application
-                </Button>
-              </div>
+                  </Button>
+                </div>
+              </FloatingCtaWrapper>
             </form>
           </div>
         </div>

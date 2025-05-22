@@ -2,6 +2,8 @@
 
 import dayjs from 'dayjs';
 
+import CaseUtil from "@lib/caseUtil";
+
 import { useCallback, useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import { useQueryClient } from '@tanstack/react-query';
@@ -34,7 +36,7 @@ import {
   fetchWorkflowStepResponse,
 } from "@/types/sst/workflow";
 
-import CaseUtil from "@lib/caseUtil";
+import FloatingCtaWrapper from '@/components/common/FloatingCtaWrapper/FloatingCtaWrapper';
 
 import Footer from "../Footer";
 import Header from "../Header";
@@ -274,20 +276,22 @@ export default function WaitlistForm({
               </Form.Item>
 
               {/* Submit Button */}
-              <div className={styles.submitButtonWrapper}>
-                {formError && (
-                  <div className={styles.formError}>{formError}</div>
-                )}
+              <FloatingCtaWrapper targetId="waitlist-form">
+                <div className={styles.submitButtonWrapper}>
+                  {formError && (
+                    <div className={styles.formError}>{formError}</div>
+                  )}
                 <Button
                   type="primary"
                   htmlType="submit"
                   loading={isLoading}
                   className={styles.submitButton}
                   block
-                >
-                  Submit
-                </Button>
-              </div>
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </FloatingCtaWrapper>
             </form>
 
             <Footer />

@@ -1,19 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Button, Form, Input, Typography } from 'antd';
-import { Controller } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 
+import { Button, Form, Input, Typography } from 'antd';
+
+import { Controller } from 'react-hook-form';
+
 import { retryOtp } from '@modules/common/apis';
-import { TurnstileModal } from '@modules/common/components/TurnstileModal';
 import { verifyOtp } from '@modules/sst/application-form/api';
 
-import WhatsappIcon from '@public/images/sst/svg/social/whatsapp.svg';
-
-import { OtpStepFormData, OtpStepProps } from '../../types';
+import { TurnstileModal } from '@modules/common/components/TurnstileModal';
 import EngagementStrip from '../EngagementStrip/EngagementStrip';
+import FloatingCtaWrapper from '@/components/common/FloatingCtaWrapper/FloatingCtaWrapper';
+
 import Footer from '../Footer';
 import Header from '../Header';
+
+import { OtpStepFormData, OtpStepProps } from '../../types';
+
+import WhatsappIcon from '@public/images/sst/svg/social/whatsapp.svg';
 
 import styles from './OtpStep.module.scss';
 
@@ -209,10 +214,11 @@ export default function OtpStep({
           </div>
 
           {/* Submit Button */}
-          <div className={styles.submitButtonWrapper}>
-            {formError && (
-              <div className={styles.formError}>{formError}</div>
-            )}
+          <FloatingCtaWrapper targetId="otp">
+            <div className={styles.submitButtonWrapper}>
+              {formError && (
+                <div className={styles.formError}>{formError}</div>
+              )}
             <Button
               type="primary"
               htmlType="submit"
@@ -220,10 +226,11 @@ export default function OtpStep({
               disabled={!!errors?.otp}
               className={styles.submitButton}
               block
-            >
-              Submit
-            </Button>
-          </div>
+              >
+                Submit
+              </Button>
+            </div>
+          </FloatingCtaWrapper>
         </form>
 
         <Footer />
