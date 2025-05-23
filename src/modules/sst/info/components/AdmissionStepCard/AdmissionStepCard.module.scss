@@ -16,6 +16,10 @@ $bg-black-color: #212121;
     width: 0;
     left: calc(50% - 0.15rem);
     z-index: 0;
+
+    @include tablet {
+      height: calc(100% + 14rem);
+    }
   }
 }
 
