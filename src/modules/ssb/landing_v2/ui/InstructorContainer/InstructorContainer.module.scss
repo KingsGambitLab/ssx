@@ -1,0 +1,43 @@
+.instructorContainer{
+    @include flex-col;
+    width: 100%;
+    align-items: center;
+    gap: 5rem;
+
+    @include tablet{
+        gap: 2.4rem;
+    }
+}
+
+.instructorCardContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
+
+    @include tablet{
+        gap: 1.6rem;
+    }
+}
+
+.instructorContainerTitle{
+    @include flex-col;
+    align-items: center;
+    font-family: 'Montserrat';
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 4.8rem; 
+    color: #171717;
+
+    @include tablet{
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+    }
+}
+
+.instructorContainerTitleText2{
+    font-weight: 600;
+    color:#1A8452;
+}
+

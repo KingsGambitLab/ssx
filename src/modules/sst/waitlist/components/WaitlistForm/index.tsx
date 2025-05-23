@@ -8,6 +8,7 @@ import { WaitlistFormData } from '../../types';
 import { useWaitlistApi } from '../../api';
 import { useWaitlistCheck } from '@hooks/useWaitlistCheck';
 import { useQueryClient } from '@tanstack/react-query';
+import useUser from '@hooks/useUser';
 
 import ParentIcon from '@public/images/sst/svg/parentfamily.svg';
 import StudentIcon from '@public/images/sst/svg/student.svg';
@@ -27,12 +28,27 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
   const { submitWaitlistForm } = useWaitlistApi();
   const queryClient = useQueryClient();
   const [form] = AntForm.useForm();
+  const { data: userData } = useUser();
 
   // Memoize category field first to get its ID
   const categoryField = useMemo(() => 
     formFields.find(field => 
       field.type === 'radio' && 
       field.label.toLowerCase().includes('you are a')
+    ), [formFields]
+  );
+
+  const emailField = useMemo(() => 
+    formFields.find(field => 
+      field.type === 'text' && 
+      field.label.toLowerCase().includes('email')
+    ), [formFields]
+  );
+
+  const nameField = useMemo(() => 
+    formFields.find(field => 
+      field.type === 'text' && 
+      field.label.toLowerCase().includes('name')
     ), [formFields]
   );
 
@@ -45,12 +61,20 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
     reValidateMode: 'onChange'
   });
 
-  // Add effect to set default value when categoryField becomes available
+  // Add effect to set default values when categoryField or userData becomes available
   useEffect(() => {
     if (categoryField) {
       setValue(categoryField.id, 'Student');
     }
-  }, [categoryField, setValue]);
+    if (userData?.isloggedIn) {
+      if (emailField) {
+        setValue(emailField.id, userData.data?.attributes?.email);
+      }
+      if (nameField) {
+        setValue(nameField.id, userData.data?.attributes?.name);
+      }
+    }
+  }, [categoryField, setValue, emailField, nameField, userData]);
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -363,6 +387,7 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
               type="primary"
               onClick={handleButtonClick}
               loading={isLoading}
+              disabled={!formFields.length}
               block
             >
               Proceed

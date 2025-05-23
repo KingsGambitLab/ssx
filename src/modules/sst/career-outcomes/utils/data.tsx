@@ -101,7 +101,7 @@ export const higherStudiesCardData: HigherStudiesCardProps[] = [
 export const CareerStatsData = {
   stats: [
     {
-      title: "1.13 Lakh / Month",
+      title: "2 Lakh / Month",
       desc: "Highest 2nd Year Internship Stipend",
       image: BurstBgImage.src,
       variant: "primary",
