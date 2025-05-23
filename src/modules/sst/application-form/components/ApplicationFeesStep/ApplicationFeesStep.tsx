@@ -30,6 +30,7 @@ export default function ApplicationFeesStep({ userDetails }: ApplicationFeesStep
       && currentStep?.label !== 'PERSONAL_DETAILS'
     ) {
       window.open(APPLICATION_PAGE_URL, '_self');
+      return;
     }
 
     // Fetch Payment amount if not already fetched
