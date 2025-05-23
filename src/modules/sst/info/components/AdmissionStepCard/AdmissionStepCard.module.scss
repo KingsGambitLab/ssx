@@ -39,7 +39,7 @@ $bg-black-color: #212121;
   &:before {
     content: "";
     border: 0.25rem $background-color solid;
-    height: calc(100% + 9rem);
+    height: calc(100% + 7rem);
     position: absolute;
     width: 0;
     left: calc(50% - 0.15rem);
