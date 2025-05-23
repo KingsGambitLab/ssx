@@ -10,7 +10,7 @@
     display: none;
   }
 
-  @include mobile {
+  @include tablet {
     position: relative;
     max-width: 100%;
     margin-left: auto;

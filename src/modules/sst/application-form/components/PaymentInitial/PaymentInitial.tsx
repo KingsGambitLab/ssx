@@ -18,7 +18,7 @@ import styles from './PaymentInitial.module.scss';
 
 export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
   const [referralCode, setReferralCode] = useState<string>('');
-  // const { applyCouponApi, paymentPlanCouponApi, removeCoupon } = useWorkflowApi();
+
   const {
     couponCode,
     isCouponDisabled,
@@ -48,7 +48,14 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
   }
 
   const totalAmount = useMemo(() => {
-    return applicationFeesAmount ? applicationFeesAmount - discountedAmount : 0;
+    return discountedAmount ? discountedAmount : applicationFeesAmount;
+  }, [applicationFeesAmount, discountedAmount]);
+
+  const discount = useMemo(() => { 
+    if (discountedAmount && applicationFeesAmount) {
+      return applicationFeesAmount - discountedAmount;
+    }
+    return 0;
   }, [applicationFeesAmount, discountedAmount]);
 
   const handlePaymentProcess = async () => {
@@ -112,18 +119,18 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
 
               {/* Discount Section */}
               <div className={styles.discountSection}>
-                {discountedAmount > 0 && (
+                {discount > 0 && (
                   <div className={styles.discountedPriceWrapper}>
                     <div className={styles.discountedPriceTitle}>Discount</div>
                       <div className={styles.discountedPriceValue}>
-                      <Skeleton
-                          loading={!discountedAmount}
+                        <Skeleton
+                          loading={!discount}
                           active
                           paragraph={false}
                           title={{ width: 80 }}
                           className={styles.formSkeleton}
                         >
-                          {discountedAmount ? `- ${convertToIndianNumeration(discountedAmount)}` : ''}
+                          {discount ? `- ${convertToIndianNumeration(discount)}` : ''}
                         </Skeleton>
                       </div>
                   </div>

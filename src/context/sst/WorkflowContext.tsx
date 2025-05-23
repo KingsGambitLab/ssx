@@ -33,6 +33,8 @@ type WorkflowContextType = {
   applicationFeesAmount: number | undefined;
   applicationFeesCurrency: string;
   isFetchCurrentWorkflowStepLoading: boolean;
+  isFetchWorkflowStepsLoading: boolean;
+  isFetchStepDetailsLoading: boolean;
   programId: number | undefined;
   fetchUserCurrentCouponCode: () => Promise<void>;
   applyingCoupon: boolean;
@@ -58,6 +60,7 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
   const [applicationFeesCurrency, setApplicationFeesCurrency] = useState<string>('');
   const [currentStep, setCurrentStep] = useState<{id: number, label: string} | undefined>(undefined);
   const [isFetchWorkflowStepsLoading, setIsFetchWorkflowStepsLoading] = useState<boolean>(false);
+  const [isFetchStepDetailsLoading, setIsFetchStepDetailsLoading] = useState<boolean>(false);
   const [programId, setProgramId] = useState<number | undefined>(undefined);
   const [paymentStatus, setPaymentStatus] = useState<'initial' | 'success' | 'failed'>('initial');
   const [isFetchCurrentWorkflowStepLoading, setIsFetchCurrentWorkflowStepLoading] = useState<boolean>(false);
@@ -68,24 +71,11 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
     fetchCurrentWorkflowStepApi,
     fetchPaymentPlanApi,
     applyCouponApi,
-    paymentPlanCouponApi,
+    paymentPlanDetailsApi,
     removeCouponApi,
     fetchUserCurrentCouponCodeApi,
     fetchStepDetailsApi
   } = useWorkflowApi();
-
-  const setCurrentWorkflowStepId = (
-    current: number,
-    next: number,
-    nextCustomData: { optional?: boolean },
-    currentStatus: string
-  ) => {
-    if (nextCustomData?.optional === true || currentStatus === 'failed') {
-      setCurrentStep({id: current, label: ''});
-    } else {
-      setCurrentStep({id: next, label: ''});
-    }
-  }
 
   const setCurrentWorkflowStepLabel = (label: string) => {
     if (currentStep) {
@@ -111,7 +101,7 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
       setApplyingCoupon(true);
         await applyCouponApi(couponCode, paymentPlanId as number);
 
-        const response = await paymentPlanCouponApi({
+        const response = await paymentPlanDetailsApi({
           paymentPlanId: paymentPlanId as number,
           payingForType: 'Program',
           payingForId: programId as number,
@@ -164,37 +154,6 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
     }
   }
 
-  const fetchAllWorkflowSteps = useCallback(async () => {
-    if (!token || isFetchWorkflowStepsLoading) {
-      return;
-    }
-
-    try {
-      setIsFetchWorkflowStepsLoading(true);
-      const response = await fetchAllWorkflowStepsApi();
-      console.log("Workflow steps fetched:", response);
-      
-      setCurrentWorkflowStepId(
-        response?.meta.current,
-        response?.meta.next,
-        response?.meta.nextCustomData,
-        response?.meta.currentStatus || ''
-      );
-
-      const programData = response?.included?.find(
-        (item: any) => item?.attributes?.ownerType === 'Program'
-      );
-
-      setProgramId(programData?.attributes?.ownerId);
-
-      return response;
-    } catch (err) {
-      console.error("Error fetching all workflow steps:", err);
-    } finally {
-      setIsFetchWorkflowStepsLoading(false);
-    }
-  }, [token, fetchAllWorkflowStepsApi]);
-
   const fetchCurrentWorkflowStep = useCallback(async (workflowStepId: number) => {
     if (!token || isFetchCurrentWorkflowStepLoading) {
       return;
@@ -225,10 +184,55 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
     }
   }, [token, isFetchCurrentWorkflowStepLoading, fetchCurrentWorkflowStepApi]);
 
+  const setCurrentWorkflowStepId = (
+    current: number,
+    next: number,
+    nextCustomData: { optional?: boolean },
+    currentStatus: string
+  ) => {
+    if (nextCustomData?.optional === true || currentStatus === 'failed') {
+      setCurrentStep({ id: current, label: '' });
+      fetchCurrentWorkflowStep(current);
+    } else {
+      setCurrentStep({ id: next, label: '' });
+      fetchCurrentWorkflowStep(next);
+    }
+  }
+
+  const fetchAllWorkflowSteps = useCallback(async () => {
+    if (!token || isFetchWorkflowStepsLoading) {
+      return;
+    }
+
+    try {
+      setIsFetchWorkflowStepsLoading(true);
+      const response = await fetchAllWorkflowStepsApi();
+      
+      setCurrentWorkflowStepId(
+        response?.meta.current,
+        response?.meta.next,
+        response?.meta.nextCustomData,
+        response?.meta.currentStatus || ''
+      );
+
+      const programData = response?.included?.find(
+        (item: any) => item?.attributes?.ownerType === 'Program'
+      );
+
+      setProgramId(programData?.attributes?.ownerId);
+
+      return response;
+    } catch (err) {
+      console.error("Error fetching all workflow steps:", err);
+    } finally {
+      setIsFetchWorkflowStepsLoading(false);
+    }
+  }, [token, fetchAllWorkflowStepsApi]);
+
   const startPaymentProcess = async () => { 
     try {
       //1. we are fetching coupon details for current payment plan
-      const response = await paymentPlanCouponApi({
+      const response = await paymentPlanDetailsApi({
         paymentPlanId: paymentPlanId as number,
         payingForType: 'Program',
         payingForId: programId as number,
@@ -240,6 +244,8 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
           response?.amount === applicationFeesAmount * 100 ? 0 : response?.amount / 100 : 0;
 
         setDiscountedAmount(discountedAmount);
+
+        console.log("Coupom Api response:", response);
 
         //2. we are fetching razorpay api
         const razorpayResponse = await razorpayPaymentWindow({
@@ -277,9 +283,19 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
   }
 
   const fetchStepDetails = async (stepIds: number[]) => {
-    const response = await fetchStepDetailsApi(stepIds);
-    console.log("Step details fetched:", response);
-    return response;
+    if (!token || isFetchStepDetailsLoading) {
+      return;
+    }
+
+    try {
+      setIsFetchStepDetailsLoading(true);
+      const response = await fetchStepDetailsApi(stepIds);
+      return response;
+    } catch (err) {
+      console.error("Error fetching step details:", err);
+    } finally {
+      setIsFetchStepDetailsLoading(false);
+    }
   }
 
   const value = React.useMemo(() => ({ 
@@ -301,7 +317,9 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
     paymentStatus,
     setPaymentStatus,
     fetchStepDetails,
-    isFetchCurrentWorkflowStepLoading
+    isFetchCurrentWorkflowStepLoading,
+    isFetchWorkflowStepsLoading,
+    isFetchStepDetailsLoading
   }), [
     currentStep,
     paymentPlanId,
@@ -320,7 +338,8 @@ export const WorkflowContextProvider = ({ children }: { children: React.ReactNod
     paymentStatus,
     setPaymentStatus,
     fetchStepDetails,
-    isFetchCurrentWorkflowStepLoading
+    isFetchCurrentWorkflowStepLoading,
+    isFetchWorkflowStepsLoading,
   ]);
 
   return (
