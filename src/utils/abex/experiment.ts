@@ -12,18 +12,27 @@ const sstLpRevampAbexPayload: AbexPayload = {
   flagkey: ABEX_FLAG_CONFIG.SST_LP_REVAMP.KEY,
 };
 
+const sstInfoPageAbexPayload: AbexPayload = {
+  flagkey: ABEX_FLAG_CONFIG.SST_INFO_PAGE.KEY,
+};
+
 export const getAllExperiments = async () => {
   const cookieStore = await cookies();
   const experimentsCookieValue = cookieStore.get(EXPERIMENTS_COOKIE)?.value;
   const experiments = getCurrentExperiments(experimentsCookieValue as string);
   const sstLpRevampVariant = experiments[sstLpRevampAbexPayload.flagkey];
-
+  const sstInfoPageVariant = experiments[sstInfoPageAbexPayload.flagkey];
 
   const fetchExperiments = [];
 
   if (!sstLpRevampVariant) {
     experiments[ABEX_FLAG_CONFIG.SST_LP_REVAMP.KEY] = ABEX_FLAG_CONFIG.SST_LP_REVAMP.DEFAULT_VARIANT;
     fetchExperiments.push(getAbExperimentVariant(sstLpRevampAbexPayload));
+  }
+
+  if (!sstInfoPageVariant) {
+    experiments[ABEX_FLAG_CONFIG.SST_INFO_PAGE.KEY] = ABEX_FLAG_CONFIG.SST_INFO_PAGE.DEFAULT_VARIANT;
+    fetchExperiments.push(getAbExperimentVariant(sstInfoPageAbexPayload));
   }
 
   if (fetchExperiments.length) {
