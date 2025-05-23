@@ -10,7 +10,8 @@ const ENDPOINTS = {
 };
 
 const verifyPayment = async (orderParams: any, extra = {}) => {
-  const params = {order_params: orderParams};
+  const params = { order_params: orderParams };
+  
   const response = await apiRequest(
     HttpMethods.POST,
     ENDPOINTS.PAYMENT_VERIFY,
@@ -19,7 +20,6 @@ const verifyPayment = async (orderParams: any, extra = {}) => {
       ...extra
     }
   );
-  console.log("Razorpay response:", response);
   return response;
 };
 
@@ -62,7 +62,7 @@ const initiatePayment = (
         },
         modal: {
           ondismiss() {
-            const error = new Error('Payment process cancelled.');
+            const error = new Error('Payment Process Cancelled.');
             (error as any).isFromRazorpay = true;
             reject(error);
           },

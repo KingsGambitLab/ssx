@@ -268,10 +268,11 @@ $payment-initial-button-hover-color: #3e6dc9;
   align-self: stretch;
   justify-content: flex-end;
   width: 100%;
+}
 
-  & > input {
-    width: fit-content !important;
-  }
+.discountInput {
+  max-width: 14rem;
+  width: fit-content !important;
 }
 
 .applyCouponButton {

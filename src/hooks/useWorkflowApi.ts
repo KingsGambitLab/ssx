@@ -113,7 +113,7 @@ export const useWorkflowApi = () => {
     }
   }
 
-  const paymentPlanCouponApi = async ({
+  const paymentPlanDetailsApi = async ({
     paymentPlanId,
     payingForType,
     payingForId,
@@ -204,7 +204,7 @@ export const useWorkflowApi = () => {
     fetchCurrentWorkflowStepApi,
     fetchPaymentPlanApi,
     applyCouponApi,
-    paymentPlanCouponApi,
+    paymentPlanDetailsApi,
     removeCouponApi,
     fetchUserCurrentCouponCodeApi,
     fetchStepDetailsApi
