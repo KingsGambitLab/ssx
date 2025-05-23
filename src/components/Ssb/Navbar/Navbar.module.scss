@@ -1,0 +1,30 @@
+.navbar {
+  background-color: $white-color !important;
+  padding: 0 !important;
+
+  :global(.sr-container) {
+    max-width: 144rem !important;
+  }
+}
+
+.container {
+  @include flex-row;
+  
+  padding: 1.4rem 0;
+  align-items: center;
+  align-self: stretch;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.logoImage {
+  margin-left: 12.2rem;
+  height: auto;
+
+  @include tablet {
+    width: 8rem;
+    margin-left: 2.4rem;
+  }
+}
