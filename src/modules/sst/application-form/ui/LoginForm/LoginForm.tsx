@@ -51,7 +51,6 @@ export default function LoginForm() {
     control: otpControl,
     formState: { errors: otpErrors },
     handleSubmit: handleOtpSubmit,
-    setError: setOtpErrors,
   } = useForm<OtpStepFormData>({
     mode: 'onChange',
     defaultValues: {
