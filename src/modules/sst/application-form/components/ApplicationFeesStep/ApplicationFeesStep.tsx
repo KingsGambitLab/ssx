@@ -19,38 +19,37 @@ export default function ApplicationFeesStep({ userDetails }: ApplicationFeesStep
     setPaymentStatus,
     fetchCurrentWorkflowStep,
     fetchUserCurrentCouponCode,
-    fetchAllWorkflowSteps,
-    isFetchCurrentWorkflowStepLoading
+    fetchAllWorkflowSteps
   } = useWorkflowContext();
 
   useEffect(() => {
-    // if user has completed appplication fees step, then redirect to application page
-    if (
-      currentStep?.label
-      && currentStep?.label !== 'APPLICATION_FEE'
-      && currentStep?.label !== 'PERSONAL_DETAILS'
-    ) {
-      window.open(APPLICATION_PAGE_URL, '_self');
-      return;
-    }
-
     // Fetch Payment amount if not already fetched
+    if (!currentStep?.id) return;
+
     if (!paymentPlanId) {
       fetchCurrentWorkflowStep(currentStep?.id as number);
     } else if (paymentPlanId && programId) {
       fetchUserCurrentCouponCode();
     }
-  }, [currentStep, paymentPlanId, programId]);
+  }, [currentStep?.id, paymentPlanId, programId]);
 
   useEffect(() => {
-    if(!isFetchCurrentWorkflowStepLoading) {
-      fetchAllWorkflowSteps();
-    }
-  }, [isFetchCurrentWorkflowStepLoading]);
+    fetchAllWorkflowSteps();
+  }, []);
 
   const tryAgainHandler = () => {
    setPaymentStatus('initial');
   }
+
+   // if user has completed appplication fees step, then redirect to application page
+   if (
+    currentStep?.label
+    && currentStep?.label !== 'APPLICATION_FEE'
+    && currentStep?.label !== 'PERSONAL_DETAILS'
+  ) {
+    // window.open(APPLICATION_PAGE_URL, '_self');
+  }
+
 
   if (paymentStatus === 'failed') {
     return <PaymentFailure userDetails={userDetails} tryAgainHandler={tryAgainHandler} />;

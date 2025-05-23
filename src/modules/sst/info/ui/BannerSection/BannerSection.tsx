@@ -45,7 +45,9 @@ export default function BannerSection() {
             })}
           </div>
         </div>
-        {isMobile && (<LoginForm />)}
+        <div className={styles.loginFormContainer}>
+          <LoginForm />
+        </div>
         <div className={styles.bannerCards}>
           {BANNER_CARDS.map((card, index) => {
             return (

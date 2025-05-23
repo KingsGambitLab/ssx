@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 import CaseUtil from "@lib/caseUtil";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { Controller } from "react-hook-form";
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -57,8 +57,9 @@ export default function WaitlistForm({
     workflowDefinitionId: number,
     formStepId: number
   }[]>([]);
+  const hasFetchedStepDetails = useRef(false);
   
-  const { currentStep, fetchStepDetails } = useWorkflowContext();
+  const { currentStep, fetchStepDetails, isFetchStepDetailsLoading } = useWorkflowContext();
   const { fetchCurrentWorkflowStepApi } = useWorkflowApi();
   const { studentPersonalDetailsForm } = useApplicationForm();
   const { submitPersonalDetailsFormResponse } = useApplicationFormApi();
@@ -176,28 +177,41 @@ export default function WaitlistForm({
 
   useEffect(() => {
     const updateStepLabels = async () => {
-      const stepIds = workflowDefinitionStepIds.map(step => step.formStepId);
+      if (
+        workflowDefinitionStepIds.length === 0 ||
+        hasFetchedStepDetails.current ||
+        isFetchStepDetailsLoading
+      ) {
+        return;
+      }
 
-      const response = await fetchStepDetails(stepIds);
-      const studentFormGroupLabel = ROLE_SECTION_MAPPING.student[0].formGroupLabel;
+      try {
+        const stepIds = workflowDefinitionStepIds.map(step => step.formStepId);
+        const response = await fetchStepDetails(stepIds);
+        const studentFormGroupLabel = ROLE_SECTION_MAPPING.student[0].formGroupLabel;
 
-      response?.data?.forEach((step: any) => {
-        const stepId = step.id;
-        const stepLabel = step.attributes?.label;
+        response?.data?.forEach((step: any) => {
+          const stepId = step.id;
+          const stepLabel = step.attributes?.label;
 
-        if (stepLabel === studentFormGroupLabel) {
-          const workflowDefinitionId = workflowDefinitionStepIds.find(
-            step => Number(step.formStepId) == Number(stepId)
-          )?.workflowDefinitionId;
+          if (stepLabel === studentFormGroupLabel) {
+            const workflowDefinitionId = workflowDefinitionStepIds.find(
+              step => Number(step.formStepId) == Number(stepId)
+            )?.workflowDefinitionId;
 
-          setStudentDetailsWorkflowStepId(workflowDefinitionId as number);
-        }
-      });
+            setStudentDetailsWorkflowStepId(workflowDefinitionId as number);
+          }
+        });
+
+        hasFetchedStepDetails.current = true;
+      } catch (error) {
+        setFormError("Something went wrong. Please try reloading the page.");
+        console.error(error);
+      }
     };
 
     updateStepLabels();
-
-  }, [workflowDefinitionStepIds]);
+  }, [workflowDefinitionStepIds, isFetchStepDetailsLoading]);
 
   return (
     <div className={styles.container}>

@@ -25,7 +25,16 @@
   z-index: 0;
 
   @include mobile {
-    height: 100rem;
+    top: 5rem;
+    object-position: top left;
+  }
+}
+
+.loginFormContainer {
+  display: none;
+
+  @include tablet {
+    display: block;
   }
 }
 
