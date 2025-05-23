@@ -67,8 +67,12 @@ export const WaitlistForm: React.FC<WaitlistFormProps> = ({
       setValue(categoryField.id, 'Student');
     }
     if (userData?.isloggedIn) {
-      emailField && setValue(emailField?.id, userData.data?.attributes?.email);
-      nameField && setValue(nameField?.id, userData.data?.attributes?.name);
+      if (emailField) {
+        setValue(emailField.id, userData.data?.attributes?.email);
+      }
+      if (nameField) {
+        setValue(nameField.id, userData.data?.attributes?.name);
+      }
     }
   }, [categoryField, setValue, emailField, nameField, userData]);
 
