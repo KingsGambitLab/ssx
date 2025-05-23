@@ -11,7 +11,7 @@ $bg-black-color: #212121;
   &:before {
     content: "";
     border: 0.2rem $border-gray-color solid;
-    height: calc(100% + 9rem);
+    height: calc(100% + 12rem);
     position: absolute;
     width: 0;
     left: calc(50% - 0.15rem);
