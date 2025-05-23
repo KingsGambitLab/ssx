@@ -47,7 +47,7 @@ export default function ApplicationFeesStep({ userDetails }: ApplicationFeesStep
     && currentStep?.label !== 'APPLICATION_FEE'
     && currentStep?.label !== 'PERSONAL_DETAILS'
   ) {
-    // window.open(APPLICATION_PAGE_URL, '_self');
+    window.open(APPLICATION_PAGE_URL, '_self');
   }
 
 
