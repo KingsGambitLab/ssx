@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { FormattedFormFields } from "../types";
 
 export const getValidationRules = (field: FormattedFormFields) => {

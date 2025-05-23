@@ -18,6 +18,7 @@ import styles from './PaymentInitial.module.scss';
 
 export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
   const [referralCode, setReferralCode] = useState<string>('');
+  const [isPaymentProcessLoading, setIsPaymentProcessLoading] = useState<boolean>(false);
 
   const {
     couponCode,
@@ -59,7 +60,14 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
   }, [applicationFeesAmount, discountedAmount]);
 
   const handlePaymentProcess = async () => {
-    await startPaymentProcess();
+    try {
+      setIsPaymentProcessLoading(true);
+      await startPaymentProcess();
+    } catch (error) {
+      console.error("Error starting payment process:", error);
+    } finally {
+      setIsPaymentProcessLoading(false);
+    }
   }
 
   return (
@@ -189,6 +197,7 @@ export default function PaymentInitial({ userDetails }: PaymentInitialProps) {
             iconPosition="end"
             className={styles.paymentButton}
             onClick={handlePaymentProcess}
+            loading={isPaymentProcessLoading}
             block
           >
             Continue to pay

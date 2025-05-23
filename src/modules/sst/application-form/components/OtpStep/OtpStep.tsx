@@ -26,7 +26,6 @@ const { Link } = Typography;
 
 export default function OtpStep({
   onOtpVerificationSuccess,
-  onOtpVerificationError,
   errors,
   handleSubmit,
   control,
@@ -98,7 +97,6 @@ export default function OtpStep({
       }
 
       setFormError(errorMessage);
-      onOtpVerificationError(errorMessage);
     } finally {
       setIsLoading(false);
     }

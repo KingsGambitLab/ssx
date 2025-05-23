@@ -99,7 +99,6 @@ export type PhoneEmailStepProps = {
 export type OtpStepProps = {
   email: string;
   onOtpVerificationSuccess: () => void;
-  onOtpVerificationError: (error: string) => void;
   errors: FieldErrors<OtpStepFormData>;
   handleSubmit: UseFormHandleSubmit<OtpStepFormData>;
   control: any;

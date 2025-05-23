@@ -88,10 +88,6 @@ export default function LoginForm() {
   const handleOtpVerificationSuccess = useCallback(() => { 
     window.location.reload();
   }, []);
-  
-  const handleOtpVerificationError = useCallback((error: string) => {
-    setOtpErrors('otp', { message: error });
-  }, [setOtpErrors]);
 
   const handleWaitlistSubmitSuccess = useCallback(() => {
     setStep('application-fees');
@@ -141,7 +137,6 @@ export default function LoginForm() {
           <OtpStep
             email={email}
             onOtpVerificationSuccess={handleOtpVerificationSuccess}
-            onOtpVerificationError={handleOtpVerificationError}
             errors={otpErrors}
             control={otpControl}
             handleSubmit={handleOtpSubmit}

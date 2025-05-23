@@ -13,15 +13,14 @@ $otp-step-form-error-font-color: #ff4d4f;
 
 
 .container {
-  max-width: 45rem;
-  width: 100%;
+  width: 45rem;
   border-radius: 1.4rem;
   box-shadow: 0 0.8rem 1.6rem 0 $otp-step-box-shadow;
   border: 0.1rem solid $otp-step-border-color;
   background: $white-color;
 
-  @include mobile {
-    max-width: 100%;
+  @include tablet {
+    width: 100%;
     box-shadow: none;
   }
 }
