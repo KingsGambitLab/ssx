@@ -1,0 +1,249 @@
+
+$otp-step-box-shadow: rgba(18, 18, 18, 0.16);
+$otp-step-border-color: #e4e4e4;
+$otp-step-title-font-color: #083ca0;
+$otp-step-title-font-size: 2.8rem;
+$otp-step-subtitle-font-color: #616161;
+$otp-step-phone-number-font-color: #171717;
+$otp-step-wrong-contact-details-font-color: #0041ca;
+$otp-step-resend-otp-text-font-color: rgba(18, 18, 18, 0.24);
+$otp-step-submit-button-font-color: #083ca0;
+$otp-step-whatsapp-button-font-color: #1a8452;
+$otp-step-form-error-font-color: #ff4d4f;
+
+
+.container {
+  max-width: 45rem;
+  width: 100%;
+  border-radius: 1.4rem;
+  box-shadow: 0 0.8rem 1.6rem 0 $otp-step-box-shadow;
+  border: 0.1rem solid $otp-step-border-color;
+  background: $white-color;
+
+  @include mobile {
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
+
+.content {
+  @include flex-col;
+
+  padding: 2rem 2.4rem 2.4rem 2.4rem;
+  align-items: flex-start;
+  gap: 1.4rem;
+  align-self: stretch;
+  border-radius: 1.4rem;
+  background: $white-color;
+
+  @include mobile {
+    padding: 1.6rem 2rem 2rem 2rem;
+  }
+}
+
+.form {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 4.9rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 4rem;
+  }
+}
+
+.formContent {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+}
+
+.titleWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 0.8rem;
+  align-self: stretch;
+}
+
+.title {
+  color: $otp-step-title-font-color;
+  font-size: $otp-step-title-font-size;
+  font-weight: $semi-bold-font-weight;
+  align-self: stretch;
+
+  @include mobile {
+    font-size: $desktop-font-body;
+  }
+}
+
+.subtitle {
+  @include flex-col;
+
+  color: $otp-step-subtitle-font-color;
+  font-size: $desktop-font-card-title;
+  line-height: 2.24rem;
+
+  @include mobile {
+    font-size: $mobile-font-subtitle;
+    line-height: normal;
+    gap: 0.4rem;
+  }
+}
+
+.contactInfo {
+  @include flex-row;
+
+  align-items: center;
+  gap: 0.4rem;
+  align-self: stretch;
+  flex-wrap: wrap;
+
+  @include mobile {
+    gap: 0 0.4rem;
+  }
+}
+
+.phoneNumber {
+  color: $otp-step-phone-number-font-color;
+  font-weight: $bold-font-weight;
+  font-size: $desktop-font-card-title;
+
+  @include mobile {
+    font-size: $mobile-font-card-title;
+  }
+}
+
+.wrongContactDetails {
+  color: $otp-step-wrong-contact-details-font-color !important;
+  font-weight: $bold-font-weight;
+  font-size: $desktop-font-card-title !important;
+
+  @include mobile {
+    font-size: $mobile-font-card-title !important;
+  }
+}
+
+.otpInputWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 0.4rem;
+  align-self: stretch;
+}
+
+.otpInputHeading {
+  color: $neutral-scale-12;
+  font-size: $desktop-font-card-title;
+}
+
+.otpInputWrapper :global(.ant-otp-input) {
+  width: 6rem !important;
+  height: 4.8rem !important;
+
+  @include mobile {
+    width: auto !important;
+    height: 4.8rem !important;
+    flex: 1;
+  }
+}
+
+.otpInputWrapper {
+  :global(.ant-form-item), :global(.ant-otp) {
+    margin-bottom: 0 !important;
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+}
+
+.resendOtpWrapper {
+  @include flex-col-y-c;
+
+  margin-top: 2rem;
+  align-items: center;
+  gap: 1.4rem;
+  align-self: stretch;
+}
+
+.resendOtpText {
+  color: $otp-step-resend-otp-text-font-color;
+  text-align: center;
+  font-size: $desktop-font-card-title;
+  font-weight: $bold-font-weight;
+
+  @include mobile {
+    font-size: $mobile-font-card-title;
+  }
+}
+
+.submitButtonWrapper {
+  @include flex-col;
+
+  gap: 1.4rem;
+  width: 100%;
+}
+
+.submitButton {
+  height: auto !important;
+  padding: 1.2rem 4rem !important;
+  background: $otp-step-title-font-color !important;
+  width: 100% !important;
+
+  & > span {
+    color: $white-color;
+    font-size: 1.6rem;
+    font-weight: $bold-font-weight;
+    line-height: 3.2rem;
+  }
+}
+
+.whatsappButton {
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: $otp-step-whatsapp-button-font-color !important;
+  
+  & > span {
+    color: $white-color !important;
+    font-size: $desktop-font-card-body !important;
+
+    @include mobile {
+      font-size: $mobile-font-card-subtitle !important;
+    }
+  }
+
+  &:hover {
+    border: none !important;
+  }
+}
+
+.resendOtpWays {
+  @include flex-row-c;
+
+  gap: 1.4rem;
+  align-self: stretch;
+
+  a {
+    color: $otp-step-title-font-color !important;
+
+    @include mobile {
+      font-size: $mobile-font-card-subtitle !important;
+    }
+  }
+
+  @include mobile {
+    gap: 0.6rem;
+  }
+}
+
+ 
+.formError {
+  color: $otp-step-form-error-font-color;
+  text-align: center;
+  font-size: 1.4rem;
+}  

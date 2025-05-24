@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
 
-import { Header } from "@components/common";
-import Navbar from "@components/Sst/Navbar";
-import { LoginModalWrapper } from "@components/Sst/LoginModalWrapper";
-import { METADATA } from "@utils/common/metadata";
-
 import LoginModalProvider from "@context/sst/LoginModalContext";
 import Footer from "@components/common/Footer";
+
+import { LoginModalWrapper } from "@components/Sst/LoginModalWrapper";
+
+import { METADATA } from "@utils/common/metadata";
 
 import styles from "./layout.module.scss";
 
@@ -15,10 +14,7 @@ export const metadata: Metadata = METADATA.SST;
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.sstContainer}>
-       <LoginModalProvider>
-        <Header>
-          <Navbar />
-        </Header>
+      <LoginModalProvider>
         <main>{children}</main>
         <Footer />  
         <LoginModalWrapper />

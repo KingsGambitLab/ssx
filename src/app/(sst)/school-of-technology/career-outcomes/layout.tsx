@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
-import { ABEX_FLAG_CONFIG } from '@utils/abex/constants';
-
+import { Header } from "@components/common";
+import Footer from "@components/common/Footer";
 import {
   Analytics,
   AnalyticsFallback,
@@ -12,14 +12,20 @@ import {
   SUB_PRODUCTS,
 } from '@/components/common/Analytics/constants';
 
-import BottomNavbar from '@components/Sst/BottomNavbar';
-import { getAllExperiments } from '@utils/abex/experiment';
+import Navbar from "@components/Sst/Navbar";
+import BottomNavbar from "@components/Sst/BottomNavbar";
+
+import { ABEX_FLAG_CONFIG } from "@utils/abex/constants";
+import { getAllExperiments } from "@utils/abex/experiment";
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const experiments = await getAllExperiments();
 
   return (
     <>
+      <Header>
+        <Navbar />
+      </Header>
       <Suspense key="gtm-script" fallback={<AnalyticsFallback />}>
         <Analytics
           product={PRODUCTS.SCHOOL_OF_TECHNOLOGY}

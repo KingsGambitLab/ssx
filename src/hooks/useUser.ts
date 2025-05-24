@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useUserApi } from '@modules/common/apis';
 
+import useToken from "@hooks/useToken";
+
 interface UserResponse {
   data: {
     id: string;
@@ -9,7 +11,7 @@ interface UserResponse {
       id: number;
       name: string;
       email: string;
-      // ... other attributes
+      phoneNumber: string;
     };
   };
 }
@@ -19,10 +21,11 @@ interface User extends UserResponse {
 }
 
 function useUser() {
+  const { data: token } = useToken();
   const { getUserDetails } = useUserApi();
-  
-  return useQuery<User>({
-    queryKey: ['fetch_user_data'],
+
+  const query = useQuery<User>({
+    queryKey: ['fetch_user_data', token],
     queryFn: async () => {
       const response = await getUserDetails() as UserResponse;
       return {
@@ -30,6 +33,7 @@ function useUser() {
         isloggedIn: true,
       };
     },
+    enabled: !!token,
     placeholderData: {
       isloggedIn: false,
       data: {
@@ -39,11 +43,17 @@ function useUser() {
           id: 0,
           name: '',
           email: '',
+          phoneNumber: '',
         }
       }
     },
     refetchOnWindowFocus: false,
   });
+
+  return {
+    ...query,
+    hasFetched: query.isFetched
+  };
 }
 
 export default useUser;

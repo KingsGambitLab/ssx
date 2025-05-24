@@ -1,0 +1,29 @@
+$form-skeleton-box-shadow: rgba(18, 18, 18, 0.16);
+$form-skeleton-border-color: #e4e4e4;
+
+.container {
+  width: 45rem;
+  border-radius: 1.4rem;
+  background: $white-color;
+  overflow-x: hidden;
+  box-shadow: 0 0.8rem 1.6rem 0 $form-skeleton-box-shadow;
+  border: 0.1rem solid $form-skeleton-border-color;
+
+  @include tablet {
+    width: 100%;
+    box-shadow: none;
+  }
+}
+
+.content {
+  @include flex-col;
+  
+  padding: 2rem 2.4rem 2.4rem 2.4rem;
+  align-items: flex-start;
+  gap: 1.4rem;
+  align-self: stretch;
+
+  @include mobile {
+    padding: 1.6rem 2rem 2rem 2rem;
+  }
+}
