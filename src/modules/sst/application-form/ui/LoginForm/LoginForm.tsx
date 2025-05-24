@@ -14,6 +14,7 @@ import ApplicationFeesStep from '@modules/sst/application-form/components/Applic
 import OtpStep from '@modules/sst/application-form/components/OtpStep';
 import PhoneEmailStep from '@modules/sst/application-form/components/PhoneEmailStep';
 import WaitlistForm from '@modules/sst/application-form/components/WaitlistForm';
+import FormSkeleton from '@modules/sst/application-form/components/FormSkeleton';
 
 import {
   ApplicationFormStep,
@@ -27,12 +28,12 @@ import styles from "./LoginForm.module.scss";
 export default function LoginForm() {
   const [email, setEmail] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [step, setStep] = useState<ApplicationFormStep>('phone-email');
+  const [step, setStep] = useState<ApplicationFormStep>(undefined);
 
   const { showWaitlistForm } = useApplicationForm();
-  const { data: userData } = useUser();
+  const { data: userData, hasFetched } = useUser();
 
-  const { fetchAllWorkflowSteps } = useWorkflowContext();
+  const { fetchAllWorkflowSteps, currentStep } = useWorkflowContext();
 
   const {
     control: phoneEmailControl,
@@ -68,10 +69,13 @@ export default function LoginForm() {
   });
 
   const setInitialStep = () => {
-    if (!userData?.isloggedIn || showWaitlistForm === null) {
+    if (!hasFetched) { 
       return;
     }
-  
+
+    if (!userData?.isloggedIn || showWaitlistForm === null ) {
+      return;
+    }
     if (showWaitlistForm) {
       setStep('waitlist-form');
     } else {
@@ -109,7 +113,7 @@ export default function LoginForm() {
   }, [userData?.isloggedIn]);
 
 
-  const userDetails = useMemo(() => [
+  const userInfo = useMemo(() => [
     {
       label: "Name",
       value: CaseUtil.titleCase(userData?.data?.attributes?.name || '')
@@ -159,9 +163,11 @@ export default function LoginForm() {
           />
         );
       case 'application-fees':
-        return <ApplicationFeesStep userDetails={userDetails} />;
+        return <ApplicationFeesStep userDetails={userInfo} />;
       default:
-        return null;
+        return (
+          <FormSkeleton />
+        );
     }
   };
   

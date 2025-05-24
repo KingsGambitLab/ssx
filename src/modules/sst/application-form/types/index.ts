@@ -144,7 +144,7 @@ export type PaymentFailureProps = {
   tryAgainHandler: () => void;
 }
 
-export type ApplicationFormStep = 'phone-email' | 'otp' | 'waitlist-form' | 'application-fees';
+export type ApplicationFormStep = 'phone-email' | 'otp' | 'waitlist-form' | 'application-fees' | undefined;
 
 export type VerifyOtpResponse = {
   userId: number;
