@@ -1,0 +1,21 @@
+.container {
+  @include flex-col;
+
+  align-items: flex-end;
+  position: sticky;
+  top: 10rem;
+  z-index: 10;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include tablet {
+    position: relative;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+    top: 0;
+  }
+}

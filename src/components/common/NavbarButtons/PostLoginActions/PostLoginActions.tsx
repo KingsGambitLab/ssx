@@ -28,22 +28,23 @@ import styles from './PostLoginActions.module.scss';
 
 type PostLoginActionsProps = {
   rootClassName?: string;
-  buttonLabel: string;
+  buttonLabel?: string;
   buttonClassName?: string;
-  buttonOnClick: () => void;
+  buttonOnClick?: () => void;
   buttonDisabled?: boolean;
-  data: {
+  ShowResumeApplicationBtn?: boolean;
+  data?: {
     label: string;
     href: string;
   }[];
-  userName: string;
+  userName?: string;
   variant?: 'default' | 'userProfileIcon';
 };
 
 const popoverContent = (data: {
   label: string;
   href: string;
-}[], showUserProfileIcon: boolean, userName: string) => {
+}[], showUserProfileIcon: boolean, userName?: string) => {
   
   const trackEventHandler = (clickText: string) => {
     trackEvent.click({
@@ -63,7 +64,7 @@ const popoverContent = (data: {
 
   return (
     <div className={styles.popoverContent}>
-      {showUserProfileIcon && (
+      {showUserProfileIcon && userName && (
         <div className={styles.userName}>
           {`Hi ${userName}`}
         </div>
@@ -92,10 +93,11 @@ const popoverContent = (data: {
 }
 
 export default function PostLoginActions({
-  buttonOnClick,
+  buttonOnClick = () => {},
   buttonLabel = 'Resume Application',
   buttonClassName = '',
   buttonDisabled = false,
+  ShowResumeApplicationBtn = true,
   rootClassName = '',
   data = [],
   userName = '',
@@ -116,19 +118,21 @@ export default function PostLoginActions({
 
   return (
     <div className={classNames(styles.actionButtons, rootClassName)}>
-      <Button
-        size='large'
-        color="primary"
-        variant="solid"
-        className={classNames(styles.button, buttonClassName)}
-        onClick={() => {
-          trackEventHandler(buttonLabel);
-          buttonOnClick();
-        }}
-        disabled={buttonDisabled}
-      >
-        {buttonLabel}
-      </Button>
+      {ShowResumeApplicationBtn && (
+        <Button
+          size='large'
+          color="primary"
+          variant="solid"
+          className={classNames(styles.button, buttonClassName)}
+          onClick={() => {
+            trackEventHandler(buttonLabel);
+            buttonOnClick();
+          }}
+          disabled={buttonDisabled}
+        >
+          {buttonLabel}
+        </Button>
+      )}
       {!isTabletOrMobile && (
         <Popover
           content={popoverContent(data, showUserProfileIcon, userName)}

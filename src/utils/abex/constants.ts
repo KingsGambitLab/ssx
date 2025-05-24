@@ -5,11 +5,16 @@ export const ABEX_FLAG_CONFIG = {
     DEFAULT_VARIANT: 'hide_new_page',
     NEW_VARIANT: 'show_new_page',
   },
+  SST_INFO_PAGE: {
+    KEY: 'sst-info-page',
+    DEFAULT_VARIANT: 'show_variant_v1',
+    NEW_VARIANT: 'show_variant_v2',
+  }
 };
 
 
 // ABEX API CALLS
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = true;
 
 const ABEX_AUTH_TOKEN = `Basic ${btoa(`${process.env.ABEX_BASIC_AUTH_USERNAME}:${process.env.ABEX_BASIC_AUTH_PASSWORD}`)}`;
 

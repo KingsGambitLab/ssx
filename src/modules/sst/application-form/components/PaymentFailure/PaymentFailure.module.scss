@@ -1,0 +1,176 @@
+$payment-failure-box-shadow: rgba(18, 18, 18, 0.16);
+$payment-failure-border-color: #e4e4e4;
+$payment-failure-text-color: #3a3a3a;
+$payment-failure-icon-color: #a42137;
+$payment-failure-user-info-background-color: #f2f8ff;
+$payment-failure-user-info-label-color: #171717;
+$payment-failure-try-again-button-background-color: #083ca0;
+$payment-failure-try-again-button-hover-color: #3e6dc9;
+
+.container {
+  width: 45rem;
+  border-radius: 1.4rem;
+  border: 0.1rem solid $payment-failure-border-color;
+  background: $white-color;
+  box-shadow: 0 0.8rem 1.6rem 0 $payment-failure-box-shadow;
+
+  @include tablet {
+    width: 100%;
+    box-shadow: none;
+  }
+}
+
+.content {
+  @include flex-col;
+  
+  padding: 2rem 2.4rem 2.4rem 2.4rem;
+  align-items: flex-start;
+  gap: 2.4rem;
+  align-self: stretch;
+
+  @include mobile {
+    padding: 1.6rem 2rem 2rem 2rem;
+  }
+}
+
+.failureMessageWrapper {
+  @include flex-row;
+
+  align-items: center;
+  gap: 0.8rem;
+  align-self: stretch;
+
+  & > p {
+    color: $payment-failure-text-color;
+    font-size: $desktop-font-card-title;
+    font-weight: $bold-font-weight;
+    line-height: 2.24rem;
+    margin: 0;
+
+    @include mobile {
+      font-size: $mobile-font-card-title;
+      line-height: normal;
+    }
+  }
+}
+
+.failureMessageIcon {
+  & > svg {
+    height: 2.4rem !important;
+    width: 2.4rem !important;
+    color: $payment-failure-icon-color;
+  }
+}
+
+.infoWrapper {
+  @include flex-col;
+
+  padding: 0.8rem 1.6rem;
+  align-items: flex-start;
+  gap: 1.2rem;
+  align-self: stretch;
+  border-radius: $border-radius-large;
+  background: $payment-failure-user-info-background-color;
+
+  @include mobile {
+    gap: 0.4rem;
+  }
+}
+
+.userInfoWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 0.6rem;
+  align-self: stretch;
+}
+
+.userInfoItem {
+  @include flex-row;
+
+  align-items: flex-start;
+  gap: 0.8rem;
+  align-self: stretch;
+
+  @include mobile {
+    gap: 0.4rem;
+  }
+}
+
+.userInfoLabel {
+  color: $payment-failure-text-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $default-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.userInfoValue {
+  color: $payment-failure-user-info-label-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $bold-font-weight;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+}
+
+.userInfoSeparator {
+  color: $payment-failure-user-info-label-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $bold-font-weight;
+  line-height: 2.2rem;
+  letter-spacing: 0.01rem;
+}
+
+.infoSeparator {
+  width: 100%;
+  height: 0.2rem;
+  background: $payment-failure-border-color;
+}
+
+.paymentFailureWrapper {
+  @include flex-col;
+
+  gap: 2.4rem;
+  color: $payment-failure-text-color;
+  font-size: $desktop-font-card-body;
+  font-style: italic;
+  font-weight: $default-font-weight;
+  line-height: 140%;
+
+  & > ul {
+    margin: 0;
+  }
+
+  @include mobile {
+    gap: 1.2rem;
+    font-size: $mobile-font-card-body;
+  }
+}
+
+.paymentFailureHeading {
+  font-weight: $bold-font-weight;
+}
+
+.tryAgainButton {
+  @include flex-row-c;
+
+  align-items: center !important;
+  height: fit-content !important;
+  padding: 1.2rem 0 !important;
+  align-self: stretch !important;
+  border-radius: $border-radius-default !important;
+  background: $payment-failure-try-again-button-background-color !important;
+
+  & > span {
+    color: $white-color;
+    text-align: center;
+    font-size: $desktop-font-card-title;
+    font-weight: $bold-font-weight;
+    line-height: 2.4rem;
+    letter-spacing: 0.01rem;
+  }
+
+  &:hover {
+    background: $payment-failure-try-again-button-hover-color !important;
+  }
+}

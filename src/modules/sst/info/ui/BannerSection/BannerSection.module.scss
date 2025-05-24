@@ -1,0 +1,140 @@
+.container {
+  @include flex-col-c;
+
+  width: 100%;
+  gap: 5.4rem;
+  z-index: 1;
+  position: relative;
+  box-sizing: border-box;
+
+  @include mobile {
+    gap: 3.2rem;
+    margin-top: 8rem;
+  }
+}
+
+.bgImage {
+  width: 100%;
+  height: 60rem;
+  background: $black-color;
+  position: absolute;
+  object-fit: cover;
+  object-position: top;
+  top: -2rem;
+  left: 0;
+  z-index: 0;
+
+  @include mobile {
+    top: 5rem;
+    object-position: top left;
+  }
+}
+
+.loginFormContainer {
+  display: none;
+
+  @include tablet {
+    width: 100%;
+    display: block;
+  }
+}
+
+.content {
+  @include flex-col;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.6rem;
+  width: 100%;
+
+  @include tablet {
+    align-items: center;
+  }
+}
+
+.title {
+  @include font-plus-jakarta-sans;
+
+  font-size: 4.8rem;
+  line-height: 124%;
+  color: $white-color;
+  width: 100%;
+
+  @include tablet {
+    text-align: center;
+  }
+
+  @include mobile {
+    font-size: 2.8rem;
+  }
+  
+  & > span {
+    color: #B2E1FF;
+    font-weight: $semi-bold-font-weight;
+
+    @include tablet {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+
+    @include mobile {
+      font-size: 2.8rem;
+    }
+  }
+}
+
+.subtitle {
+  @include font-plus-jakarta-sans;
+
+  font-size: 2rem;
+  font-weight: $medium-font-weight;
+  line-height: 140%;
+  color: $white-color;
+  width: 100%;
+  max-width: 46rem;
+
+  @include mobile {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+
+.logos {
+  @include flex-row;
+
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 0.4rem;
+  gap: 2rem;
+  width: 100%;
+  flex-wrap: wrap;
+
+  @include mobile {
+    @include justify-c;
+
+    gap: 1.2rem;
+  }
+}
+
+.logoIcon {
+  height: 2.7rem;
+  width: auto;
+
+  @include mobile {
+    height: 1.3rem;
+  }
+}
+
+.bannerCards {
+  @include flex-row-c;
+
+  width: 100%;
+  align-items: stretch;
+  gap: 2rem;
+  flex-wrap: wrap;
+
+  @include mobile {
+    gap: 1.6rem;
+  }
+}

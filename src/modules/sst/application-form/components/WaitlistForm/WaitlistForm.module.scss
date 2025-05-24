@@ -1,0 +1,215 @@
+$waitlist-form-box-shadow: rgba(18, 18, 18, 0.16);
+$waitlist-form-border-color: #e4e4e4;
+$waitlist-form-title-font-color: #083ca0;
+$waitlist-form-title-font-size: 2.8rem;
+$waitlist-form-subtitle-font-color: #616161;
+$waitlist-form-input-border-color: #e4e4e4;
+$waitlist-form-input-placeholder-font-color: #616161;
+$waitlist-form-submit-button-font-color: #083ca0;
+$waitlist-form-error-font-color: #ff4d4f;
+
+.container {
+  width: 45rem;
+  border-radius: 1.4rem;
+  background: $white-color;
+  overflow-x: hidden;
+  box-shadow: 0 0.8rem 1.6rem 0 $waitlist-form-box-shadow;
+  border: 0.1rem solid $waitlist-form-border-color;
+
+  @include tablet {
+    width: 100%;
+    box-shadow: none;
+  }
+}
+
+.content {
+  @include flex-col;
+  
+  padding: 2rem 2.4rem 2.4rem 2.4rem;
+  align-items: flex-start;
+  gap: 1.4rem;
+  align-self: stretch;
+
+  @include mobile {
+    padding: 1.6rem 2rem 2rem 2rem;
+  }
+}
+
+.formWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+}
+
+.titleWrapper {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 0.8rem;
+  align-self: stretch;
+}
+
+.title {
+  color: $waitlist-form-title-font-color;
+  font-size: $waitlist-form-title-font-size;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: $desktop-font-body;
+    line-height: 2.8rem;
+  }
+}
+
+.subtitle { 
+  color: $waitlist-form-subtitle-font-color;
+  font-size: $desktop-font-card-title;
+  font-weight: $medium-font-weight;
+
+  @include mobile {
+    font-size: $mobile-font-card-title;
+  }
+}
+
+.form {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 1.6rem;
+  align-self: stretch;
+
+  :global(.ant-form-item) {
+    margin-bottom: 0 !important;
+  }
+}
+
+.formFields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+  width: 100%;
+
+  :global(.ant-form-item) {
+    margin-bottom: 0 !important;
+  }
+}
+
+.input {
+  height: 4.8rem;
+  padding: 0 1.2rem;
+  border-radius: $border-radius-default;
+  border: 0.1rem solid $waitlist-form-input-border-color;
+  background: $white-color;
+
+  &::placeholder {
+    color: $waitlist-form-input-placeholder-font-color;
+    font-size: $desktop-font-card-body;
+    font-weight: $default-font-weight;
+  }
+}
+
+.inputFullWidth {
+  grid-column: -1 / 1;
+}
+
+.select {
+  height: 4.8rem !important;
+  border-radius: $border-radius-default !important;
+
+  &::placeholder {
+    color: $waitlist-form-input-placeholder-font-color !important;
+    font-size: $desktop-font-card-body !important;
+  }
+
+  :global(.ant-select-selector) {
+    height: 4.8rem !important;
+  }
+}
+
+.datePicker {
+  height: 4.8rem;
+  padding: 0 1.2rem;
+  width: 100% !important;
+  border-radius: $border-radius-default;
+  border: 0.1rem solid $waitlist-form-input-border-color;
+  background: $white-color;
+
+  &::placeholder {
+    color: $waitlist-form-input-placeholder-font-color;
+    font-size: $desktop-font-card-body;
+    font-weight: $default-font-weight;
+  }
+}
+
+.eligibilityCheckbox {
+  @include flex-row;
+
+  align-items: center;
+  gap: 0.8rem;
+  align-self: stretch;
+  padding-inline-start: 0 !important;
+  padding-inline-end: 0 !important;
+
+  :global(.ant-checkbox-label) {
+    color: $waitlist-form-subtitle-font-color;
+    font-size: $desktop-font-card-subtitle;
+    font-style: italic;
+    font-weight: $default-font-weight;
+    line-height: 1.68rem;
+  }
+
+  :global(.ant-checkbox-checked .ant-checkbox-inner) {
+    background-color: $waitlist-form-title-font-color !important;
+    border-color: $waitlist-form-title-font-color !important;
+
+    &::after {
+      border-color: $white-color !important;
+    }
+  }
+
+  :global(.ant-checkbox) {
+    @include mobile {
+      align-self: flex-start !important;
+    }
+  }
+
+  @include mobile {
+    align-items: flex-start !important;
+    margin-top: 0.8rem !important;
+  }
+}
+
+.submitButtonWrapper {
+  @include flex-col;
+
+  gap: 1.4rem;
+  width: 100%;
+}
+
+.submitButton {
+  height: auto !important;
+  padding: 1.2rem 4rem !important;
+  background: $waitlist-form-title-font-color !important;
+
+  & > span {
+    color: $white-color;
+    font-size: 1.6rem;
+    font-weight: $bold-font-weight;
+    line-height: 3.2rem;
+  }
+}
+
+.formError {
+  color: $waitlist-form-error-font-color;
+  text-align: center;
+  font-size: 1.4rem;
+}  
+
+.formSkeleton {
+  width: 40rem !important;
+
+  @include mobile {
+    width: 100% !important;
+  }
+}

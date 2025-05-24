@@ -25,6 +25,7 @@ export default function CarouselWrapper({
   scrollControlsClassName,
   showInMobileOnly = false,
   trackEventSource = "",
+  carouselWrapperClassName="",
 }: {
   children: React.ReactNode,
   slidesToScrollInDesktop?: number,
@@ -37,6 +38,7 @@ export default function CarouselWrapper({
   scrollControlsClassName?: string,
   showInMobileOnly?: boolean,
   trackEventSource?: string,
+  carouselWrapperClassName?: string,
 }) {
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -112,7 +114,10 @@ export default function CarouselWrapper({
       }
       window.removeEventListener('resize', updateScrollItemsWidth);
     };
-  }, [slidesToShowInDesktop, slidesToShowInMobile, children, slideItemMinWidthInDesktop, slideItemMinWidthInMobile, isMobile]);
+  }, [
+    slidesToShowInDesktop, slidesToShowInMobile, children,
+    slideItemMinWidthInDesktop, slideItemMinWidthInMobile, isMobile,
+  ]);
 
   const trackScrollEvent = ({ clickText, custom }: TrackingProps) => {
     trackEvent.click({
@@ -156,6 +161,7 @@ export default function CarouselWrapper({
     <div className={classNames(styles.container, {
       [styles.hideLeftOverlay]: isAtStart,
       [styles.hideRightOverlay]: isAtEnd,
+      [carouselWrapperClassName]: carouselWrapperClassName,
     })}>
       <div
         ref={carouselRef}

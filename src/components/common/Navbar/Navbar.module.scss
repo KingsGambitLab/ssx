@@ -26,6 +26,13 @@
   width: 100%;
 }
 
+.rightSectionScrollTabs {
+  @include flex-row-y-c;
+
+  width: 100%;
+  justify-content: flex-end;
+}
+
 .hamburgerWrapper {
   @include flex-row;
 

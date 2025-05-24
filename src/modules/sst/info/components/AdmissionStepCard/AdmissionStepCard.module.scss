@@ -1,0 +1,126 @@
+$background-color: #fafafa;
+$border-gray-color: #e4e4e4;
+$growing-div-color: #008CFF;
+$white-color: #ffffff;
+$text-color: #3A3A3A;
+$bg-black-color: #212121;
+
+.left {
+  position: relative;
+
+  &:before {
+    content: "";
+    border: 0.2rem $border-gray-color solid;
+    height: calc(100% + 12rem);
+    position: absolute;
+    width: 0;
+    left: calc(50% - 0.15rem);
+    z-index: 0;
+
+    @include tablet {
+      height: calc(100% + 14rem);
+    }
+  }
+}
+
+.growingDiv {
+  content: "";
+  position: absolute;
+  left: calc(50% - 0.1rem);
+  z-index: 1;
+  top: 2rem;
+  border: 0.2rem solid $growing-div-color;
+
+  @include mobile {
+    border: 0.2rem solid $growing-div-color;
+    left: calc(50% - 0.15rem);
+  }
+}
+
+.stepLastLeft {
+  position: relative;
+
+  &:before {
+    content: "";
+    border: 0.25rem $background-color solid;
+    height: calc(100% + 7rem);
+    position: absolute;
+    width: 0;
+    left: calc(50% - 0.15rem);
+    z-index: 1;
+  }
+}
+
+.card {
+  @include flex-row;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4rem;
+  width: 100%;
+
+  @include mobile {
+    gap: 1.2rem;
+  }
+}
+
+.icon {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  z-index: 2;
+}
+
+.right {
+  @include flex-col;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.header {
+  @include flex-row;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.4rem;
+}
+
+.stepId {
+  @include flex-row-c;
+  @include font-plus-jakarta-sans;
+
+  padding: 0.4rem 1rem;
+  border-radius: 0.8rem;
+  background: $bg-black-color;
+  color: $white-color;
+  font-size: $desktop-font-card-body;
+  font-weight: $semi-bold-font-weight;
+  line-height: 140%;
+  flex-shrink: 0;
+}
+
+.title {
+  @include font-plus-jakarta-sans;
+  
+  color: $text-color;
+  font-size: $desktop-font-title-3;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: 1.8rem;
+  }
+}
+
+.desc {
+  @include font-plus-jakarta-sans;
+  
+  color: $text-color;
+  font-size: $desktop-font-card-title;
+  line-height: 140%;
+  
+  @include mobile {
+    font-size: $mobile-font-card-subtitle;
+  }
+}

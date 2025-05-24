@@ -1,0 +1,51 @@
+$info-container-background-color: #fafafa;
+
+.container {
+  margin-top: 8rem;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans' !important;
+  padding: 3.2rem 0;
+  background-color: $info-container-background-color;
+
+
+  @include mobile {
+    margin-top: 6rem;
+    padding: 1.6rem 0 2.8rem;
+  }
+}
+
+.mainContainer {
+  @include flex-row;
+
+  width: 100%;
+  max-width: 128rem;
+  margin: 0 auto;
+  gap: 1.6rem;
+  background-color: $info-container-background-color;
+  
+  @include bp(1440px) {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  @include tablet {
+    padding: 0;
+  }
+}
+
+.leftContainer {
+  @include flex-col-c;
+
+  width: 60%;
+
+  @include tablet {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.rightContainer {
+  @include tablet {
+    display: none;
+  }
+}

@@ -1,0 +1,109 @@
+$key-dates-table-header-bg: #0b2a66;
+$light-black: #171717;
+$key-dates-table-value-font-color: #3a3a3a;
+$light-gray: #e4e4e4;
+$light-blue: #ECF8FF;
+$border-color: #e4e4e4;
+$key-dates-border-color: #0a2661;
+$sst-vs-traditional-footer-text-title: #171717;
+$sst-vs-traditional-footer-font-size: 2.8rem;
+
+.container {
+  @include flex-col-c;
+  
+  padding: 5.4rem 0 3.2rem 0;
+  gap: 3.2rem;
+  
+  @include mobile {
+    padding: 2.4rem 0;
+    gap: 2rem;
+  }
+}
+
+.title {
+  @include font-plus-jakarta-sans;
+
+  text-align: center;
+  font-size: 4.8rem;
+  font-weight: $semi-bold-font-weight;
+
+  @include mobile {
+    font-size: 2.4rem;
+  }
+}
+
+.tableContainer {
+    margin: 0;
+    width: 100%;
+    
+    .comparisonTable {
+      border-radius: 8px;
+      border: 0.1rem solid $key-dates-border-color;
+      overflow: hidden;
+      
+      :global(.ant-table-thead > tr > th::before) {
+        display: none !important;
+      }
+    }
+
+    :global(.ant-table-title) {
+      padding: 0 !important;
+    }
+
+    :global(.ant-table-thead > tr) {
+      > th {
+        display: none;
+      }
+    }
+
+    :global(.ant-table-tbody > tr) {
+      > td {
+        padding: 1.6rem;
+        color: $light-black;
+        font-weight: $medium-font-weight;
+        font-size: $desktop-font-body;
+        border: 0.1rem solid $border-color;
+
+        @include mobile {
+          font-size: 1rem;
+          padding: 0.8rem;
+        }
+      }
+      
+      .labelColumn {
+        font-size: $desktop-font-body;
+        font-weight: $bold-font-weight;
+        color: $key-dates-table-value-font-color;
+        word-wrap: break-word;
+        background: $light-blue;
+        
+        @include mobile {
+          font-size: $mobile-font-card-title;
+          padding: 1rem 1.2rem !important;
+          line-height: normal !important;
+        }
+      }
+
+      .dataColumn {
+        font-size: 2rem;
+        color: $key-dates-table-value-font-color !important;
+        word-wrap: break-word;
+        font-weight: $default-font-weight;
+        
+        @include mobile {
+          font-size: 1.4rem;
+          padding: 1rem 1.2rem !important;
+          line-height: 1.96rem !important;
+        }
+      }
+    }
+  }
+
+.tableTitle {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.6rem;
+  background-color: $key-dates-table-header-bg;
+  color: $white-color;
+  padding: 1rem;
+}

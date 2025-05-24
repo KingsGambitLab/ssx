@@ -1,11 +1,11 @@
 import Section from "@components/common/Section";
 
-import { SuccessStoriesData } from "../../utils/data";
+import { SuccessStoriesData } from "@modules/sst/career-outcomes/utils/data";
 
 import { pageTrackingSources } from "@modules/sst/career-outcomes/utils/tracking";
 
 import CarouselWrapper from "@components/common/CarouselWrapper";
-import SuccessStoryCard from "../../components/SuccessStoryCard/SuccessStoryCard";
+import SuccessStoryCard from "@components/common/SuccessStoryCard";
 
 import styles from "./SuccessStories.module.scss";
 
@@ -29,6 +29,7 @@ export default function SuccessStories() {
               videoLink={story?.videoLink}
               link={story?.link}
               ctaText={story?.ctaText}
+              page="careerOutcomes"
             />
           ))}
         </CarouselWrapper>
