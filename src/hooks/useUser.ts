@@ -12,7 +12,6 @@ interface UserResponse {
       name: string;
       email: string;
       phoneNumber: string;
-      // ... other attributes
     };
   };
 }
@@ -23,10 +22,9 @@ interface User extends UserResponse {
 
 function useUser() {
   const { data: token } = useToken();
-
   const { getUserDetails } = useUserApi();
-  
-  return useQuery<User>({
+
+  const query = useQuery<User>({
     queryKey: ['fetch_user_data', token],
     queryFn: async () => {
       const response = await getUserDetails() as UserResponse;
@@ -51,6 +49,11 @@ function useUser() {
     },
     refetchOnWindowFocus: false,
   });
+
+  return {
+    ...query,
+    hasFetched: query.isFetched
+  };
 }
 
 export default useUser;
