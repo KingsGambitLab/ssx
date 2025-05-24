@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useUserApi } from '@modules/common/apis';
 
+import useToken from "@hooks/useToken";
+
 interface UserResponse {
   data: {
     id: string;
@@ -20,10 +22,12 @@ interface User extends UserResponse {
 }
 
 function useUser() {
+  const { data: token } = useToken();
+
   const { getUserDetails } = useUserApi();
   
   return useQuery<User>({
-    queryKey: ['fetch_user_data'],
+    queryKey: ['fetch_user_data', token],
     queryFn: async () => {
       const response = await getUserDetails() as UserResponse;
       return {
@@ -31,6 +35,7 @@ function useUser() {
         isloggedIn: true,
       };
     },
+    enabled: !!token,
     placeholderData: {
       isloggedIn: false,
       data: {
